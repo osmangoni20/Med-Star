@@ -1,0 +1,17 @@
+@import "../../../abstract//variable.module.scss";
+.bannerAndDoctorAdd {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  // padding: 10px;
+  border-bottom: 2px solid $simpleLight;
+}
+
+// .banner {
+// }
+.doctorAdd {
+  img {
+    height: 352px !important;
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+  }
+}

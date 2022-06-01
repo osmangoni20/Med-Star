@@ -1,0 +1,14 @@
+$primary: #0571a5;
+$white: #fff;
+$black: #1a202c;
+$light: #4c9dc3;
+$second: #089db1;
+$simpleLight: #96d1e2;
+:export {
+  primaryColor: $primary;
+  whiteColor: $white;
+  blackColor: $black;
+  lightColor: $light;
+  secondary: $second;
+  simpleLight: $simpleLight;
+}
