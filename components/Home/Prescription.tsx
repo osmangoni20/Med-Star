@@ -1,5 +1,6 @@
 import Image from "next/image";
 import prescriptionImage from "../../assets/image/doctor-writing-prescription.jpg";
+import style from "../../styles/Sass/Components/Home/PatientServiceAndPrescriptionSystem.module.scss";
 import Button from "../Custom/Button/Button";
 const prescriptionUploadRules = [
   {
@@ -28,18 +29,31 @@ const prescriptionUploadRules = [
 const Prescription = () => {
   return (
     <div>
-      <h2>Order By Prescription</h2>
-      <div className="flex items-center">
-        <div>
+      <div
+        className={`${style.prescription} md:flex items-center md:gap-9 md:justify-evenly`}
+      >
+        <div className={`${style.prescriptionRules}`}>
+          <h2 className={`text-center text-4xl my-2 font-bold`}>
+            Order By Prescription
+          </h2>
           {prescriptionUploadRules.map((rules) => {
-            return <p key={rules.id}>{rules.content}</p>;
+            return (
+              <div className={`${style.rules}`} key={rules.id}>
+                <p className={`${style.dot} mr-3`}></p>
+                <p>{rules.content}</p>
+              </div>
+            );
           })}
+          <div
+            className={`my-6 ml-48 flex justify-center md:justify-start items-center`}
+          >
+            <Button>Upload Prescription</Button>
+          </div>
         </div>
-        <div>
+        <div className={`${style.prescriptionImage}`}>
           <Image src={prescriptionImage} alt="" />
         </div>
       </div>
-      <Button>Upload Prescription</Button>
     </div>
   );
 };

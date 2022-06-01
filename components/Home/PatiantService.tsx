@@ -1,5 +1,9 @@
 import Image from "next/image";
-import patientServiceImage from "../../assets/image/Patient.jpg";
+import patientService3Image from "../../assets/image/doctor_and_patient.png";
+import patientService1Image from "../../assets/image/online doctor.png";
+import patientServiceImage from "../../assets/image/onlineTeleconsultation.jpg";
+import style from "../../styles/Sass/Components/Home/PatientServiceAndPrescriptionSystem.module.scss";
+
 const patientService = [
   {
     id: 1,
@@ -31,13 +35,22 @@ const patientService = [
 const PatientService = () => {
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
+      <div
+        className={`${style.patientService} md:flex items-center md:gap-9 md:justify-between`}
+      >
+        <div className={`flex items-center`}>
+          <Image src={patientService1Image} alt="" />
+          <Image src={patientService3Image} alt="" />
           <Image src={patientServiceImage} alt="" />
         </div>
-        <div>
+        <div className={`${style.service}`}>
           {patientService.map((service) => {
-            return <p key={service.id}>{service.content}</p>;
+            return (
+              <div className={`${style.serviceTitle}`} key={service.id}>
+                <p className={`${style.dot} mr-3`}></p>
+                <p>{service.content}</p>
+              </div>
+            );
           })}
         </div>
       </div>

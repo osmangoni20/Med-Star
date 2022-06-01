@@ -1,14 +1,14 @@
 import Head from "next/head";
 import { ReactElement } from "react";
-import Meta from "../Components/common/Meta";
-import Ambulance from "../Components/Home/Ambulance";
-import BannerAndDoctorAdd from "../Components/Home/Banner/BannerAndDoctorAdd";
-import Doctor from "../Components/Home/Doctor";
-import Features from "../Components/Home/Features";
-import Medicine from "../Components/Home/Medicine";
-import PatientService from "../Components/Home/PatiantService";
-import Prescription from "../Components/Home/Prescription";
-import Layout from "../Components/Layout/Layout";
+import Meta from "../components/common/Meta";
+import Ambulance from "../components/Home/Ambulance";
+import BannerAndDoctorAdd from "../components/Home/Banner/BannerAndDoctorAdd";
+import Doctor from "../components/Home/Doctor";
+import Features from "../components/Home/Features";
+import Medicine from "../components/Home/Medicine";
+import PatientService from "../components/Home/PatiantService";
+import Prescription from "../components/Home/Prescription";
+import Layout from "../components/Layout/Layout";
 const Home = () => {
   return (
     <div>

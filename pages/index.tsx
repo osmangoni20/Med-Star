@@ -1,7 +1,11 @@
 import Footer from "../components/common/Footer";
 import Header from "../components/common/Header/Header";
 import Meta from "../components/common/Meta";
+import Ambulance from "../components/Home/Ambulance";
 import BannerAndDoctorAdd from "../components/Home/Banner/BannerAndDoctorAdd";
+import Features from "../components/Home/Features";
+import PatientService from "../components/Home/PatiantService";
+import Prescription from "../components/Home/Prescription";
 // import styles from "../styles/Home.module.scss";
 const Home = () => {
   return (
@@ -14,12 +18,14 @@ const Home = () => {
       <Header />
 
       <BannerAndDoctorAdd />
-      {/* <PatientService />
+      <PatientService />
+
       <Features />
       <Prescription />
       <Ambulance />
-      <Doctor />
-      <Medicine /> */}
+
+      {/* <Doctor /> */}
+      {/*<Medicine /> */}
       <Footer />
     </div>
   );

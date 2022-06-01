@@ -1,34 +1,108 @@
-import { FaAmbulance } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
+import { GrLocation } from "react-icons/gr";
+import { IoIosCall } from "react-icons/io";
+import { TiLocation } from "react-icons/ti";
+import ambulanceImage from "../../assets/image/ambulance-dir.png";
+import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
+import SimpleButton from "../Custom/Button/SimpleButton";
 const AmbulanceList = [
   {
     id: 1,
     name: "AC Ambulance",
-    description:
-      "An AC ambulance is just an ordinary ambulance which delivers exceptional high-end service. An AC ambulance is equipped with an AC, which ensures the patient and their loved ones accompanying them to the hospital are cooled. The air conditioning makes the conditions in the ambulance more relaxing especially for patients who have suffered shock or burns and scalds.",
+    location_name: "Dhaka",
+    location_details:
+      "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    contact1: "+880125482547",
+    contact2: "+880125465284",
+    hotline: "6254",
   },
   {
     id: 2,
     name: "Non-AC Ambulance",
-    description:
-      "A non-AC ambulance is the cheapest ambulance service in our array of services. A non-AC ambulance is our service ambulance for the less privileged who just need a quick means to get their patient to the hospital. The ambulance also comes with a comfy bed and two pillows. We do not discriminate when it comes to offering quality service.",
+    location_name: "Dhaka",
+    location_details:
+      "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    contact1: "+880165482547",
+    contact2: "+880175465284",
+    hotline: "72515",
   },
   {
     id: 3,
     name: "Freezer Van Ambulance",
-    description:
-      "A freezer ambulance resembles a mortuary ambulance, but it's more advanced. There are instances when a dead body will need to be transported for a long distance for burial. Also, if the loved ones are not close enough to pay their last respects to the dead or say their goodbyes, the body will need to be kept in an optimal condition until they arrive.",
+    location_name: "Dhaka",
+    location_details:
+      "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    contact1: "+880425482547",
+    contact2: "+880685465284",
+    hotline: "1454",
+  },
+  {
+    id: 4,
+    name: "ICU Ambulance",
+    location_name: "Dhaka",
+    location_details:
+      "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    contact1: "+880187842515",
+    contact2: "+880178465284",
+    hotline: "2054",
   },
 ];
 const Ambulance = () => {
   return (
-    <div>
-      <div className="grid grid-cols-2">
+    <div className={`${style.ambulance}`}>
+      <div
+        className={`${style.titlePart} flex justify-between items-center my-6`}
+      >
+        <h1 className={`${style.title}`}>Ambulance Service</h1>
+        <Link href={"/"}>
+          <p>View All</p>
+        </Link>
+      </div>
+      <div className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}>
         {AmbulanceList.map((Amb) => {
           return (
-            <div key={Amb.id}>
-              <FaAmbulance size={"2x"} />
-              <h2>{Amb.name}</h2>
-              <p>{Amb.description}</p>
+            <div
+              key={Amb.id}
+              className="card card-compact w-84 bg-base-100 shadow-xl"
+            >
+              <figure>
+                <Image src={ambulanceImage} alt="Shoes" />
+              </figure>
+              <div className="card-body">
+                <div className="flex justify-center text-xl">
+                  <div>
+                    <h2 className="card-title ">{Amb.name}</h2>
+                    <div className="flex gap-1 ">
+                      <GrLocation className="mt-1" />
+                      <p>{Amb.location_name}</p>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div className={`${style.ambulanceBody} text-base mt-5 `}>
+                  <span className="flex gap-2 items-center py-1">
+                    <TiLocation className={`${style.icon}`} />
+                    <p>{Amb.location_details}</p>
+                  </span>
+
+                  <span className="flex gap-2 py-1 items-center">
+                    <IoIosCall size={"xl"} className={`${style.icon}`} />
+                    <span className="flex gap-3">
+                      <p>{Amb.contact1}</p>
+                      <p>{Amb.contact2}</p>
+                    </span>
+                  </span>
+                  {/* <span className="flex gap-2 items-center py-1">
+                    <MdLocationOn className={`${style.icon}`} />
+                    <p>{Amb.hotline}</p>
+                  </span> */}
+                </div>
+                <div className="card-actions justify-center">
+                  {/* className={`${style.map_button}`} */}
+                  <SimpleButton>Show on Map</SimpleButton>
+                </div>
+              </div>
             </div>
           );
         })}
