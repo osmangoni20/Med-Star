@@ -1,5 +1,5 @@
 import Image from "next/image";
-import prescriptionImage from "../../assets/image/doctor-writing-prescription.jpg";
+import prescriptionImage from "../../assets/image/doctor-writing-prescription.png";
 import style from "../../styles/Sass/Components/Home/PatientServiceAndPrescriptionSystem.module.scss";
 import Button from "../Custom/Button/Button";
 const prescriptionUploadRules = [

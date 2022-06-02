@@ -1,24 +1,42 @@
-import Image, { StaticImageData } from "next/image";
-
+import Image from "next/image";
+import style from "../../styles/Sass/common/_product.module.scss";
+import SimpleButton from "../Custom/Button/SimpleButton";
 interface Iprops {
   id: number;
-  img: StaticImageData;
+  category: string;
   name: string;
-  designation: string;
-  education: string;
-  jobTitle: string;
+  img: string;
+  price: number;
+  description: {
+    productType: string;
+    capacity: string;
+    used: string;
+    sideEffect: string;
+  };
 }
-const Product = ({ product }: any) => {
+const Product = ({ product }: { product: Iprops }) => {
+  console.log(product.img);
   return (
     <div>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className={`${style.productCart} card  w-84  shadow`}>
         <figure>
-          <Image src={product.img} alt="Shoes" />
+          <Image
+            src={product.img}
+            width={200}
+            height={150}
+            alt={product.name}
+          />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">{product.name}</h2>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+        <div className={`${style.productCartBody} card-body `}>
+          <div className={`${style.cartBodyText}`}>
+            <h2 className="text-center">{product.name}</h2>
+            <h6>{product.description.productType}</h6>
+            <h6>{product.description.capacity}</h6>
+            <p className={`${style.price}`}> Tk {product.price} .00</p>
+          </div>
+
+          <div className="card-actions justify-center">
+            <SimpleButton>Add to Cart</SimpleButton>
           </div>
         </div>
       </div>

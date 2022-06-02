@@ -1,0 +1,34 @@
+@import "../abstract/variable.module.scss";
+
+.productCart {
+  min-height: 360px;
+  max-height: 360px;
+  cursor: pointer;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  img {
+    max-height: 140px !important;
+    width: 160px !important;
+    padding-top: 15px !important;
+  }
+  .productCartBody {
+    padding: 10px !important;
+    text-align: center;
+    .cartBodyText {
+      min-height: 150px;
+      max-height: 150px;
+    }
+    p {
+      font-size: 16px;
+      padding: 0px !important;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: 400;
+    }
+  }
+}

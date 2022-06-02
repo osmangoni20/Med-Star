@@ -1,5 +1,6 @@
 // import logo from '../../../aseets/images/ehostel';
 // import Button from "../../custom/Button/Button";
+import Link from "next/link";
 import style from "../../../styles/Sass/common/Header/_navbar.module.scss";
 
 const Navbar = () => {
@@ -20,9 +21,13 @@ const Navbar = () => {
         <div className="shadow-md w-full  top-0 left-0 ">
           <div className="md:flex items-center md:pr-4 justify-between  ">
             <div className="md:flex gap-2">
-              <h2 className={`${style.navbarHeader} hidden md:block`}>
-                Medicine
-              </h2>
+              <Link href={"/medicine"}>
+                <h2
+                  className={`${style.navbarHeader} hidden md:block text-white`}
+                >
+                  Medicine
+                </h2>
+              </Link>
 
               <ul
                 className={`lg:flex hidden absolute  md:items-center md:pb-0 pb-12  md:static  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-4 transition-all duration-500 ease-in `}

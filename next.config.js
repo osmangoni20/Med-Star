@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['cdn1.arogga.com'],
+},
+sassOptions: {
+  includePaths: [path.join(__dirname, 'styles')],
+},
 }
-const path = require('path')
-module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
-}
+
 module.exports = nextConfig

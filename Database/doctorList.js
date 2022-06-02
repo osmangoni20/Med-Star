@@ -1,4 +1,4 @@
-import doctor8Image from '../assets/image/doctor1.png';
+import doctor8Image from '../assets/image/doctor1.jpg';
 import doctor1Image from '../assets/image/doctor3.png';
 import doctor2Image from '../assets/image/doctor4.png';
 import doctor3Image from '../assets/image/doctor5.png';

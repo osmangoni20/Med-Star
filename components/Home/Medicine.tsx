@@ -1,24 +1,40 @@
-import style from "../../styles/Sass/main.module.sass";
-import Categories from "../common/Categories";
+import { useEffect, useState } from "react";
+import style from "../../styles/Sass/Components/Home/Medicine.module.scss";
 import Product from "../common/Product";
 import Button from "../Custom/Button/Button";
 
-import{doctorList} from '../../Database/doctorList';
+interface Data {
+  id: number;
+  category: string;
+  name: string;
+  img: string;
+  price: number;
+  description: {
+    productType: string;
+    capacity: string;
+    used: string;
+    sideEffect: string;
+  };
+}
 const Medicine = () => {
+  const [medicineProduct, setMedicineProduct] = useState<Data[]>([]);
+  useEffect(() => {
+    fetch("/api/medicine_product")
+      .then((res) => res.json())
+      .then((data) => setMedicineProduct(data));
+  }, []);
+  console.log(medicineProduct);
   return (
-    <div>
-      <h2>Medicine Corner</h2>
-      <div className={style.categoriesAndProduct}>
-        <Categories />
-        <div>
-            <div className="grid grid-cols-4 grid-2">
-                {
-                    doctorList.map(product=>
-                    <Product key={product.id} product={product} />
-                    )
-                }
-            </div>
-          
+    <div className={`${style.medicine}`}>
+      <h2 className="text-center">Medicine Corner</h2>
+
+      <div className="mt-10">
+        <div className="grid grid-cols-5 gap-4">
+          {medicineProduct.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+        </div>
+        <div className="flex justify-center my-10">
           <Button>More Product</Button>
         </div>
       </div>
@@ -26,4 +42,32 @@ const Medicine = () => {
   );
 };
 
+// export const getStaticProps: GetStaticProps = async (ctx: any) => {
+//   console.log(ctx);
+//   const res = await fetch(
+//     `https://jsonplaceholder.typicode.com/posts/` + ctx.params.id
+//   );
+//   const data = await res.json();
+//   return {
+//     props: {
+//       data: data,
+//     },
+//   };
+// };
+
+// export const getStaticPaths:GetStaticPaths=async()=>{
+
+//   const res=await fetch('/api/medicine_product');
+//   const productData=await res.json();
+
+//   const ids=productData.map((pd:any)=>{
+//     return pd.id;
+//   })
+//   const paths=ids.map((id:number)=>({params:id.toString()}))
+
+//   return{
+//     paths,
+//     fallback: false,
+//   }
+// }
 export default Medicine;

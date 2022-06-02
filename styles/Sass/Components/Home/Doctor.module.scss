@@ -1,0 +1,42 @@
+@import "../../abstract//variable.module.scss";
+.carousel {
+  .titlePart {
+    padding: 20px;
+    .title {
+      color: $light;
+      font-size: 35px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 18px;
+      font-weight: 500;
+      color: $primary;
+      cursor: pointer;
+    }
+  }
+  .DoctorCarousel_inner {
+    max-width: 1300px;
+    margin: 10px auto;
+
+    .doctorCard {
+      max-height: 415px;
+      cursor: pointer;
+      figure {
+        background-color: $gray;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      img {
+        max-height: 180px !important;
+      }
+    }
+    .doctorCardBody {
+      color: white;
+      background-color: $light;
+      padding: 15px !important;
+      text-align: center;
+    }
+  }
+}

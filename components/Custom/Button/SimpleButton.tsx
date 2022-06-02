@@ -14,7 +14,7 @@ const SimpleButton = (props: {
         border: `2px solid ${variable.lightColor}`,
         backgroundColor: variable.primaryColor,
       }}
-      className=" text-white font-[Poppins]  px-2 border-2 md:py-2 py-1 md:px-6 rounded md:ml-8 hover:bg-indigo-400
+      className=" text-white font-[Poppins]  px-2 border-2 md:py-2 py-1 md:px-6 rounded-xl  hover:bg-indigo-400
       duration-500"
     >
       {props.children}

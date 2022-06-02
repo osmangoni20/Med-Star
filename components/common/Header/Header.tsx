@@ -106,7 +106,6 @@ const Header = () => {
             </p>
           </div>
         </div>
-        <hr />
       </div>
     </div>
   );
