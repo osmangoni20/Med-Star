@@ -1,0 +1,72 @@
+@import "../../abstract/variable.module.scss";
+
+.OrderCart {
+  background-color: $Lightgray;
+
+  .costInformation {
+    width: 20%;
+  }
+  .OrderCartProducts {
+    // width: 80%;
+  }
+}
+.card_header {
+  margin-top: 20px;
+  background-color: $primary;
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $white;
+  }
+}
+.card_Product {
+  margin: 20px 0px;
+  background-color: #fff;
+  padding-bottom: 20px !important;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid $Lightgray;
+}
+
+.Cart_Button {
+  float: right;
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .OrderCart {
+    padding: 0px;
+
+    .card_header {
+      margin-top: 20px;
+      background-color: $primary;
+      height: 50px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 10px;
+      h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $white;
+      }
+    }
+    .card_Product {
+      margin: 20px 0px;
+      background-color: #fff;
+      padding-bottom: 20px !important;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid $Lightgray;
+    }
+  }
+}

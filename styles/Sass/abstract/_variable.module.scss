@@ -4,7 +4,8 @@ $black: #1a202c;
 $light: #4c9dc3;
 $second: #089db1;
 $simpleLight: #96d1e2;
-$gray: #fdfdfd;
+$gray: #d0cccc;
+$Lightgray: #f5f5dc;
 :export {
   primaryColor: $primary;
   whiteColor: $white;
@@ -13,4 +14,5 @@ $gray: #fdfdfd;
   secondary: $second;
   simpleLight: $simpleLight;
   grayColor: $gray;
+  Lightgray: $Lightgray;
 }

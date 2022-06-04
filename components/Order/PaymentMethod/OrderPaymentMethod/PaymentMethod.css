@@ -1,0 +1,36 @@
+.PaymentMethod {
+  margin: 20px 0px;
+  background-color: white;
+  padding: 0px;
+  padding-bottom: 20px;
+  border: 1px solid lightgray;
+}
+
+.PaymentMethod button {
+  text-align: center;
+  width: 300px;
+  background-color: #f6921e;
+  border-radius: 10px;
+  border: 1px solid #ec1c24;
+  padding: 10px;
+  height: 60px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+}
+
+.payment-header {
+  padding: 15px;
+  height: 100px;
+  background-color: #fafafa;
+  color: black;
+  margin: 0px;
+  padding-bottom: 20px;
+  border: 1px solid lightgray;
+}
+.payment-header h3 {
+  font-size: 30px;
+}
+.AllpaymentType {
+  padding: 30px;
+}

@@ -1,0 +1,19 @@
+.card-pdImage img{
+text-align: center;
+width: 80%;
+height: 200px;
+}
+.card-pd-info{
+    padding: 10px;
+}
+.card-pd-info h4{
+    font-weight: 400;  
+}
+.card-pd-info h3{
+    font-size: 22px;
+}
+.hyper-line{
+    hpadding: 1px;
+    width: 98%;
+    margin: 0px 6px;
+}

@@ -1,0 +1,27 @@
+.Cost-Info{
+    
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: white;
+    height: 385px;
+    padding: 5px;
+    margin-top: 20px;
+}
+.checkout-summary{
+    border-radius: 5%;
+    padding: 10px;
+}
+.checkout-summary p{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    font-size: 18px;
+}
+.checkout-heder{
+    margin-bottom: 40px;
+    font-size: 22px;
+}
+
+.checkout-summary .cost-info hr{
+    padding: 0px;
+}

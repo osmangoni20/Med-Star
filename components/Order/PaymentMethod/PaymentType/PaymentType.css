@@ -1,0 +1,18 @@
+.PaymentType{
+height: 120px;
+padding: 10px;
+background-color: #E9EBEC;
+border-radius: 10px;
+margin-bottom: 15px;
+text-align: left;
+cursor: pointer;
+}
+.DelevaryType{
+
+}
+.PaymentType img{
+    width: 70%;
+    height: 80px;
+    cursor: pointer;
+    padding-left: 10px;
+}

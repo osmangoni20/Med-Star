@@ -5,8 +5,11 @@ const Button = (props: {
     | React.ReactChild
     | React.ReactFragment
     | React.ReactPortal
+    | string
     | null
     | undefined;
+  onClick?: () => void;
+  className?: string;
 }) => {
   return (
     <button

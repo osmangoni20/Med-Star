@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { useState } from "react";
 import style from "../../styles/Sass/common/_product.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
+import SingleModel from "./Model/SingleModel";
 interface Iprops {
   id: number;
   category: string;
@@ -16,8 +18,13 @@ interface Iprops {
 }
 const Product = ({ product }: { product: Iprops }) => {
   console.log(product.img);
+  const [showModel, setModel] = useState<boolean>(false);
+  console.log(showModel);
   return (
     <div>
+      {showModel && (
+        <SingleModel setModel={setModel} showModel={showModel} data={product} />
+      )}
       <div className={`${style.productCart} card  w-84  shadow`}>
         <figure>
           <Image
@@ -36,7 +43,9 @@ const Product = ({ product }: { product: Iprops }) => {
           </div>
 
           <div className="card-actions justify-center">
-            <SimpleButton>Add to Cart</SimpleButton>
+            <span onClick={() => setModel(!showModel)}>
+              <SimpleButton>Order</SimpleButton>
+            </span>
           </div>
         </div>
       </div>

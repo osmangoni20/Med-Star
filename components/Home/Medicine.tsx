@@ -55,19 +55,5 @@ const Medicine = () => {
 //   };
 // };
 
-// export const getStaticPaths:GetStaticPaths=async()=>{
 
-//   const res=await fetch('/api/medicine_product');
-//   const productData=await res.json();
-
-//   const ids=productData.map((pd:any)=>{
-//     return pd.id;
-//   })
-//   const paths=ids.map((id:number)=>({params:id.toString()}))
-
-//   return{
-//     paths,
-//     fallback: false,
-//   }
-// }
 export default Medicine;

@@ -1,0 +1,25 @@
+.OrderCart{
+    background-color: #D3D3D3;
+}
+.card-header{
+    margin-top: 20px;
+    background-color: white;
+    height: 90px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-Product{
+    margin: 20px 0px;
+    background-color: white;
+    padding-bottom: 20px;
+    padding: 10px;
+}
+
+.Cart-Button{
+    float: right;
+    text-align: right;
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
