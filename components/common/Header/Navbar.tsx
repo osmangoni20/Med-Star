@@ -21,7 +21,7 @@ const Navbar = () => {
         <div className="shadow-md w-full  top-0 left-0 ">
           <div className="md:flex items-center md:pr-4 justify-between  ">
             <div className="md:flex gap-2">
-              <Link href={"/medicine"}>
+              <Link href={"/medicine"} passHref>
                 <h2
                   className={`${style.navbarHeader} hidden md:block text-white`}
                 >

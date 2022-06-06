@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import style from "../../../styles/Sass/Components/Order/CostInformation.module.scss";
 import LargestButton from "../../Custom/Button/LargestButton";
 const CostInformation = ({ totalPrice }: { totalPrice: number }) => {
@@ -55,8 +54,10 @@ const CostInformation = ({ totalPrice }: { totalPrice: number }) => {
           </div>
         </div>
         <div className={`${style.order_Button}`}>
-          <Link href={"/shipping"} passHref>
-            <LargestButton>Order Now</LargestButton>
+          <Link href="/shipping">
+            <a>
+              <LargestButton>Place Order</LargestButton>
+            </a>
           </Link>
         </div>
       </div>

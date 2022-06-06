@@ -1,0 +1,44 @@
+@import "../../abstract/variable.module.scss";
+
+.input_filed {
+  max-height: 380px;
+  width: 100%;
+  height: 40px;
+  background-color: $gray;
+  margin: 10px 0px;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0.4rem;
+
+  .inputFieldError {
+    width: 100%;
+    border: 1px solid #f74053;
+    background-color: burlywood;
+    color: #1c1c1d;
+    height: 30px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  .input_icon {
+    margin: auto;
+    color: #dfdede;
+  }
+  input,
+  select {
+    border: none;
+    background: none;
+    outline: none;
+    line-height: 1;
+    font-weight: 500;
+    color: #333;
+    font-size: 0.98rem;
+    /* margin-top: 8px; */
+    padding: 13px;
+  }
+  input::placeholder,
+  select::placeholder {
+    font-weight: 500;
+    color: #aaa;
+  }
+}

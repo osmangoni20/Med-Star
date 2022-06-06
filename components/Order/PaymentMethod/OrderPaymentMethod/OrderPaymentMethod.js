@@ -1,6 +1,5 @@
-import Router from 'next/router';
-import React, { useState } from 'react';
-import style from '../../../../styles/Sass/Components/Order/PaymentMethod,module.scss';
+import { useState } from 'react';
+import style from '../../../../styles/Sass/Components/Order/PaymentMethod.module.scss';
 const PaymentMethodInfo = [
     {
         id: "1",
@@ -47,27 +46,28 @@ const PaymentMethod = ({ OrderInfoData, setOrderInfoData }) => {
    
     const HandleConfirmOrder = () => {
     
-        fetch("https://nameless-wildwood-35129.herokuapp.com/addOrder", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(OrderInfoData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                alert("Order Successfully")
+        alert("order success")
+        // fetch("https://nameless-wildwood-35129.herokuapp.com/addOrder", {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(OrderInfoData)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         alert("Order Successfully")
 
-                fetch("https://nameless-wildwood-35129.herokuapp.com/deleteCardProducts")
-                .then(res => res.json())
-                .then(data => {
-                    if (data) {
-                        localStorage.setItem("CountCartProduct", 0);
-                        Router.push('/')
-                        window.location.reload();
-                    }
-                })
-            })
+        //         fetch("https://nameless-wildwood-35129.herokuapp.com/deleteCardProducts")
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             if (data) {
+        //                 localStorage.setItem("CountCartProduct", 0);
+        //                 Router.push('/')
+        //                 window.location.reload();
+        //             }
+        //         })
+        //     })
 
        
     }

@@ -2,6 +2,8 @@
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";
 @import "../abstract//variable.module.scss";
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Spline+Sans&display=swap");
 .slick-slide > div {
   margin: 0 10px !important;
 }
@@ -15,10 +17,14 @@ body {
   padding: 0;
   margin: 0;
   background-color: $white;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Spline Sans", sans-serif;
 }
-
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Poppins", sans-serif;
+}
 a {
   color: inherit;
   text-decoration: none;

@@ -13,8 +13,8 @@ const LargestButton = (props: {
 }) => {
   return (
     <button
-      style={{ backgroundColor: variable.secondary }}
-      className=" text-white font-[Poppins] rounded-5 px-2 md:py-2 py-1 md:px-28 rounded hover:bg-indigo-400
+      style={{ backgroundColor: variable.secondary, height: "40px" }}
+      className=" text-white font-[Poppins]  rounded-5 px-2 md:py-2 py-1 md:px-28 rounded 
       duration-500"
     >
       {props.children}

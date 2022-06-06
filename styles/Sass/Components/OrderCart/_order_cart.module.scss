@@ -2,12 +2,19 @@
 
 .OrderCart {
   background-color: $Lightgray;
+  width: 100%;
+  padding: 30px;
+  position: relative;
 
-  .costInformation {
-    width: 20%;
+  aside {
+    // width: 20%;
+    position: sticky;
+    // overflow: hidden;
+    top: 0;
   }
-  .OrderCartProducts {
+  main {
     // width: 80%;
+    padding: 0px 35px;
   }
 }
 .card_header {

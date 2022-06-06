@@ -3,6 +3,12 @@
 .features {
   padding: 20px;
 
+  .featuresCard {
+    width: 320px;
+    h3 {
+      color: $primary;
+    }
+  }
   .service {
     display: flex;
     align-items: center;
@@ -10,7 +16,6 @@
     font-size: 18px;
     font-weight: 500;
     padding: 8px;
-    line-height: 24px;
   }
   .dot {
     width: 16px;

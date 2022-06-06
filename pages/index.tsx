@@ -20,6 +20,7 @@ const Home = () => {
       <Header />
 
       <BannerAndDoctorAdd />
+
       <PatientService />
 
       <Features />

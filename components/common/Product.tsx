@@ -44,7 +44,7 @@ const Product = ({ product }: { product: Iprops }) => {
 
           <div className="card-actions justify-center">
             <span onClick={() => setModel(!showModel)}>
-              <SimpleButton>Order</SimpleButton>
+              <SimpleButton>Add to Cart</SimpleButton>
             </span>
           </div>
         </div>

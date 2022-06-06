@@ -119,20 +119,27 @@ const Features = () => {
       <div className="grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-5">
         {featuresList.map((feature) => {
           return (
-            <div key={feature.id} className="card w-84 bg-base-100 shadow-xl">
-              <div className="card-body  pl-5">
-                <h3 className="text-center text-2xl font-bold">
-                  {feature.type}
-                </h3>
-                {feature.featuresData.map((data) => (
-                  <div className={`${style.service}`} key={data.id}>
-                    {/* <p className={`${style.dot} mr-3`}></p> */}
-                    <BsStar className="mr-3" />
-                    <p>{data.content}</p>
+            <div
+              key={feature.id}
+              className={`${style.featuresCard}  card w-84 bg-base-100 shadow-xl`}
+            >
+              <div
+                className={` flex items-center card-body pt-5 pb-2 pl-3 pr-1`}
+              >
+                <div>
+                  <h3 className="text-center text-2xl font-bold">
+                    {feature.type}
+                  </h3>
+                  {feature.featuresData.map((data) => (
+                    <li className={`${style.service}`} key={data.id}>
+                      {/* <p className={`${style.dot} mr-3`}></p> */}
+                      <BsStar className="mr-3" />
+                      <p>{data.content}</p>
+                    </li>
+                  ))}
+                  <div className="card-actions justify-center">
+                    <SimpleButton>{feature.buttonName}</SimpleButton>
                   </div>
-                ))}
-                <div className="card-actions justify-center">
-                  <SimpleButton>{feature.buttonName}</SimpleButton>
                 </div>
               </div>
             </div>

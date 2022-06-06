@@ -54,48 +54,44 @@ const OrderCart = () => {
       <Header />
       <div className={`${style.OrderCart}`}>
         {cardProducts.length > 0 && (
-          <div className="md:container">
-            <div className="md:order-1 order-last  md:flex md:justify-evenly">
-              <div
-                className={`${style.costInformation} md:hidden sm:hidden block `}
-              >
-                <CostInformation totalPrice={TotalPrize}></CostInformation>
-              </div>
+          <div className="md:order-1 order-last  md:flex md:justify-between gap-6">
+            <div
+              className={`${style.costInformation} md:hidden sm:hidden block `}
+            >
+              <CostInformation totalPrice={TotalPrize}></CostInformation>
+            </div>
 
-              <div className={`${style.OrderCartProducts} `}>
-                {/*  Order Cart  */}
-                <div id="OrderCartProducts" style={{ display: "block" }}>
-                  <div className={`${style.card_header}`}>
-                    <h3>Order: {cardProducts.length} Items</h3>
-                    <h3>
-                      Total: <span id="prize">{TotalPrize}</span> TK
-                    </h3>
-                  </div>
-                  <div className={`${style.card_Product}`}>
-                    <div className="row">
-                      {cardProducts?.map((pd) => (
-                        <CardProduct
-                          totalPrice={TotalPrize}
-                          HandleUpdateQuantity={HandleUpdateQuantity}
-                          deleteItem={deleteItem}
-                          setDeleteItem={setDeleteItem}
-                          productDetails={pd}
-                        ></CardProduct>
-                      ))}
-                    </div>
+            <main className={`${style.OrderCartProducts} `}>
+              {/*  Order Cart  */}
+              <div id="OrderCartProducts" style={{ display: "block" }}>
+                <div className={`${style.card_header}`}>
+                  <h3>Order: {cardProducts.length} Items</h3>
+                  <h3>
+                    Total: <span id="prize">{TotalPrize}</span> TK
+                  </h3>
+                </div>
+                <div className={`${style.card_Product}`}>
+                  <div className="row">
+                    {cardProducts?.map((pd) => (
+                      <CardProduct
+                        totalPrice={TotalPrize}
+                        HandleUpdateQuantity={HandleUpdateQuantity}
+                        deleteItem={deleteItem}
+                        setDeleteItem={setDeleteItem}
+                        productDetails={pd}
+                      ></CardProduct>
+                    ))}
                   </div>
                 </div>
-                {/* Shipping Input Component */}
-                {/* <div id="ShippingComponent" style={{ display: "none" }}>
-                  <Shipping></Shipping>
-                </div> */}
               </div>
+            </main>
+            <aside className="h-screen">
               <div
                 className={`${style.costInformation} md:block sm:block hidden `}
               >
                 <CostInformation totalPrice={TotalPrize}></CostInformation>
               </div>
-            </div>
+            </aside>
           </div>
         )}
       </div>

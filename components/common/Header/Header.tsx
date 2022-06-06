@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import {
   AiOutlineMail,
@@ -16,7 +17,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className={style.headerComponent}>
+      <div className={`${style.headerComponent} sticky top-0`}>
         <div
           className={`${style.topHeader}  md:px-5 lg:px-6 py-2 bg-blend-lighten border-bottom`}
         >
@@ -74,9 +75,13 @@ const Header = () => {
                 <BsBagCheck />
               </li> */}
 
-              <li>
-                <BsFillCartPlusFill />
-              </li>
+              <Link href={"/order_cart"} passHref>
+                <a>
+                  <li>
+                    <BsFillCartPlusFill />
+                  </li>
+                </a>
+              </Link>
               {/* <li>
                 <AiOutlineUser />
               </li> */}
