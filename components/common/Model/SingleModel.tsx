@@ -98,7 +98,9 @@ const SingleModel = ({
                       </button>
 
                       <div className="mt-5 ">
-                        <LargestButton>Add to Cart</LargestButton>
+                        <span onClick={() => setModel(false)}>
+                          <LargestButton>Add to Cart</LargestButton>
+                        </span>
                       </div>
                     </div>
                   </div>

@@ -1,0 +1,35 @@
+.sidebar {
+  background-color: rgb(255, 255, 255);
+  color: rgb(6, 6, 6);
+}
+.dashboardLogo {
+  padding-top: 16px;
+}
+.dashboardLogo h2 {
+  font-size: 18px;
+  overflow: hidden;
+  height: 20px;
+}
+.dashboardLogo p {
+  text-align: left;
+  font-size: 12px;
+}
+.sidebar li {
+  height: 45px;
+  list-style: none;
+  line-height: 15px;
+  padding: 8px;
+  font-size: 12px;
+  margin: 4px 0px;
+  border-bottom: 1px solid gray;
+  box-shadow: 5px rgb(246, 243, 243);
+  align-items: center;
+}
+.request-number {
+  width: 20px;
+  padding: 0.4rem;
+  background-color: red;
+  color: #fff;
+  height: 24px;
+  border-radius: 50%;
+}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BsStar } from "react-icons/bs";
 import style from "../../styles/Sass/Components/Home/Features.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
@@ -8,105 +9,98 @@ const featuresList = [
     featuresData: [
       {
         id: 1,
-        content: "Our Service is very Good",
+        content: "We have  qualified doctors",
       },
       {
         id: 2,
-        content: "Our Service is very Good",
+        content: "The doctors are available  24 hours",
       },
       {
         id: 3,
-        content: "Our Service is very Good",
+        content:
+          "The doctor's  prescribe  medicines by communicating on online.",
       },
-      {
-        id: 4,
-        content: "Our Service is very Good",
-      },
+
       {
         id: 5,
-        content: "Our Service is very Good",
+        content: "Our doctors help those whom are poor",
       },
     ],
     buttonName: "Call Doctor",
+    link: "/doctor",
   },
+
   {
     id: 2,
     type: "Lab",
     buttonName: "Lab Test",
+    link: "/lab_test",
     featuresData: [
       {
         id: 1,
-        content: "Our Service is very Good",
+        content: "We got the advanced and updated   equipments of lab.",
       },
       {
         id: 2,
-        content: "Our Service is very Good",
+        content: "Our lab test  costs are too  small for patiant",
       },
       {
         id: 3,
-        content: "Our Service is very Good",
+        content: "We check all the equipments before applying in body",
       },
       {
         id: 4,
-        content: "Our Service is very Good",
-      },
-      {
-        id: 5,
-        content: "Our Service is very Good",
+        content: "Our Lab a neat and clean lab",
       },
     ],
   },
+
   {
     id: 4,
     type: "Ambulance",
     buttonName: "Call Ambulance",
+    link: "ambulance",
     featuresData: [
       {
         id: 1,
-        content: "Our Service is very Good",
+        content: "We provide 24 Hour  ambulance service",
       },
       {
         id: 2,
-        content: "Our Service is very Good",
+        content: "We have the most advanced vehicles as ambulance",
       },
       {
         id: 3,
-        content: "Our Service is very Good",
+        content: "Oxygen supply system in ",
       },
       {
         id: 4,
-        content: "Our Service is very Good",
-      },
-      {
-        id: 5,
-        content: "Our Service is very Good",
+        content: "Our Ambulance Drivers are efficient ",
       },
     ],
   },
+
   {
     id: 3,
     type: "Blood",
     buttonName: "Find Blood",
+    link: "find_blood",
     featuresData: [
       {
         id: 1,
-        content: "Our Service is very Good",
+        content: "We have our own blood bank",
       },
       {
         id: 2,
-        content: "Our Service is very Good",
+        content: "We keep all kind of bloods on our blood bank",
       },
       {
         id: 3,
-        content: "Our Service is very Good",
+        content: "Sometimes we provide donors as well",
       },
       {
         id: 4,
-        content: "Our Service is very Good",
-      },
-      {
-        id: 5,
-        content: "Our Service is very Good",
+        content: "We got 24 hour blood providing service",
       },
     ],
   },
@@ -133,12 +127,19 @@ const Features = () => {
                   {feature.featuresData.map((data) => (
                     <li className={`${style.service}`} key={data.id}>
                       {/* <p className={`${style.dot} mr-3`}></p> */}
-                      <BsStar className="mr-3" />
-                      <p>{data.content}</p>
+                      <div className={`${style.icon}`}>
+                        <BsStar />
+                      </div>
+                      <p className="pl-3">{data.content}</p>
                     </li>
                   ))}
+
                   <div className="card-actions justify-center">
-                    <SimpleButton>{feature.buttonName}</SimpleButton>
+                    <Link href={`/${feature.link}`}>
+                      <a>
+                        <SimpleButton>{feature.buttonName}</SimpleButton>
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>

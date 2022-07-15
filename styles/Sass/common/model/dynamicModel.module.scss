@@ -11,7 +11,76 @@
   align-items: center;
   z-index: 10;
 }
+.inner_successOrErrorPopup {
+  position: relative;
+  padding: 7px;
+  width: 100%;
+  max-width: 322px;
+  /* min-height: 346px; */
+  /* max-height: 386px; */
+  background-color: white;
+  border-radius: 20px;
+  h2 {
+    font-weight: 600;
+    font-size: 26px;
+    color: #149765;
+    padding: 6px 0px;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 26px;
+    padding: 6px 0px;
+    color: #db0000;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 26px;
+    color: #1b1c1c;
+    padding: 6px 0px;
+  }
+  img {
+    width: 110px;
+    margin: 20px auto;
+  }
+  .text {
+    color: rgb(19, 18, 18);
+    padding: 10px 22px;
+  }
+  .wrong-button,
+  .success-button,
+  .welcome-button {
+    width: 120px;
+    padding: 8px;
+    background-color: #32ba7c;
+    color: white;
+    margin: 2px;
+    margin-bottom: 27px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .wrong-button {
+    background-color: #db0000 !important;
+  }
+  .welcome-button {
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #5995fd;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.6s;
+  }
 
+  .welcome-button:hover {
+    background-color: #4d84e2;
+  }
+
+  .wrong-button,
+  .welcome-button,
+  .success-button:focus {
+    outline: 0;
+  }
+}
 .inner_popup {
   position: relative;
   padding: 32px;
@@ -20,10 +89,18 @@
   min-height: 400px;
   background-color: white;
   border-radius: 5px;
-
   img {
-    width: 300px !important;
+    width: 180px !important;
     height: 200px !important;
+  }
+  .singleDoctor {
+    img {
+      width: 180px !important;
+      height: 200px !important;
+    }
+    .doctorDetails {
+      width: 40% !important;
+    }
   }
 
   .productDetails {
@@ -60,7 +137,7 @@
 
     .countValue {
       font-weight: 600;
-      font-size: 26px;
+      font-size: 20px;
       height: 40px;
       width: 40px;
       padding: -1px 0px;
@@ -70,17 +147,17 @@
     }
     .offer {
       font-weight: 500;
-      font-size: 22px;
+      font-size: 20px;
       color: $primary;
     }
     .price {
       font-weight: 600;
-      font-size: 24px;
+      font-size: 20px;
       padding: 10px 0px;
     }
     .increaseAndDecrease {
       font-weight: 700;
-      font-size: 26px;
+      font-size: 20px;
       height: 40px;
       width: 40px;
       text-align: center;

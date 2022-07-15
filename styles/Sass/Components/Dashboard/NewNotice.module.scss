@@ -1,0 +1,38 @@
+.NewNotice {
+  background-color: white;
+}
+.NewNotice h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.noticeBody {
+  background-color: white;
+}
+.noticeBody li {
+  list-style: none;
+}
+/* .noticeBody li:nth-child(even) {
+      background: red;
+    } */
+.singleNotice {
+  padding: 8px;
+  margin: 3px 0px;
+  color: rgba(0, 0, 0, 0.856);
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.singleNotice .noticeDate {
+  color: #58584b;
+  padding-bottom: 1px;
+}
+.noticeFooter {
+  /* background-color: rgb(243 238 238); */
+  padding: 8px;
+  font-size: 15px;
+}
+.noticeFooter h5 {
+  font-weight: 600;
+}

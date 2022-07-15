@@ -2,13 +2,26 @@
 
 .shipping {
   background-color: $Lightgray;
+  width: 100%;
+  padding: 30px;
+  position: relative;
+  aside {
+    // width: 20%;
+    position: sticky;
+    // overflow: hidden;
+    top: 0;
+  }
+  main {
+    width: 80%;
+    // padding: 0px 35px;
+  }
 }
 .shippingPart {
   /* background-color: #E9EBEC; */
-  width: 70%;
   border-radius: 10px;
 }
-.shippingInfo {
+.shippingInfo,
+.paymentMethod {
   border: 1px solid $Lightgray;
   border-radius: 10px;
   margin: 20px 0px;
@@ -32,11 +45,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    h5 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #444;
-    }
+
     p {
       font-weight: 500;
       font-size: 16px;
@@ -61,13 +70,75 @@ form {
     overflow: hidden;
     align-items: center;
     margin: 0px 20px;
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .TextAria {
+    padding-left: 27px;
+    margin-top: 10px;
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #444;
+    }
+    textarea {
+      margin-top: 20px;
+      border-radius: 3px;
+      border: 2px solid rgb(233, 232, 232) !important;
+    }
+  }
+  .input_filed {
+    max-height: 380px;
+    width: 100%;
+    height: 40px;
+    // background-color: $gray;
+    background-color: #f0f0f0;
+    margin: 10px 0px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0.4rem;
+
+    .inputFieldError {
+      width: 100%;
+      border: 1px solid #f74053;
+      background-color: burlywood;
+      color: #1c1c1d;
+      height: 30px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .input_icon {
+      margin: auto;
+      color: $gray;
+    }
+    input,
+    select {
+      border: none;
+      background: none;
+      outline: none;
+      line-height: 1;
+      font-weight: 500;
+      color: #333;
+      font-size: 0.98rem;
+      /* margin-top: 8px; */
+    }
+
+    input::placeholder,
+    select::placeholder {
+      font-weight: 500;
+      color: #aaa;
+    }
   }
 }
 
 .shippingHeder {
   margin-top: 20px;
   background-color: $primary;
-  height: 70px;
+  height: 60px;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -84,8 +155,39 @@ form {
   }
 }
 
+.paymentMethod {
+  .order_Button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  .AllPaymentType {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    .paymentType {
+      width: 200px;
+      height: 50px;
+      background-color: $white;
+      padding: 0px;
+      padding-bottom: 20px;
+      border: 1px solid lightgray;
+      border-radius: 10px;
+
+      .singleType {
+        height: 50px;
+        label {
+          font-size: 20px;
+          font-weight: 700;
+          padding: 0px 10px;
+          color: $primary;
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
 .costInformationPart {
-  width: 20%;
 }
 
 @media screen and (max-width: 600px) {
@@ -116,10 +218,7 @@ form {
     font-weight: 700;
     text-align: center;
   }
-  .customerInfo_container .form_container h5 {
-    font-size: 18px;
-    font-weight: 600;
-  }
+
   .customerInfo_container {
     .form_container {
       form {
@@ -131,6 +230,10 @@ form {
           overflow: hidden;
           align-items: center;
           margin: 0px 20px;
+          h5 {
+            font-size: 18px;
+            font-weight: 600;
+          }
         }
       }
     }

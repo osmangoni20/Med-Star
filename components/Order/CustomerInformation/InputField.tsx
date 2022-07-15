@@ -1,8 +1,11 @@
 // import { faUser } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { AiOutlineMail } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
+import { MdAddIcCall } from "react-icons/md";
 import style from "../../../styles/Sass/Components/Order/_CustomerInformation.module.scss";
+
 const InputField = ({
   HandleFieldValue,
   key,
@@ -18,11 +21,17 @@ const InputField = ({
   return (
     <div>
       <h5>{fieldHeader}</h5>
-
       <div className={`${style.input_filed}`}>
-        {/* <FontAwesomeIcon className="" icon={icon} /> */}
-        <FaUserAlt className={`${style.input_icon}`} />
-        <i className={`${style.input_icon} fa-solid fa-envelope`}></i>
+        {icon === "FaUserAlt" && (
+          <FaUserAlt className={`${style.input_icon}`} />
+        )}
+        {icon === "MdAddIcCall" && (
+          <MdAddIcCall className={`${style.input_icon}`} />
+        )}
+        {icon === "AiOutlineMail" && (
+          <AiOutlineMail className={`${style.input_icon}`} />
+        )}
+
         {(inputFiledType === "text" ||
           inputFiledType === "number" ||
           inputFiledType === "email") && (
@@ -33,6 +42,10 @@ const InputField = ({
             onBlur={(e) => HandleFieldValue(e)}
           />
         )}
+
+        {/* {inputFiledType === "textAria" && (
+         
+        )} */}
 
         {inputFiledType === "select" && (
           <select name={name} onChange={HandleFieldValue}>

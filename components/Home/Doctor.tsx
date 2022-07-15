@@ -11,7 +11,10 @@ function SampleNextArrow(props: any) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "#c1c1c1" }}
+      style={{
+        ...style,
+        display: "block",
+      }}
       onClick={onClick}
     />
   );
@@ -25,7 +28,6 @@ function SamplePrevArrow(props: any) {
       style={{
         ...style,
         display: "block",
-        background: "#c1c1c1",
       }}
       onClick={onClick}
     />
@@ -56,6 +58,8 @@ const Doctor = () => {
           slidesToShow: 2,
           slidesToScroll: 2,
           initialSlide: 2,
+          infinite: true,
+          dots: true,
         },
       },
       {
@@ -63,6 +67,8 @@ const Doctor = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
+          dots: true,
         },
       },
     ],
@@ -72,7 +78,7 @@ const Doctor = () => {
       <div
         className={`${style.titlePart} flex justify-between items-center my-6`}
       >
-        <h1 className={`${style.title}`}>Doctor Service</h1>
+        <h1 className={`${style.title}`}>Our Doctor</h1>
         <Link href={"/"}>
           <p>View All</p>
         </Link>
@@ -95,7 +101,11 @@ const Doctor = () => {
                   <p>{doctor.education}</p>
                   <p>{doctor.jobTitle}</p>
                   <div className="card-actions justify-center">
-                    <SimpleButton>Appointment Now</SimpleButton>
+                    <Link href={`/doctor/${doctor.id}`} passHref>
+                      <a>
+                        <SimpleButton>Appointment Now</SimpleButton>
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>

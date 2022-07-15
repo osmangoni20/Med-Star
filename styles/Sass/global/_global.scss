@@ -11,7 +11,15 @@
 .slick-list {
   margin: 0 -10px !important;
 }
+.slick-prev:before,
+.slick-next:before {
+  font-family: "slick";
+  font-size: 25px !important;
+  line-height: 0 !important;
+  /* opacity: .75; */
 
+  color: #080808 !important;
+}
 html,
 body {
   padding: 0;

@@ -1,6 +1,10 @@
 @import "../../abstract//variable.module.scss";
 .ambulance {
   padding: 20px;
+
+  .ambulanceCard {
+    width: 320px;
+  }
 }
 .titlePart {
   .title {
@@ -17,9 +21,7 @@
 }
 .ambulanceBody {
   .icon {
-    width: 50px;
-    height: 31px !important;
-    background-color: $primary;
+    background-color: #0571a5;
     border-radius: 53%;
     padding: 4px;
     color: white;

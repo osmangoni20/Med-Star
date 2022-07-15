@@ -1,38 +1,36 @@
-import React from "react";
-import { AiOutlineMail } from "react-icons/ai";
-import style from "../../styles/Sass/main.module.sass";
-const Categories = () => {
+import Link from "next/link";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+} from "react";
+import { BsBoundingBoxCircles } from "react-icons/bs";
+import style from "../../styles/Sass/common/categories.module.scss";
+const Categories = ({ data }: { data: any }) => {
   return (
     <div className={style.categories}>
-      <ul className="list-none">
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
-        <li className="flex items-center justify-between">
-          <p>Mobile</p>
-          <AiOutlineMail></AiOutlineMail>
-        </li>
+      <ul className={`${style.categoryList} list-none`}>
+        {data.map(
+          (singleData: {
+            category:
+              | string
+              | number
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | ReactFragment
+              | ReactPortal
+              | null
+              | undefined;
+          }) => (
+            <Link href={`/${singleData.category}`} passHref>
+              <li className="flex items-center">
+                <BsBoundingBoxCircles></BsBoundingBoxCircles>
+                <p className="pl-3 p-1">{singleData.category}</p>
+              </li>
+            </Link>
+          )
+        )}
       </ul>
     </div>
   );

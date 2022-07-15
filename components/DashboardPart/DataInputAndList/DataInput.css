@@ -10,84 +10,89 @@ select {
   font-family: "Spline Sans", sans-serif;
 }
 
-.signUp-container {
+.submenuDetails {
+  /* border: 2px solid gray; */
+  padding: 0px;
+  margin-top: 15px;
+}
+.ListInformation {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px 0px;
+}
+.dashboardInformation {
+  background-color: #f2edf3;
+}
+.mainInputField-container {
   position: relative;
   width: 100%;
   height: 100%;
   /* min-height: 200vh; */
   background-color: #fff;
+  margin-top: 20px;
+  border-radius: 10px;
   /* overflow: hidden; */
-  padding-bottom: 20px;
 }
-.signUp-container .form-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-.signUp-container .form-container .title {
+
+.title {
   font-size: 2.2rem;
   color: #444;
   margin: 2rem 0px;
   font-weight: 700;
   text-align: center;
 }
-.signUp-container .form-container h5 {
+h5 {
   font-size: 18px;
-  font-weight: 600;
-  color: #444;
+  font-weight: 700;
 }
-.signUp-container .form-container form .form-input-field {
+.form-input-field {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: 10px;
   padding: 0.5rem;
   overflow: hidden;
   align-items: center;
-  margin: 0px 20px;
+  margin: 0px 0px;
 }
-.signUp-container .form-container form .Submit-button {
+form .Submit-button {
   display: flex;
   justify-content: center;
 }
-.signUp-container .form-container p {
+.mainInputField-container p {
   font-weight: 500;
   font-size: 16px;
   color: #4d84e2;
   text-align: center;
-  padding-bottom: 20px;
 }
-.signUp-container .form-container p span {
+.mainInputField-container p span {
   font-weight: 600;
   color: #323233;
   padding: 0px 10px;
 }
-.form-container form .input-filed {
+.mainInputField-container form .input-filed {
   max-height: 380px;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background-color: #f0f0f0;
   margin: 10px 0px;
   border-radius: 15px;
   display: grid;
   grid-template-columns: 15% 85%;
-  padding: 0.4rem;
 }
-.form-container form .input-filed .inputFieldError {
-  width: 100%;
-  border: 1px solid #f74053;
-  background-color: burlywood;
-  color: #1c1c1d;
-  height: 30px;
-  border-radius: 5px;
-  text-align: center;
-}
+
 .input-icon {
   margin: auto;
   color: #acacac;
 }
-.form-container form .input-filed input,
+.request-action {
+  background-color: #5995fd;
+  color: #f0f0f0;
+  font-size: 18px;
+  margin: 0px;
+  padding: 5px;
+  border-radius: 10px;
+}
+form .input-filed input,
 select {
   border: none;
   background: none;
@@ -96,13 +101,15 @@ select {
   font-weight: 500;
   color: #333;
   font-size: 0.98rem;
-  /* margin-top: 8px; */
-  padding: 13px;
+  margin-top: -10px;
+  padding: 10px 0px 0px 0px;
+  text-align: left;
 }
 .input-filed input::placeholder,
 select::placeholder {
   font-weight: 500;
   color: #aaa;
+  text-align: left;
 }
 
 .btn {
@@ -124,7 +131,7 @@ select::placeholder {
   background-color: #4d84e2;
 }
 @media (max-width: 1200px) {
-  .signUp-container .form-container form .form-input-field {
+  form .form-input-field {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
@@ -135,18 +142,18 @@ select::placeholder {
   }
 }
 @media (max-width: 870px) {
-  .signUp-container .form-container .title {
+  .title {
     font-size: 2rem;
     color: #444;
     margin-bottom: 2rem;
     font-weight: 700;
     text-align: center;
   }
-  .signUp-container .form-container h5 {
+  h5 {
     font-size: 18px;
     font-weight: 600;
   }
-  .signUp-container .form-container form .form-input-field {
+  form .form-input-field {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
@@ -158,18 +165,18 @@ select::placeholder {
 }
 
 @media (max-width: 570px) {
-  .signUp-container .form-container .title {
+  .title {
     font-size: 1.9rem;
     color: #444;
     margin-bottom: 1rem;
     font-weight: 700;
     text-align: center;
   }
-  .signUp-container .form-container h5 {
+  h5 {
     font-size: 12px;
     font-weight: 600;
   }
-  .signUp-container .form-container form .form-input-field {
+  form .form-input-field {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 10px;
@@ -184,4 +191,9 @@ select::placeholder {
     height: 30px;
     border-radius: 40px;
   }
+}
+
+.ListInformation form {
+  padding: 0px;
+  margin-top: 0px;
 }

@@ -3,7 +3,7 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn1.arogga.com'],
+    domains: ['cdn1.arogga.com','i.ibb.co'],
 },
 sassOptions: {
   includePaths: [path.join(__dirname, 'styles')],

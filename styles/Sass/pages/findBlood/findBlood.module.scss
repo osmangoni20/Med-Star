@@ -1,0 +1,106 @@
+@import "../../abstract//variable.module.scss";
+
+.findBlood {
+  aside {
+    // width: 20%;
+    position: sticky;
+    // overflow: hidden;
+    top: 0;
+    background-color: $primary;
+    color: white;
+    border-top: 2px solid $light;
+  }
+  main {
+    padding: 10px 5px;
+    .memberCartBody {
+      padding: 15px;
+    }
+    .bloodMemberCart {
+      max-height: 180px;
+      min-width: 328px !important;
+      overflow: hidden;
+    }
+    .cartBodyText {
+      display: flex;
+      justify-content: space-evenly;
+      img {
+        width: 80px !important;
+        height: 80px !important;
+        border: 1px solid $primary !important;
+
+        border-radius: 50%;
+      }
+      h6 {
+        font-size: 18px;
+      }
+      h2 {
+        font-size: 18px;
+      }
+    }
+    h6 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    form {
+      .form_input_field {
+        display: grid;
+        grid-template-columns: repeat(2, 300px);
+        gap: 40px;
+        padding: 0.5rem;
+        overflow: hidden;
+        // align-items: center;
+        margin: 0px 20px;
+        h5 {
+          font-size: 18px;
+          font-weight: 600;
+          text-align: left;
+        }
+      }
+
+      .input_filed {
+        max-height: 380px;
+        width: 100%;
+        height: 40px;
+        // background-color: $gray;
+        background-color: #f0f0f0;
+        margin: 10px 0px;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0.4rem;
+
+        .inputFieldError {
+          width: 100%;
+          border: 1px solid #f74053;
+          background-color: burlywood;
+          color: #1c1c1d;
+          height: 30px;
+          border-radius: 5px;
+          text-align: center;
+        }
+        .input_icon {
+          margin: auto;
+          color: $gray;
+        }
+        input,
+        select {
+          border: none;
+          background: none;
+          outline: none;
+          line-height: 1;
+          font-weight: 500;
+          color: #333;
+          font-size: 0.98rem;
+          /* margin-top: 8px; */
+        }
+
+        input::placeholder,
+        select::placeholder {
+          font-weight: 500;
+          color: #aaa;
+        }
+      }
+    }
+  }
+}

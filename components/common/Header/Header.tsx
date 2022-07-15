@@ -14,7 +14,6 @@ import Navbar from "./Navbar";
 import NavbarModel from "./NavbarModel";
 const Header = () => {
   const [open, setOpen] = useState(false);
-
   return (
     <div>
       <div className={`${style.headerComponent} sticky top-0`}>
@@ -36,7 +35,7 @@ const Header = () => {
             </ul>
             <div className="flex items-center">
               <AiOutlineMobile />
-              <a href="/ehostel">Save on our app</a>
+              <a href="/medStart">Save on our app</a>
             </div>
           </div>
         </div>
@@ -52,9 +51,13 @@ const Header = () => {
               </label>
 
               {/* <img className="branding" src={logo} alt=""></img> */}
-              <h1 className="text-xl font-bold md:text-black text-white">
-                MedStar
-              </h1>
+              <Link href={"/"} passHref>
+                <a>
+                  <h1 className="text-xl font-bold md:text-black text-white">
+                    MedStar
+                  </h1>
+                </a>
+              </Link>
             </div>
             <label className="relative hidden md:block searchInput ">
               <span className="sr-only">Search</span>
@@ -79,6 +82,7 @@ const Header = () => {
                 <a>
                   <li>
                     <BsFillCartPlusFill />
+                    <span className={`${style.totalCartItem}`}>4</span>
                   </li>
                 </a>
               </Link>
@@ -86,7 +90,12 @@ const Header = () => {
                 <AiOutlineUser />
               </li> */}
               <span className="md:block lg:block ">
-                <Button>Log In</Button>
+                <Link href={"/Login"} passHref>
+                  <a>
+                    <Button>Log In</Button>
+                  </a>
+                  -
+                </Link>
               </span>
             </ul>
           </div>

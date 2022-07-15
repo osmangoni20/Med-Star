@@ -23,7 +23,7 @@ const Medicine = () => {
       .then((res) => res.json())
       .then((data) => setMedicineProduct(data));
   }, []);
-  console.log(medicineProduct);
+
   return (
     <div className={`${style.medicine}`}>
       <h2 className="text-center">Medicine Corner</h2>
@@ -54,6 +54,5 @@ const Medicine = () => {
 //     },
 //   };
 // };
-
 
 export default Medicine;

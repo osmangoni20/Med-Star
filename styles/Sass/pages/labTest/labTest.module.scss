@@ -1,0 +1,133 @@
+@import "../../abstract/variable.module.scss";
+.lab_test {
+  margin-top: 30px;
+  padding: 20px 60px;
+  // display: flex;
+  // justify-content: center;
+  width: 100%;
+
+  .lab_test_info {
+    border: 1px solid rgb(226, 224, 224);
+    border-radius: 10px;
+
+    form {
+      .form_input_field {
+        max-width: 325px;
+        padding: 0.5rem;
+        overflow: hidden;
+        align-items: center;
+        h5 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+      .input_filed {
+        max-height: 400px;
+
+        width: 100%;
+        height: 40px;
+        // background-color: $gray;
+        background-color: #f0f0f0;
+        margin: 10px 0px;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0.4rem;
+
+        .inputFieldError {
+          width: 100%;
+          border: 1px solid #f74053;
+          background-color: burlywood;
+          color: #1c1c1d;
+          height: 30px;
+          border-radius: 5px;
+          text-align: center;
+        }
+        .input_icon {
+          margin: auto;
+          color: $gray;
+        }
+        input,
+        select {
+          border: none;
+          background: none;
+          outline: none;
+          line-height: 1;
+          font-weight: 500;
+          color: #333;
+          font-size: 0.98rem;
+          /* margin-top: 8px; */
+        }
+
+        input::placeholder,
+        select::placeholder {
+          font-weight: 500;
+          color: #aaa;
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+
+      thead {
+        width: 100%;
+        .labTestNumber {
+          width: 10%;
+        }
+        th {
+          // width: 25%;
+          font-size: 20px;
+          padding-bottom: 25px;
+        }
+      }
+      tbody {
+        tr:nth-child(2n + 1) {
+          background: $Lightgray;
+        }
+        tr {
+          width: 100%;
+
+          font-weight: 500;
+          border-bottom: 1px solid $gray;
+          .labTestNumber {
+            width: 10%;
+          }
+          .testName {
+            width: 35%;
+            font-size: 20px;
+            text-align: left;
+            padding-left: 10px;
+            font-weight: 600;
+          }
+          td {
+            width: 22%;
+            text-align: center;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+  .lab_test_header {
+    margin-top: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding-right: 20px;
+  }
+  h2 {
+    font-size: 30px;
+    padding: 20px 0px;
+  }
+  li {
+    padding: 10px;
+    padding-left: 20px;
+    // height: 30px;
+    font-size: 22px;
+    list-style: none;
+    cursor: pointer;
+  }
+  p {
+    padding-right: 20px;
+  }
+}

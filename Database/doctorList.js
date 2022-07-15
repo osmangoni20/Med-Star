@@ -9,6 +9,7 @@ export const doctorList=[
     {
         id:1,
         img:doctor1Image,
+        category:"Knee Surgeon",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -17,6 +18,7 @@ export const doctorList=[
     {
         id:2,
         img:doctor2Image,
+        category:"Medicine Consultant",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -25,6 +27,7 @@ export const doctorList=[
     {
         id:3,
         img:doctor3Image,
+        category:"Ophthalmologists",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -33,6 +36,7 @@ export const doctorList=[
     {
         id:4,
         img:doctor4Image,
+        category:"Ophthalmologists",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -41,6 +45,7 @@ export const doctorList=[
     {
         id:5,
         img:doctor5Image,
+        category:"Dermatologists",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -49,6 +54,7 @@ export const doctorList=[
     {
         id:6,
         img:doctor6Image,
+        category:"Endocrinologists",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",
@@ -57,6 +63,7 @@ export const doctorList=[
     {
         id:7,
         img:doctor7Image,
+        category:"Cardiologists",
         name:"Dr. A.M Forid Uddin Ahmed",
         designation:"Arthroscopy & Arthoplasty Surgeon",
         education:"MBBS(CMC),FCPS(General Surgery)",

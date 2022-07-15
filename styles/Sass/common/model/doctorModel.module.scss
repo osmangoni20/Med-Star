@@ -1,0 +1,102 @@
+@import "../../abstract/variable.module.scss";
+.popup_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.inner_popup {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 807px;
+  min-height: 400px;
+  background-color: white;
+  border-radius: 5px;
+  img {
+    width: 180px !important;
+    height: 200px !important;
+  }
+  .singleDoctor {
+    img {
+      width: 180px !important;
+      height: 200px !important;
+    }
+    .doctorDetails {
+      width: 40% !important;
+    }
+  }
+
+  //   .productDetails {
+  //     width: 50%;
+  //     h3 {
+  //       font-size: 20px;
+  //       padding: 10px 0px;
+  //       font-weight: 700;
+  //     }
+
+  //     .p {
+  //       font-size: 12px;
+  //       font-weight: 400;
+  //       padding: 10px 0px;
+  //     }
+  //   }
+  .buttonCard {
+    border: 2px solid $Lightgray;
+    padding: 10px;
+    margin: 2rem 0px;
+    .countButton {
+      display: flex;
+      align-items: center;
+      width: 120px;
+      background-color: $gray;
+      /* border: 2px solid #4c9dc3; */
+      border-radius: 10px;
+    }
+  }
+}
+
+.inner_popup .modelBody {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}
+
+.inner_popup .modelBody h6 {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 15px;
+}
+.inner_popup .modelBody p {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+}
+.inner_popup .popup-close {
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  width: 60px;
+  border-radius: 20px;
+  color: rgb(255 255 255);
+  background-color: #ff0000;
+}
+
+.model_button {
+  width: 120px;
+  padding: 8px;
+  background-color: #32ba7c;
+  color: white;
+  margin: 2px;
+  margin-bottom: 27px;
+  border-radius: 10px;
+  font-weight: 600;
+}

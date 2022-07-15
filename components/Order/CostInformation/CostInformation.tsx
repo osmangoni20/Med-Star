@@ -1,7 +1,14 @@
 import Link from "next/link";
 import style from "../../../styles/Sass/Components/Order/CostInformation.module.scss";
 import LargestButton from "../../Custom/Button/LargestButton";
-const CostInformation = ({ totalPrice }: { totalPrice: number }) => {
+
+const CostInformation = ({
+  totalPrice,
+  showButton,
+}: {
+  totalPrice: number;
+  showButton: boolean;
+}) => {
   const SubTotal = totalPrice;
   let ShippingCost;
   let Vat;
@@ -53,13 +60,15 @@ const CostInformation = ({ totalPrice }: { totalPrice: number }) => {
             <h5>{TotalCost} Tk</h5>
           </div>
         </div>
-        <div className={`${style.order_Button}`}>
-          <Link href="/shipping">
-            <a>
-              <LargestButton>Place Order</LargestButton>
-            </a>
-          </Link>
-        </div>
+        {showButton && (
+          <div className={`${style.order_Button}`}>
+            <Link href="/shipping">
+              <a>
+                <LargestButton>Place Order</LargestButton>
+              </a>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

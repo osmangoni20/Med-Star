@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
+import Meta from "../../components/common/Meta";
 import Medicine from "../../components/Home/Medicine";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct.js";
@@ -51,14 +52,22 @@ const OrderCart = () => {
   // }
   return (
     <div>
+      <Meta
+        title="My Cart MedStart"
+        name="viewport"
+        description="initial-scale=1.0, width=device-width"
+      />
       <Header />
       <div className={`${style.OrderCart}`}>
         {cardProducts.length > 0 && (
-          <div className="md:order-1 order-last  md:flex md:justify-between gap-6">
+          <div className=" md:flex md:justify-between gap-6">
             <div
               className={`${style.costInformation} md:hidden sm:hidden block `}
             >
-              <CostInformation totalPrice={TotalPrize}></CostInformation>
+              <CostInformation
+                showButton={true}
+                totalPrice={TotalPrize}
+              ></CostInformation>
             </div>
 
             <main className={`${style.OrderCartProducts} `}>
@@ -89,7 +98,10 @@ const OrderCart = () => {
               <div
                 className={`${style.costInformation} md:block sm:block hidden `}
               >
-                <CostInformation totalPrice={TotalPrize}></CostInformation>
+                <CostInformation
+                  showButton={true}
+                  totalPrice={TotalPrize}
+                ></CostInformation>
               </div>
             </aside>
           </div>

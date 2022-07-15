@@ -5,16 +5,17 @@ import style from "../../../styles/Sass/common/Header/_navbar.module.scss";
 
 const Navbar = () => {
   const Links = [
-    { name: "Baby & Mom", link: "/" },
-    { name: "Personal Care", link: "/about" },
-    { name: "Female Hygiene", link: "/" },
+    { name: "Baby & Mom", link: "/medicine" },
+    { name: "Personal Care", link: "/medicine" },
+    { name: "Female Hygiene", link: "/medicine" },
   ];
   const medicalLinks = [
-    { name: "Call To Doctor", link: "/" },
-    { name: "Lab Test", link: "/lab" },
-    { name: "Ambulance", link: "/about" },
-    { name: "Find Blood", link: "/contact" },
+    { name: "Call To Doctor", link: "/doctor" },
+    { name: "Lab Test", link: "/lab_test" },
+    { name: "Ambulance", link: "/ambulance" },
+    { name: "Find Blood", link: "/find_blood" },
   ];
+
   return (
     <div>
       <nav>
@@ -22,11 +23,13 @@ const Navbar = () => {
           <div className="md:flex items-center md:pr-4 justify-between  ">
             <div className="md:flex gap-2">
               <Link href={"/medicine"} passHref>
-                <h2
-                  className={`${style.navbarHeader} hidden md:block text-white`}
-                >
-                  Medicine
-                </h2>
+                <a>
+                  <h2
+                    className={`${style.navbarHeader} hidden md:block text-white`}
+                  >
+                    Medicine
+                  </h2>
+                </a>
               </Link>
 
               <ul
@@ -37,9 +40,9 @@ const Navbar = () => {
                     key={link.name}
                     className="md:ml-8 text-base md:my-0 py-2"
                   >
-                    <a href={link.link} className="text-white  duration-500">
-                      {link.name}
-                    </a>
+                    <Link href={link.link} passHref>
+                      <a className="text-white  duration-500">{link.name}</a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -56,12 +59,11 @@ const Navbar = () => {
                       "text-center md:text-left"
                     } md:ml-8 text-base md:my-0 p-2 pr-0`}
                   >
-                    <a
-                      href={link.link}
-                      className="text-white md:text-xl font-bold duration-500"
-                    >
-                      {link.name}
-                    </a>
+                    <Link href={link.link} passHref>
+                      <a className="text-white md:text-xl font-bold duration-500">
+                        {link.name}
+                      </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

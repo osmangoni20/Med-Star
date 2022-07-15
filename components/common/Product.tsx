@@ -17,9 +17,8 @@ interface Iprops {
   };
 }
 const Product = ({ product }: { product: Iprops }) => {
-  console.log(product.img);
   const [showModel, setModel] = useState<boolean>(false);
-  console.log(showModel);
+
   return (
     <div>
       {showModel && (

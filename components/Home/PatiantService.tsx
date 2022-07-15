@@ -47,8 +47,10 @@ const PatientService = () => {
           {patientService.map((service) => {
             return (
               <div className={`${style.serviceTitle}`} key={service.id}>
-                <p className={`${style.dot} mr-3`}></p>
-                <p>{service.content}</p>
+                <div>
+                  <p className={`${style.dot}`}></p>
+                </div>
+                <p className="pl-3">{service.content}</p>
               </div>
             );
           })}

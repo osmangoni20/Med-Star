@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body,
+input {
+  font-family: "Spline Sans", sans-serif;
+}
+
+.login-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.login-container:before {
+  content: "";
+  position: absolute;
+  width: 2000px;
+  height: 2000px;
+  border-radius: 50%;
+  top: -10;
+  right: 48%;
+  background: linear-gradient(45deg, #44b2eb, #04beeb);
+  transform: translateY(-50%);
+  z-index: 6;
+  transition: 1.8s ease-in-out;
+}
+
+.login-container .forms-login-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.login .error-txt {
+  text-align: center;
+  color: #aaa;
+  margin: 10px 0px;
+}
+.login .forget-password {
+  text-align: center;
+  font-weight: 600;
+  color: #44b2eb;
+  cursor: pointer;
+}
+.login {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 31%;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
+.login form {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  overflow: hidden;
+  align-items: center;
+  flex-direction: column;
+}
+.login form .title {
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.login .input-filed {
+  max-height: 380px;
+  width: 100%;
+  height: 55px;
+  background-color: #f0f0f0;
+  margin: 10px 0px;
+  border-radius: 55px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0.4rem;
+}
+.input-icon {
+  margin: auto;
+  color: #acacac;
+}
+.login .input-filed input {
+  background: none;
+  outline: none;
+  line-height: 1;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+  padding: 5px;
+  padding-top: 11px;
+  width: 100%;
+  border: none;
+  height: auto;
+  border-radius: 0px;
+  text-align: start;
+}
+.input-filed input::placeholder {
+  font-weight: 500;
+  color: #aaa;
+  padding-left: 5.5rem;
+  background: none;
+}
+.btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #5995fd;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin: 10px 0px;
+  transition: 0.6s;
+}
+
+.btn:hover {
+  background-color: #4d84e2;
+}
+.panels-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  text-align: center;
+  z-index: 7;
+}
+.left-panel {
+  padding: 3rem 17% 2rem 12%;
+  pointer-events: all;
+}
+
+.panel h3 {
+  font-weight: 600;
+  line-height: 1;
+  font-size: 1.6rem;
+}
+.panel p {
+  font-size: 1rem;
+  padding: 0.7rem 0;
+}
+
+.btn.transparent {
+  margin: 0;
+  background: none;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.panel .content {
+  color: #ffff;
+}
+.login-Image {
+  width: 100%;
+}
+
+@media (max-width: 870px) {
+  .login-container {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .login-container::before {
+    width: 1500px;
+    height: 1500px;
+    left: 30%;
+    bottom: 60%;
+    transform: translateX(-50%);
+    right: initial;
+    top: initial;
+  }
+  .login {
+    width: 60%;
+    left: 50%;
+    top: 95%;
+    transform: translate(-50%, -100%);
+  }
+  .panels-container {
+    z-index: 10;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+  .panel {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 8%;
+  }
+  .panel .content {
+    padding-right: 15%;
+    padding-top: 2rem;
+  }
+
+  .login-Image {
+    width: 200px;
+  }
+  .right-panel .content,
+  .right-panel .login-Image {
+    transform: translate(0px);
+  }
+}
+@media (max-width: 570px) {
+  .login {
+    width: 100%;
+    top: 85%;
+  }
+  form {
+    padding: 0 1.5rem;
+  }
+  .login-Image {
+    display: none;
+  }
+  .panel .content {
+    padding: 0.5rem 1rem;
+  }
+  .panel h3 {
+    font-size: 1.2rem;
+  }
+  .panel p {
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
+  }
+  .btn.transparent {
+    width: 110px;
+    height: 35px;
+  }
+  .login-container::before {
+    bottom: 72%;
+    left: 50%;
+  }
+}

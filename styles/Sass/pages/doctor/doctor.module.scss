@@ -1,0 +1,36 @@
+@import "../../abstract/variable.module.scss";
+
+.doctor {
+  aside {
+    // width: 20%;
+    position: sticky;
+    // overflow: hidden;
+    top: 0;
+    background-color: $primary;
+    color: white;
+    border-top: 2px solid $light;
+  }
+  main {
+    // padding: 0px 35px;
+  }
+  .doctorCard {
+    max-height: 415px;
+    cursor: pointer;
+    figure {
+      background-color: $Lightgray;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    img {
+      max-height: 180px !important;
+    }
+  }
+  .doctorCardBody {
+    color: white;
+    background-color: $light;
+    padding: 15px !important;
+    text-align: center;
+  }
+}
