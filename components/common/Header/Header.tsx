@@ -90,11 +90,10 @@ const Header = () => {
                 <AiOutlineUser />
               </li> */}
               <span className="md:block lg:block ">
-                <Link href={"/Login"} passHref>
+                <Link href={"/login"} passHref>
                   <a>
                     <Button>Log In</Button>
                   </a>
-                  -
                 </Link>
               </span>
             </ul>

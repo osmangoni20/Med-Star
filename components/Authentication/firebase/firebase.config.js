@@ -1,10 +1,9 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyBIZd8c-NHyCZgXQBMKzC25oMxm9NC-COE",
-  authDomain: "ehostel-bd.firebaseapp.com",
-  projectId: "ehostel-bd",
-  storageBucket: "ehostel-bd.appspot.com",
-  messagingSenderId: "809733638837",
-  appId: "1:809733638837:web:56363e6eac08eac856ccfc"
+  apiKey: "AIzaSyAFG_qoTw1K1dFsBiDUhGLS16bu9tmRZ4I",
+  authDomain: "med-star.firebaseapp.com",
+  projectId: "med-star",
+  storageBucket: "med-star.appspot.com",
+  messagingSenderId: "803154371616",
+  appId: "1:803154371616:web:e5eddd86db5ea1a9f10845"
 };
-
   export default firebaseConfig;

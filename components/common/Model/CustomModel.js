@@ -1,7 +1,7 @@
+import cancel from '../../../assets/image/cancel.png';
+import checked from '../../../assets/image/checked.png';
+import userImage from '../../../assets/image/personlogo.jpg';
 import style from '../../../styles/Sass/common/model/dynamicModel.module.scss';
-import cancel from '../image/cancel.png';
-import checked from '../image/checked.png';
-import userImage from '../image/personlogo.jpg';
 const CustomModel = ({showModel,error,setModel,modelData}) => {
     console.log(showModel,modelData,error)
     return (

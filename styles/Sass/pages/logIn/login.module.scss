@@ -1,13 +1,5 @@
+@import "../../abstract/variable.module.scss";
 @import url("https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap");
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-body,
-input {
-  font-family: "Spline Sans", sans-serif;
-}
 
 .login_container {
   position: relative;
@@ -22,10 +14,47 @@ input {
     height: 100%;
     top: 0;
     left: 0;
+
+    .login_form {
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem;
+      overflow: hidden;
+      align-items: center;
+      flex-direction: column;
+      input {
+        font-family: "Spline Sans", sans-serif;
+      }
+
+      .title {
+        font-size: 2.2rem;
+        color: $light;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+      .btn {
+        padding: 10px;
+        height: 50px;
+        width: 100px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #fff;
+        background-color: $primary;
+        cursor: pointer;
+        text-transform: uppercase;
+        margin: 10px 0px;
+        transition: 0.6s;
+      }
+      .btn:hover {
+        background-color: $light;
+      }
+    }
   }
 }
 
-.login-container:before {
+.login_container:before {
   content: "";
   position: absolute;
   width: 2000px;
@@ -33,7 +62,7 @@ input {
   border-radius: 50%;
   top: -10;
   right: 48%;
-  background: linear-gradient(45deg, #44b2eb, #04beeb);
+  background: linear-gradient(45deg, $primary, $light);
   transform: translateY(-50%);
   z-index: 6;
   transition: 1.8s ease-in-out;
@@ -49,36 +78,25 @@ input {
   grid-template-columns: 1fr;
   z-index: 5;
 
-  .error-txt {
+  .logo {
+    width: 150px !important;
+    height: 120px !important;
+    margin: 0px auto;
+  }
+  .error_txt {
     text-align: center;
     color: #aaa;
     margin: 10px 0px;
   }
-  .forget-password {
+  .forget_password {
     text-align: center;
     font-weight: 600;
     color: #44b2eb;
     cursor: pointer;
   }
-
-  form {
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem;
-    overflow: hidden;
-    align-items: center;
-    flex-direction: column;
-
-    .title {
-      font-size: 2.2rem;
-      color: #444;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-  }
 }
 
-.login .input-filed {
+.login .input_filed {
   max-height: 380px;
   width: 100%;
   height: 55px;
@@ -96,8 +114,7 @@ input {
     font-weight: 600;
     color: #333;
     font-size: 1.1rem;
-    padding: 5px;
-    padding-top: 11px;
+
     width: 100%;
     border: none;
     height: auto;
@@ -105,36 +122,19 @@ input {
     text-align: start;
   }
   input::placeholder {
+    padding-top: 0px;
     font-weight: 500;
     color: #aaa;
     padding-left: 5.5rem;
     background: none;
   }
 }
-.input-icon {
+.input_icon {
   margin: auto;
   color: #acacac;
 }
 
-.btn {
-  width: 150px;
-  height: 50px;
-  border: none;
-  outline: none;
-  border-radius: 50px;
-  font-weight: 600;
-  color: #fff;
-  background-color: #5995fd;
-  cursor: pointer;
-  text-transform: uppercase;
-  margin: 10px 0px;
-  transition: 0.6s;
-}
-
-.btn:hover {
-  background-color: #4d84e2;
-}
-.panels-container {
+.panels_container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -142,11 +142,12 @@ input {
   left: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  align-items: center;
 }
 .panel {
   display: flex;
+  align-items: center;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: space-around;
   text-align: center;
   z-index: 7;
@@ -231,7 +232,7 @@ input {
     width: 100%;
     top: 85%;
   }
-  form {
+  .login_form {
     padding: 0 1.5rem;
   }
   .login-Image {
