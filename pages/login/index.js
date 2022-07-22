@@ -1,3 +1,4 @@
+import { getAuth } from "firebase/auth";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -6,11 +7,12 @@ import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import loginImage from "../../assets/image/loginImage.svg";
 import companyLogo from '../../assets/image/medicine logo.jpg';
+import SignIn from '../../components/Authentication/SignIn/SignIn.tsx';
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
 import useFirebase from "../../components/hooks/useFirebase";
-import style from "../../styles/Sass/pages/logIn/login.module.scss";
+import style from "../../styles/Sass/pages/auth/login&signIn.module.scss";
 const Login = () => {
   const {
     register,
@@ -19,17 +21,29 @@ const Login = () => {
   } = useForm();
 
   const [logInData, setLogInData] = useState({});
-  const { SignInWithEmailPassword, ResetPassword, user, error } = useFirebase();
+  const { SignInWithEmailPassword,EmailVerification, ResetPassword, error,user } = useFirebase();
   const [resetPassword, setResetPassword] = useState(false);
   const router = useRouter();
   const [model, setModel] = useState(false);
   const [modelData, setModelData] = useState({});
+  const [loginFrom,setLoginFrom]=useState(true);
   const from = router?.state?.from?.pathname || "/";
-  if (user.email) {
-    router.push(from, { replace: true });
-  }
-  console.log(user, error);
+  const auth = getAuth();
+  // if (user.email) {
+  //   router.push(from, { replace: true });
+  // }
+  // console.log(user, error);
 
+  const HandleVerificationEmail=()=>{
+    EmailVerification(auth);
+    setModel(true);
+    setModelData({
+      text1: "Verification Email Already Send!",
+      text2: "Please Verified your Email",
+
+      successType: true,
+    });
+  }
   const HandleResetPassword = () => {
     setResetPassword(!resetPassword);
   };
@@ -56,28 +70,32 @@ const Login = () => {
     if (resetPassword) {
       SendPasswordResetEmail(email);
     }
-    !resetPassword && SignInWithEmailPassword(email, password);
+    else{
+      SignInWithEmailPassword(email, password);
+      if(!error&&user.emailVerified){
+        setModel(true)
+        setModelData({
+          text1:"Start your account in application",
+          text2:"Enjoy our service",
+          image:user?.photoUrl,
+          welcomeType:true
+        })
+      }else if(!user.emailVerified){
+       setModel(true)
+       setModelData({
+         text1:"Your email is not verified",
+         text2:"Please check your email",
+         wrongType:true
+       })
+      }
+    }
+    
     console.log(user);
-    //  if(!error&&user.emailVerified){
-    //    setModel(true)
-    //    setModelData({
-    //      text1:"Start your account application",
-    //      text2:"Enjoy our service",
-    //      image:user?.photoUrl,
-    //      welcomeType:true
-    //    })
-    //  }else if(!user.emailVerified){
-    //   setModel(true)
-    //   setModelData({
-    //     text1:"Your email is not verified",
-    //     text2:"Please check your email",
-    //     wrongType:true
-    //   })
-    //  }
+    
   };
 
   const HandleClickRegistration = () => {
-    // navigate('/dashboard/student_admission');
+    setLoginFrom(!loginFrom);
   };
 
   // const welcomeModelText="Welcome eHostel Management Site"
@@ -91,8 +109,11 @@ const Login = () => {
       <Header/>
       <div className={`${style.login_container}`}>
         <div className={`${style.forms_login_container}`}>
-          <div className={`${style.login}`}>
-             <span  className={style.logo}>
+          
+             
+          {loginFrom?<div className={`${style.login}`}>
+            
+          <span  className={style.logo}>
             <Image
                 src={companyLogo}
                 alt="Med Star"
@@ -100,7 +121,6 @@ const Login = () => {
             
              </span>
              
-              
             <form
               className={`${style.login_form}`}
               onSubmit={handleSubmit(onSubmit)}
@@ -120,6 +140,7 @@ const Login = () => {
                   })}
                 />
               </div>
+              
               {errors.email && (
                 <p style={{ color: "red" }}>This field is required</p>
               )}
@@ -140,17 +161,25 @@ const Login = () => {
               {errors.password && (
                 <span style={{ color: "red" }}>This field is required</span>
               )}
-              <input
+           
+             <input
                 type="submit"
                 value={resetPassword ? "Send" : "Login"}
-                className={`${style.btn}`}
+                className={`${style.btn} ${style.loginButton}`}
               />
+            
+             {user.email? !user.emailVerified&& <p className={style.emailVerification} onClick={HandleVerificationEmail}>Send Verification Email?</p>:""}
             </form>
             <p className={style.error_txt}>{error}</p>
             <p className={style.forget_password} onClick={HandleResetPassword}>
             {resetPassword ? "Please Login": "Forget Password ?"}
+            
             </p>
-          </div>
+
+          </div>:
+          <SignIn setModel={setModel} setModelData={setModelData}/>
+
+          }
         </div>
         <div className={style.panels_container}>
           <div className={`${style.left_panel} ${style.panel}`}>
@@ -163,16 +192,26 @@ const Login = () => {
             )}
 
             <div className={style.content}>
-              <h3>Are Your New Member?</h3>
+              {
+                loginFrom?<span>
+                  <h3>Are Your New Member?</h3>
               <p>
                 If you have not already registered, please complete the
                 registration and log in.
               </p>
+                </span>:
+                <span>
+                   <h3>Already have an account?</h3>
+                   <p>
+                please login your account and enjoy our hospitable service
+              </p>
+                </span>
+              }
               <button
                 onClick={HandleClickRegistration}
                 className="btn transparent"
               >
-                Registration
+               {loginFrom?"Registration":"Login"} 
               </button>
             </div>
             <Image

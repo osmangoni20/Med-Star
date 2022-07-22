@@ -1,0 +1,50 @@
+.table {
+  width: 100%;
+  text-align: center;
+  thead {
+    padding: 5px;
+    /* background-color: #5995fd; */
+    color: rgb(53, 52, 52);
+    margin-bottom: 10px;
+    border-bottom: 2px solid gray;
+    th {
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px;
+    }
+  }
+  tbody {
+    tr {
+      margin-top: 10px;
+      border-radius: 10px;
+      /* border-bottom: 1px solid gray; */
+      .edit-icon {
+        background-color: rgb(1 16 1);
+        border-radius: 50%;
+        color: white;
+        padding: 3px;
+        margin: 5px;
+        cursor: pointer;
+      }
+    }
+    td {
+      font-size: 17px;
+      padding: 10px;
+      /* border: 2px solid gray; */
+    }
+  }
+  .delete_icon {
+    height: 26px;
+    /* padding: 11px; */
+    width: 26px;
+    background-color: rgb(229, 11, 31);
+    border-radius: 50%;
+    color: white;
+    padding: 3px;
+    margin: 0px;
+    cursor: pointer;
+    text-align: center;
+    margin: 0px auto;
+  }
+}

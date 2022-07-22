@@ -1,73 +1,75 @@
-import React from "react";
-import { DashboardFakeData } from '../../../DashboardFakeData';
-import CostChart from "../CostChart/CostChart";
-import DashboardCard from "../DashboardCard/DashboardCard";
-import DashboardHeader from "../DashboardHeader/DashboardHeader";
-import NewNotice from "../NewNotice/NewNotice";
-import Sidebar from "../Sidebar/Sidebar";
-import SidebarManuHeder from "../SidebarManuHeder/SidebarMenuHeder";
-import "./Dashboard.css";
+// import { DashboardFakeData } from '../../../DashboardFakeData';
+// import CostChart from "../CostChart/CostChart";
+import { useRouter } from "next/router";
+import DashboardCard from "../../components/DashboardPart/Dashboard/DashboardCard/DashboardCard";
+import RecentMessage from "../../components/DashboardPart/Dashboard/RecentMessage/RecentMessage";
+import RecentOrder from "../../components/DashboardPart/Dashboard/RecentOrder/RecentOrder";
+import SalesAnalytics from "../../components/DashboardPart/Dashboard/SalesAnalytics/SalesAnalytics";
+import DashboardHeader from "../../components/DashboardPart/DashboardHeader/DashboardHeader";
+import Sidebar from "../../components/DashboardPart/Sidebar/Sidebar";
+// import "./Dashboard.css";
+import style from "../../styles/Sass/pages/dashboard/dashboard.module.scss";
+
+const cardData = [
+  {
+    id: 1,
+    name: "Total Sales",
+    icon: "sales",
+    total: 2500,
+  },
+  {
+    id: 2,
+    name: "Total Income",
+    icon: "income",
+    total: 2500,
+  },
+  {
+    id: 3,
+    name: "Total Order",
+    icon: "order",
+    total: 15,
+  },
+  {
+    id: 4,
+    name: "Total Patient",
+    icon: "name",
+    total: 15,
+  },
+];
 const Dashboard = () => {
-
   // setNewNotice()
-const menuHeader="Dashboard";
-
-const admin=true;
-const totalMeal=DashboardFakeData.meal_list.tableData.reduce((preValue,currValue)=>preValue+currValue.numberOfMeal,0);
-const userCartData=[
-  {
-    id:4,
-    name:"Today's Meal",
-    total:3
-}
-]
-const adminCardData=[
-  {
-      id:1,
-      name:"Total Employee",
-      total:DashboardFakeData?.employee_manage?.tableData?.length,
-  },
-  {
-      id:2,
-      name:"Total Student",
-      total:DashboardFakeData?.student_list?.tableData?.length
-  },
-  {
-      id:3,
-      name:"Total Rooms",
-      total:DashboardFakeData?.room?.tableData?.length,
-  },
-  {
-      id:4,
-      name:"Today's Meal",
-      total:totalMeal
+  const route = useRouter();
+  const admin = false;
+  if (!admin) {
+    route.push("dashboard/my_order");
   }
-]
-
-const cardData=admin?adminCardData:userCartData;
   return (
-    <div className="dashboard">
+    <div className={style.dashboard}>
       <DashboardHeader></DashboardHeader>
-
-      <div className="dashboardBody">
-        
-        <aside className="h-screen ">
+      <div className="flex">
+        <aside className="h-screen">
           <Sidebar></Sidebar>
         </aside>
 
-        <main>
-          <SidebarManuHeder menuHeader={menuHeader}></SidebarManuHeder>
-          <div className= {admin?`flex flex-wrap justify-between mt-5 mb-2`:`flex justify-center mt-5 mb-2`}>
-            {cardData.map((cardData) => (
-              <DashboardCard key={cardData.id} card={cardData}></DashboardCard>
-            ))}
+        <main className="py-5">
+          <div>
+            <div className={`flex flex-wrap justify-between mt-5  mb-2`}>
+              {cardData.map((cardData) => (
+                <DashboardCard
+                  key={cardData.id}
+                  card={cardData}
+                ></DashboardCard>
+              ))}
+            </div>
           </div>
-          {/* */}
-          <div className="mt-9 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 ">
-           
-          {/* Notice */}
-          <NewNotice></NewNotice>
-            
+          <div className={style.rightBody}>
+            {/* <CostChart /> */}
+            <RecentMessage />
+          </div>
+          <div className={style.dashboardBody}>
+            <RecentOrder />
+
+            <SalesAnalytics />
           </div>
         </main>
       </div>

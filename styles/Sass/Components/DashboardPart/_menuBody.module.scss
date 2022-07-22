@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap");
+@import "../../abstract/variable.module.scss";
+
+.submenuDetails {
+  font-family: "Spline Sans", sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  /* border: 2px solid gray; */
+  padding: 0px;
+  margin-top: 15px;
+}
+.ListInformation {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 20px 0px;
+  padding: 20px 0px;
+}
+.dashboardInformation {
+  background-color: #f2edf3;
+  aside {
+    width: 20%;
+    position: sticky;
+    overflow: hidden;
+    top: 0;
+    background-color: #ffffff;
+  }
+  main {
+    width: 80%;
+    padding: 0px 35px;
+  }
+  //   aside {
+  //     width: 320px;
+  //     background-color: white;
+  //     text-align: center;
+  //     img {
+  //       margin: 0px auto;
+  //     }
+  //   }
+  //   main {
+  //     width: 100%;
+  //   }
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #444;
+  margin: 2rem 0px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form_input_field {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 0.5rem;
+  overflow: hidden;
+  align-items: center;
+  margin: 0px 0px;
+  h5 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  textarea {
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    height: 106px;
+    padding: 5px;
+  }
+  .input_filed {
+    max-height: 380px;
+    width: 100%;
+    height: 50px;
+    background-color: #f0f0f0;
+    margin: 10px 0px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+
+    input,
+    select {
+      border: none;
+      background: none;
+      outline: none;
+      line-height: 1;
+      font-weight: 500;
+      color: #333;
+      font-size: 0.98rem;
+      margin-top: -10px;
+      // padding: 10px 0px 0px 0px;
+      text-align: left;
+      font-family: "Spline Sans", sans-serif;
+      margin: 0px;
+      box-sizing: border-box;
+    }
+  }
+  input::placeholder,
+  select::placeholder {
+    font-weight: 500;
+    color: #aaa;
+    text-align: center;
+  }
+  .Submit-button {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.mainInputField_container {
+  position: relative;
+  width: 100%;
+  padding: 10px;
+  /* min-height: 200vh; */
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 10px;
+  /* overflow: hidden; */
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    color: #4d84e2;
+    text-align: center;
+    span {
+      font-weight: 600;
+      color: #323233;
+      padding: 0px 10px;
+    }
+  }
+}
+
+.input_icon {
+  margin: auto;
+  color: #acacac;
+}
+.request_action {
+  background-color: #5995fd;
+  color: #f0f0f0;
+  font-size: 18px;
+  margin: 0px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #5995fd;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin: 10px 0px;
+  transition: 0.6s;
+}
+
+.btn:hover {
+  background-color: #4d84e2;
+}
+@media (max-width: 1200px) {
+  .form_input_field {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0.5rem;
+    overflow: hidden;
+    align-items: center;
+    margin: 0px 18px;
+  }
+}
+@media (max-width: 870px) {
+  .title {
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .submenuDetails {
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .form_input_field {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0.5rem;
+    overflow: hidden;
+    align-items: center;
+    margin: 0px 20px;
+  }
+}
+
+@media (max-width: 570px) {
+  .title {
+    font-size: 1.9rem;
+    color: #444;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .submenuDetails {
+    h5 {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+
+  form .form_input_field {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+    padding: 0.5rem;
+    overflow: hidden;
+    align-items: center;
+    margin: 20px 0px;
+  }
+
+  .btn {
+    width: 120px;
+    height: 30px;
+    border-radius: 40px;
+  }
+}
+
+.ListInformation form {
+  padding: 0px;
+  margin-top: 0px;
+}

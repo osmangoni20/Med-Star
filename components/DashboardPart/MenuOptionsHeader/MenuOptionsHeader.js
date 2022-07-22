@@ -1,9 +1,9 @@
-import React from "react";
-import "./MenuOptionheader.css";
+
+import style from '../../../styles/Sass/Components/DashboardPart/_menuOptionheader.module.scss';
 const MenuOptionsHeader = ({ AllHeaders }) => {
   // console.log(AllHeaders)
   return (
-    <div className="optionsHeader flex items-center justify-between">
+    <div className={`${style.optionsHeader}  flex items-center justify-between`} >
      
       <div className=" flex items-center">
       <ion-icon name={AllHeaders?.menuOptionHeader.icon}></ion-icon>

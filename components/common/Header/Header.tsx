@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -8,12 +9,16 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import logo from "../../../assets/image/medicine logo.jpg";
 import style from "../../../styles/Sass/common/Header/_header.module.scss";
 import Button from "../../Custom/Button/Button";
+import useFirebase from "../../hooks/useFirebase";
 import Navbar from "./Navbar";
 import NavbarModel from "./NavbarModel";
+import defaultProfile from "/assets/image/default_profile.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const { user }: any = useFirebase();
   return (
     <div>
       <div className={`${style.headerComponent} sticky top-0`}>
@@ -52,27 +57,24 @@ const Header = () => {
 
               {/* <img className="branding" src={logo} alt=""></img> */}
               <Link href={"/"} passHref>
-                <a>
-                  <h1 className="text-xl font-bold md:text-black text-white">
-                    MedStar
-                  </h1>
+                <a className={style.logo}>
+                  <Image src={logo} alt="Med Star" />
                 </a>
               </Link>
             </div>
-            <label className="relative hidden md:block searchInput ">
-              <span className="sr-only">Search</span>
-              <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                <AiOutlineSearch />
-              </span>
-              <input
-                className="placeholder:italic placeholder:text-slate-400 block bg-white w-full  py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
-                placeholder="Medicine Search for anything..."
-                type="text"
-                name="search"
-              />
+            <label className={`${style.searchInput} relative hidden md:block`}>
+              <div className={style.inputField}>
+                <input
+                  className="placeholder:italic placeholder:text-slate-400 block bg-white w-full  py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                  placeholder="Medicine Search for anything..."
+                  type="text"
+                  name="search"
+                />
+                <button>Search</button>
+              </div>
             </label>
             <ul
-              className={` ${style.iconList} flex items-center gap-3  list-unstyled`}
+              className={` ${style.iconList} flex items-center gap-8  list-unstyled`}
             >
               {/* <li>
                 <BsBagCheck />
@@ -90,11 +92,24 @@ const Header = () => {
                 <AiOutlineUser />
               </li> */}
               <span className="md:block lg:block ">
-                <Link href={"/login"} passHref>
-                  <a>
-                    <Button>Log In</Button>
-                  </a>
-                </Link>
+                {user.emailVerified ? (
+                  <span className={style.profileLogo}>
+                    <Link href={"/dashboard"} passHref>
+                      <Image
+                        src={user.photoURL || defaultProfile}
+                        alt={""}
+                        height={35}
+                        width={35}
+                      />
+                    </Link>
+                  </span>
+                ) : (
+                  <Link href={"/login"} passHref>
+                    <a>
+                      <Button>Log In</Button>
+                    </a>
+                  </Link>
+                )}
               </span>
             </ul>
           </div>

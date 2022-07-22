@@ -40,8 +40,8 @@ const useFirebase=()=>{
 
       const UpdateUserData = (user) => {
         updateProfile(auth.currentUser, {
-          phoneNumber:user.mobile_No,
-          displayName: user.student_FirstName+' '+user.student_LastName,
+          phoneNumber: user.mobile_No,
+          displayName: user.firstName+' '+user.lastName,
           photoURL: "",
         })
           .then((result) => {
@@ -53,7 +53,7 @@ const useFirebase=()=>{
             console.log(error);
           });
       };
-      
+      // Email Verification
       const EmailVerification = (auth) => {
         sendEmailVerification(auth.currentUser)
           .then((result) => console.log(result))
@@ -68,7 +68,8 @@ const useFirebase=()=>{
           // Signed in 
           const user = userCredential.user;
           setUser({...user,
-              name:user.displayName,
+              firstName:user.displayName.slice(0,8),
+              fullName:user.displayName,
               email:user.email,
               emailVerified:user.emailVerified,
               photo:user.photoURL,
@@ -78,6 +79,7 @@ const useFirebase=()=>{
           // {
           //     alert("Your Email is not Verified . Please Email Verified.")
           // }
+          console.log(user)
           setError('');
         })
         .catch((error) => {
@@ -127,6 +129,7 @@ const useFirebase=()=>{
      return{
         SignInWithEmailPassword,
          SignUpWithEmailAndPassword,
+         EmailVerification,
          user,
          error,
          ResetPassword,

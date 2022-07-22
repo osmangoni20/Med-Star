@@ -5,11 +5,10 @@ import {
   Legend,
   LinearScale,
   Title,
-  Tooltip
+  Tooltip,
 } from "chart.js";
-import React from "react";
 import { Bar } from "react-chartjs-2";
-import './CostChart.css';
+import style from "../../../styles/Sass/Components/DashboardPart/_sellChart.module.scss";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -73,14 +72,11 @@ const options = {
 
 function CostChart() {
   return (
-    <div className="p-3 ">
-      <div className="chartHeader flex  items-center mb-2">
-        <span className="pt-2">
-          <ion-icon name="aperture-outline"></ion-icon>
-        </span>
-        <h3>Monthly Cost</h3>
+    <div className={style.incomeChart}>
+      <h3>Monthly Income</h3>
+      <div className={style.chart}>
+        <Bar data={data} options={options} />
       </div>
-      <Bar data={data} options={options} />
     </div>
   );
 }
