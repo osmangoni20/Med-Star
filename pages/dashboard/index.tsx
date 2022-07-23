@@ -1,6 +1,7 @@
 // import { DashboardFakeData } from '../../../DashboardFakeData';
 // import CostChart from "../CostChart/CostChart";
 import { useRouter } from "next/router";
+import Meta from "../../components/common/Meta";
 import DashboardCard from "../../components/DashboardPart/Dashboard/DashboardCard/DashboardCard";
 import RecentMessage from "../../components/DashboardPart/Dashboard/RecentMessage/RecentMessage";
 import RecentOrder from "../../components/DashboardPart/Dashboard/RecentOrder/RecentOrder";
@@ -40,39 +41,44 @@ const Dashboard = () => {
   // setNewNotice()
   const route = useRouter();
   const admin = false;
-  if (!admin) {
-    route.push("dashboard/my_order");
-  }
+
   return (
     <div className={style.dashboard}>
+      <Meta
+        title="MedStart Dashboard"
+        name="viewport"
+        description="initial-scale=1.0, width=device-width"
+      />
       <DashboardHeader></DashboardHeader>
-      <div className="flex">
-        <aside className="h-screen">
-          <Sidebar></Sidebar>
-        </aside>
+      {admin && (
+        <div className="flex">
+          <aside className="h-screen">
+            <Sidebar></Sidebar>
+          </aside>
 
-        <main className="py-5">
-          <div>
-            <div className={`flex flex-wrap justify-between mt-5  mb-2`}>
-              {cardData.map((cardData) => (
-                <DashboardCard
-                  key={cardData.id}
-                  card={cardData}
-                ></DashboardCard>
-              ))}
+          <main className="py-5">
+            <div>
+              <div className={`flex flex-wrap justify-between mt-5  mb-2`}>
+                {cardData.map((cardData) => (
+                  <DashboardCard
+                    key={cardData.id}
+                    card={cardData}
+                  ></DashboardCard>
+                ))}
+              </div>
             </div>
-          </div>
-          <div className={style.rightBody}>
-            {/* <CostChart /> */}
-            <RecentMessage />
-          </div>
-          <div className={style.dashboardBody}>
-            <RecentOrder />
+            <div className={style.rightBody}>
+              {/* <CostChart /> */}
+              <RecentMessage />
+            </div>
+            <div className={style.dashboardBody}>
+              <RecentOrder />
 
-            <SalesAnalytics />
-          </div>
-        </main>
-      </div>
+              <SalesAnalytics />
+            </div>
+          </main>
+        </div>
+      )}
     </div>
   );
 };

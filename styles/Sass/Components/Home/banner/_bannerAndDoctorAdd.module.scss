@@ -15,3 +15,47 @@
     padding: 0px !important;
   }
 }
+
+@media (max-width: 640px) {
+  .bannerAndDoctorAdd {
+    display: block;
+    // padding: 10px;
+    border-bottom: 2px solid $Lightgray;
+  }
+  .doctorAdd {
+    img {
+      height: 100px !important;
+      width: 640px !important;
+      margin-bottom: 0px !important;
+      padding: 0px !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerAndDoctorAdd {
+    display: block;
+    // padding: 10px;
+    border-bottom: 2px solid $Lightgray;
+  }
+  .doctorAdd {
+    img {
+      width: 768px !important;
+      height: 200px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .bannerAndDoctorAdd {
+    display: block;
+    // padding: 10px;
+    border-bottom: 2px solid $Lightgray;
+
+    .doctorAdd {
+      img {
+        width: 1138px !important;
+      }
+    }
+  }
+}

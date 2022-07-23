@@ -38,3 +38,9 @@
   font-size: 35px;
   font-weight: 700;
 }
+
+@media (max-width: 640px) {
+  .features {
+    padding: 0px;
+  }
+}

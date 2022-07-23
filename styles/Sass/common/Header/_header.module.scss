@@ -10,6 +10,7 @@
   }
   .menuFoldIcon svg {
     color: $white;
+    height: 25px;
     width: 25px;
   }
   .middleHeader {
@@ -25,10 +26,7 @@
         height: 40px;
         width: 60px;
       }
-      .searchInput {
-        width: 100%;
-        max-width: 800px;
-      }
+
       .inputField {
         // border: 2px solid $primary;
         display: flex;
@@ -42,7 +40,7 @@
 
       img {
         border-radius: 50px;
-        margin-top: 4px !important;
+        margin-top: 4px;
       }
       .profileLogo {
         margin-left: 30px;
@@ -89,7 +87,10 @@
     }
 
     .iconList {
-      :global li svg {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      li svg {
         color: $white;
       }
     }
@@ -124,6 +125,23 @@
     color: $white;
   }
 }
+@media (max-width: 768px) {
+  .middle_header_body {
+    padding: 0px 5px;
+    img {
+      margin-top: 0px !important;
+    }
+    .iconList {
+      gap: 0px !important;
+    }
+    .searchInput {
+      margin: 12px 12px;
+    }
+    .loginButton {
+      width: 100px !important;
+    }
+  }
+}
 
 @media (max-width: 640px) {
   .topHeader {
@@ -134,9 +152,15 @@
     height: 80px;
     padding: 10px;
     background-color: $second !important;
-    :global .middle_header_body {
-      justify-content: space-between;
-      padding: 20px;
+    .logo {
+      display: none !important;
+    }
+    .middle_header_body {
+      .iconList {
+        display: flex;
+        align-items: center;
+        gap: 25px !important;
+      }
     }
 
     .iconList {

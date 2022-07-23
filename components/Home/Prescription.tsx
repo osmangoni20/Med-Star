@@ -1,7 +1,7 @@
 import Image from "next/image";
-import prescriptionImage from "../../assets/image/doctor-writing-prescription.png";
 import style from "../../styles/Sass/Components/Home/PatientServiceAndPrescriptionSystem.module.scss";
-import Button from "../Custom/Button/Button";
+import LargestButton from "../Custom/Button/LargestButton";
+import prescriptionImage from "/assets/image/doctor-writing-prescription.png";
 const prescriptionUploadRules = [
   {
     id: 1,
@@ -33,21 +33,23 @@ const Prescription = () => {
         className={`${style.prescription} md:flex items-center md:gap-9 md:justify-evenly`}
       >
         <div className={`${style.prescriptionRules}`}>
-          <h2 className={`text-center text-4xl my-2 font-bold`}>
+          <h2 className={`text-center mt-5  my-2 font-bold`}>
             Order By Prescription
           </h2>
           {prescriptionUploadRules.map((rules) => {
             return (
-              <div className={`${style.rules}`} key={rules.id}>
-                <p className={`${style.dot} mr-3`}></p>
-                <p>{rules.content}</p>
+              <div className={`${style.serviceTitle}`} key={rules.id}>
+                <div>
+                  <p className={`${style.dot}`}></p>
+                </div>
+                <p className="pl-3">{rules.content}</p>
               </div>
             );
           })}
           <div
-            className={`my-6 ml-48 flex justify-center md:justify-start items-center`}
+            className={`my-6 md:ml-48 flex justify-center md:justify-start items-center`}
           >
-            <Button>Upload Prescription</Button>
+            <LargestButton>Upload Prescription</LargestButton>
           </div>
         </div>
         <div className={`${style.prescriptionImage}`}>

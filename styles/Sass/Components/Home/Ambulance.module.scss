@@ -31,3 +31,20 @@
   background-color: $primary !important;
   border: 2px solid $light;
 }
+
+@media (max-width: 640px) {
+  .ambulance {
+    padding: 0px;
+  }
+  .titlePart {
+    .title {
+      color: $light;
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+    }
+    p {
+      display: none;
+    }
+  }
+}

@@ -29,6 +29,7 @@ import DashboardHeader from "../DashboardHeader/DashboardHeader";
 import MenuOptionsHeader from "../MenuOptionsHeader/MenuOptionsHeader";
 import Sidebar from "../Sidebar/Sidebar";
 // import "../Style/inputStyle.css";
+import { useRouter } from "next/router";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import tableStyle from "../../../styles/Sass/Components/DashboardPart/tableStyle.module.scss";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
@@ -40,6 +41,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const [model, setModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
   const [tableData, setTableData] = useState<any>([]);
+  const route = useRouter().query;
   const submitValue =
     AllData.inputFieldData && AllData.inputFieldData[0].search
       ? "Search"
@@ -60,7 +62,14 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   }: any = useForm();
   const onSubmit = (submitData: { action: boolean }) => {
     submitData.action = true;
-    setTableData([...tableData, submitData]);
+    setTableData(() => [...tableData, submitData]);
+
+    // fetch(`http://localhost:4000/${route}`,{
+    //   headers:"application/json",
+    //   body:submitData
+    // })
+    // .then(res=>res.json())
+    // .then(data=>console.log(data))
   };
   // console.log(tableData,AllData.tableData);
 

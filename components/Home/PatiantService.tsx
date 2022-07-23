@@ -39,9 +39,18 @@ const PatientService = () => {
         className={`${style.patientService} md:flex items-center md:gap-9 md:justify-between`}
       >
         <div className={`flex items-center`}>
-          <Image src={patientService1Image} alt="" />
-          <Image src={patientService3Image} alt="" />
-          <Image src={patientServiceImage} alt="" />
+          <span className="md:block hidden">
+            <Image src={patientService1Image} alt="" />
+          </span>
+
+          <Image
+            className="md:block hidden"
+            src={patientService3Image}
+            alt=""
+          />
+          <span className="md:block hidden">
+            <Image src={patientServiceImage} alt="" />
+          </span>
         </div>
         <div className={`${style.service}`}>
           {patientService.map((service) => {

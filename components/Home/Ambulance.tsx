@@ -11,7 +11,7 @@ const Ambulance = () => {
   return (
     <div className={`${style.ambulance}`}>
       <div
-        className={`${style.titlePart} flex justify-between items-center my-6`}
+        className={`${style.titlePart} md:flex justify-between items-center my-6`}
       >
         <h1 className={`${style.title}`}>Ambulance Service</h1>
         <Link href={"/"}>

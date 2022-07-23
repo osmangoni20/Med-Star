@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { doctorList } from "../../Database/doctorList";
-import style from "../../styles/Sass/Components/Home/Doctor.module.scss";
+import style from "../../styles/Sass/Components/Home/doctorCarousel.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
@@ -76,7 +76,7 @@ const Doctor = () => {
   return (
     <div className={`${style.carousel} transition-all duration-500 ease-in`}>
       <div
-        className={`${style.titlePart} flex justify-between items-center my-6`}
+        className={`${style.titlePart} md:flex justify-between items-center my-6`}
       >
         <h1 className={`${style.title}`}>Our Doctor</h1>
         <Link href={"/"}>

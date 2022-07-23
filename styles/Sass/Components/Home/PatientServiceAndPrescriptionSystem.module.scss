@@ -40,7 +40,29 @@
     display: flex;
     justify-content: center;
     img {
-      height: 450px !important;
+      height: 450px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .patientService,
+  .prescription {
+    padding: 0px;
+    .service {
+      width: 100%;
+    }
+  }
+
+  .prescription {
+    padding: 20px;
+    margin: 0px 0px;
+
+    h2 {
+      color: $light;
+    }
+    .prescriptionImage {
+      display: none;
     }
   }
 }

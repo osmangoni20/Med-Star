@@ -19,6 +19,7 @@ import defaultProfile from "/assets/image/default_profile.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
+  const admin = false;
   return (
     <div>
       <div className={`${style.headerComponent} sticky top-0`}>
@@ -73,9 +74,7 @@ const Header = () => {
                 <button>Search</button>
               </div>
             </label>
-            <ul
-              className={` ${style.iconList} flex items-center gap-8  list-unstyled`}
-            >
+            <ul className={` ${style.iconList}`}>
               {/* <li>
                 <BsBagCheck />
               </li> */}
@@ -94,7 +93,10 @@ const Header = () => {
               <span className="md:block lg:block ">
                 {user.emailVerified ? (
                   <span className={style.profileLogo}>
-                    <Link href={"/dashboard"} passHref>
+                    <Link
+                      href={admin ? "/dashboard" : "/dashboard/_my_order"}
+                      passHref
+                    >
                       <Image
                         src={user.photoURL || defaultProfile}
                         alt={""}
@@ -105,7 +107,7 @@ const Header = () => {
                   </span>
                 ) : (
                   <Link href={"/login"} passHref>
-                    <a>
+                    <a className={style.loginButton}>
                       <Button>Log In</Button>
                     </a>
                   </Link>
