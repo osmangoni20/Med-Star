@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
@@ -22,7 +22,7 @@ const OrderCart = () => {
   //Handle Total Prize
   const HandleUpdateQuantity = (quantity: any, id: string) => {
     console.log(cardProducts);
-
+    // http://localhost:4000/
     fetch("http://localhost:3000/api/cart_product_list/" + id, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
@@ -37,6 +37,7 @@ const OrderCart = () => {
   };
 
   useEffect(() => {
+    // http://localhost:4000/
     fetch("http://localhost:3000/api/cart_product_list")
       .then((res) => res.json())
       .then((data) => {

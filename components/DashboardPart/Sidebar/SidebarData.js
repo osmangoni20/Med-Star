@@ -64,38 +64,20 @@ export const  adminSidebarMenu = [
     icon: "patient",
   },
   {
-    name: "Product Manage",
+    name: "Service Manage",
     icon: "product",
     subOptions: [
-      { name: "Add Product", link: "/dashboard/product_manage/add_new_product" },
-      { name: "Product List", link: "/dashboard/product_manage/product_list" },
+      { name: "Add Product",  icon: "product", link: "/dashboard/product_manage/add_new_product" },
+      { name: "Product List",  icon: "product", link: "/dashboard/product_manage/medicine" },
+      { name: "Add Doctor", icon:"doctor", link: "/dashboard/Doctor's Manage/add_doctor" },
+      { name: "Doctor List", icon:"doctor", link: "/dashboard/Doctor's Manage/doctor" },
+      { name: "Add Ambulance",icon: "ambulance", link: "/dashboard/Ambulance Service/add_ambulance" },
+      { name: "Ambulance List",icon: "ambulance", link: "/dashboard/Ambulance Service/ambulance" },
+      { name: "Add New Donner",icon: "blood", link: "/dashboard/Blood Donner/add_new_donner" },
+      { name: "Donner List ", icon: "blood", link: "/dashboard/Blood Donner/blood_donner" },
     ],
   },
-  {
-    name: "Doctor's Manage",
-
-    subOptions: [
-      { name: "Add Doctor", link: "/dashboard/Doctor's Manage/add_doctor" },
-      { name: "Doctor List", link: "/dashboard/Doctor's Manage/doctor_list" },
-    ],
-    icon: "doctor",
-  },
-  {
-    name: "Ambulance Service",
-    icon: "ambulance",
-    subOptions: [
-      { name: "Add Ambulance", link: "/dashboard/Ambulance Service/add_ambulance" },
-      { name: "Ambulance List", link: "/dashboard/Ambulance Service/ambulance_list" },
-    ],
-  },
-  {
-    name: "Blood Donner",
-    icon: "blood",
-    subOptions: [
-      { name: "Add New ", link: "/dashboard/Blood Donner/add_new_donner" },
-      { name: "Donner List ", link: "/dashboard/Blood Donner/blood_donner_list" },
-    ],
-  },
+  
   {
     name: "Site Update",
     icon: "ad",

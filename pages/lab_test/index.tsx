@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
@@ -10,6 +10,15 @@ const LabTest = ({ labTestData }: any) => {
   const HandleFieldValue = (e: any) => {
     setSearchName(e.target.value);
   };
+  useEffect(() => {
+    fetch("http://localhost:4000/labTest", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(labTestData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  });
   return (
     <div>
       <Meta
@@ -82,6 +91,7 @@ const LabTest = ({ labTestData }: any) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
+  // http://localhost:4000/labTest
   const res = await fetch(`http://localhost:3000/api/lab_test`);
   const data = await res.json();
 

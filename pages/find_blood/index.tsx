@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
-import { AiOutlineMail } from "react-icons/ai";
+import { FaCity } from "react-icons/fa";
+import { MdBloodtype } from "react-icons/md";
 import Categories from "../../components/common/Categories";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
@@ -22,9 +23,17 @@ interface Data {
   };
 }
 const FindBlood = ({ data }: any) => {
-  const [inputValue, setInputValue] = useState({});
+  const [searchValue, setSearchValue] = useState<any>({});
   const HandleFieldValue = (e: any) => {
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+    setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
+  };
+  const HandleSearchDonner = () => {
+    fetch(
+      `http://localhost:4000/find_blood/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
   };
   return (
     <div>
@@ -47,14 +56,22 @@ const FindBlood = ({ data }: any) => {
               <div>
                 <h5>Blood Group </h5>
                 <div className={`${style.input_filed}`}>
-                  <AiOutlineMail className={`${style.input_icon}`} />
+                  <MdBloodtype className={`${style.input_icon}`} />
 
-                  <input
-                    type={"text"}
+                  <select
                     placeholder={"Blood Group "}
                     name={"blood_Group"}
                     onBlur={(e) => HandleFieldValue(e)}
-                  />
+                  >
+                    <option value={"a-positive"}>A+</option>
+                    <option value={"a-negative"}>A-</option>
+                    <option value={"b-positive"}>B+</option>
+                    <option value={"b-negative"}>A+</option>
+                    <option value={"o-positive"}>O+</option>
+                    <option value={"o-negative"}>O+</option>
+                    <option value={"ab-positive"}>Ab+</option>
+                    <option value={"ab-negative"}>Ab+</option>
+                  </select>
                 </div>
               </div>
 
@@ -62,7 +79,7 @@ const FindBlood = ({ data }: any) => {
               <div>
                 <h5>Division</h5>
                 <div className={`${style.input_filed}`}>
-                  <AiOutlineMail className={`${style.input_icon}`} />
+                  <FaCity className={`${style.input_icon}`} />
 
                   <input
                     type={"text"}
@@ -76,7 +93,7 @@ const FindBlood = ({ data }: any) => {
               <div>
                 <h5>District</h5>
                 <div className={`${style.input_filed}`}>
-                  <AiOutlineMail className={`${style.input_icon}`} />
+                  <FaCity className={`${style.input_icon}`} />
 
                   <input
                     type={"text"}
@@ -90,7 +107,7 @@ const FindBlood = ({ data }: any) => {
               <div>
                 <h5>Upazila</h5>
                 <div className={`${style.input_filed}`}>
-                  <AiOutlineMail className={`${style.input_icon}`} />
+                  <FaCity className={`${style.input_icon}`} />
 
                   <input
                     type={"text"}
@@ -103,7 +120,7 @@ const FindBlood = ({ data }: any) => {
             </div>
           </form>
           <div className="card-actions justify-center py-6">
-            <span>
+            <span onClick={HandleSearchDonner}>
               <SimpleButton>Search</SimpleButton>
             </span>
           </div>

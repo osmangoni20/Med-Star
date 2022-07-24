@@ -32,7 +32,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Date",
-        registerName: "date",
+        registerName: "searchValue",
         placeholderName: "Notice Date",
         inputType: "date",
         icon: "date",
@@ -75,7 +75,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Your Name",
-        registerName: "first_name",
+        registerName: "name",
         icon: "name",
         placeholderName: "Your First Name",
         inputType: "text",
@@ -85,7 +85,16 @@ export const DashboardFakeData: any = {
         icon: "group",
         registerName: "blood_group",
         placeholderName: "Your Blood Group",
-        inputType: "number",
+        selectOptions: [
+          { name: "A+", value: "a-positive" },
+          { name: "A-", value: "a-negative" },
+          { name: "B+", value: "b-positive" },
+          { name: "B-", value: "b-negative" },
+          { name: "O+", value: "o-positive" },
+          { name: "O-", value: "o-negative" },
+          { name: "AB+", value: "ab-positive" },
+          { name: "AB-", value: "ab-negative" },
+        ],
       },
       {
         name: "Patient Type",
@@ -117,10 +126,10 @@ export const DashboardFakeData: any = {
       },
       {
         name: "Last Donation",
-        registerName: "last_name",
-        icon: "name",
-        placeholderName: "Your Last Name",
-        inputType: "text",
+        registerName: "last_donation",
+        icon: "date",
+        placeholderName: "Your Last Donation",
+        inputType: "date",
       },
     ],
     tableHeader: ["Last Donate", "Patient Type", "Hospital"],
@@ -216,32 +225,26 @@ export const DashboardFakeData: any = {
       },
 
       {
-        name: "Your Address",
-        icon: "city",
-        registerName: "address",
-        placeholderName: "Your Address",
-        textArea: true,
-      },
-      {
         name: "Your Email",
         registerName: "email",
         placeholderName: "Email",
         icon: "email",
         inputType: "email",
       },
-      {
-        name: "Email",
-        registerName: "email",
-        icon: "email",
-        placeholderName: "Doctor Email",
-        inputType: "email",
-      },
+
       {
         name: "Mobile Number",
         registerName: "mobile",
         icon: "mobile",
         placeholderName: "Mobile Number",
         inputType: "number",
+      },
+      {
+        name: "Your Address",
+        icon: "city",
+        registerName: "address",
+        placeholderName: "Your Address",
+        textAria: true,
       },
     ],
     menuOptionHeader: {
@@ -294,7 +297,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Date",
-        registerName: "delivery_date",
+        registerName: "searchValue",
         placeholderName: "Delivery Date",
         inputType: "date",
         icon: "date",
@@ -347,11 +350,11 @@ export const DashboardFakeData: any = {
     menuOptionHeader: { name: "New Order List", icon: "people-outline" },
   },
 
-  doctor_list: {
+  doctor: {
     inputFieldData: [
       {
         name: "Doctor Id",
-        registerName: "id",
+        registerName: "searchValue",
         placeholderName: "Doctor Id",
         inputType: "text",
         icon: "designation",
@@ -457,11 +460,11 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Ambulance Service",
     menuOptionHeader: { name: "Add Ambulance", icon: "people-outline" },
   },
-  ambulance_list: {
+  ambulance: {
     inputFieldData: [
       {
         name: "Ambulance Id",
-        registerName: "ambulance_id",
+        registerName: "searchValue",
         placeholderName: "Ambulance Id",
         inputType: "text",
         icon: "designation",
@@ -553,7 +556,7 @@ export const DashboardFakeData: any = {
     menuOptionHeader: { name: "Blood Donner", icon: "blood" },
     sidebarMenuHeader: "Add Donner",
   },
-  blood_donner_list: {
+  blood_donner: {
     tableHeader: ["Name", "Age", "Blood Group", "Address", "Action"],
     tableData: [
       {
@@ -584,7 +587,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Blood Group",
-        registerName: "blood_group",
+        registerName: "searchValue",
         placeholderName: "Blood Group",
         inputType: "text",
         icon: "name",
@@ -712,7 +715,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Date",
-        registerName: "date",
+        registerName: "searchValue",
         placeholderName: "Notice Date",
         inputType: "date",
         icon: "date",
@@ -762,7 +765,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Date",
-        registerName: "delivery_date",
+        registerName: "searchValue",
         placeholderName: "Delivery Date",
         inputType: "date",
         icon: "date",
@@ -937,11 +940,11 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Add Product",
   },
 
-  product_list: {
+  medicine: {
     inputFieldData: [
       {
         name: "Product Id",
-        registerName: "id",
+        registerName: "searchValue",
         placeholderName: "Product Id",
         inputType: "text",
         icon: "group",

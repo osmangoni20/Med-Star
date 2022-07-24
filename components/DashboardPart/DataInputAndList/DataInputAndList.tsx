@@ -7,7 +7,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useForm } from "react-hook-form";
 import {
   AiOutlineExperiment,
   AiOutlineGroup,
@@ -37,16 +36,27 @@ import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 // import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 const DataInputAndList = ({ AllData, modelView }: any) => {
   // tableHeader,tableData,inputType
-  console.log(AllData);
+  // console.log(AllData);
   const [model, setModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
   const [tableData, setTableData] = useState<any>([]);
-  const route = useRouter().query;
+  const { menu, submenu } = useRouter().query;
+  const dynamicRoute = submenu ? submenu : menu;
+  const [fieldValue, setFieldValue] = useState<any>({});
+  const inputField = document.getElementById(
+    "input"
+  ) as HTMLInputElement | null;
+
   const submitValue =
     AllData.inputFieldData && AllData.inputFieldData[0].search
       ? "Search"
       : "Submit";
   useEffect(() => {
+    // fetch(`http://localhost:4000/${dynamicRoute}`)
+    // .then((res) => res.json())
+    // .then((data) => setTableData(data))
+    // .catch((error) => console.log(error));
+
     setTableData(AllData.tableData);
   }, [AllData.tableData]);
 
@@ -55,24 +65,71 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
     setModelData(data);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  }: any = useForm();
-  const onSubmit = (submitData: { action: boolean }) => {
-    submitData.action = true;
-    setTableData(() => [...tableData, submitData]);
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   setValue,
+  //   formState: { errors },
+  // }: any = useForm();
 
-    // fetch(`http://localhost:4000/${route}`,{
-    //   headers:"application/json",
-    //   body:submitData
-    // })
-    // .then(res=>res.json())
-    // .then(data=>console.log(data))
+  const HandleInputFieldValue = (e: any) => {
+    if (!e.target.files) {
+      const data = { ...fieldValue, [e.target.name]: e.target.value };
+      setFieldValue(data);
+    } else {
+      const data = { ...fieldValue, [e.target.name]: e.target.files[0] };
+      setFieldValue(data);
+    }
   };
-  // console.log(tableData,AllData.tableData);
 
+  // 👉️ input has type HTMLInputElement or null here
+
+  //   form submit handle
+  const HandleFormSubmit = (e: { target: any; preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(fieldValue);
+
+    AllData.inputFieldData[0].search
+      ? HandleSearch(fieldValue.searchValue)
+      : HandlePost(fieldValue);
+
+    setFieldValue({});
+    console.log(fieldValue);
+  };
+
+  // const onSubmit = (submitData: any) => {
+  //   submitData.action = true;
+  //   // setTableData(() => [tableData, submitData]);
+  //   console.log(submitData);
+
+  //   AllData.inputFieldData[0].search
+  //     ? HandleSearch(submitData.date)
+  //     : HandlePost(submitData);
+
+  //   // console.log(tableData,AllData.tableData);
+  //   Object.keys(submitData).map((property) => setValue(`${property}`, null));
+  //   submitData = {};
+  // };
+  // Search data with api
+  const HandleSearch = (searchValue: any) => {
+    fetch(`http://localhost:4000/${dynamicRoute}?search=${searchValue}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
+  // Submit data with api
+  const HandlePost = (submittableData: any) => {
+    fetch(`http://localhost:4000/${dynamicRoute}`, {
+      method: "POST",
+      body: JSON.stringify(submittableData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
   const HandleRequestAction = (
     e: ChangeEvent<HTMLSelectElement>,
     data: { email: any }
@@ -104,7 +161,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
           {AllData.inputFieldData && (
             <div className={`${style.mainInputField_container}`}>
               <div className="">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={HandleFormSubmit}>
                   <div className={`${style.form_input_field}`}>
                     {AllData.inputFieldData.map(
                       (inputField: {
@@ -122,7 +179,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                           | undefined;
                         icon: any;
                         selectOptions: any[];
-                        registerName: string | number;
+                        registerName: string;
                         inputType: string | (string & {}) | undefined;
                         default:
                           | string
@@ -203,11 +260,17 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                   className={`${style.input_icon}`}
                                 />
                               )}
-                              {inputField.selectOptions && (
+                              {inputField.selectOptions ? (
                                 <select
-                                  {...register(inputField.registerName, {
-                                    required: true,
-                                  })}
+                                  name={`${inputField.registerName}`}
+                                  defaultValue={inputField.default}
+                                  required
+                                  value={
+                                    Object.keys(fieldValue).length === 0
+                                      ? ""
+                                      : fieldValue[inputField.registerName]
+                                  }
+                                  onChange={HandleInputFieldValue}
                                 >
                                   {inputField.selectOptions.map((option) => (
                                     <option value={option.value}>
@@ -215,9 +278,42 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                     </option>
                                   ))}
                                 </select>
+                              ) : inputField.inputType !== "file" ? (
+                                <input
+                                  value={
+                                    Object.keys(fieldValue).length === 0
+                                      ? ""
+                                      : fieldValue[inputField.registerName]
+                                  }
+                                  name={`${inputField.registerName}`}
+                                  type={inputField.inputType}
+                                  placeholder={inputField.placeholderName}
+                                  defaultValue={inputField.default}
+                                  required
+                                  onChange={(e) => HandleInputFieldValue(e)}
+                                />
+                              ) : (
+                                <input
+                                  className={"pt-4"}
+                                  name={`${inputField.registerName}`}
+                                  type={"file"}
+                                  required
+                                  onChange={(e) => HandleInputFieldValue(e)}
+                                />
                               )}
 
-                              {inputField.inputType && (
+                              {/* ) : (
+                      <input
+                      name={`${inputField.registerName}`}
+                      type={inputField.inputType}
+                        placeholder={inputField.placeholderName}
+                        defaultValue={inputField.default}
+                        required
+                        onBlur={(e) => HandleInputFieldValue(e)}
+                      />
+                    )} */}
+
+                              {/* {inputField.inputType && (
                                 <input
                                   className={
                                     inputField.inputType === "file" && "pt-4"
@@ -229,26 +325,33 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                     required: true,
                                   })}
                                 />
-                              )}
+                              )} */}
                             </div>
                           )}
                           {/* Text Aria Input */}
                           {inputField.textAria && (
                             <textarea
-                              type={"text"}
-                              rows="4"
+                              rows={4}
                               style={{ width: "315px" }}
                               className="col-span-2"
-                              {...register(inputField.registerName, {
-                                required: true,
-                              })}
+                              name={inputField.registerName}
+                              required
+                              value={
+                                Object.keys(fieldValue).length === 0
+                                  ? ""
+                                  : fieldValue[inputField.registerName]
+                              }
+                              onChange={(e) => HandleInputFieldValue(e)}
                             />
-                          )}
-
-                          {errors[inputField.registerName] && (
-                            <div style={{ color: "red" }}>
-                              This field is required
-                            </div>
+                            // <textarea
+                            //   type={"text"}
+                            //   rows="4"
+                            //   style={{ width: "315px" }}
+                            //   className="col-span-2"
+                            //   {...register(inputField.registerName, {
+                            //     required: true,
+                            //   })}
+                            // />
                           )}
                         </div>
                       )

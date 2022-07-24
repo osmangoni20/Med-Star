@@ -1,13 +1,33 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { doctorList } from "../../Database/doctorList";
 import style from "../../styles/Sass/Components/Home/doctorCarousel.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
+
+interface doctorData {
+  id: number;
+  img: StaticImageData;
+  category: string;
+  name: string;
+  designation: string;
+  education: string;
+  jobTitle: string;
+}
+[];
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
+  const [doctor, setDoctor] = useState<doctorData[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/doctor")
+      .then((res) => res.json())
+      .then((data) => setDoctor(data));
+  }, []);
+  console.log(doctor);
+
   return (
     <div
       className={className}

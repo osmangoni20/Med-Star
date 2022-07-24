@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { GrLocation } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
@@ -7,7 +8,25 @@ import ambulanceImage from "../../assets/image/ambulance-dir.png";
 import { ambulanceList } from "../../Database/AmbulanceList.js";
 import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
+
+interface ambulanceData {
+  id: number;
+  name: string;
+  location_name: string;
+  location_details: string;
+  contact1: string;
+  contact2: string;
+  hotline: string;
+}
+[];
 const Ambulance = () => {
+  const [ambulance, setAmbulance] = useState<ambulanceData[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/ambulance")
+      .then((res) => res.json())
+      .then((data) => setAmbulance(data));
+  }, []);
+  console.log(ambulance);
   return (
     <div className={`${style.ambulance}`}>
       <div

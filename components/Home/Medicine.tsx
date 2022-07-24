@@ -19,6 +19,7 @@ interface Data {
 const Medicine = () => {
   const [medicineProduct, setMedicineProduct] = useState<Data[]>([]);
   useEffect(() => {
+    // http://localhost:4000/medicine
     fetch("/api/medicine_product")
       .then((res) => res.json())
       .then((data) => setMedicineProduct(data));
