@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
@@ -6,11 +6,16 @@ import AppointmentHeader from "../../components/Doctor/Appointments/AppointmentH
 import BookingAppointment from "../../components/Doctor/Appointments/BookingAppointment/BookingAppointment";
 
 const Appointment = ({ data }: { data: any }) => {
+  const [doctorData, setDoctorData] = useState({});
   const [SelectedDate, setSelectedDate] = useState(new Date());
   const HandleOnChange = (date: any) => {
     setSelectedDate(date);
   };
-
+  useEffect(() => {
+    if (!data.camberTime) {
+      setDoctorData({ ...doctorData, patientTime: "3.00pm - 8.00pm" });
+    }
+  }, []);
   return (
     <div>
       <Meta
@@ -27,7 +32,8 @@ const Appointment = ({ data }: { data: any }) => {
 };
 export async function getServerSideProps(ctx: { params: { id: any } }) {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/doctor/${ctx.params.id}`);
+
+  const res = await fetch(`http://localhost:4000/doctor/${ctx.params.id}`);
   const data = await res.json();
 
   // Pass data to the page via props

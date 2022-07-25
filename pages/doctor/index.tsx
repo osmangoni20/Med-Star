@@ -1,8 +1,8 @@
 import Categories from "../../components/common/Categories";
-import Doctor from "../../components/common/Doctor";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import SingleDoctor from "../../components/common/SingleDoctor";
 import style from "../../styles/Sass/pages/doctor/doctor.module.scss";
 
 type Data = {
@@ -32,7 +32,7 @@ const AllDoctor = ({ data }: { data: any }) => {
         <main>
           <div className="grid grid-cols-3 md:gap-20 my-10">
             {data.map((doctor: Data) => (
-              <Doctor key={doctor.id} doctor={doctor} />
+              <SingleDoctor key={doctor.id} doctor={doctor} />
             ))}
           </div>
         </main>
@@ -43,7 +43,7 @@ const AllDoctor = ({ data }: { data: any }) => {
 };
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/doctor`);
+  const res = await fetch(`http://localhost:4000/doctor`);
   const data = await res.json();
 
   // Pass data to the page via props

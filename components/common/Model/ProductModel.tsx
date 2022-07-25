@@ -1,21 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { Dispatch, SetStateAction, useState } from "react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../../State";
 import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
-import LargestButton from "../../Custom/Button/LargestButton";
+import SimpleButton from "../../Custom/Button/SimpleButton";
+import useFirebase from "../../hooks/useFirebase";
 interface Data {
   id: number;
   category: string;
   name: string;
   img: string;
   price: number;
-  description: {
-    productType: string;
-    capacity: string;
-    used: string;
-    sideEffect: string;
-  };
+  productType: string;
+  capacity: string;
+  used: string;
+  sideEffect: string;
 }
 
 interface Person {
@@ -28,7 +31,7 @@ interface StarWarsProductProps {
 interface Params extends ParsedUrlQuery {
   productId: string;
 }
-const SingleModel = ({
+const ProductModel = ({
   data,
   setModel,
   showModel,
@@ -37,10 +40,11 @@ const SingleModel = ({
   showModel: boolean;
   setModel: Dispatch<SetStateAction<boolean>>;
 }) => {
-  console.log(data);
-
   const [countValue, setContValue] = useState(1);
-
+  const dispatch = useDispatch();
+  const route = useRouter();
+  const { user }: any = useFirebase();
+  const { countTotalCart } = bindActionCreators(actionCreators, dispatch);
   const HandleIncrease = () => {
     setContValue((count) => count + 1);
   };
@@ -50,6 +54,37 @@ const SingleModel = ({
     } else {
       setContValue(1);
     }
+  };
+
+  const HandleAddtoCart = () => {
+    const product = { ...data, quantity: countValue, email: user.email };
+    console.log("product", product);
+
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:4000/my-cart", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
+      // convert data to json
+      const data = await res.json();
+      if (data.insertedId) {
+        setModel(false);
+        if (typeof window !== "undefined") {
+          const totalOrderCart = localStorage.getItem("totalCart");
+          localStorage.setItem("totalCart", `${Number(totalOrderCart) + 1}`);
+        }
+        // route.reload();
+      }
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   };
   return (
     <div>
@@ -98,8 +133,8 @@ const SingleModel = ({
                       </button>
 
                       <div className="mt-5 ">
-                        <span onClick={() => setModel(false)}>
-                          <LargestButton>Add to Cart</LargestButton>
+                        <span onClick={HandleAddtoCart}>
+                          <SimpleButton>Add to Cart</SimpleButton>
                         </span>
                       </div>
                     </div>
@@ -108,12 +143,10 @@ const SingleModel = ({
 
                 <div className={`${style.productDetails}`}>
                   <h3>{data.name}</h3>
-                  <p className={`${style.capacity}`}>
-                    {data.description.capacity}
-                  </p>
-                  <p>{data.description.used}</p>
+                  <p className={`${style.capacity}`}>{data.capacity}</p>
+                  <p>{data.used.slice(0, 200)}</p>
                   {/* <h6>Effect:</h6> */}
-                  <p>{data.description.sideEffect}</p>
+                  <p>{data.sideEffect}</p>
                 </div>
               </div>
             </div>
@@ -156,4 +189,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default SingleModel;
+export default ProductModel;
+// export default withAuth(OrderCart);

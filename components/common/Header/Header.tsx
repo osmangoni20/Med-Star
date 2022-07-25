@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AiOutlineMail,
   AiOutlineMenu,
@@ -9,7 +9,9 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import logo from "../../../assets/image/medicine logo.jpg";
+import { State } from "../../../State";
 import style from "../../../styles/Sass/common/Header/_header.module.scss";
 import Button from "../../Custom/Button/Button";
 import useFirebase from "../../hooks/useFirebase";
@@ -19,7 +21,35 @@ import defaultProfile from "/assets/image/default_profile.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
+  const [totalOrderCart, setCartLength] = useState<any>(0);
   const admin = false;
+  const totalCardNumber = useSelector((state: State) => state.cart);
+
+  useEffect(() => {
+    // if (typeof window !== "undefined") {
+    //   localStorage.getItem("totalCart");
+    // }
+    // const totalCardNumber = localStorage?.getItem("totalCart");
+    // setCartLength(totalCart);
+
+    {
+      const fetchData = async () => {
+        // get the data from the api
+        const res = await fetch("http://localhost:4000/my-cart");
+        // convert data to json
+        const data = await res.json();
+        setCartLength(data.length);
+        // if (typeof window !== "undefined") {
+        //   localStorage.setItem("totalCart", data.length);
+        // }
+      };
+
+      // call the function
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+    }
+  }, [totalCardNumber]);
   return (
     <div>
       <div className={`${style.headerComponent} sticky top-0`}>
@@ -83,7 +113,9 @@ const Header = () => {
                 <a>
                   <li>
                     <BsFillCartPlusFill />
-                    <span className={`${style.totalCartItem}`}>4</span>
+                    <span className={`${style.totalCartItem}`}>
+                      {totalOrderCart}
+                    </span>
                   </li>
                 </a>
               </Link>
@@ -91,10 +123,10 @@ const Header = () => {
                 <AiOutlineUser />
               </li> */}
               <span className="md:block lg:block ">
-                {user.emailVerified ? (
+                {user.email ? (
                   <span className={style.profileLogo}>
                     <Link
-                      href={admin ? "/dashboard" : "/dashboard/_my_order"}
+                      href={admin ? "/dashboard" : "/dashboard/my_order"}
                       passHref
                     >
                       <Image

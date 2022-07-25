@@ -42,10 +42,8 @@ export const bloodMemberList=[
         bloodGroup:"A+",
         img:simpleImage,
         contact:"01854576822",
-        address:{
-            upazila:"Parshuram",
-            district:"Feni"
-        }
+        upazila:"Parshuram",
+        district:"Feni"
     },
     {
         id:2,
@@ -53,10 +51,8 @@ export const bloodMemberList=[
         img:simpleImage,
         bloodGroup:"B+",
         contact:"01854874152",
-        address:{
-            upazila:"Feni Sadar",
-            district:"Feni"
-        }
+        upazila:"Feni Sadar",
+        district:"Feni"
     },
     {
         id:3,
@@ -64,10 +60,8 @@ export const bloodMemberList=[
         img:simpleImage,
         bloodGroup:"B-",
         contact:"01854578768",
-        address:{
-            upazila:"Fulgazi",
-            district:"Feni"
-        }
+        upazila:"Fulgazi",
+        district:"Feni"
     },
     {
         id:4,
@@ -75,10 +69,8 @@ export const bloodMemberList=[
         img:simpleImage,
         bloodGroup:"A-",
         contact:"01854988752",
-        address:{
-            upazila:"Sonagazi",
-            district:"Feni"
-        }
+        upazila:"Sonagazi",
+        district:"Feni"
     },
     {
         id:5,
@@ -86,10 +78,8 @@ export const bloodMemberList=[
         bloodGroup:"A+",
         contact:"01854576452",
         img:simpleImage,
-        address:{
-            upazila:"Chagolnaiya",
-            district:"Feni"
-        }
+        upazila:"Chagolnaiya",
+        district:"Feni"
     },
     {
         id:6,
@@ -97,10 +87,8 @@ export const bloodMemberList=[
         bloodGroup:"AB+",
         contact:"01854578752",
         img:simpleImage,
-        address:{
-            upazila:"Fulgazi",
-            district:"Feni"
-        }
+        upazila:"Fulgazi",
+        district:"Feni"
     },
     {
         id:7,
@@ -108,10 +96,8 @@ export const bloodMemberList=[
         bloodGroup:"B-",
         contact:"01854578752",
          img:simpleImage,
-        address:{
-            upazila:"Feni Sadar",
+         upazila:"Feni Sadar",
             district:"Feni"
-        }
     },
     {
         id:8,
@@ -119,10 +105,8 @@ export const bloodMemberList=[
         bloodGroup:"AB-",
         contact:"01854578752", 
         img:simpleImage,
-        address:{
-            upazila:"Parshuram",
-            district:"Feni"
-        }
+        upazila:"Parshuram",
+        district:"Feni"
     },
     {
         id:9,
@@ -130,10 +114,9 @@ export const bloodMemberList=[
         bloodGroup:"AB+",
         contact:"01854578752",
         img:simpleImage,
-        address:{
-            upazila:"Parshuram",
-            district:"Feni"
-        }
+        upazila:"Parshuram",
+        district:"Feni"
+       
     },
     {
         id:10,
@@ -141,9 +124,8 @@ export const bloodMemberList=[
         bloodGroup:"A-",
         contact:"01854578752",
         img:simpleImage,
-        address:{
-            upazila:"Chagolnaiya",
+        upazila:"Chagolnaiya",
             district:"Feni"
-        }
+      
     },
 ]

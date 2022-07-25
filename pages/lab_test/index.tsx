@@ -1,24 +1,23 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import SimpleButton from "../../components/Custom/Button/SimpleButton";
 import style from "../../styles/Sass/pages/labTest/labTest.module.scss";
 const LabTest = ({ labTestData }: any) => {
   const [searchName, setSearchName] = useState("");
   const HandleFieldValue = (e: any) => {
     setSearchName(e.target.value);
   };
-  useEffect(() => {
-    fetch("http://localhost:4000/labTest", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(labTestData),
-    })
+  const HandleSearchLabTest = () => {
+    fetch(`http://localhost:4000/labTest/?searchValue=${searchName}`)
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  });
+      .then((data) => console.log(data))
+      .then((error) => console.log(error));
+  };
+
   return (
     <div>
       <Meta
@@ -32,10 +31,11 @@ const LabTest = ({ labTestData }: any) => {
           <h2>Lab Test</h2>
         </div>
         <div className={`${style.lab_test_info}`}>
-          <form>
+          <form onSubmit={HandleSearchLabTest}>
             <div className={`${style.form_input_field}`}>
               <div>
                 <h5>Search</h5>
+
                 <div className={`${style.input_filed}`}>
                   <AiOutlineMail className={`${style.input_icon}`} />
 
@@ -46,6 +46,10 @@ const LabTest = ({ labTestData }: any) => {
                     onBlur={(e) => HandleFieldValue(e)}
                   />
                 </div>
+
+                <button type={"submit"}>
+                  <SimpleButton>Search</SimpleButton>
+                </button>
               </div>
             </div>
           </form>
@@ -91,10 +95,10 @@ const LabTest = ({ labTestData }: any) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  // http://localhost:4000/labTest
-  const res = await fetch(`http://localhost:3000/api/lab_test`);
-  const data = await res.json();
 
+  const res = await fetch(`http://localhost:4000/labTest`);
+  const data = await res.json();
+  console.log(data);
   // Pass data to the page via props
   return { props: { labTestData: data } };
 }

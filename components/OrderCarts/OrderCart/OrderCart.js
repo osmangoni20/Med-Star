@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductOfChutney from '../../Home/MangoChutneyProduct/ProductOfChutney/ProductOfChutney';
-import ProductOfMango from '../../Home/MangoProduct/ProductOfMango/ProductOfMango';
 import CostInformation from '../../Shared/CostInformation/CostInformation';
 import CardProduct from '../CardProduct/CardProduct';
 import './OrderCart.css';
@@ -36,6 +34,7 @@ const OrderCart = () => {
             .then(data => {
                 setCardProducts(data)
             })
+            .then(error=>console.log(error));
     }, [deleteItem || updateQuantity])
 
 
@@ -90,8 +89,7 @@ const OrderCart = () => {
                 <div className="text-center py-5 bg-light">
                     <h1>Your Order Card Is Empty</h1>
                     <h6>Please Order Now</h6>
-                    <ProductOfMango header="Recommanded Products"></ProductOfMango>
-                    <ProductOfChutney header=""></ProductOfChutney>
+                    <Medicine/>
                 </div>
             }
             <Footer></Footer>

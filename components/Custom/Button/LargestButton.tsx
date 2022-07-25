@@ -15,7 +15,7 @@ const LargestButton = (props: {
 }) => {
   return (
     <button
-      style={{ backgroundColor: variable.secondary, height: "40px" }}
+      style={{ backgroundColor: variable.secondary }}
       className={`${style.largestButton} text-white font-[Poppins] border-dashed px-2 border-2 md:py-2 py-1 md:px-6 rounded md:ml-8 hover:bg-indigo-400
       duration-500`}
     >

@@ -27,12 +27,13 @@ const Login = () => {
   const [model, setModel] = useState(false);
   const [modelData, setModelData] = useState({});
   const [loginFrom,setLoginFrom]=useState(true);
-  const from = router?.state?.from?.pathname || "/";
+  
   const auth = getAuth();
-  // if (user.email) {
-  //   router.push(from, { replace: true });
-  // }
-  // console.log(user, error);
+  if (user.email) {
+    // localStorage.getItem('')
+    router.back();
+  }
+  console.log(user, error);
 
   const HandleVerificationEmail=()=>{
     EmailVerification(auth);
@@ -80,14 +81,15 @@ const Login = () => {
           image:user?.photoUrl,
           welcomeType:true
         })
-      }else if(!user.emailVerified){
-       setModel(true)
-       setModelData({
-         text1:"Your email is not verified",
-         text2:"Please check your email",
-         wrongType:true
-       })
       }
+      // else if(!user.emailVerified){
+      //  setModel(true)
+      //  setModelData({
+      //    text1:"Your email is not verified",
+      //    text2:"Please check your email",
+      //    wrongType:true
+      //  })
+      // }
     }
     
     console.log(user);

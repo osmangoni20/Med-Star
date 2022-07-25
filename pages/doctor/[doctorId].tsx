@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
 import style from "../../styles/Sass/common/model/dynamicModel.module.scss";
 
 const SingleDoctor = ({ data }: { data: any }) => {
+  const HandleAppointment = () => {};
   return (
     <div>
       <Header />
@@ -17,8 +19,14 @@ const SingleDoctor = ({ data }: { data: any }) => {
                 <div>
                   <h3>{data.name}</h3>
                   <div className="mt-5 flex items-center gap-5">
-                    <SimpleButton>Chamber</SimpleButton>
-                    <SimpleButton>Video Call</SimpleButton>
+                    <Link href={`/doctorAppointment/${data._id}`} passHref>
+                      <a>
+                        <SimpleButton>Chamber</SimpleButton>
+                      </a>
+                    </Link>
+                    <button disabled>
+                      <SimpleButton>Video Call</SimpleButton>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -37,10 +45,12 @@ const SingleDoctor = ({ data }: { data: any }) => {
     </div>
   );
 };
+
 export async function getServerSideProps(ctx: { params: { doctorId: any } }) {
   // Fetch data from external API
+
   const res = await fetch(
-    `http://localhost:3000/api/doctor/${ctx.params.doctorId}`
+    `http://localhost:4000/doctor/${ctx.params.doctorId}`
   );
   const data = await res.json();
 

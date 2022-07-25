@@ -19,7 +19,8 @@ const SingleModel = ({
   useEffect(() => {
     fetch("http://localhost:3000/api/lab_test")
       .then((res) => res.json())
-      .then((data) => setLabTestData(data));
+      .then((data) => setLabTestData(data))
+      .then((error) => console.log(error));
   }, []);
   console.log(labTestData);
 

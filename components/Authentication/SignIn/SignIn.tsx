@@ -56,7 +56,8 @@ type passwordErrorType = {
 };
 const SignIn = ({ setModel, setModelData }: any) => {
   const [signUpInputData, setSignUpInputData] = useState({});
-  const { SignUpWithEmailAndPassword, error, user }: any = useFirebase();
+  const { SignUpWithEmailAndPassword, error, newUser }: any = useFirebase();
+
   const [password, setPassword] = useState({
     firstPassword: "",
     confirmPassword: "",
@@ -83,17 +84,12 @@ const SignIn = ({ setModel, setModelData }: any) => {
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     SignUpWithEmailAndPassword(signUpInputData);
-    console.log(signUpInputData);
-
-    if (!error && user.email) {
-      setModel(true);
-      setModelData({
-        text1: "Your Account is successfully Created",
-        text2: "Please Verified your Email",
-
-        successType: true,
-      });
-    }
+    console.log(newUser.email, "signu page", newUser);
+    // setModelData({
+    //   text1: "Your Account is successfully Created",
+    //   text2: "Please Verified your Email",
+    //   successType: true,
+    // });
   };
 
   const HandleConfirmPassword = (e: { target: { value: any } }) => {
@@ -201,7 +197,7 @@ const SignIn = ({ setModel, setModelData }: any) => {
                 <div className={`${style.input_filed}`}>
                   <RiLockPasswordFill className={`${style.input_icon}`} />
                   <input
-                    onBlur={HandlePasswordValidation}
+                    onChange={HandlePasswordValidation}
                     type="password"
                     name="password"
                     placeholder="Password"

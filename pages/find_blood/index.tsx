@@ -3,7 +3,6 @@ import { useState } from "react";
 import { FaCity } from "react-icons/fa";
 import { MdBloodtype } from "react-icons/md";
 import Categories from "../../components/common/Categories";
-import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
@@ -29,7 +28,7 @@ const FindBlood = ({ data }: any) => {
   };
   const HandleSearchDonner = () => {
     fetch(
-      `http://localhost:4000/find_blood/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
+      `http://localhost:4000/donner/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
     )
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -142,7 +141,7 @@ const FindBlood = ({ data }: any) => {
                         <div className="flex justify-center">
                           <div>
                             <p>
-                              {member.address.upazila} {member.address.district}{" "}
+                              {member.upazila} {member.district}{" "}
                             </p>
                             <p>{member.contact}</p>
                           </div>
@@ -156,14 +155,13 @@ const FindBlood = ({ data }: any) => {
           </div>
         </main>
       </div>
-      <Footer />
     </div>
   );
 };
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/bloodMember`);
+  const res = await fetch(`http://localhost:4000/donner`);
   const data = await res.json();
 
   // Pass data to the page via props

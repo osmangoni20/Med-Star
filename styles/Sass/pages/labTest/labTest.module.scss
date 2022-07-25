@@ -95,15 +95,17 @@
           }
           .testName {
             width: 35%;
-            font-size: 20px;
+            font-size: 18px;
             text-align: left;
             padding-left: 10px;
-            font-weight: 600;
+            font-weight: 500;
           }
           td {
             width: 22%;
             text-align: center;
             padding: 10px;
+            font-size: 16px;
+            text-transform: capitalize;
           }
         }
       }

@@ -19,10 +19,12 @@
     margin: 10px auto;
 
     .doctorCard {
-      max-height: 415px;
+      // max-height: 415px;
       cursor: pointer;
+      border: 2px solid $light;
       figure {
-        background-color: $Lightgray;
+        height: 200px;
+        background-color: $white;
       }
       h2 {
         font-size: 18px;

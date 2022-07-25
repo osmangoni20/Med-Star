@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { doctorList } from "../../Database/doctorList";
 import style from "../../styles/Sass/Components/Home/doctorCarousel.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
 
 interface doctorData {
+  _id: any;
   id: number;
   img: StaticImageData;
   category: string;
@@ -20,13 +20,6 @@ interface doctorData {
 [];
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
-  const [doctor, setDoctor] = useState<doctorData[]>([]);
-  useEffect(() => {
-    fetch("http://localhost:4000/doctor")
-      .then((res) => res.json())
-      .then((data) => setDoctor(data));
-  }, []);
-  console.log(doctor);
 
   return (
     <div
@@ -54,6 +47,22 @@ function SamplePrevArrow(props: any) {
   );
 }
 const Doctor = () => {
+  const [doctor, setDoctor] = useState<doctorData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:4000/doctor");
+      // convert data to json
+      const data = await res.json();
+      setDoctor(data);
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  }, []);
   const settings = {
     dots: true,
     infinite: true,
@@ -93,6 +102,8 @@ const Doctor = () => {
       },
     ],
   };
+
+  console.log(doctor);
   return (
     <div className={`${style.carousel} transition-all duration-500 ease-in`}>
       <div
@@ -106,14 +117,19 @@ const Doctor = () => {
 
       <div className={`${style.DoctorCarousel_inner} `}>
         <Slider {...settings}>
-          {doctorList.map((doctor) => {
+          {doctor.map((doctor, index) => {
             return (
               <div
-                key={doctor.id}
+                key={index}
                 className={`${style.doctorCard} card w-84  shadow`}
               >
                 <figure>
-                  <Image src={doctor.img} alt={doctor.name} />
+                  <Image
+                    src={doctor.img}
+                    alt={doctor.name}
+                    height={150}
+                    width={200}
+                  />
                 </figure>
                 <div className={`${style.doctorCardBody} card-body `}>
                   <h2 className="text-center">{doctor.name}</h2>
@@ -121,9 +137,9 @@ const Doctor = () => {
                   <p>{doctor.education}</p>
                   <p>{doctor.jobTitle}</p>
                   <div className="card-actions justify-center">
-                    <Link href={`/doctor/${doctor.id}`} passHref>
+                    <Link href={`/doctor/${doctor._id}`} passHref>
                       <a>
-                        <SimpleButton>Appointment Now</SimpleButton>
+                        <SimpleButton>Appointment</SimpleButton>
                       </a>
                     </Link>
                   </div>

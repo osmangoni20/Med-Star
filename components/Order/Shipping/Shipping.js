@@ -13,7 +13,7 @@ const Shipping = () => {
             .then(orderProduct => {
                 setCardProducts(orderProduct)
                 setOrderInfoData({ orderProduct })
-            })
+            }).then(error=>console.log(error));
     }, [])
 
     let TotalPrize = orderProduct.reduce((accumalator, currentValue) => accumalator + (currentValue.prize * currentValue.quantity), 0)

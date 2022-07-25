@@ -8,7 +8,6 @@ import Features from "../components/Home/Features";
 import Medicine from "../components/Home/Medicine";
 import PatientService from "../components/Home/PatiantService";
 import Prescription from "../components/Home/Prescription";
-// import styles from "../styles/Home.module.scss";
 const Home = () => {
   return (
     <div>

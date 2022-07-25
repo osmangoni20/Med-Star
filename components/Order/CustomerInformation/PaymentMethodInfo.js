@@ -9,7 +9,7 @@ export const PaymentMethodInfo = [
         id: 2,
         image: "https://i.ibb.co/hLXkkdj/stripe-removebg-preview.png",
         paymentTypeLink: "/strip-visaCard",
-        paymentType: "stripe"
+        paymentType: "sureCash"
     },
     {
         id: 3,

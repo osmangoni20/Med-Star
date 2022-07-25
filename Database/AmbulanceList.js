@@ -1,6 +1,6 @@
 export const ambulanceList=[
     {
-      id: 1,
+      id:1,
       name: "AC Ambulance",
       location_name: "Dhaka",
       location_details:
@@ -10,7 +10,7 @@ export const ambulanceList=[
       hotline: "6254",
     },
     {
-      id: 2,
+     id:2,
       name: "Non-AC Ambulance",
       location_name: "Dhaka",
       location_details:
@@ -20,7 +20,7 @@ export const ambulanceList=[
       hotline: "72515",
     },
     {
-      id: 3,
+      id:3,
       name: "Freezer Van Ambulance",
       location_name: "Dhaka",
       location_details:
@@ -30,7 +30,7 @@ export const ambulanceList=[
       hotline: "1454",
     },
     {
-      id: 4,
+      id:4,
       name: "ICU Ambulance",
       location_name: "Dhaka",
       location_details:
@@ -44,104 +44,104 @@ export const ambulanceList=[
 
     //bad jabe
 
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
-    {
-      id: 2,
-      name: "Non-AC Ambulance",
-      location_name: "Dhaka",
-      location_details:
-        "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
-      contact1: "+880165482547",
-      contact2: "+880175465284",
-      hotline: "72515",
-    },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
+    // {
+    //   id: 2,
+    //   name: "Non-AC Ambulance",
+    //   location_name: "Dhaka",
+    //   location_details:
+    //     "Holding no-02, Road-Outer Circular Road, Bara Maghbazar, Dhaka",
+    //   contact1: "+880165482547",
+    //   contact2: "+880175465284",
+    //   hotline: "72515",
+    // },
   ];

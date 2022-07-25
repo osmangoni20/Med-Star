@@ -1,16 +1,18 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
-import Medicine from "../../components/Home/Medicine";
+import useAuth from "../../components/hooks/useAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
-import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct.js";
+import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
 import style from "../../styles/Sass/Components/OrderCart/_order_cart.module.scss";
-
 const OrderCart = () => {
   const [cardProducts, setCardProducts] = useState([]);
   const [deleteItem, setDeleteItem] = useState(false);
   const [updateQuantity, setUpdateQuantity] = useState(false);
+  const route = useRouter();
+  const { user } = useAuth();
   let TotalPrize = cardProducts.reduce(
     (accumulator: any, currentValue: any) =>
       accumulator + currentValue.price * currentValue.quantity,
@@ -20,29 +22,35 @@ const OrderCart = () => {
   console.log(cardProducts);
 
   //Handle Total Prize
-  const HandleUpdateQuantity = (quantity: any, id: string) => {
-    console.log(cardProducts);
-    // http://localhost:4000/
-    fetch("http://localhost:3000/api/cart_product_list/" + id, {
+  const HandleUpdateQuantity = (quantity: number, id: string) => {
+    console.log(quantity);
+    //
+    fetch("http://localhost:4000/my-cart/updateQuantity/" + id, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ quantity, id }),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
-          setCardProducts(data);
+        if (data.modifiedCount) {
+          setUpdateQuantity(true);
         }
       });
   };
 
   useEffect(() => {
-    // http://localhost:4000/
-    fetch("http://localhost:3000/api/cart_product_list")
-      .then((res) => res.json())
-      .then((data) => {
-        setCardProducts(data), console.log("new again");
-      });
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:4000/my-cart/" + user.email);
+      // convert data to json
+      const data = await res.json();
+      setCardProducts(data);
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   }, [deleteItem || updateQuantity]);
 
   // Handle Go To The Shipping Page from Order Cart
@@ -50,6 +58,9 @@ const OrderCart = () => {
   //     document.getElementById("OrderCartProducts").style.display = "none";
 
   //     document.getElementById("ShippingComponent").style.display = "block";
+  // }
+  // if (cardProducts.length <= 0) {
+  //   route.push("/");
   // }
   return (
     <div>
@@ -108,14 +119,7 @@ const OrderCart = () => {
           </div>
         )}
       </div>
-      {cardProducts.length <= 0 && (
-        <div className="text-center py-5 bg-light">
-          <h1>Your Order Card Is Empty</h1>
-          <h6>Please Order Now</h6>
 
-          <Medicine />
-        </div>
-      )}
       <Footer />
     </div>
   );
@@ -129,5 +133,5 @@ const OrderCart = () => {
 //   // Pass data to the page via props
 //   return { props: { data } };
 // }
-
 export default OrderCart;
+// export default withAuth(OrderCart);

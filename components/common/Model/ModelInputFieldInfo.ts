@@ -1,12 +1,12 @@
 export const ModelInputField = [
   {
-    name: "patient_FirstName",
+    name: "first_name",
     fieldHeader: "First Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
   },
   {
-    name: "patient_LastName",
+    name: "last_name",
     fieldHeader: "Last Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
@@ -17,10 +17,17 @@ export const ModelInputField = [
     inputFiledType: "email",
     icon: "AiOutlineMail",
   },
+  ,
+  {
+    name: "patient_disease",
+    fieldHeader: "Disease Type",
+    inputFiledType: "text",
+    icon: "FaDisease",
+  },
 
   ,
   {
-    name: "mobile_No",
+    name: "mobile_no",
     fieldHeader: "Mobile No",
     inputFiledType: "text",
     icon: "MdAddIcCall",
@@ -37,7 +44,7 @@ export const ModelInputField = [
     ],
   },
   {
-    name: "age",
+    name: "patient_age",
     fieldHeader: "Your Age",
     inputFiledType: "number",
     icon: "FaUserAlt",

@@ -1,12 +1,12 @@
 export const InputFiledInformation=[
     {
-        name:"customer_FirstName",
+        name:"first_name",
         fieldHeader:"First Name",
         inputFiledType:"text",
         icon:"FaUserAlt"
     },
     {
-        name:"customer_LastName",
+        name:"last_name",
         fieldHeader:"Last Name",
         inputFiledType:"text",
         icon:"FaUserAlt"
@@ -19,7 +19,7 @@ export const InputFiledInformation=[
     },
    
     ,{
-        name:"mobile_No",
+        name:"mobile_no",
         fieldHeader:"Mobile No",
         inputFiledType:"text",
         icon:"MdAddIcCall"

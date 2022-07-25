@@ -4,17 +4,7 @@ import useFirebase from "../../hooks/useFirebase";
 import cancel from "/assets/image/cancel.png";
 import checked from "/assets/image/checked.png";
 import userImage from "/assets/image/default_profile.png";
-const CustomModel = ({
-  showModel,
-  error,
-  setModel,
-  modelData,
-}: {
-  showModel: boolean;
-  error: string;
-  setModel: any;
-  modelData: any;
-}) => {
+const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
   const { user }: { user: any } = useFirebase();
 
   return (

@@ -11,7 +11,7 @@ interface Iprops {
   education: string;
   jobTitle: string;
 }
-const Doctor = ({ doctor }: { doctor: Iprops }) => {
+const SingleDoctor = ({ doctor }: { doctor: Iprops }) => {
   const [showModel, setModel] = useState<boolean>(false);
 
   return (
@@ -21,7 +21,7 @@ const Doctor = ({ doctor }: { doctor: Iprops }) => {
       )}
       <div key={doctor.id} className={`${style.doctorCard} card w-84  shadow`}>
         <figure>
-          <Image src={doctor.img} alt={doctor.name} />
+          <Image src={doctor.img} alt={doctor.name} height={150} width={200} />
         </figure>
         <div className={`${style.doctorCardBody} card-body `}>
           <h2 className="text-center">{doctor.name}</h2>
@@ -39,4 +39,4 @@ const Doctor = ({ doctor }: { doctor: Iprops }) => {
   );
 };
 
-export default Doctor;
+export default SingleDoctor;

@@ -1,28 +1,34 @@
 import { useEffect, useState } from "react";
 import style from "../../styles/Sass/Components/Home/Medicine.module.scss";
 import Product from "../common/Product";
-import Button from "../Custom/Button/Button";
-
+import LargestButton from "../Custom/Button/LargestButton";
 interface Data {
   id: number;
   category: string;
   name: string;
   img: string;
   price: number;
-  description: {
-    productType: string;
-    capacity: string;
-    used: string;
-    sideEffect: string;
-  };
+
+  productType: string;
+  capacity: string;
+  used: string;
+  sideEffect: string;
 }
 const Medicine = () => {
   const [medicineProduct, setMedicineProduct] = useState<Data[]>([]);
   useEffect(() => {
-    // http://localhost:4000/medicine
-    fetch("/api/medicine_product")
-      .then((res) => res.json())
-      .then((data) => setMedicineProduct(data));
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:4000/medicine");
+      // convert data to json
+      const data = await res.json();
+      setMedicineProduct(data);
+    };
+
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   }, []);
 
   return (
@@ -36,7 +42,7 @@ const Medicine = () => {
           ))}
         </div>
         <div className="flex justify-center my-10">
-          <Button>More Product</Button>
+          <LargestButton>More Product</LargestButton>
         </div>
       </div>
     </div>

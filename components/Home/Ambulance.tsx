@@ -5,10 +5,9 @@ import { GrLocation } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
 import ambulanceImage from "../../assets/image/ambulance-dir.png";
-import { ambulanceList } from "../../Database/AmbulanceList.js";
 import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
+import ProgressModel from "../common/Model/ProgressModel";
 import SimpleButton from "../Custom/Button/SimpleButton";
-
 interface ambulanceData {
   id: number;
   name: string;
@@ -20,15 +19,31 @@ interface ambulanceData {
 }
 [];
 const Ambulance = () => {
+  const [progress, setProgress] = useState(false);
+
   const [ambulance, setAmbulance] = useState<ambulanceData[]>([]);
   useEffect(() => {
-    fetch("http://localhost:4000/ambulance")
-      .then((res) => res.json())
-      .then((data) => setAmbulance(data));
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:4000/ambulance");
+      // convert data to json
+      const data = await res.json();
+      setAmbulance(data);
+    };
+    if (ambulance.length === 0) {
+      setProgress(!progress);
+    } else {
+      setProgress(!progress);
+    }
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   }, []);
-  console.log(ambulance);
+
   return (
     <div className={`${style.ambulance}`}>
+      {!ambulance.length && <ProgressModel />}
       <div
         className={`${style.titlePart} md:flex justify-between items-center my-6`}
       >
@@ -38,7 +53,7 @@ const Ambulance = () => {
         </Link>
       </div>
       <div className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}>
-        {ambulanceList.slice(0, 4).map((Amb) => {
+        {ambulance.slice(0, 4).map((Amb) => {
           return (
             <div
               key={Amb.id}

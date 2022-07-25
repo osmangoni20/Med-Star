@@ -1,5 +1,4 @@
 import Categories from "../../components/common/Categories";
-import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import Product from "../../components/common/Product";
@@ -43,15 +42,14 @@ const Medicine = ({ data }: any) => {
           </div>
         </main>
       </div>
-      <Footer />
     </div>
   );
 };
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  // http://localhost:4000/medicine
-  const res = await fetch(`http://localhost:3000/api/medicine_product`);
+
+  const res = await fetch(`http://localhost:4000/medicine`);
   const data = await res.json();
 
   // Pass data to the page via props

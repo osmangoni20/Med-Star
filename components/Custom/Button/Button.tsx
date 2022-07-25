@@ -15,7 +15,7 @@ const Button = (props: {
   return (
     <button
       style={{ backgroundColor: variable.secondary }}
-      className={`${style.button} text-white font-[Poppins] border-dashed px-2 border-2 md:py-2 py-1 md:px-6 rounded md:ml-8 hover:bg-indigo-400
+      className={`${style.button}  border-dashed rounded  hover:bg-indigo-400
       duration-500`}
     >
       {props.children}

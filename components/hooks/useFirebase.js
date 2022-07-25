@@ -11,6 +11,7 @@ const useFirebase=()=>{
     FirebaseAuthentication();
 
     const [user,setUser]=useState({});
+    const [newUser,setNewUser]=useState({});
     const [error,setError]=useState('');
     const auth = getAuth();
 
@@ -22,11 +23,25 @@ const useFirebase=()=>{
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             // Signed in
+            setNewUser(userData);
             UpdateUserData(userData);
             EmailVerification(auth);
             console.log(userCredential)
             setUser({name:userCredential.user.displayName
             ,email:userCredential.user.email})
+            
+            fetch("http://localhost:4000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            }).then(res=>res.json())
+            .then(data=>{
+              if(data.insertedId){
+                alert("Your Account is successfully Created. Please Verified your Email")
+              }
+            });
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -39,6 +54,7 @@ const useFirebase=()=>{
 
 
       const UpdateUserData = (user) => {
+        
         updateProfile(auth.currentUser, {
           phoneNumber: user.mobile_No,
           displayName: user.firstName+' '+user.lastName,
@@ -46,7 +62,7 @@ const useFirebase=()=>{
         })
           .then((result) => {
             console.log(result);
-            alert("A confirmation link already sent to your email with details to activate your account. Please Check Your Email")
+            // alert("A confirmation link already sent to your email with details to activate your account. Please Check Your Email")
 
           })
           .catch((error) => {
@@ -66,6 +82,9 @@ const useFirebase=()=>{
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in 
+          localStorage.setItem("accessToken",userCredential.accessToken)
+          setNewUser({});
+          console.log(userCredential)
           const user = userCredential.user;
           setUser({...user,
               firstName:user.displayName.slice(0,8),
@@ -79,7 +98,7 @@ const useFirebase=()=>{
           // {
           //     alert("Your Email is not Verified . Please Email Verified.")
           // }
-          console.log(user)
+          
           setError('');
         })
         .catch((error) => {
@@ -107,6 +126,7 @@ const useFirebase=()=>{
      const Logout=()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
+            localStorage.removeItem("accessToken")
             setUser({});
           }).catch((error) => {
             // An error happened.
@@ -115,7 +135,10 @@ const useFirebase=()=>{
 
      useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
+
+          
             if (user) {
+              console.log("user")
               setUser(user)
               const uid = user.uid;
               // ...
@@ -123,6 +146,7 @@ const useFirebase=()=>{
               // User is signed out
               // ...
             }
+         
           });
      },[])
 
