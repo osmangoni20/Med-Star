@@ -9,6 +9,7 @@ import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
 import useAuth from "../../components/hooks/useAuth";
+import withAuth from "../../components/hooks/withAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation.js";
 import { PaymentMethodInfo } from "../../components/Order/CustomerInformation/PaymentMethodInfo.js";
@@ -68,9 +69,11 @@ const Shipping = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/my-cart/" + user.email);
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/my-cart/" + user.email
+      );
       const userRes = await fetch(
-        "http://localhost:4000/user/ehostelbd@gmail.com"
+        "https://med-star-bd.herokuapp.com/user/ehostelbd@gmail.com"
       );
       // convert data to json/
       const data = await res.json();
@@ -138,7 +141,7 @@ const Shipping = () => {
 
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/new_order", {
+      const res = await fetch("https://med-star-bd.herokuapp.com/new_order", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -157,9 +160,12 @@ const Shipping = () => {
           successType: true,
         });
 
-        fetch(`http://localhost:4000/my-cart/delete/${customer.email}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://med-star-bd.herokuapp.com/my-cart/delete/${customer.email}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -352,4 +358,4 @@ const Shipping = () => {
   );
 };
 
-export default Shipping;
+export default withAuth(Shipping);

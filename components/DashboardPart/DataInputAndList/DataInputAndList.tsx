@@ -59,7 +59,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        `http://localhost:4000/${dynamicRoute}/ehostelbd@gmail.com`
+        `https://med-star-bd.herokuapp.com/${dynamicRoute}/ehostelbd@gmail.com`
       );
       // convert data to json/
       const userData = await res.json();
@@ -126,7 +126,9 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   // };
   // Search data with api
   const HandleSearch = (searchValue: any) => {
-    fetch(`http://localhost:4000/${dynamicRoute}?search=${searchValue}`)
+    fetch(
+      `https://med-star-bd.herokuapp.com/${dynamicRoute}?search=${searchValue}`
+    )
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
@@ -135,7 +137,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const HandleUpdate = (submitValue: any) => {
     async function fetchData() {
       const res = await fetch(
-        `http://localhost:4000/${dynamicRoute}/osmangoni0827@gmail.com`,
+        `https://med-star-bd.herokuapp.com/${dynamicRoute}/osmangoni0827@gmail.com`,
         {
           method: "PATCH",
           headers: { "content-type": "application/json" },
@@ -165,13 +167,16 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const HandlePost = (submittableData: any) => {
     console.log(submittableData);
     async function fetchData() {
-      const res = await fetch(`http://localhost:4000/${dynamicRoute}`, {
-        method: "POST",
-        body: JSON.stringify(submittableData),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      });
+      const res = await fetch(
+        `https://med-star-bd.herokuapp.com/${dynamicRoute}`,
+        {
+          method: "POST",
+          body: JSON.stringify(submittableData),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
       // convert data to json/
       const data = await res.json();
       console.log(data);

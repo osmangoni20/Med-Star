@@ -62,7 +62,7 @@ const ProductModel = ({
 
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/my-cart", {
+      const res = await fetch("https://med-star-bd.herokuapp.com/my-cart", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

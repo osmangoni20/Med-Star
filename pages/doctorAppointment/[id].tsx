@@ -33,7 +33,9 @@ const Appointment = ({ data }: { data: any }) => {
 export async function getServerSideProps(ctx: { params: { id: any } }) {
   // Fetch data from external API
 
-  const res = await fetch(`http://localhost:4000/doctor/${ctx.params.id}`);
+  const res = await fetch(
+    `https://med-star-bd.herokuapp.com/doctor/${ctx.params.id}`
+  );
   const data = await res.json();
 
   // Pass data to the page via props

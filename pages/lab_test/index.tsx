@@ -12,7 +12,9 @@ const LabTest = ({ labTestData }: any) => {
     setSearchName(e.target.value);
   };
   const HandleSearchLabTest = () => {
-    fetch(`http://localhost:4000/labTest/?searchValue=${searchName}`)
+    fetch(
+      `https://med-star-bd.herokuapp.com/labTest/?searchValue=${searchName}`
+    )
       .then((res) => res.json())
       .then((data) => console.log(data))
       .then((error) => console.log(error));
@@ -96,7 +98,7 @@ const LabTest = ({ labTestData }: any) => {
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const res = await fetch(`http://localhost:4000/labTest`);
+  const res = await fetch(`https://med-star-bd.herokuapp.com/labTest`);
   const data = await res.json();
   console.log(data);
   // Pass data to the page via props

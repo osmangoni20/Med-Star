@@ -20,7 +20,7 @@ const CardProduct = ({
   const HandleDeleteCardProduct = (id: any) => {
     console.log(id);
     if (window.confirm("Are you remove this item ?")) {
-      fetch(`http://localhost:4000/my-cart/deleteItem/${id}`, {
+      fetch(`https://med-star-bd.herokuapp.com/my-cart/deleteItem/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

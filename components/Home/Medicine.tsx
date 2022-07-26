@@ -19,7 +19,7 @@ const Medicine = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/medicine");
+      const res = await fetch("https://med-star-bd.herokuapp.com/medicine");
       // convert data to json
       const data = await res.json();
       setMedicineProduct(data);

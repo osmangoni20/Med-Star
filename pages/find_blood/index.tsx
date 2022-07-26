@@ -28,7 +28,7 @@ const FindBlood = ({ data }: any) => {
   };
   const HandleSearchDonner = () => {
     fetch(
-      `http://localhost:4000/donner/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
+      `https://med-star-bd.herokuapp.com/donner/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
     )
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -161,7 +161,7 @@ const FindBlood = ({ data }: any) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:4000/donner`);
+  const res = await fetch(`https://med-star-bd.herokuapp.com/donner`);
   const data = await res.json();
 
   // Pass data to the page via props

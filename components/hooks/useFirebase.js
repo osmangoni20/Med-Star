@@ -1,8 +1,8 @@
 import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
-  sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile
+    createUserWithEmailAndPassword,
+    getAuth,
+    onAuthStateChanged,
+    sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import FirebaseAuthentication from "../Authentication/firebase/firebase.initialize";
@@ -30,7 +30,7 @@ const useFirebase=()=>{
             setUser({name:userCredential.user.displayName
             ,email:userCredential.user.email})
             
-            fetch("http://localhost:4000/user", {
+            fetch("https://med-star-bd.herokuapp.com/user", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

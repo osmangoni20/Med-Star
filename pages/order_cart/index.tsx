@@ -25,7 +25,7 @@ const OrderCart = () => {
   const HandleUpdateQuantity = (quantity: number, id: string) => {
     console.log(quantity);
     //
-    fetch("http://localhost:4000/my-cart/updateQuantity/" + id, {
+    fetch("https://med-star-bd.herokuapp.com/my-cart/updateQuantity/" + id, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ quantity, id }),
@@ -41,7 +41,9 @@ const OrderCart = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/my-cart/" + user.email);
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/my-cart/" + user.email
+      );
       // convert data to json
       const data = await res.json();
       setCardProducts(data);

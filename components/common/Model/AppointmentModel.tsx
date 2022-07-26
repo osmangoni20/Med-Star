@@ -34,7 +34,9 @@ const AppointmentModel = ({
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch("http://localhost:4000/user/ehostelbd@gmail.com");
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/user/ehostelbd@gmail.com"
+      );
       // convert data to json/
       const userData = await res.json();
       setCustomer(userData);
@@ -79,13 +81,16 @@ const AppointmentModel = ({
 
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:4000/new_appointment", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(appointmentConformData),
-      });
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/new_appointment",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(appointmentConformData),
+        }
+      );
       // convert data to json
       const data = await res.json();
       if (data.insertedId) {
