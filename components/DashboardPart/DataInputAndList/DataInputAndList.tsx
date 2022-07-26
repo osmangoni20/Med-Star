@@ -28,38 +28,51 @@ import DashboardHeader from "../DashboardHeader/DashboardHeader";
 import MenuOptionsHeader from "../MenuOptionsHeader/MenuOptionsHeader";
 import Sidebar from "../Sidebar/Sidebar";
 // import "../Style/inputStyle.css";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import tableStyle from "../../../styles/Sass/Components/DashboardPart/tableStyle.module.scss";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
+import CustomModel from "../../common/Model/CustomModel";
 import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
+import useAuth from "../../hooks/useAuth";
 // import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 const DataInputAndList = ({ AllData, modelView }: any) => {
   // tableHeader,tableData,inputType
   // console.log(AllData);
+  const isAdmin = Number(localStorage?.getItem("IsAdmin"));
   const [model, setModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
   const [tableData, setTableData] = useState<any>([]);
   const { menu, submenu } = useRouter().query;
   const dynamicRoute = submenu ? submenu : menu;
   const [fieldValue, setFieldValue] = useState<any>({});
+
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
-
+  const { user }: any = useAuth();
   const submitValue =
     AllData.inputFieldData && AllData.inputFieldData[0].search
       ? "Search"
       : "Submit";
   useEffect(() => {
-    // fetch(`http://localhost:4000/${dynamicRoute}`)
-    // .then((res) => res.json())
-    // .then((data) => setTableData(data))
-    // .catch((error) => console.log(error));
+    async function fetchData() {
+      const res = await fetch(
+        `http://localhost:4000/${dynamicRoute}/ehostelbd@gmail.com`
+      );
+      // convert data to json/
+      const userData = await res.json();
+      setTableData(userData);
+    }
+    // call the function
 
-    setTableData(AllData.tableData);
-  }, [AllData.tableData]);
-
+    isAdmin === 0 &&
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+  }, [menu]);
+  console.log(tableData);
   const HandleModel = (data: any) => {
     setModel(true);
     setModelData(data);
@@ -89,10 +102,11 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
     e.preventDefault();
     console.log(fieldValue);
 
-    AllData.inputFieldData[0].search
+    AllData.update
+      ? HandleUpdate(fieldValue)
+      : AllData.inputFieldData[0].search
       ? HandleSearch(fieldValue.searchValue)
       : HandlePost(fieldValue);
-
     setFieldValue({});
     console.log(fieldValue);
   };
@@ -117,19 +131,66 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
+
+  const HandleUpdate = (submitValue: any) => {
+    async function fetchData() {
+      const res = await fetch(
+        `http://localhost:4000/${dynamicRoute}/osmangoni0827@gmail.com`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(submitValue),
+        }
+      );
+      // convert data to json/
+      const data = await res.json();
+      console.log(data);
+      if (data.modifiedCount) {
+        setModel(true);
+        setModelData({
+          text1: "Your Update Successfully Done",
+          text2: "Enjoy our service",
+          // image: user?.photoUrl,
+          successType: true,
+        });
+      }
+    }
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  };
+
   // Submit data with api
   const HandlePost = (submittableData: any) => {
-    fetch(`http://localhost:4000/${dynamicRoute}`, {
-      method: "POST",
-      body: JSON.stringify(submittableData),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    console.log(submittableData);
+    async function fetchData() {
+      const res = await fetch(`http://localhost:4000/${dynamicRoute}`, {
+        method: "POST",
+        body: JSON.stringify(submittableData),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      // convert data to json/
+      const data = await res.json();
+      console.log(data);
+      if (data.insertedId) {
+        setModel(true);
+        setModelData({
+          text1: "Successfully Done",
+          text2: "Enjoy our service",
+          // image: user?.photoUrl,
+          successType: true,
+        });
+      }
+    }
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   };
+
   const HandleRequestAction = (
     e: ChangeEvent<HTMLSelectElement>,
     data: { email: any }
@@ -153,6 +214,13 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
         </aside>
 
         <main>
+          {model && (
+            <CustomModel
+              modelData={modelData}
+              showModel={model}
+              setModel={setModel}
+            ></CustomModel>
+          )}
           {/* Menu Information */}
           <div className={`${style.submenuDetails}`}>
             <MenuOptionsHeader AllHeaders={AllData}></MenuOptionsHeader>
@@ -288,7 +356,9 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                   name={`${inputField.registerName}`}
                                   type={inputField.inputType}
                                   placeholder={inputField.placeholderName}
-                                  defaultValue={inputField.default}
+                                  // defaultValue={
+                                  //   tableData[inputField.registerName]
+                                  // }
                                   required
                                   onChange={(e) => HandleInputFieldValue(e)}
                                 />
@@ -297,6 +367,9 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                   className={"pt-4"}
                                   name={`${inputField.registerName}`}
                                   type={"file"}
+                                  defaultValue={
+                                    tableData[inputField.registerName]
+                                  }
                                   required
                                   onChange={(e) => HandleInputFieldValue(e)}
                                 />
@@ -405,81 +478,244 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                   </thead>
                   {/* <br/> */}
                   <tbody>
-                    {tableData?.map((data: any, index: any) => (
-                      <tr
-                        key={index}
-                        onClick={
-                          modelView
-                            ? () => {
-                                HandleModel(data);
-                              }
-                            : () => {}
-                        }
-                        style={
-                          index % 2 === 0
-                            ? modelView
-                              ? { cursor: "pointer", backgroundColor: "#fff" }
-                              : { backgroundColor: "#fff" }
-                            : modelView
-                            ? {
-                                cursor: "pointer",
-                                backgroundColor: "#f2edf3",
-                              }
-                            : { backgroundColor: "#f2edf3" }
-                        }
-                      >
-                        {Object.keys(data).map(
-                          (options, index) =>
-                            options !== "id" &&
-                            (Object.keys(data).length - 2 >= index ? (
-                              <td>{data[options]}</td>
+                    {menu === "my_order" &&
+                      tableData?.map((data: any, index: any) =>
+                        data?.orderProduct.map((option: any) => (
+                          <tr
+                            key={index}
+                            onClick={
+                              modelView
+                                ? () => {
+                                    HandleModel(data);
+                                  }
+                                : () => {}
+                            }
+                            style={
+                              index % 2 === 0
+                                ? modelView
+                                  ? {
+                                      cursor: "pointer",
+                                      backgroundColor: "#fff",
+                                    }
+                                  : { backgroundColor: "#fff" }
+                                : modelView
+                                ? {
+                                    cursor: "pointer",
+                                    backgroundColor: "#f2edf3",
+                                  }
+                                : { backgroundColor: "#f2edf3" }
+                            }
+                          >
+                            <td>
+                              <Image src={option.img} height={40} width={40} />
+                            </td>
+                            <td>{option.name}</td>
+                            <td>{option.quantity}</td>
+                            <td>{option.price}</td>
+                            <td>{data.status}</td>
+                          </tr>
+                        ))
+                      )}
+
+                    {menu === "doctorHistory" &&
+                      tableData?.map((data: any, index: any) => (
+                        <tr
+                          key={index}
+                          onClick={
+                            modelView
+                              ? () => {
+                                  HandleModel(data);
+                                }
+                              : () => {}
+                          }
+                          style={
+                            index % 2 === 0
+                              ? modelView
+                                ? {
+                                    cursor: "pointer",
+                                    backgroundColor: "#fff",
+                                  }
+                                : { backgroundColor: "#fff" }
+                              : modelView
+                              ? {
+                                  cursor: "pointer",
+                                  backgroundColor: "#f2edf3",
+                                }
+                              : { backgroundColor: "#f2edf3" }
+                          }
+                        >
+                          <td>{data.doctor_name}</td>
+                          <td>{data.date}</td>
+                          <td>{data.disease}</td>
+                          <td>{data.update}</td>
+                        </tr>
+                      ))}
+
+                    {menu === "user_notice" &&
+                      tableData?.map((data: any, index: any) => (
+                        <tr
+                          key={index}
+                          onClick={
+                            modelView
+                              ? () => {
+                                  HandleModel(data);
+                                }
+                              : () => {}
+                          }
+                          style={
+                            index % 2 === 0
+                              ? modelView
+                                ? {
+                                    cursor: "pointer",
+                                    backgroundColor: "#fff",
+                                  }
+                                : { backgroundColor: "#fff" }
+                              : modelView
+                              ? {
+                                  cursor: "pointer",
+                                  backgroundColor: "#f2edf3",
+                                }
+                              : { backgroundColor: "#f2edf3" }
+                          }
+                        >
+                          <td>{data.title}</td>
+                          <td>{data.date}</td>
+                          <td>{data.description}</td>
+                        </tr>
+                      ))}
+
+                    {menu === "new_donner" &&
+                      tableData?.map((data: any, index: any) => (
+                        <tr
+                          key={index}
+                          onClick={
+                            modelView
+                              ? () => {
+                                  HandleModel(data);
+                                }
+                              : () => {}
+                          }
+                          style={
+                            index % 2 === 0
+                              ? modelView
+                                ? {
+                                    cursor: "pointer",
+                                    backgroundColor: "#fff",
+                                  }
+                                : { backgroundColor: "#fff" }
+                              : modelView
+                              ? {
+                                  cursor: "pointer",
+                                  backgroundColor: "#f2edf3",
+                                }
+                              : { backgroundColor: "#f2edf3" }
+                          }
+                        >
+                          <td>{data.doctor_name}</td>
+                          <td>{data.date}</td>
+                          <td>{data.disease}</td>
+                          <td>{data.update}</td>
+                        </tr>
+                      ))}
+
+                    {isAdmin !== 0 &&
+                      AllData?.tableData?.map((data: any, index: any) => (
+                        <tr
+                          key={index}
+                          onClick={
+                            modelView
+                              ? () => {
+                                  HandleModel(data);
+                                }
+                              : () => {}
+                          }
+                          style={
+                            index % 2 === 0
+                              ? modelView
+                                ? { cursor: "pointer", backgroundColor: "#fff" }
+                                : { backgroundColor: "#fff" }
+                              : modelView
+                              ? {
+                                  cursor: "pointer",
+                                  backgroundColor: "#f2edf3",
+                                }
+                              : { backgroundColor: "#f2edf3" }
+                          }
+                        >
+                          {/* (options, index) =>
+                          //   options !== "_id" &&
+                          //   (Object.keys(data).length - 2 >= index ? (
+                          //     <td>{data[options]}</td>
+                          //   ):(
+                          //     <></>
+                          //   )
+                          // ) */}
+
+                          {/* {data.orderProduct.map((options: any) => (
+                          <td>
+                            {options === "img" ? (
+                              <Image src={options.img} height={60} width={60} />
                             ) : (
-                              <>
-                                {data.actionType === "select" ? (
-                                  <td>
-                                    <form>
-                                      <select
-                                        onChange={(e) =>
-                                          HandleRequestAction(e, data)
-                                        }
-                                        className={`${style.request_action}`}
-                                      >
-                                        <option value={"pending"}>
-                                          Pending
-                                        </option>
-                                        <option value={"delivered"}>
-                                          Delivered
-                                        </option>
-                                        <option value={"declined"}>
-                                          Declined
-                                        </option>
-                                      </select>
-                                    </form>
-                                  </td>
+                              options
+                            )}
+                          </td>
+                        ))} */}
+
+                          {isAdmin &&
+                            Object.keys(data).map(
+                              (options, index) =>
+                                options !== "_id" &&
+                                (Object.keys(data).length - 2 >= index ? (
+                                  <td>{data[options]}</td>
                                 ) : (
-                                  data.actionType !== "none" && (
-                                    <td>
-                                      <div
-                                        onClick={() => HandleEdit(data.id)}
-                                        className={`${tableStyle.edit_icon}`}
-                                      >
-                                        {/* <ion-icon name="create-outline"></ion-icon> */}
-                                      </div>
-                                      <div
-                                        onClick={() => HandleDelete(data.id)}
-                                      >
-                                        <RiDeleteBin6Line
-                                          className={`${tableStyle.delete_icon}`}
-                                        />
-                                      </div>
-                                    </td>
-                                  )
-                                )}
-                              </>
-                            ))
-                        )}
-                      </tr>
-                    ))}
+                                  <>
+                                    {data.actionType === "select" ? (
+                                      <td>
+                                        <form>
+                                          <select
+                                            onChange={(e) =>
+                                              HandleRequestAction(e, data)
+                                            }
+                                            className={`${style.request_action}`}
+                                          >
+                                            <option value={"pending"}>
+                                              Pending
+                                            </option>
+                                            <option value={"delivered"}>
+                                              Delivered
+                                            </option>
+                                            <option value={"declined"}>
+                                              Declined
+                                            </option>
+                                          </select>
+                                        </form>
+                                      </td>
+                                    ) : (
+                                      data.actionType !== "none" && (
+                                        <td>
+                                          <div
+                                            onClick={() => HandleEdit(data.id)}
+                                            className={`${tableStyle.edit_icon}`}
+                                          >
+                                            {/* <ion-icon name="create-outline"></ion-icon> */}
+                                          </div>
+                                          <div
+                                            onClick={() =>
+                                              HandleDelete(data.id)
+                                            }
+                                          >
+                                            <RiDeleteBin6Line
+                                              className={`${tableStyle.delete_icon}`}
+                                            />
+                                          </div>
+                                        </td>
+                                      )
+                                    )}
+                                  </>
+                                ))
+                            )}
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

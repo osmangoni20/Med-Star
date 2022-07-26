@@ -70,7 +70,7 @@ const Shipping = () => {
       // get the data from the api
       const res = await fetch("http://localhost:4000/my-cart/" + user.email);
       const userRes = await fetch(
-        "http://localhost:4000/users/ehostelbd@gmail.com"
+        "http://localhost:4000/user/ehostelbd@gmail.com"
       );
       // convert data to json/
       const data = await res.json();

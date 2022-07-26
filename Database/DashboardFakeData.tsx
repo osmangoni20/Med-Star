@@ -71,7 +71,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Notice",
   },
 
-  donationHistory: {
+  new_donner: {
     inputFieldData: [
       {
         name: "Your Name",
@@ -193,7 +193,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "History",
     menuOptionHeader: { name: "Patient History ", icon: "patient" },
   },
-  profile: {
+  my_profile: {
     inputFieldData: [
       {
         name: "First Name",
@@ -234,7 +234,7 @@ export const DashboardFakeData: any = {
 
       {
         name: "Mobile Number",
-        registerName: "mobile",
+        registerName: "mobile_no",
         icon: "mobile",
         placeholderName: "Mobile Number",
         inputType: "number",
@@ -247,6 +247,7 @@ export const DashboardFakeData: any = {
         textAria: true,
       },
     ],
+    update: true,
     menuOptionHeader: {
       name: "My Profile",
       icon: "user",
@@ -255,7 +256,7 @@ export const DashboardFakeData: any = {
   },
 
   my_order: {
-    tableHeader: ["Image", "Product Name", "Date", "price", "State"],
+    tableHeader: ["Image", "Product Name", "Quantity", "price", "State"],
     tableData: [
       {
         id: 1,

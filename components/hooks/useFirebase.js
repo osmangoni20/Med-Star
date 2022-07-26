@@ -30,7 +30,7 @@ const useFirebase=()=>{
             setUser({name:userCredential.user.displayName
             ,email:userCredential.user.email})
             
-            fetch("http://localhost:4000/users", {
+            fetch("http://localhost:4000/user", {
               method: "POST",
               headers: {
                 "content-type": "application/json",

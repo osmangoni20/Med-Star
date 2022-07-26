@@ -34,9 +34,7 @@ const AppointmentModel = ({
 
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(
-        "http://localhost:4000/users/ehostelbd@gmail.com"
-      );
+      const res = await fetch("http://localhost:4000/user/ehostelbd@gmail.com");
       // convert data to json/
       const userData = await res.json();
       setCustomer(userData);

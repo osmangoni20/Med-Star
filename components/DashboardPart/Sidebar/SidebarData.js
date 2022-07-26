@@ -4,7 +4,7 @@ export const userSidebarMenu=[
   
   {
     name: "Your Profile",
-    link: "/dashboard/profile",
+    link: "/dashboard//my_profile",
     icon: "profile",
   },
     {
@@ -19,7 +19,7 @@ export const userSidebarMenu=[
     },
     {
       name: "Blood Donate",
-      link: "/dashboard/donationHistory",
+      link: "/dashboard/new_donner",
       icon: "blood",
     },
     {
