@@ -32,7 +32,7 @@ const DashboardInfoModel = ({
               ✕
             </label>
             <div>
-              <h2 className="text-center mb-5">Order Details</h2>
+              <h2 className="text-center mb-5">Details</h2>
               <div className="grid grid-cols-2 gap-2">
                 {Object.keys(data).map((property, index) => (
                   <div key={index} className="flex gap-2 items-center">

@@ -44,7 +44,7 @@ const Login = () => {
 
     fetchData()
     .catch(console.log(error))
-  },[user])
+  },[user,isAdmin])
   console.log(user, error);
 
   const HandleVerificationEmail=()=>{

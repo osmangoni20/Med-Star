@@ -42,7 +42,7 @@ export const DashboardFakeData: any = {
     tableHeader: [
       {
         name: "Notice Title",
-        data_register_name: "title",
+        data_register_name: "noticeTitle",
       },
       {
         name: "Date",
@@ -158,33 +158,15 @@ export const DashboardFakeData: any = {
       { name: "Update", data_register_name: "update" },
       { name: "Action", data_register_name: "delete" },
     ],
-    tableData: [
-      {
-        id: 1,
-        name: "Dr. Mohammad Salah",
-        date: "20-2-2022",
-        disease: "hart Patient",
-        Update: "Many Problem in her Hart",
-        actionType: "none",
-      },
-      {
-        id: 2,
-        name: "Dr. Mohammad Salah",
-        date: "20-2-2022",
-        disease: "hart Patient",
-        Update: "Many Problem in her Hart",
-        actionType: "none",
-      },
-      {
-        id: 3,
-        name: "Dr. Mohammad Salah",
-        date: "20-2-2022",
-        disease: "hart Patient",
-        Update: "Many Problem in her Hart",
-        actionType: "none",
-      },
+    sidebarMenuHeader: "History",
+    menuOptionHeader: { name: "Patient History ", icon: "patient" },
+  },
+  doctorHistory: {
+    tableHeader: [
+      { name: "Date", data_register_name: "date" },
+      { name: "Disease", data_register_name: "Disease" },
+      { name: "Update", data_register_name: "update" },
     ],
-
     sidebarMenuHeader: "History",
     menuOptionHeader: { name: "Patient History ", icon: "patient" },
   },

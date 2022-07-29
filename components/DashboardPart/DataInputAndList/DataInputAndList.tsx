@@ -35,6 +35,7 @@ import CustomModel from "../../common/Model/CustomModel";
 import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 import NoticeModel from "../../common/Model/NoticeModel";
 import OrderInfoModel from "../../common/Model/OrderInfoModel";
+import ProgressModel from "../../common/Model/ProgressModel";
 import useFirebase from "../../hooks/useFirebase";
 import OrderView from "../Admin Dashboard/OrderView";
 import ListView from "../UserDashboard/ListView";
@@ -53,7 +54,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const { menu, submenu } = useRouter().query;
   const dynamicRoute = submenu ? submenu : menu;
   const [fieldValue, setFieldValue] = useState<any>({});
-
+  const [progress, setProgress] = useState<boolean>(false);
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
@@ -188,6 +189,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
 
   // Submit data with api
   const HandlePost = (submittableData: any) => {
+    setProgress(!progress);
     console.log(submittableData);
     async function fetchData() {
       const res = await fetch(
@@ -204,6 +206,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       const data = await res.json();
       console.log(data);
       if (data.insertedId) {
+        setProgress(false);
         setCustomModel(true);
         setModelData({
           text1: "Successfully Done",
@@ -268,18 +271,23 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
         </aside>
 
         <main>
-          {customModel && (
-            <CustomModel
-              modelData={modelData}
-              showModel={customModel}
-              setModel={setCustomModel}
-            ></CustomModel>
+          {progress ? (
+            <ProgressModel />
+          ) : (
+            customModel && (
+              <CustomModel
+                modelData={modelData}
+                showModel={customModel}
+                setModel={setCustomModel}
+              ></CustomModel>
+            )
           )}
           {/* Menu Information */}
           <div className={`${style.submenuDetails}`}>
             <MenuOptionsHeader AllHeaders={AllData}></MenuOptionsHeader>
           </div>
           {/* Input From */}
+
           {AllData.inputFieldData && (
             <div className={`${style.mainInputField_container}`}>
               <div className="">
@@ -479,7 +487,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
           {menu === "create_notice" && <CreateNotice />}
           {AllData?.tableHeader && (
             <div className={`${style.ListInformation}`}>
-              {model && menu === "notice" ? (
+              {model && (menu === "notice" || menu === "user_notice") ? (
                 <NoticeModel
                   showModel={model}
                   data={modelData}
@@ -502,7 +510,6 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                   setOrderModel={setOrderModel}
                 ></OrderInfoModel>
               )}
-              {/* {!tableData.length && <ProgressModel />} */}
 
               <div className="mx-5 mt-5">
                 <table className={`${tableStyle.table}`}>
@@ -527,7 +534,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                       <ListView
                         tableData={tableData}
                         tableHeader={AllData?.tableHeader}
-                        HandleModel={isAdmin ? HandleModel : {}}
+                        HandleModel={HandleModel}
                         HandleDelete={isAdmin ? HandleDelete : {}}
                         HandleRequestAction={isAdmin ? HandleRequestAction : {}}
                       />

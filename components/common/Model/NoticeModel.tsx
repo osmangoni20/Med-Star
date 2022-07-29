@@ -1,4 +1,3 @@
-import parse from "html-react-parser";
 import { Dispatch, SetStateAction } from "react";
 import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
 
@@ -11,7 +10,6 @@ const NoticeModel = ({
   showModel: boolean;
   setModel: Dispatch<SetStateAction<boolean>>;
 }) => {
-  console.log(data);
   return (
     <div>
       {showModel && (
@@ -23,7 +21,12 @@ const NoticeModel = ({
             >
               ✕
             </label>
-            <div>{parse(data.description)}</div>
+            <div className="flex mt-5 justify-between items-center">
+              <h2>{data.noticeTitle}</h2>
+              <h5>{data.date}</h5>
+            </div>
+            <hr />
+            {/* <div>{parse(data.description)}</div> */}
           </div>
         </div>
       )}

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import RecentMessage from "../../components/DashboardPart/Dashboard/RecentMessage/RecentMessage";
 import RecentOrder from "../../components/DashboardPart/Dashboard/RecentOrder/RecentOrder";
 import SalesAnalytics from "../../components/DashboardPart/Dashboard/SalesAnalytics/SalesAnalytics";
@@ -30,16 +31,18 @@ const Dashboard = () => {
   // setNewNotice()
   const route = useRouter();
   const [dashboardData, setDashboardData] = useState<any>({});
-  const [isAdmin, setIsAdmin] = useState<Boolean>();
-
+  const [isAdmin, setIsAdmin] = useState<Boolean>(false);
+  const [progress, setProgress] = useState<boolean>(true);
   const { menu, submenu } = useRouter().query;
 
   useEffect(() => {
-    setIsAdmin(Boolean(localStorage.getItem("isAdmin") === "true"));
+    setIsAdmin(localStorage.getItem("isAdmin") === "true");
+    console.log("use:", localStorage.getItem("isAdmin"));
     async function fetchData() {
       const res = await fetch(`https://med-star-bd.herokuapp.com/dashboard`);
       // convert data to json/
       const userData = await res.json();
+      setProgress(!progress);
       setDashboardData(userData);
     }
 
@@ -58,50 +61,56 @@ const Dashboard = () => {
         description="initial-scale=1.0, width=device-width"
       />
       <DashboardHeader></DashboardHeader>
-      {isAdmin ? (
-        <div className="flex">
-          <aside className="h-screen">
-            <Sidebar></Sidebar>
-          </aside>
-
-          <main className="py-5">
-            {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
-            <div>
-              <DashboardCard
-                cardValue={{
-                  totalNewOrder: dashboardData?.newOrderList,
-                  totalOrder: dashboardData?.orderList?.length,
-                  totalSuccessOrder: dashboardData?.successOrderList,
-                  totalIncome: dashboardData?.totalIncome,
-                }}
-              ></DashboardCard>
-            </div>
-            <div className={style.rightBody}>
-              {/* <CostChart /> */}
-              <RecentMessage messageData={dashboardData?.messageList} />
-            </div>
-            <div className={style.dashboardBody}>
-              <RecentOrder orderData={dashboardData?.orderList} />
-
-              <SalesAnalytics
-                analytics={{
-                  offline: dashboardData?.offlineSalesList,
-                  online: dashboardData?.onlineSalesList,
-                  pendingOrder: dashboardData?.newOrderList,
-                }}
-              />
-            </div>
-          </main>
-        </div>
+      {progress ? (
+        <ProgressModel />
       ) : (
-        <div className="flex">
-          <aside className="h-screen">
-            <Sidebar></Sidebar>
-          </aside>
+        <div>
+          {isAdmin ? (
+            <div className="flex">
+              <aside className="h-screen">
+                <Sidebar></Sidebar>
+              </aside>
 
-          <main className="py-5">
-            <UserProfile />
-          </main>
+              <main className="py-5">
+                {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
+                <div>
+                  <DashboardCard
+                    cardValue={{
+                      totalNewOrder: dashboardData?.newOrderList,
+                      totalOrder: dashboardData?.orderList?.length,
+                      totalSuccessOrder: dashboardData?.successOrderList,
+                      totalIncome: dashboardData?.totalIncome,
+                    }}
+                  ></DashboardCard>
+                </div>
+                <div className={style.rightBody}>
+                  {/* <CostChart /> */}
+                  <RecentMessage messageData={dashboardData?.messageList} />
+                </div>
+                <div className={style.dashboardBody}>
+                  <RecentOrder orderData={dashboardData?.orderList} />
+
+                  <SalesAnalytics
+                    analytics={{
+                      offline: dashboardData?.offlineSalesList,
+                      online: dashboardData?.onlineSalesList,
+                      pendingOrder: dashboardData?.newOrderList,
+                    }}
+                  />
+                </div>
+              </main>
+            </div>
+          ) : (
+            <div className="flex">
+              <aside className="h-screen">
+                <Sidebar></Sidebar>
+              </aside>
+
+              <main className="py-5">
+                <UserProfile />
+              </main>
+            </div>
+          )}
         </div>
       )}
     </div>

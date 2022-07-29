@@ -19,7 +19,7 @@ const AmbulanceService = ({ data }: any) => {
   return (
     <div>
       <Header />
-      <div className={`${style.ambulance}`}>
+      <div className={`${style.ambulance} my-10`}>
         <div
           className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}
         >
@@ -79,8 +79,8 @@ const AmbulanceService = ({ data }: any) => {
                 >
                   <figure>
                     <Image
-                      height={150}
-                      width={150}
+                      height={180}
+                      width={320}
                       src={ambulanceImage}
                       alt="Shoes"
                     />

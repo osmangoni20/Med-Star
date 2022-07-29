@@ -2,11 +2,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaCity } from "react-icons/fa";
 import { MdBloodtype } from "react-icons/md";
-import Categories from "../../components/common/Categories";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
-import { bloodGroup } from "../../Database/bloodGroupList";
 import style from "../../styles/Sass/pages/findBlood/findBlood.module.scss";
 interface Data {
   id: number;
@@ -42,11 +40,11 @@ const FindBlood = ({ data }: any) => {
         description="initial-scale=1.0, width=device-width"
       />
       <Header />
-      <div className={`${style.findBlood} flex gap-4`}>
-        <aside className="h-screen">
+      <div className={`${style.findBlood}`}>
+        {/* <aside className="h-screen">
           <h3 className="text-center my-4 text-2xl font-bold ">Blood Group</h3>
           <Categories data={bloodGroup} />
-        </aside>
+        </aside> */}
 
         <main className="mt-10">
           <form className="flex justify-center">
@@ -125,8 +123,8 @@ const FindBlood = ({ data }: any) => {
           </div>
           <hr />
           <div className="grid grid-cols-3 gap-4">
-            {data.map((member: any, index: any) => (
-              <div key={index}>
+            {data.map((member: any) => (
+              <div>
                 <div className={`${style.bloodMemberCart} card  shadow`}>
                   <div className={`${style.memberCartBody} card-body `}>
                     <div className={`${style.cartBodyText}`}>

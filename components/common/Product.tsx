@@ -38,7 +38,7 @@ const Product = ({ product }: { product: Data }) => {
         </figure>
         <div className={`${style.productCartBody} card-body `}>
           <div className={`${style.cartBodyText}`}>
-            <h2 className="text-center">{product.name}</h2>
+            <h2 className="text-center">{product.name.slice(0, 25)}</h2>
             <h6>{product.productType}</h6>
             <h6>{product.capacity}</h6>
             <p className={`${style.price}`}> Tk {product.price} .00</p>

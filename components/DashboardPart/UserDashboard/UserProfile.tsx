@@ -54,6 +54,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdMarkEmailUnread } from "react-icons/md";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
 import CustomModel from "../../common/Model/CustomModel";
+import ProgressModel from "../../common/Model/ProgressModel";
 import loader from "/assets/svg/Spin-1s-200px.svg";
 const UserProfile = () => {
   const [userData, setUserData] = useState<any>({});
@@ -112,6 +113,7 @@ const UserProfile = () => {
   const HandleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    setProgress(!progress);
     console.log();
     const updateFieldValue = {
       img: fieldValue.img || userData.img,
@@ -120,11 +122,12 @@ const UserProfile = () => {
       first_name: fieldValue.first_name || userData.first_name,
       mobile_no: fieldValue.mobile_no || userData.mobile_no,
       age: fieldValue.age || userData.age,
+      address: fieldValue.address || userData.address,
     };
     console.log(updateFieldValue);
     async function fetchData() {
       const res = await fetch(
-        `http://localhost:5000/user_profile/${user.email}`,
+        `https://med-star-bd.herokuapp.com/user_profile/${user.email}`,
         {
           method: "PATCH",
           body: JSON.stringify(updateFieldValue),
@@ -144,25 +147,26 @@ const UserProfile = () => {
           text2: "Enjoy our service",
           successType: true,
         });
-      } else {
-        setProgress(true);
       }
     }
     // call the function
     fetchData()
-      //   // make sure to catch any error
+      //   //   // make sure to catch any error
       .catch(console.error);
   };
   return (
     <div className={`${style.mainInputField_container}`}>
-      {model && (
-        <CustomModel
-          modelData={modelData}
-          showModel={model}
-          setModel={setModel}
-        ></CustomModel>
+      {progress ? (
+        <ProgressModel />
+      ) : (
+        model && (
+          <CustomModel
+            modelData={modelData}
+            showModel={model}
+            setModel={setModel}
+          ></CustomModel>
+        )
       )}
-      {/* {progress && <ProgressModel />} */}
       <form onSubmit={HandleSubmit}>
         <div className={`${style.form_input_field}`}>
           <div className={profileStyle.personal_image}>

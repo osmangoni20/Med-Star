@@ -55,7 +55,8 @@ const LabTest = ({ labTestData }: any) => {
               </div>
             </div>
           </form>
-          <table>
+          <hr />
+          <table className="mt-3">
             <thead>
               <th className={`${style.labTestNumber}`}>Number</th>
               <th>Test Name</th>
@@ -65,7 +66,9 @@ const LabTest = ({ labTestData }: any) => {
             <tbody>
               {labTestData.map((item: any, index: number) => (
                 <tr key={index}>
-                  <td className={`${style.labTestNumber}`}>{item.id}</td>
+                  <td className={`${style.labTestNumber}`}>
+                    {Number(index + 1)}
+                  </td>
                   <td className={`${style.testName}`}>
                     <Link href={`/lab_test/${item.id}`}>
                       <a>{item.testName}</a>

@@ -106,14 +106,14 @@ const Doctor = () => {
   console.log(doctor);
   return (
     <div className={`${style.carousel} transition-all duration-500 ease-in`}>
-      <div
+      {/* <div
         className={`${style.titlePart} md:flex justify-between items-center my-6`}
       >
-        <h1 className={`${style.title}`}>Our Doctor</h1>
+        <h2 className={`${style.title}`}>Our Doctor</h2>
         <Link href={"/"}>
           <p>View All</p>
         </Link>
-      </div>
+      </div> */}
 
       <div className={`${style.DoctorCarousel_inner} `}>
         <Slider {...settings}>

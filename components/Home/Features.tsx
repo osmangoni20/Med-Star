@@ -17,8 +17,7 @@ const featuresList = [
       },
       {
         id: 3,
-        content:
-          "The doctor's  prescribe  medicines by communicating on online.",
+        content: "Prescribe  medicines by communicating on online.",
       },
 
       {
