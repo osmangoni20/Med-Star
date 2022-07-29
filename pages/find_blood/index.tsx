@@ -123,8 +123,8 @@ const FindBlood = ({ data }: any) => {
           </div>
           <hr />
           <div className="grid grid-cols-3 gap-4">
-            {data.map((member: any) => (
-              <div>
+            {data.map((member: any, index: number) => (
+              <div key={index}>
                 <div className={`${style.bloodMemberCart} card  shadow`}>
                   <div className={`${style.memberCartBody} card-body `}>
                     <div className={`${style.cartBodyText}`}>
