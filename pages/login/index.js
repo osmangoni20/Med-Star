@@ -34,7 +34,7 @@ const Login = () => {
     router.back();
   }
   useEffect(()=>{
-    function fetchData(){
+    const fetchData = async () => {
       const res= await fetch(`http://localhost:5000/${user.email}`)
       const data=res.json();
       setIsAdmin(data);

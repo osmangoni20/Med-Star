@@ -54,7 +54,7 @@ const OrderCart = () => {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, [deleteItem || updateQuantity]);
+  }, [deleteItem, updateQuantity, user.email]);
 
   // Handle Go To The Shipping Page from Order Cart
   // const HandleShippingPage = () => {

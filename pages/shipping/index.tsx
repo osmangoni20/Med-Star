@@ -88,7 +88,7 @@ const Shipping = () => {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, []);
+  }, [customer]);
   console.log(customer);
   const HandlePaymentType = (e: any) => {
     console.log(e.target.value);

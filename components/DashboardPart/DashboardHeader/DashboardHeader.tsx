@@ -16,7 +16,7 @@ const DashboardHeader = () => {
         <div className={`${style.logopart} flex justify-between items-center`}>
           <div className="pl-3 cursor-pointer">
             <Link href={"/"} passHref>
-              <Image src={logo} height={50} width={50} />
+              <Image src={logo} height={50} width={50} alt={""} />
             </Link>
           </div>
           <h2 className="text-2xl">Dashboard</h2>
