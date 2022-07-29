@@ -9,7 +9,6 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
-import WithAuth from "../../components/hooks/RouteProtection";
 import useAuth from "../../components/hooks/useAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation.js";
@@ -361,4 +360,4 @@ const Shipping = () => {
   );
 };
 
-export default WithAuth(Shipping);
+export default Shipping;
