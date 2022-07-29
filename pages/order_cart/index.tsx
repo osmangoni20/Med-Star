@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
-import WithAuth from "../../components/hooks/RouteProtection";
 import useAuth from "../../components/hooks/useAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
@@ -56,15 +55,6 @@ const OrderCart = () => {
       .catch(console.error);
   }, [deleteItem, updateQuantity, user.email]);
 
-  // Handle Go To The Shipping Page from Order Cart
-  // const HandleShippingPage = () => {
-  //     document.getElementById("OrderCartProducts").style.display = "none";
-
-  //     document.getElementById("ShippingComponent").style.display = "block";
-  // }
-  // if (cardProducts.length <= 0) {
-  //   route.push("/");
-  // }
   return (
     <div>
       <Meta
@@ -138,4 +128,4 @@ const OrderCart = () => {
 //   return { props: { data } };
 // }
 // export default OrderCart;
-export default WithAuth(OrderCart);
+export default OrderCart;
