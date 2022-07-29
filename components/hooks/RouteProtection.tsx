@@ -1,19 +1,21 @@
 import { useRouter } from "next/router";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function WithAuth(Component: any) {
+  const router = useRouter();
+  const [isLogin, setLogin] = useState<any>(false);
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (accessToken) {
+      setLogin(!isLogin);
+    }
+  }, [isLogin]);
   return () => {
-    const router = useRouter();
-
-    useEffect(() => {
-      const accessToken = localStorage.getItem("accessToken");
-
-      if (!accessToken) {
-        router.push(`/login?next=${router.asPath}`);
-      }
-    }, []);
-
+    if (!isLogin) {
+      router.push(`/login?next=${router.asPath}`);
+    }
     return <Component {...arguments} />;
   };
 }
