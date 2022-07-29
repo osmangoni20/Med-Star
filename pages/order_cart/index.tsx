@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
-import useAuth from "../../components/hooks/useAuth";
+import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
 import style from "../../styles/Sass/Components/OrderCart/_order_cart.module.scss";
@@ -12,7 +12,7 @@ const OrderCart = () => {
   const [deleteItem, setDeleteItem] = useState(false);
   const [updateQuantity, setUpdateQuantity] = useState(false);
   const route = useRouter();
-  const { user } = useAuth();
+  const { user }: any = useFirebase();
   let TotalPrize = cardProducts.reduce(
     (accumulator: any, currentValue: any) =>
       accumulator + currentValue.price * currentValue.quantity,

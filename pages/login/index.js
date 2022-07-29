@@ -10,9 +10,9 @@ import companyLogo from '../../assets/image/medicine logo.jpg';
 import SignIn from '../../components/Authentication/SignIn/SignIn.tsx';
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import useFirebase from "../../components/hooks/useFirebase";
 import style from "../../styles/Sass/pages/auth/login&signIn.module.scss";
 const CustomModel=dynamic(()=>import('../../components/common/Model/CustomModel'));
-const useFirebase=dynamic(()=>import("../../components/hooks/useFirebase"));
 const loginImage =dynamic(() => import ( "../../assets/image/loginImage.svg"));
 const Login = () => {
   const {
@@ -29,6 +29,7 @@ const Login = () => {
   const [loginFrom,setLoginFrom]=useState(true);
   const auth = getAuth();
   const [isAdmin,setIsAdmin]=useState(false);
+
   if (user.email) {
     // localStorage.getItem('')
     router.back();

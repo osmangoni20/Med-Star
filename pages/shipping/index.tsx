@@ -9,7 +9,7 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
-import useAuth from "../../components/hooks/useAuth";
+import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation.js";
 import { PaymentMethodInfo } from "../../components/Order/CustomerInformation/PaymentMethodInfo.js";
@@ -41,7 +41,7 @@ const Shipping = () => {
   const [paymentType, setPaymentType] = useState("");
   const [model, setModel] = useState(false);
   const [modelData, setModelData] = useState({});
-  const { user } = useAuth();
+  const { user }: any = useFirebase();
   const [customer, setCustomer] = useState<any>({});
   const route = useRouter();
   const [progress, setProgress] = useState(false);

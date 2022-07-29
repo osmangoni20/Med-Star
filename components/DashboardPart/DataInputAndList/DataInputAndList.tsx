@@ -36,7 +36,7 @@ import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 import NoticeModel from "../../common/Model/NoticeModel";
 import OrderInfoModel from "../../common/Model/OrderInfoModel";
 import ProgressModel from "../../common/Model/ProgressModel";
-import useAuth from "../../hooks/useAuth";
+import useFirebase from "../../hooks/useFirebase";
 import OrderView from "../Admin Dashboard/OrderView";
 import ListView from "../UserDashboard/ListView";
 import MyOrder from "../UserDashboard/MyOrder";
@@ -58,7 +58,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
-  const { user }: any = useAuth();
+  const { user }: any = useFirebase();
   const submitValue =
     AllData.inputFieldData && AllData.inputFieldData[0].search
       ? "Search"
