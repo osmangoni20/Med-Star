@@ -55,9 +55,9 @@ const CreateNotice = () => {
     e.preventDefault();
   
     setFieldValue({
-      ...fieldValue,description:draftToHtml(
+      ...fieldValue,description:parse(draftToHtml(
         convertToRaw(editorState.getCurrentContent())
-      )
+      ))
     })
     
     async function fetchData() {
