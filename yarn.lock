@@ -941,10 +941,10 @@
     "ansi-styles" "^4.1.0"
     "supports-color" "^7.1.0"
 
-"chart.js@^3.5.0":
-  "integrity" "sha512-cr8xhrXjLIXVLOBZPkBZVF6NDeiVIrPLHcMhnON7UufudL+CNeRrD+wpYanswlm8NpudMdrt3CHoLMQMxJhHRg=="
-  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.8.0.tgz"
-  "version" "3.8.0"
+"chart.js@^3.5.0", "chart.js@^3.8.2":
+  "integrity" "sha512-7rqSlHWMUKFyBDOJvmFGW2lxULtcwaPLegDjX/Nu5j6QybY+GCiQkEY+6cqHw62S5tcwXMD8Y+H5OBGoR7d+ZQ=="
+  "resolved" "https://registry.npmjs.org/chart.js/-/chart.js-3.8.2.tgz"
+  "version" "3.8.2"
 
 "chokidar@^3.5.3", "chokidar@>=3.0.0 <4.0.0":
   "integrity" "sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw=="
