@@ -1,12 +1,11 @@
 import Image from "next/image";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
-import ProgressModel from "../../common/Model/ProgressModel";
 
 const MyOrder = ({ order }: any) => {
   console.log(order);
   return (
     <div className={`${style.mainInputField_container}`}>
-      {!order.length && <ProgressModel />}
+      {/* {!order.length && <ProgressModel />} */}
       {order?.map((orderData: any, index: any) => (
         <div
           key={orderData._id}

@@ -6,7 +6,6 @@ import { IoIosCall } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
 import ambulanceImage from "../../assets/image/ambulance-dir.png";
 import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
-import ProgressModel from "../common/Model/ProgressModel";
 import SimpleButton from "../Custom/Button/SimpleButton";
 interface ambulanceData {
   id: number;
@@ -43,7 +42,7 @@ const Ambulance = () => {
 
   return (
     <div className={`${style.ambulance}`}>
-      {!ambulance.length && <ProgressModel />}
+      {/* {!ambulance.length && <ProgressModel />} */}
       <div
         className={`${style.titlePart} md:flex justify-between items-center my-6`}
       >

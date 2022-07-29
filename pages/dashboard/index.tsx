@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ProgressModel from "../../components/common/Model/ProgressModel";
 import RecentMessage from "../../components/DashboardPart/Dashboard/RecentMessage/RecentMessage";
 import RecentOrder from "../../components/DashboardPart/Dashboard/RecentOrder/RecentOrder";
 import SalesAnalytics from "../../components/DashboardPart/Dashboard/SalesAnalytics/SalesAnalytics";
@@ -66,7 +65,7 @@ const Dashboard = () => {
           </aside>
 
           <main className="py-5">
-            {Object.keys(dashboardData).length === 0 && <ProgressModel />}
+            {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
             <div>
               <DashboardCard
                 cardValue={{

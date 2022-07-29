@@ -54,7 +54,6 @@ import { FaUserAlt } from "react-icons/fa";
 import { MdMarkEmailUnread } from "react-icons/md";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
 import CustomModel from "../../common/Model/CustomModel";
-import ProgressModel from "../../common/Model/ProgressModel";
 import loader from "/assets/svg/Spin-1s-200px.svg";
 const UserProfile = () => {
   const [userData, setUserData] = useState<any>({});
@@ -163,7 +162,7 @@ const UserProfile = () => {
           setModel={setModel}
         ></CustomModel>
       )}
-      {progress && <ProgressModel />}
+      {/* {progress && <ProgressModel />} */}
       <form onSubmit={HandleSubmit}>
         <div className={`${style.form_input_field}`}>
           <div className={profileStyle.personal_image}>

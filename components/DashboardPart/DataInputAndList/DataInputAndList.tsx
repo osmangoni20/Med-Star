@@ -35,7 +35,6 @@ import CustomModel from "../../common/Model/CustomModel";
 import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
 import NoticeModel from "../../common/Model/NoticeModel";
 import OrderInfoModel from "../../common/Model/OrderInfoModel";
-import ProgressModel from "../../common/Model/ProgressModel";
 import useFirebase from "../../hooks/useFirebase";
 import OrderView from "../Admin Dashboard/OrderView";
 import ListView from "../UserDashboard/ListView";
@@ -503,7 +502,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                   setOrderModel={setOrderModel}
                 ></OrderInfoModel>
               )}
-              {!tableData.length && <ProgressModel />}
+              {/* {!tableData.length && <ProgressModel />} */}
 
               <div className="mx-5 mt-5">
                 <table className={`${tableStyle.table}`}>
