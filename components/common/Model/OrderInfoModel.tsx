@@ -39,11 +39,16 @@ const OrderInfoModel = ({
                 <hr />
                 <div>
                   <h2 className="mt-5">Product Details</h2>
-                  {data.orderProduct.map((pd: any) => (
-                    <div>
+                  {data.orderProduct.map((pd: any, index: any) => (
+                    <div key={index}>
                       <div className="grid grid-cols-2 my-10 gap-7">
                         <div className={style.image}>
-                          <Image src={pd.img} height={100} width={200} />
+                          <Image
+                            src={pd.img}
+                            height={100}
+                            alt={""}
+                            width={200}
+                          />
                         </div>
                         <div>
                           <h5>Product Name: {pd.name}</h5>

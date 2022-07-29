@@ -42,6 +42,7 @@ const DashboardInfoModel = ({
                         src={data[property] || demoImage}
                         height={200}
                         width={150}
+                        alt={""}
                       />
                     ) : (
                       <h6 className="text-xl pl-2">{data[property]}</h6>

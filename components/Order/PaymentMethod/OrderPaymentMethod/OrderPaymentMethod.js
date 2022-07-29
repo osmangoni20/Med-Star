@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState } from 'react';
 import style from '../../../../styles/Sass/Components/Order/PaymentMethod.module.scss';
 const PaymentMethodInfo = [
@@ -90,8 +91,8 @@ const PaymentMethod = ({ OrderInfoData, setOrderInfoData }) => {
                             <a href={method.paymentTypeLink}>
                               <div className={`$${style.PaymentType}  flex justify-between align-center`} >
                                 <input onClick={HandlePaymentType} type="radio" id={method.id} name="DelevaryType" value={method.paymentType} />
-                                <label for={method.id} >
-                                  <img src={method.image} alt="" />
+                                <label htmlFor={method.id} >
+                                  <Image src={method.image} alt="" />
                                 </label>
                       
                               </div>

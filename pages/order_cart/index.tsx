@@ -4,6 +4,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import useAuth from "../../components/hooks/useAuth";
+import WithAuth from "../../components/hooks/withAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
 import style from "../../styles/Sass/Components/OrderCart/_order_cart.module.scss";
@@ -136,5 +137,5 @@ const OrderCart = () => {
 //   // Pass data to the page via props
 //   return { props: { data } };
 // }
-export default OrderCart;
-// export default withAuth(OrderCart);
+// export default OrderCart;
+export default WithAuth(OrderCart);

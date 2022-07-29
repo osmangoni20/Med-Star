@@ -2,7 +2,7 @@ import { useState } from "react";
 import AppointmentModel from "../../../common/Model/AppointmentModel";
 import SimpleButton from "../../../Custom/Button/SimpleButton";
 import withAuth from "../../../hooks/withAuth";
-const BookingAppointment = ({ date, data }: { date: any; data: any }) => {
+const BookingAppointment = ({ date, data }: any) => {
   const [showModel, setModel] = useState<boolean>(false);
 
   const dd = date.toLocaleString("en-us", { weekday: "long" });

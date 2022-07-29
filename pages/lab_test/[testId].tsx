@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
@@ -86,9 +87,11 @@ const SingleTest = ({ data }: { data: any }) => {
         </div>
 
         <div className={`${style.order_Button} mb-5 flex justify-center`}>
-          <a href="/" onClick={HandleConfirmOrder}>
-            <LargestButton>Confirm </LargestButton>
-          </a>
+          <Link href="/">
+            <a onClick={HandleConfirmOrder}>
+              <LargestButton>Confirm </LargestButton>
+            </a>
+          </Link>
         </div>
       </main>
       <Footer />

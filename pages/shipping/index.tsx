@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
@@ -9,7 +10,7 @@ import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
 import useAuth from "../../components/hooks/useAuth";
-import withAuth from "../../components/hooks/withAuth";
+import WithAuth from "../../components/hooks/withAuth";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation.js";
 import { PaymentMethodInfo } from "../../components/Order/CustomerInformation/PaymentMethodInfo.js";
@@ -335,9 +336,11 @@ const Shipping = () => {
                 </form>
 
                 <div className={`${style.order_Button}`}>
-                  <a href="/" onClick={HandleConfirmOrder}>
-                    <LargestButton>Confirm Order</LargestButton>
-                  </a>
+                  <Link href="/">
+                    <a onClick={HandleConfirmOrder}>
+                      <LargestButton>Confirm Order</LargestButton>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -358,4 +361,4 @@ const Shipping = () => {
   );
 };
 
-export default withAuth(Shipping);
+export default WithAuth(Shipping);

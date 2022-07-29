@@ -43,8 +43,11 @@ const DashboardCard = ({ cardValue }: any) => {
 
   return (
     <div className={`${style.dashboardCard}`}>
-      {cardData.map((card) => (
-        <div className={`${style.cardInfo} flex justify-center items-center`}>
+      {cardData.map((card, index) => (
+        <div
+          key={index}
+          className={`${style.cardInfo} flex justify-center items-center`}
+        >
           <div className="">
             {card.icon === "income" && (
               <HiCurrencyBangladeshi

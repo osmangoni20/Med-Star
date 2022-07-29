@@ -7,10 +7,13 @@ const MyOrder = ({ order }: any) => {
   return (
     <div className={`${style.mainInputField_container}`}>
       {!order.length && <ProgressModel />}
-      {order?.map((orderData: any) => (
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-3 my-5 ml-16">
-          {orderData?.orderProduct?.map((data: any) => (
-            <div className="card w-96 bg-base-100 shadow-xl">
+      {order?.map((orderData: any, index: any) => (
+        <div
+          key={orderData._id}
+          className="grid md:grid-cols-2 grid-cols-1 gap-3 my-5 ml-16"
+        >
+          {orderData?.orderProduct?.map((data: any, index: any) => (
+            <div key={index} className="card w-96 bg-base-100 shadow-xl">
               <figure>
                 <Image src={data.img} height={200} width={200} alt="Shoes" />
               </figure>

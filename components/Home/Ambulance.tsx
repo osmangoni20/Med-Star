@@ -39,7 +39,7 @@ const Ambulance = () => {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, []);
+  }, [ambulance.length, progress]);
 
   return (
     <div className={`${style.ambulance}`}>

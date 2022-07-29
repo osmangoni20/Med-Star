@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
@@ -7,15 +7,13 @@ import BookingAppointment from "../../components/Doctor/Appointments/BookingAppo
 
 const Appointment = ({ data }: { data: any }) => {
   const [doctorData, setDoctorData] = useState({});
-  const [SelectedDate, setSelectedDate] = useState(new Date());
+  const [SelectedDate, setSelectedDate] = useState<Date>(new Date());
   const HandleOnChange = (date: any) => {
     setSelectedDate(date);
   };
-  useEffect(() => {
-    if (!data.camberTime) {
-      setDoctorData({ ...doctorData, patientTime: "3.00pm - 8.00pm" });
-    }
-  }, []);
+  if (!data.camberTime) {
+    setDoctorData({ ...doctorData, patientTime: "3.00pm - 8.00pm" });
+  }
   return (
     <div>
       <Meta
@@ -25,7 +23,7 @@ const Appointment = ({ data }: { data: any }) => {
       />
       <Header />
       <AppointmentHeader HandleOnChange={HandleOnChange}></AppointmentHeader>
-      <BookingAppointment date={SelectedDate} data={data}></BookingAppointment>
+      <BookingAppointment />
       <Footer />
     </div>
   );

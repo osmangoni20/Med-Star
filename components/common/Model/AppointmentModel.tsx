@@ -7,6 +7,7 @@ import modelStyle from "../../../styles/Sass/common/model/dynamicModel.module.sc
 import style from "../../../styles/Sass/pages/Shipping.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
+import WithAuth from "../../hooks/withAuth";
 import CustomModel from "./CustomModel";
 import { ModelInputField } from "./ModelInputFieldInfo";
 
@@ -48,7 +49,7 @@ const AppointmentModel = ({
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, []);
+  }, [patient, user.email]);
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
@@ -166,12 +167,15 @@ const AppointmentModel = ({
                             onChange={(e) => HandleFieldValue(e)}
                           >
                             {data.options.map(
-                              (option: {
-                                value: string;
+                              (
+                                option: {
+                                  value: string;
 
-                                name: string;
-                              }) => (
-                                <option value={option.value}>
+                                  name: string;
+                                },
+                                index: any
+                              ) => (
+                                <option key={index} value={option.value}>
                                   {option.name}
                                 </option>
                               )
@@ -196,5 +200,5 @@ const AppointmentModel = ({
   );
 };
 
-export default AppointmentModel;
-// export default withAuth(OrderCart);
+// export default ;
+export default WithAuth(AppointmentModel);

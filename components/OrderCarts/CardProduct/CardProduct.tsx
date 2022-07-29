@@ -41,7 +41,7 @@ const CardProduct = ({
   };
   useEffect(() => {
     HandleUpdateQuantity(productCount.quantity, _id);
-  }, [productCount]);
+  }, [HandleUpdateQuantity, _id]);
 
   const HandleIncreaseQuantity = (id: any) => {
     const prevValue = {

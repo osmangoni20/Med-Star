@@ -90,7 +90,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
     (admin ? fetchData() : fetchUserDashboardData())
       // make sure to catch any error
       .catch(console.error);
-  }, [menu, submenu, isAdmin]);
+  }, [dynamicRoute, isAdmin]);
   console.log(orderModel);
   const HandleModel = (data: any) => {
     console.log(data);
@@ -287,32 +287,35 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                 <form onSubmit={HandleFormSubmit}>
                   <div className={`${style.form_input_field}`}>
                     {AllData.inputFieldData.map(
-                      (inputField: {
-                        name:
-                          | string
-                          | number
-                          | boolean
-                          | ReactElement<
-                              any,
-                              string | JSXElementConstructor<any>
-                            >
-                          | ReactFragment
-                          | ReactPortal
-                          | null
-                          | undefined;
-                        icon: any;
-                        selectOptions: any[];
-                        registerName: string;
-                        inputType: string | (string & {}) | undefined;
-                        default:
-                          | string
-                          | number
-                          | readonly string[]
-                          | undefined;
-                        placeholderName: string | undefined;
-                        textAria: any;
-                      }) => (
-                        <div>
+                      (
+                        inputField: {
+                          name:
+                            | string
+                            | number
+                            | boolean
+                            | ReactElement<
+                                any,
+                                string | JSXElementConstructor<any>
+                              >
+                            | ReactFragment
+                            | ReactPortal
+                            | null
+                            | undefined;
+                          icon: any;
+                          selectOptions: any[];
+                          registerName: string;
+                          inputType: string | (string & {}) | undefined;
+                          default:
+                            | string
+                            | number
+                            | readonly string[]
+                            | undefined;
+                          placeholderName: string | undefined;
+                          textAria: any;
+                        },
+                        index: any
+                      ) => (
+                        <div key={index}>
                           <h5>{inputField.name} </h5>
                           {!inputField.textAria && (
                             <div className={`${style.input_filed}`}>
@@ -395,11 +398,13 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                   }
                                   onChange={HandleInputFieldValue}
                                 >
-                                  {inputField.selectOptions.map((option) => (
-                                    <option value={option.value}>
-                                      {option.name}
-                                    </option>
-                                  ))}
+                                  {inputField.selectOptions.map(
+                                    (option, index) => (
+                                      <option key={index} value={option.value}>
+                                        {option.name}
+                                      </option>
+                                    )
+                                  )}
                                 </select>
                               ) : inputField.inputType !== "file" ? (
                                 <input
@@ -429,31 +434,6 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                   onChange={(e) => HandleInputFieldValue(e)}
                                 />
                               )}
-
-                              {/* ) : (
-                      <input
-                      name={`${inputField.registerName}`}
-                      type={inputField.inputType}
-                        placeholder={inputField.placeholderName}
-                        defaultValue={inputField.default}
-                        required
-                        onBlur={(e) => HandleInputFieldValue(e)}
-                      />
-                    )} */}
-
-                              {/* {inputField.inputType && (
-                                <input
-                                  className={
-                                    inputField.inputType === "file" && "pt-4"
-                                  }
-                                  type={inputField.inputType}
-                                  defaultValue={inputField.default}
-                                  placeholder={inputField.placeholderName}
-                                  {...register(inputField.registerName, {
-                                    required: true,
-                                  })}
-                                />
-                              )} */}
                             </div>
                           )}
                           {/* Text Aria Input */}
@@ -528,8 +508,8 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
               <div className="mx-5 mt-5">
                 <table className={`${tableStyle.table}`}>
                   <thead>
-                    {AllData?.tableHeader?.map((data: any) => (
-                      <th>{data.name}</th>
+                    {AllData?.tableHeader?.map((data: any, index: any) => (
+                      <th key={index}>{data.name}</th>
                     ))}
                   </thead>
                   {/* <br/> */}

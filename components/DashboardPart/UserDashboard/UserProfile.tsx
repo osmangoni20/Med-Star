@@ -79,7 +79,7 @@ const UserProfile = () => {
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, []);
+  }, [user.email]);
 
   // Input Value
 
@@ -184,14 +184,19 @@ const UserProfile = () => {
                   )}
                 </span>
                 <figcaption className={profileStyle.personal_figcaption}>
-                  <Image src={cameraImage} height={40} width={40} />
+                  <Image
+                    src={cameraImage}
+                    height={40}
+                    width={40}
+                    alt={"Profile"}
+                  />
                 </figcaption>
               </figure>
             </label>
           </div>
 
-          {field.map((field) => (
-            <div>
+          {field.map((field, index) => (
+            <div key={index}>
               <h5>{field.name} </h5>
               <div className={`${style.input_filed}`}>
                 {field.icon === "name" && (

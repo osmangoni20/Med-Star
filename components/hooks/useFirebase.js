@@ -1,8 +1,8 @@
 import {
-    createUserWithEmailAndPassword,
-    getAuth,
-    onAuthStateChanged,
-    sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import FirebaseAuthentication from "../Authentication/firebase/firebase.initialize";
@@ -148,7 +148,7 @@ const useFirebase=()=>{
             }
          
           });
-     },[])
+     },[auth])
 
      return{
         SignInWithEmailPassword,

@@ -116,7 +116,7 @@ const CreateNotice = () => {
           <form onSubmit={HandleSubmit}>
             <div className={`${style.form_input_field}`}>
               {CreateNoticeInfoData.inputFieldData.map((inputField, index) => (
-                <div>
+                <div key={index}>
                   <h5>{inputField.name} </h5>
                   <div className={`${style.input_filed}`}>
                     {inputField.icon === "title" && (

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-const withAuth = (WrappedComponent: any) => {
+const WithAuth = (WrappedComponent: any) => {
   return (props: JSX.IntrinsicAttributes) => {
     // checks whether we are on client / browser or server.
     if (typeof window !== "undefined") {
@@ -23,4 +23,4 @@ const withAuth = (WrappedComponent: any) => {
   };
 };
 
-export default withAuth;
+export default WithAuth;
