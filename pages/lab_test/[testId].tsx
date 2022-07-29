@@ -43,7 +43,7 @@ const SingleTest = ({ data }: { data: any }) => {
                 <form onSubmit={HandleFormSubmit}>
                   <div className={`${style.form_input_field}`}>
                     {InputFiledInformation.map((data: any, index: number) => (
-                      <div>
+                      <div key={index}>
                         <h5>{data.fieldHeader}</h5>
                         <div className={`${style.input_filed}`}>
                           {data.icon === "FaUserAlt" && (

@@ -33,7 +33,7 @@ const Banner = () => {
     <div className={`${style.carousel} transition-all duration-500 ease-in`}>
       <div className={`${style.carousel_inner} `}>
         <div className={`${style.slide} ${style.active_anim} `}>
-          <Image  src={images[currImg].img} />
+          <Image src={images[currImg].img} />
         </div>
 
         <button onClick={nextSlide} className={`${style.btn_slide} ${style.next}`} >

@@ -14,3 +14,17 @@
     height: 40px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .logopart {
+    width: 362px;
+  }
+}
+
+@media (max-width: 640px) {
+  .logopart {
+    h2 {
+      display: none;
+    }
+  }
+}

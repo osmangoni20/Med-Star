@@ -2,46 +2,83 @@ import { FaCity, FaUserAlt } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { IoLogoDesignernews } from "react-icons/io";
 import style from "../../../../styles/Sass/Components/DashboardPart/_dashboardCard.module.scss";
-const DashboardCard = ({ card }: any) => {
-  const { total, name, icon } = card;
-  // style={{backgroundColor:bgColor}}
-  const cardIcon = {
-    background: "linear-gradient(80deg, #ffb996 20%, #ff7c96)",
-  };
-  if (card.id === 1) {
-    cardIcon.background = "linear-gradient(80deg, #ffb996 20%, #ff7c96)";
-  } else if (card.id === 2) {
-    cardIcon.background = "linear-gradient(80deg, #87C5F7 20%, #389BE9)";
-  } else if (card.id === 3) {
-    cardIcon.background = "linear-gradient(80deg, #43D3BF 20%, #61D6C8)";
-  } else {
-    cardIcon.background = "linear-gradient(80deg, #FFC27C 20%, #FF9020)";
-  }
-  return (
-    <div>
-      <div className={`${style.cardInfo} flex justify-center items-center`}>
-        <div className="">
-          {icon === "income" && (
-            <HiCurrencyBangladeshi
-              style={cardIcon}
-              className={style.cardIcon}
-            />
-          )}
-          {icon === "name" && (
-            <FaUserAlt style={cardIcon} className={style.cardIcon} />
-          )}
-          {icon === "sales" && (
-            <IoLogoDesignernews style={cardIcon} className={style.cardIcon} />
-          )}
-          {icon === "order" && (
-            <FaCity style={cardIcon} className={style.cardIcon} />
-          )}
 
-          <h2>{name}</h2>
-          <h3>{total}</h3>
-          <p>Last 24 hours</p>
+const DashboardCard = ({ cardValue }: any) => {
+  const { totalIncome, totalNewOrder, totalOrder, totalSuccessOrder } =
+    cardValue;
+
+  const cardData = [
+    {
+      id: 1,
+      name: "Total Sales",
+      icon: "sales",
+      iconBackground: "linear-gradient(80deg, #ffb996 20%, #ff7c96)",
+      total:
+        totalSuccessOrder < 10 ? "0" + totalSuccessOrder : totalSuccessOrder,
+    },
+    {
+      id: 2,
+      name: "Total Income",
+      iconBackground: "linear-gradient(80deg, #87C5F7 20%, #389BE9)",
+      icon: "income",
+      total: totalIncome < 10 ? "0" + totalIncome : totalIncome,
+    },
+    {
+      id: 3,
+      name: "Total Order",
+      iconBackground: "linear-gradient(80deg, #43D3BF 20%, #61D6C8)",
+      icon: "order",
+      total: totalOrder < 10 ? "0" + totalOrder : totalOrder,
+    },
+    {
+      id: 4,
+      name: "Total New Order",
+      iconBackground: "linear-gradient(80deg, #FFC27C 20%, #FF9020)",
+      icon: "order",
+      total: totalNewOrder < 10 ? "0" + totalNewOrder : totalNewOrder,
+    },
+  ];
+
+  // style={{backgroundColor:bgColor}}
+
+  return (
+    <div className={`${style.dashboardCard}`}>
+      {cardData.map((card) => (
+        <div className={`${style.cardInfo} flex justify-center items-center`}>
+          <div className="">
+            {card.icon === "income" && (
+              <HiCurrencyBangladeshi
+                style={{ background: card.iconBackground }}
+                className={style.cardIcon}
+              />
+            )}
+            {card.icon === "name" && (
+              <FaUserAlt
+                style={{ background: card.iconBackground }}
+                className={style.cardIcon}
+              />
+            )}
+            {card.icon === "sales" && (
+              <IoLogoDesignernews
+                style={{ background: card.iconBackground }}
+                className={style.cardIcon}
+              />
+            )}
+            {card.icon === "order" && (
+              <FaCity
+                style={{ background: card.iconBackground }}
+                className={style.cardIcon}
+              />
+            )}
+
+            <div>
+              <h2>{card.name}</h2>
+              <h3>{card.total}</h3>
+              <p>Last 24 hours</p>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

@@ -40,16 +40,18 @@ const PatientService = () => {
       >
         <div className={`flex items-center`}>
           <span className="md:block hidden">
-            <Image src={patientService1Image} alt="" />
+            <Image height={200} width={200} src={patientService1Image} alt="" />
           </span>
 
           <Image
             className="md:block hidden"
             src={patientService3Image}
             alt=""
+            height={200}
+            width={200}
           />
           <span className="md:block hidden">
-            <Image src={patientServiceImage} alt="" />
+            <Image height={200} width={200} src={patientServiceImage} alt="" />
           </span>
         </div>
         <div className={`${style.service}`}>

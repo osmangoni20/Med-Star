@@ -1,122 +1,152 @@
-import { convertToRaw, EditorState } from 'draft-js';
+import { convertToRaw, EditorState } from "draft-js";
 import draftToHtml from 'draftjs-to-html';
-import React, { useState } from "react";
-import { Editor } from 'react-draft-wysiwyg';
-import { useForm } from "react-hook-form";
-import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import DashboardHeader from "../DashboardPart/DashboardHeader/DashboardHeader";
-import MenuOptionsHeader from "../DashboardPart/MenuOptionsHeader/MenuOptionsHeader";
-import Sidebar from "../DashboardPart/Sidebar/Sidebar";
-import SidebarMenuHeder from "../DashboardPart/SidebarManuHeder/SidebarMenuHeder";
-import "../DashboardPart/Style/inputStyle.css";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { BsCalendarDateFill } from "react-icons/bs";
+import { MdTitle } from "react-icons/md";
+// import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
+import CustomModel from "../../common/Model/CustomModel";
 import CreateNoticeInfoData from "./CreateNoticeInfoData";
+const Editor = dynamic(
+  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  { ssr: false }
+);
 
 const CreateNotice = () => {
-    const Style={
-        border: "2px solid gray",
-  padding: "0px",
-  marginTop: "15px"
-}
-    
-    // const[text,setText]=useState();
-    const [text,setText]=useState({
-    editorState: EditorState.createEmpty(),
-  });
-   const onEditorStateChange = (editorState) => {
-    setText({
-          editorState,
-        });
-      };
-
-      const { editorState } = text;
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (submitData) => {
-    submitData.newNotice=draftToHtml(convertToRaw(editorState.getCurrentContent()))
-   console.log(submitData)
+  const [fieldValue, setFieldValue] = useState({});
+  const [model, setModel] = useState(false);
+  const [modelData, setModelData] = useState({});
+  const Style = {
+    border: "1px solid gray",
+    borderRadius:"5px",
+    padding: "20px 2px",
+    marginTop: "15px",
+    backgroundColor:"white"
   };
 
+  // const[text,setText]=useState();
+  const [text, setText] = useState({
+    editorState: EditorState.createEmpty(),
+  });
+  const onEditorStateChange = (editorState) => {
+    setText({
+      editorState,
+    });
+  };
+
+  const { editorState } = text;
+
+  // Input Field Handle
+  const HandleInputFieldValue = (e) => {
+    console.log(e.target.name);
+    if (!e.target.files) {
+      const data = { ...fieldValue, [e.target.name]: e.target.value };
+      setFieldValue(data);
+    } else {
+      const data = { ...fieldValue, img: e.target.files[0] };
+      setFieldValue(data);
+    }
+  };
+
+  // Notice Submit
+  const HandleSubmit = (e) => {
+    e.preventDefault();
   
+    setFieldValue({
+      ...fieldValue,description:draftToHtml(
+        convertToRaw(editorState.getCurrentContent())
+      )
+    })
+    
+    async function fetchData() {
+      const res = await fetch(`https://med-star-bd.herokuapp.com/create_notice`, {
+        method: "POST",
+        body: JSON.stringify(fieldValue),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      // convert data to json/
+      const data = await res.json();
+      console.log(data);
+      if (data.insertedId) {
+        setModel(true);
+        setProgress(false);
+        setModelData({
+          text1: "Successfully Notice Generated",
+          text2: "Ok",
+          successType: true,
+        });
+      } else {
+        setProgress(true);
+      }
+    }
+    // call the function
+    fetchData()
+    // // //   //   // make sure to catch any error
+      .catch(console.error);
+  };
+
   return (
     <div>
-      <DashboardHeader></DashboardHeader>
-      <div className="flex">
-        <aside className="h-screen sticky top-0 overflow-hidden">
-          <Sidebar></Sidebar>
-        </aside>
-        <main>
-          {/* Menu Header */}
-          <SidebarMenuHeder
-            menuHeader={CreateNoticeInfoData.sidebarMenuHeader}
-          ></SidebarMenuHeder>
-          {/* Sub Menu Information */}
-          <div style={Style}>
-            <MenuOptionsHeader
-              menuOptionHeader={CreateNoticeInfoData.menuOptionHeader}
-            ></MenuOptionsHeader>
+      {/* success model */}
+      
+      <div style={Style}>
+        {/* Input Form */}
+        <div>
+          <Editor
+            editorState={editorState}
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            onEditorStateChange={onEditorStateChange}
+          />
 
-            {/* Input Form */}
-            <div>
-                 <Editor
-                   editorState={editorState}
-                   wrapperClassName="demo-wrapper"
-                   editorClassName="demo-editor"
-                   onEditorStateChange={onEditorStateChange}
-                 />
-                 
-                 <hr className="my-5"></hr>
-                 </div>
-                 
-            {CreateNoticeInfoData.inputFieldData&&<form onSubmit={handleSubmit(onSubmit)}>
-              <div className="grid grid-cols-2 gap-3 my-5 px-3">
-                {CreateNoticeInfoData.inputFieldData.map((inputField) => (
-                  <div class="input-icons">
-                    <h5>{inputField.name} </h5>
-                    {inputField.icon && <i class={inputField.icon}></i>}
-
-                  
-                    {inputField.inputType && (
-                      <input
-                        type={inputField.inputType}
-                        placeholder={inputField.placeholderName}
-                        className="input-filed"
-                        {...register(inputField.registerName, {
-                          required: true,
-                        })}
-                      />
+          <hr className="my-5"></hr>
+        </div>
+        {model && (
+        <CustomModel
+          modelData={modelData}
+          showModel={model}
+          setModel={setModel}
+        ></CustomModel>
+      )}
+        {
+          <form onSubmit={HandleSubmit}>
+            <div className={`${style.form_input_field}`}>
+              {CreateNoticeInfoData.inputFieldData.map((inputField, index) => (
+                <div>
+                  <h5>{inputField.name} </h5>
+                  <div className={`${style.input_filed}`}>
+                    {inputField.icon === "title" && (
+                      <MdTitle className={`${style.input_icon}`} />
                     )}
-                    
-
-                    {errors[inputField.registerName] && (
-                      <span style={{ color: "red" }}>
-                        This field is required
-                      </span>
+                    {inputField.icon === "date" && (
+                      <BsCalendarDateFill className={`${style.input_icon}`} />
                     )}
+                    <input
+                      name={inputField.registerName}
+                      type={inputField.inputType}
+                      placeholder={inputField.placeholderName}
+                      required
+                      onChange={(e) => HandleInputFieldValue(e)}
+                    />
                   </div>
-                ))}
-              </div>
-
-              
-                
-            
-              <div className="flex justify-center">
-                <input
-                  value={"Submit"}
-                  className="submitBtn"
-                  type="submit"
-                />
-              </div>
-            
-            </form>}
+                </div>
+              ))}
             </div>
-        </main>
+            <div className="flex justify-center">
+              <input value={"Submit"} className={style.btn} type="submit" />
+            </div>
+<h2>{
+  fieldValue.description 
+}</h2>
+          </form>
+        }
+      </div>
     </div>
-    </div>
-    );
+  );
 };
 
 export default CreateNotice;

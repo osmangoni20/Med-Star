@@ -6,7 +6,7 @@ import checked from "/assets/image/checked.png";
 import userImage from "/assets/image/default_profile.png";
 const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
   const { user }: { user: any } = useFirebase();
-
+  console.log(modelData);
   return (
     showModel && (
       <div>
@@ -15,7 +15,13 @@ const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
             <div className="flex justify-center">
               {modelData.wrongType && (
                 <div>
-                  <Image className="text-center" src={cancel} alt=""></Image>
+                  <Image
+                    className="text-center"
+                    src={cancel}
+                    height={100}
+                    width={100}
+                    alt=""
+                  ></Image>
                   <h3>Sorry</h3>
                   <p>{modelData.text1}</p>
                   <button
@@ -29,7 +35,13 @@ const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
 
               {modelData.successType && (
                 <div className="text-center">
-                  <Image className="text-center" src={checked} alt=""></Image>
+                  <Image
+                    className="text-center"
+                    height={60}
+                    width={60}
+                    src={checked}
+                    alt=""
+                  ></Image>
                   <h2>Success</h2>
                   <p className={style.text}>{modelData.text1}</p>
                   <p className={style.text}>{modelData.text2}</p>

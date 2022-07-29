@@ -95,8 +95,9 @@ const OrderCart = () => {
                 </div>
                 <div className={`${style.card_Product}`}>
                   <div className="row">
-                    {cardProducts?.map((pd) => (
+                    {cardProducts?.map((pd, index) => (
                       <CardProduct
+                        key={index}
                         totalPrice={TotalPrize}
                         HandleUpdateQuantity={HandleUpdateQuantity}
                         deleteItem={deleteItem}

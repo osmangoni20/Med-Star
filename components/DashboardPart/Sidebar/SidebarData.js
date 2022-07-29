@@ -4,12 +4,12 @@ export const userSidebarMenu=[
   
   {
     name: "Your Profile",
-    link: "/dashboard//my_profile",
+    link: "/dashboard//user_profile",
     icon: "profile",
   },
     {
       name: "Your Order",
-      link: "/dashboard/my_order",
+      link: "/dashboard/user_order",
       icon: "order",
     },
     {
@@ -19,7 +19,7 @@ export const userSidebarMenu=[
     },
     {
       name: "Blood Donate",
-      link: "/dashboard/new_donner",
+      link: "/dashboard/donner_info",
       icon: "blood",
     },
     {
@@ -43,7 +43,7 @@ export const  adminSidebarMenu = [
   },
   {
     name: "Message",
-    link: "/message",
+    link: "/dashboard/user_message",
     icon: "dashboard",
   },
   {
@@ -58,8 +58,9 @@ export const  adminSidebarMenu = [
     name: "Patient Manage",
    
     subOptions:[
-      { name: "Patient",  link: "/dashboard/patient_manage"},
-      { name: "Patient History", link: "/dashboard/patient/doctorHistory" },
+      { name: "Appointment",  link: "/dashboard/appointment"},
+      { name: "Add Doctor Appointment",  link: "/dashboard/new_appointment"},
+      { name: "Patient History", link: "/dashboard/patient/patientHistory" },
     ],
     icon: "patient",
   },
@@ -67,7 +68,7 @@ export const  adminSidebarMenu = [
     name: "Service Manage",
     icon: "product",
     subOptions: [
-      { name: "Add Product",  icon: "product", link: "/dashboard/product_manage/add_new_product" },
+      { name: "Add Product",  icon: "product", link: "/dashboard/product_manage/add_product" },
       { name: "Product List",  icon: "product", link: "/dashboard/product_manage/medicine" },
       { name: "Add Doctor", icon:"doctor", link: "/dashboard/Doctor's Manage/add_doctor" },
       { name: "Doctor List", icon:"doctor", link: "/dashboard/Doctor's Manage/doctor" },

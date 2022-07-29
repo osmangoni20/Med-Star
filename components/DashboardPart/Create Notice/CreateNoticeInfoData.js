@@ -6,23 +6,28 @@ const CreateNoticeInfoData={
             placeholderName:"Notice Title",
             textAria:false,
             inputType:"text",
-            icon:"fa fa-user icon"
+            icon:"title"
+          
+        },
+        {
+            name:"Notice Sub Title",
+            registerName:"noticeSubTitle",
+            placeholderName:"Notice Sub Title",
+            textAria:false,
+            inputType:"text",
+            icon:"title"
           
         },
         
         {
-            name:"Unique Id",
-            registerName:"id",
-            placeholderName:"Any Unique Id",
-            icon:"fa fa-user icon",
-            inputType:"text",
+            name:"Date",
+            registerName:"date",
+            placeholderName:"Date",
+            icon:"date",
+            inputType:"date",
             
         }
        
-    ],
-menuOptionHeader:{
-    name:"Notice Board",icon:"people-outline"},
-   sidebarMenuHeader:"Notice Board"
-}
+    ],}
 
 export default CreateNoticeInfoData;

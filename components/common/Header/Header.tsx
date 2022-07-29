@@ -22,23 +22,23 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
   const [totalOrderCart, setCartLength] = useState<any>(0);
-  const admin = false;
+  const [isAdmin, setAdmin] = useState(false);
+
   const totalCardNumber = useSelector((state: State) => state.cart);
-
+  console.log(user);
   useEffect(() => {
-    // if (typeof window !== "undefined") {
-    //   localStorage.getItem("totalCart");
-    // }
-    // const totalCardNumber = localStorage?.getItem("totalCart");
-    // setCartLength(totalCart);
-
     {
       const fetchData = async () => {
         // get the data from the api
         const res = await fetch("https://med-star-bd.herokuapp.com/my-cart");
+        const adminRes = await fetch(
+          `http://localhost:5000/isAdmin/${user.email}`
+        );
         // convert data to json
+
         const data = await res.json();
         setCartLength(data.length);
+        setAdmin(Boolean(localStorage?.getItem("isAdmin")));
         // if (typeof window !== "undefined") {
         //   localStorage.setItem("totalCart", data.length);
         // }
@@ -49,7 +49,7 @@ const Header = () => {
         // make sure to catch any error
         .catch(console.error);
     }
-  }, [totalCardNumber]);
+  }, [totalCardNumber, user]);
   return (
     <div>
       <div className={`${style.headerComponent} sticky top-0`}>
@@ -89,7 +89,7 @@ const Header = () => {
               {/* <img className="branding" src={logo} alt=""></img> */}
               <Link href={"/"} passHref>
                 <a className={style.logo}>
-                  <Image src={logo} alt="Med Star" />
+                  <Image src={logo} height={60} width={60} alt="Med Star" />
                 </a>
               </Link>
             </div>
@@ -125,10 +125,7 @@ const Header = () => {
               <span className="md:block lg:block ">
                 {user.email ? (
                   <span className={style.profileLogo}>
-                    <Link
-                      href={admin ? "/dashboard" : "/dashboard/my_order"}
-                      passHref
-                    >
+                    <Link href={"/dashboard"} passHref>
                       <Image
                         src={user.photoURL || defaultProfile}
                         alt={""}

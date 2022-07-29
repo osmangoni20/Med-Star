@@ -6,6 +6,7 @@ import { MdAddIcCall } from "react-icons/md";
 import modelStyle from "../../../styles/Sass/common/model/dynamicModel.module.scss";
 import style from "../../../styles/Sass/pages/Shipping.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
+import useFirebase from "../../hooks/useFirebase";
 import CustomModel from "./CustomModel";
 import { ModelInputField } from "./ModelInputFieldInfo";
 
@@ -21,27 +22,28 @@ const AppointmentModel = ({
   setModel: Dispatch<SetStateAction<boolean>>;
 }) => {
   // const router = useRouter();
-  const [appointment, setAppointment] = useState(data);
-  const [customer, setCustomer] = useState<any>({});
+  const [fieldValue, setFieldValue] = useState(data);
+  const [patient, setPatient] = useState<any>({});
   const [model, setSuccessModel] = useState(false);
   const [modelData, setModelData] = useState({});
   const [progress, setProgress] = useState(false);
+  const { user }: { user: any } = useFirebase();
   const route = useRouter();
   const HandleFieldValue = (e: any) => {
-    const data = { ...appointment, date, [e.target.name]: e.target.value };
-    setAppointment(data);
+    const data = { ...fieldValue, date, [e.target.name]: e.target.value };
+    setFieldValue(data);
   };
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/user/ehostelbd@gmail.com"
+        `https://med-star-bd.herokuapp.com/user/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
-      setCustomer(userData);
+      setPatient(userData);
     }
-    console.log(customer);
+    console.log(patient);
     // call the function
     fetchData()
       // make sure to catch any error
@@ -50,31 +52,12 @@ const AppointmentModel = ({
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    if (!appointment.email) {
-      const CustomerData = {
-        ...appointment,
-        email: customer.email,
-      };
-      setAppointment(CustomerData);
-    }
-    if (!appointment.first_name) {
-      const CustomerData = {
-        ...appointment,
-        name: customer.first_name + " " + customer.last_name,
-      };
-
-      setAppointment(CustomerData);
-    }
-    if (!appointment.mobile_no) {
-      const CustomerData = {
-        ...appointment,
-        mobile_no: customer.mobile_no,
-      };
-      setAppointment(CustomerData);
-    }
-
     const appointmentConformData = {
-      ...appointment,
+      email: fieldValue.email || patient.email,
+      patientName:
+        fieldValue.first_name || patient.first_name + " " + patient.last_name,
+      patient_mobile_no: fieldValue.first_name || patient.mobile_no,
+      doctor_name: fieldValue.name,
       status: "pending",
     };
     setModel(false);
@@ -113,7 +96,7 @@ const AppointmentModel = ({
       // make sure to catch any error
       .catch(console.error);
   };
-  console.log(customer);
+
   return (
     <div>
       {showModel && (
@@ -150,7 +133,7 @@ const AppointmentModel = ({
               <form onSubmit={HandleFormSubmit}>
                 <div className={`${style.form_input_field}`}>
                   {ModelInputField.map((data: any, index: number) => (
-                    <div>
+                    <div key={index}>
                       <h5>{data.fieldHeader}</h5>
                       <div className={`${style.input_filed}`}>
                         {data.icon === "FaUserAlt" && (
@@ -173,7 +156,7 @@ const AppointmentModel = ({
                             type={data.inputFiledType}
                             placeholder={data.fieldHeader}
                             name={data.name}
-                            defaultValue={customer[data.name]}
+                            defaultValue={patient[data.name]}
                             onBlur={(e) => HandleFieldValue(e)}
                           />
                         )}

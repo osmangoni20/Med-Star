@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import style from "../../../styles/Sass/common/model/doctorModel.module.scss";
+import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
+import demoImage from "/assets/image/2doctor.png";
 // interface Data {
 //   id: number;
 //   img: any;
@@ -32,10 +34,18 @@ const DashboardInfoModel = ({
             <div>
               <h2 className="text-center mb-5">Order Details</h2>
               <div className="grid grid-cols-2 gap-2">
-                {Object.keys(data).map((property) => (
-                  <div className="flex gap-2 items-center">
+                {Object.keys(data).map((property, index) => (
+                  <div key={index} className="flex gap-2 items-center">
                     <h5 className=" text-2xl bold capitalize">{property}: </h5>
-                    <h6 className="text-xl pl-2">{data[property]}</h6>
+                    {property === "img" ? (
+                      <Image
+                        src={data[property] || demoImage}
+                        height={200}
+                        width={150}
+                      />
+                    ) : (
+                      <h6 className="text-xl pl-2">{data[property]}</h6>
+                    )}
                   </div>
                 ))}
               </div>

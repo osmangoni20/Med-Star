@@ -78,7 +78,12 @@ const AmbulanceService = ({ data }: any) => {
                   className={`${style.ambulanceCard} card card-compact w-84 bg-base-100 shadow-xl`}
                 >
                   <figure>
-                    <Image src={ambulanceImage} alt="Shoes" />
+                    <Image
+                      height={150}
+                      width={150}
+                      src={ambulanceImage}
+                      alt="Shoes"
+                    />
                   </figure>
                   <div className="card-body">
                     <div className="flex justify-center text-xl">
@@ -127,7 +132,7 @@ const AmbulanceService = ({ data }: any) => {
 
 export async function getServerSideProps(ctx: { params: { doctorId: any } }) {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/ambulance/`);
+  const res = await fetch(`https://med-star-bd.herokuapp.com/ambulance/`);
   const data = await res.json();
 
   // Pass data to the page via props

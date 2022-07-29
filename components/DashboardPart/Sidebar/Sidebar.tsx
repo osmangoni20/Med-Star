@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import style from "../../../styles/Sass/Components/DashboardPart/_sidebar.module.scss";
 import useFirebase from "../../hooks/useFirebase";
 import { adminSidebarMenu, userSidebarMenu } from "./SidebarData";
@@ -6,8 +7,13 @@ import SubMenu from "./SubMenu";
 import activePerson from "/assets/image/default_profile.png";
 const Sidebar = () => {
   const { user }: any = useFirebase();
-  const admin = false;
-  const sidebarMenu = admin ? adminSidebarMenu : userSidebarMenu;
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    setIsAdmin(Boolean(localStorage.getItem("isAdmin") === "true"));
+  }, [user]);
+  console.log(isAdmin);
+  const sidebarMenu = isAdmin ? adminSidebarMenu : userSidebarMenu;
   return (
     <div className={`${style.sidebar} h-screen`}>
       <div className={`${style.dashboardLogo} pl-3  flex justify-between`}>
@@ -28,7 +34,7 @@ const Sidebar = () => {
             <h2>
               {user.email ? user.displayName.slice(0, 14) + "." : "User Name"}
             </h2>
-            <p>{admin ? "Admin" : "Customer"}</p>
+            <p>{isAdmin ? "Admin" : "Customer"}</p>
           </div>
         </div>
         <div className="pr-2">

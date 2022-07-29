@@ -97,24 +97,24 @@ const Shipping = () => {
 
                                 {/* Submit Form */}
                                 <form className={`${style.submitForm}`} >
-                                    <div class="form-group w-100 p-1">
-                                        <input type="email" onChange={HandleInput} name='email' class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                                    <div className="form-group w-100 p-1">
+                                        <input type="email" onChange={HandleInput} name='email' className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" />
                                     </div>
-                                    <div class="form-group w-100 p-1">
-                                        <input type="text" onBlur={HandleInput} name='name' class="form-control" id="name" placeholder="Name" />
+                                    <div className="form-group w-100 p-1">
+                                        <input type="text" onBlur={HandleInput} name='name' className="form-control" id="name" placeholder="Name" />
                                     </div>
                                     {/* Phone Number Input */}
                                     <div className='flex items-center'>
-                                        <div class="form-group w-100 p-1">
-                                            <input type="text" onBlur={HandleInput} class="form-control" name='number' id="phone" placeholder="Phone Number" />
+                                        <div className="form-group w-100 p-1">
+                                            <input type="text" onBlur={HandleInput} className="form-control" name='number' id="phone" placeholder="Phone Number" />
                                         </div>
-                                        <div class="form-group w-100 p-1">
-                                            <input type="text" onBlur={HandleInput} class="form-control" name='alt-number' id="phone" placeholder="Alternative Phone Number" />
+                                        <div className="form-group w-100 p-1">
+                                            <input type="text" onBlur={HandleInput} className="form-control" name='alt-number' id="phone" placeholder="Alternative Phone Number" />
                                         </div>
                                     </div>
                                     {/* Select Country & City  */}
                                     <div className="flex justify-center">
-                                        <div class="form-group w-100 p-1">
+                                        <div className="form-group w-100 p-1">
                                             <select className=" w-100 h-10" onBlur={HandleInput} name="country" id="cars" form="carform">
                                                 <option disabled value="">Select Country</option>
                                                 <option value="Bangladesh">Bangladesh</option>
@@ -122,7 +122,7 @@ const Shipping = () => {
                                                 <option value="Pakistan">Pakistan</option>
                                             </select>
                                         </div>
-                                        <div class="form-group w-100 p-1">
+                                        <div className="form-group w-100 p-1">
                                             <select className=" w-100 h-10" onBlur={HandleInput} name="city" id="cars" form="carform">
                                                 <option disabled value="">Select City</option>
                                                 <option value="Bangladesh">Dhaka</option>
@@ -133,7 +133,7 @@ const Shipping = () => {
                                     </div>
 
                                     <div className="flex ">
-                                        <div class="form-group w-50 p-1">
+                                        <div className="form-group w-50 p-1">
                                             <select className=" w-100 h-10" onBlur={HandleInput} name="area" id="cars" form="carform">
                                                 <option disabled value="">Select Area</option>
                                                 <option value="Bangladesh">Feni</option>
@@ -144,8 +144,8 @@ const Shipping = () => {
                                     </div>
 
                                     {/* //Address Part */}
-                                    <div class={`${style.address} form-group w-100 `} >
-                                        <input type="text" onBlur={HandleInput} name='address' class="form-control " id="address" placeholder="Your Address" />
+                                    <div className={`${style.address} form-group w-100 `} >
+                                        <input type="text" onBlur={HandleInput} name='address' className="form-control " id="address" placeholder="Your Address" />
                                     </div>
                                 </form>
                             </div>

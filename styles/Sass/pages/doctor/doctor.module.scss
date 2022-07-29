@@ -2,13 +2,13 @@
 
 .doctor {
   aside {
-    // width: 20%;
     position: sticky;
-    // overflow: hidden;
     top: 0;
-    background-color: $primary;
-    color: white;
-    border-top: 2px solid $light;
+    border-right: 1px solid rgb(216, 216, 216);
+    p {
+      margin-top: 10px;
+      border-bottom: 1px solid gray;
+    }
   }
   main {
     // padding: 0px 35px;

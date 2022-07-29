@@ -2,7 +2,14 @@ import { FaUserAlt } from "react-icons/fa";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
 import { IoLogoDesignernews } from "react-icons/io";
 import style from "../../../../styles/Sass/Components/DashboardPart/Dashboard/_salesAnalytics.module.scss";
-const SalesAnalytics = () => {
+
+interface SalesAnalytics {
+  offline: number;
+  online: number;
+  pendingOrder: number;
+}
+const SalesAnalytics = ({ analytics }: any) => {
+  const { offline, online, pendingOrder } = analytics;
   return (
     <div className={style.salesAnalytics}>
       <h3>Sales Analytics</h3>
@@ -20,8 +27,9 @@ const SalesAnalytics = () => {
             <p className={style.time}>last 24 hours</p>
           </div>
         </div>
-        <p className={`${style.parentage} text-blue-500`}>27%</p>
-        <p className={`${style.total}`}>2250 </p>
+        <p className={`${style.total}`}>
+          {online < 10 ? "0" + online : online}
+        </p>
       </div>
 
       <div className={style.analyticsCard}>
@@ -38,8 +46,9 @@ const SalesAnalytics = () => {
             <p className={style.time}>last 24 hours</p>
           </div>
         </div>
-        <p className={`${style.parentage} text-red-500`}>27%</p>
-        <p className={`${style.total}`}>3650 </p>
+        <p className={`${style.total}`}>
+          {offline < 10 ? "0" + offline : offline}
+        </p>
       </div>
 
       <div className={style.analyticsCard}>
@@ -56,8 +65,9 @@ const SalesAnalytics = () => {
             <p className={style.time}>last 24 hours</p>
           </div>
         </div>
-        <p className={`${style.parentage} text-green-500`}>27%</p>
-        <p className={`${style.total}`}>1840 </p>
+        <p className={`${style.total}`}>
+          {pendingOrder < 10 ? "0" + pendingOrder : pendingOrder}
+        </p>
       </div>
     </div>
   );

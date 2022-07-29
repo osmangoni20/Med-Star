@@ -50,22 +50,27 @@ const InputField = ({
         {inputFiledType === "select" && (
           <select name={name} onChange={HandleFieldValue}>
             {fieldInfo?.selectOption.map(
-              (option: {
-                value: string | number | readonly string[] | undefined;
-                name:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | React.ReactFragment
-                  | React.ReactPortal
-                  | null
-                  | undefined;
-              }) => (
-                <option value={option.value}>{option.name}</option>
+              (
+                option: {
+                  value: string | number | readonly string[] | undefined;
+                  name:
+                    | string
+                    | number
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | React.ReactFragment
+                    | React.ReactPortal
+                    | null
+                    | undefined;
+                },
+                index: number
+              ) => (
+                <option key={index} value={option.value}>
+                  {option.name}
+                </option>
               )
             )}
           </select>

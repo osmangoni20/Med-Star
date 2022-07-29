@@ -48,10 +48,10 @@ const SingleModel = ({
                   {/* <th>Test Confirm</th> */}
                 </thead>
                 <tbody>
-                  {labTestData.map((item: any) => (
-                    <tr onClick={() => setModel(false)}>
+                  {labTestData.map((item: any, index) => (
+                    <tr key={item._key} onClick={() => setModel(false)}>
                       <td className={`${style.testName}`}>
-                        <Link href={`/lab_test/${item.id}`}>
+                        <Link href={`/lab_test/${item._id}`}>
                           <a>{item.testName}</a>
                         </Link>
                       </td>

@@ -131,7 +131,12 @@ const FindBlood = ({ data }: any) => {
                   <div className={`${style.memberCartBody} card-body `}>
                     <div className={`${style.cartBodyText}`}>
                       <figure>
-                        <Image src={member.img} alt={member.name} />
+                        <Image
+                          src={member.img}
+                          height={100}
+                          width={100}
+                          alt={member.name}
+                        />
                       </figure>
                       <div>
                         <h2 className="text-center">{member.name}</h2>

@@ -1,3 +1,4 @@
+@import "../../abstract/variable.module.scss";
 .table {
   width: 100%;
   text-align: center;
@@ -15,6 +16,9 @@
     }
   }
   tbody {
+    tr:nth-child(2n + 1) {
+      color: $light;
+    }
     tr {
       margin-top: 10px;
       border-radius: 10px;
@@ -31,6 +35,7 @@
     td {
       font-size: 17px;
       padding: 10px;
+      width: 60px;
       /* border: 2px solid gray; */
     }
   }

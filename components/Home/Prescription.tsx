@@ -53,7 +53,7 @@ const Prescription = () => {
           </div>
         </div>
         <div className={`${style.prescriptionImage}`}>
-          <Image src={prescriptionImage} alt="" />
+          <Image height={400} width={400} src={prescriptionImage} alt="" />
         </div>
       </div>
     </div>

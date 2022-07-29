@@ -84,9 +84,9 @@ const PaymentMethod = ({ OrderInfoData, setOrderInfoData }) => {
                 <div className= {`${style.AllpaymentType} flex`}>
                     {
                         // <PaymentType HandlePaymentType={HandlePaymentType} paymenttypeInfo={method}></PaymentType>
-                        PaymentMethodInfo.map(method => 
+                        PaymentMethodInfo.map(method,index => 
                         {
-                            <div className={`${style.paymentMethod}`}>
+                            <div key={index} className={`${style.paymentMethod}`}>
                             <a href={method.paymentTypeLink}>
                               <div className={`$${style.PaymentType}  flex justify-between align-center`} >
                                 <input onClick={HandlePaymentType} type="radio" id={method.id} name="DelevaryType" value={method.paymentType} />
@@ -104,10 +104,10 @@ const PaymentMethod = ({ OrderInfoData, setOrderInfoData }) => {
                 {/* Confirm Order Button */}
                 <div className=" flex justify-center">
                     {
-                        paymentType ? <button type="submit" onClick={HandleConfirmOrder} class="">Confirm Order</button> :
+                        paymentType ? <button type="submit" onClick={HandleConfirmOrder} className="">Confirm Order</button> :
                             <div>
                                 <p className="text-danger text-center">Please Select Any Payment Method</p>
-                                <button disabled type="submit" class="">Confirm Order</button>
+                                <button disabled type="submit" className="">Confirm Order</button>
                             </div>
                     }
                 </div>

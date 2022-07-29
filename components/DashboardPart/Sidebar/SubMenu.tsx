@@ -139,6 +139,7 @@ const SubMenu = ({ item }: any) => {
           ) => {
             return (
               <li
+                key={index}
                 style={{
                   height: "40px",
                   width: "100%",

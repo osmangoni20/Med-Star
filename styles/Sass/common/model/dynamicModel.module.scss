@@ -81,17 +81,24 @@
     outline: 0;
   }
 }
-.inner_popup {
+.notice_inner_popup {
+  min-width: 600px;
+  min-height: 400px;
+  overflow: scroll;
+}
+.inner_popup,
+.notice_inner_popup {
   position: relative;
   padding: 32px;
   width: 100%;
   max-width: 807px;
-  min-height: 400px;
+  max-height: 400px;
   background-color: white;
   border-radius: 5px;
+  overflow-y: scroll;
   img {
-    width: 180px !important;
-    height: 200px !important;
+    // width: 180px !important;
+    // height: 200px !important;
   }
   .singleDoctor {
     img {

@@ -1,0 +1,15 @@
+.orderDetails {
+  display: flex;
+  justify-content: center;
+  h2 {
+    text-align: center;
+  }
+  h5 {
+    font-weight: 600;
+    padding: 12px 0px;
+  }
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+}

@@ -152,8 +152,8 @@ const SignIn = ({ setModel, setModelData }: any) => {
         <div className={`${style.signIn}`}>
           <form className={`${style.signIn_form}`}>
             <div className="grid grid-cols-2 gap-2">
-              {InputFiledInfo.map((field: any) => (
-                <div>
+              {InputFiledInfo.map((field: any, index) => (
+                <div key={index}>
                   <h5>{field.fieldHeader}</h5>
                   <div className={`${style.input_filed}`}>
                     {field.icon === "name" && (

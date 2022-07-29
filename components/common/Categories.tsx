@@ -12,18 +12,21 @@ const Categories = ({ data }: { data: any }) => {
     <div className={style.categories}>
       <ul className={`${style.categoryList} list-none`}>
         {data.map(
-          (singleData: {
-            category:
-              | string
-              | number
-              | boolean
-              | ReactElement<any, string | JSXElementConstructor<any>>
-              | ReactFragment
-              | ReactPortal
-              | null
-              | undefined;
-          }) => (
-            <Link href={`/${singleData.category}`} passHref>
+          (
+            index: number,
+            singleData: {
+              category:
+                | string
+                | number
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | ReactFragment
+                | ReactPortal
+                | null
+                | undefined;
+            }
+          ) => (
+            <Link key={index} href={`/${singleData.category}`} passHref>
               <li className="flex items-center">
                 <BsBoundingBoxCircles></BsBoundingBoxCircles>
                 <p className="pl-3 p-1">{singleData.category}</p>

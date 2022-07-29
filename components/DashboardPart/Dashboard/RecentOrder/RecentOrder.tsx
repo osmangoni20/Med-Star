@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DashboardFakeData } from "../../../../Database/DashboardFakeData";
 import style from "../../../../styles/Sass/Components/DashboardPart/Dashboard/_recentOrders.module.scss";
 import DashboardInfoModel from "../../../common/Model/DashboardInfoModel";
-const RecentOrder = () => {
+const RecentOrder = ({ orderData }: any) => {
   const [model, setModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
   const [tableData, setTableData] = useState<any>([]);
@@ -28,33 +28,35 @@ const RecentOrder = () => {
       )}
       <div className={`${style.recentOrderBody}`}>
         <table className={`${style.table}`}>
+          <caption></caption>
           <thead>
-            <th>Name</th>
-            <th>Product Name</th>
-            <th>Delivery</th>
-            <th>Price</th>
-            <th>Status</th>
+            <tr>
+              <th>Customer Name</th>
+              <th>Total Product</th>
+              <th>Delivery</th>
+              <th>Total Price</th>
+              <th>Status</th>
+            </tr>
           </thead>
-          {/* <br/> */}
           <tbody>
-            {tableData?.map((data: any, index: any) => (
+            {orderData?.map((orderInfo: any, index: any) => (
               <tr
                 style={index === tableData.length - 1 ? { border: "none" } : {}}
                 key={index}
-                onClick={() => HandleModel(data)}
+                onClick={() => HandleModel(orderInfo)}
               >
-                <td>{data.name}</td>
-                <td>{data.product_name}</td>
-                <td>{data.delivery}</td>
-                <td>{data.price}</td>
+                <td>{orderInfo.name}</td>
+                <td>{orderInfo.orderProduct.length}</td>
+                <td>{orderInfo.paymentType}</td>
+                <td>{orderInfo.cost}</td>
                 <td
                   style={
-                    data.status === "Pending"
+                    orderInfo.status === "Pending"
                       ? { color: "blue" }
                       : { color: "green" }
                   }
                 >
-                  {data.status || "Pending"}
+                  {orderInfo.status}
                 </td>
               </tr>
             ))}

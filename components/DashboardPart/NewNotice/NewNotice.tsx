@@ -54,6 +54,7 @@ const NewNotice = () => {
             index % 2 === 0 ? (
               // <Link to={`/allNotice/${notice.id}`}>
               <li
+                key={index}
                 onClick={() => HandleClick(notice)}
                 className={`${style.singleNotice}   bg-gray-100`}
               >

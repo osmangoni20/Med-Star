@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import './Modal.css';
@@ -56,7 +56,7 @@ const AppointmentModal = ({ date, bookingDetails, modalIsOpen, closeModal }) => 
         <form className='p-5' onSubmit={handleSubmit(onSubmit)}>
 
           <div className='form-group'>
-            <select class="form-select" name='selectDoctor' {...register("selectDoctor", { required: true })} aria-label="Example select with button addon" >
+            <select className="form-select" name='selectDoctor' {...register("selectDoctor", { required: true })} aria-label="Example select with button addon" >
               <option disabled={true} selected>Select Doctor</option>
               <option value="Mohammad khayrul basar">Mohammad khayrul basar</option>
               <option value="Kader Mollah">Kader Mollah</option>
@@ -80,9 +80,9 @@ const AppointmentModal = ({ date, bookingDetails, modalIsOpen, closeModal }) => 
           </div>
 
 
-          <div class="form-group row">
+          <div className="form-group row">
             <div className='col-4'>
-              <select class="form-select" name='gender' {...register("gender", { required: true })} aria-label="Example select with button addon" >
+              <select className="form-select" name='gender' {...register("gender", { required: true })} aria-label="Example select with button addon" >
                 <option disabled={true} selected>Gender</option>
                 <option value="male">Male</option>
                 <option value="famale">Famale</option>

@@ -1,41 +1,24 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import style from "../../../../styles/Sass/Components/DashboardPart/Dashboard/_recentMessage.module.scss";
-import doc from "/assets/image/doctor1.jpg";
-const AllMessage = [
-  {
-    id: 1,
-    img: "",
-    name: "Mohammad Osamn Goni",
-    message: "It is New Message For You",
-    submitTime: "6",
-  },
-  {
-    id: 2,
-    img: "",
-    name: "Mohammad Osamn Goni",
-    message: "It is New Message For You",
-    submitTime: "3",
-  },
-  {
-    id: 3,
-    img: "",
-    name: "Mohammad Osamn Goni",
-    message: "It is New Message For You",
-    submitTime: "6",
-  },
-];
-const RecentMessage = () => {
-  const [message, setMessage] = useState<any>([]);
-  useEffect(() => {
-    setMessage(AllMessage);
-  });
+import doc from "/assets/image/2doctor.png";
+
+interface Message {
+  _id: string;
+  img: string;
+  name: string;
+  seen: boolean;
+  message: string;
+  date: string;
+}
+[];
+
+const RecentMessage = ({ messageData }: any) => {
   return (
     <div className={style.recentMessage}>
       <h3>Recent Message</h3>
       <div className={style.recentMessageBody}>
-        {message.map((msg: any) => (
-          <div className={style.messageCard}>
+        {messageData?.slice(0, 3).map((msg: Message, index: number) => (
+          <div key={index} className={style.messageCard}>
             <div className="flex  gap-3">
               <span
                 style={{
@@ -47,8 +30,8 @@ const RecentMessage = () => {
               </span>
               <div>
                 <h4>{msg.name}</h4>
-                <p className={style.message}>{msg.message}</p>
-                <p className={style.time}>{msg.submitTime} Minutes ago</p>
+                <p className={style.message}>{msg.message.slice(0, 50)}</p>
+                <p className={style.time}>{msg.date}</p>
               </div>
             </div>
           </div>

@@ -63,8 +63,8 @@ const LabTest = ({ labTestData }: any) => {
               <th>Test Type</th>
             </thead>
             <tbody>
-              {labTestData.map((item: any) => (
-                <tr>
+              {labTestData.map((item: any, index: number) => (
+                <tr key={index}>
                   <td className={`${style.labTestNumber}`}>{item.id}</td>
                   <td className={`${style.testName}`}>
                     <Link href={`/lab_test/${item.id}`}>

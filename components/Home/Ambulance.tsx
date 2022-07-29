@@ -60,7 +60,12 @@ const Ambulance = () => {
               className={`${style.ambulanceCard} card card-compact w-84 bg-base-100 shadow-xl`}
             >
               <figure>
-                <Image src={ambulanceImage} alt="Shoes" />
+                <Image
+                  height={180}
+                  width={320}
+                  src={ambulanceImage}
+                  alt="Shoes"
+                />
               </figure>
               <div className="card-body">
                 <div className="flex justify-center text-xl">

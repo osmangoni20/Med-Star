@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import Meta from "../../../../components/common/Meta";
-import CrateNotice from "../../../../components/DashboardPart/Create Notice/CreateNotice";
 import DataInputAndList from "../../../../components/DashboardPart/DataInputAndList/DataInputAndList";
 import { DashboardFakeData } from "../../../../Database/DashboardFakeData";
 const DashboardMenu = () => {
@@ -23,7 +22,8 @@ const DashboardMenu = () => {
           AllData={AllData}
         ></DataInputAndList>
       ) : (
-        <CrateNotice></CrateNotice>
+        <h2></h2>
+        // <CrateNotice></CrateNotice>
       )}
     </div>
   );

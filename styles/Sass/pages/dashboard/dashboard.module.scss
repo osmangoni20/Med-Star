@@ -32,7 +32,34 @@
 .logo {
   width: 40px;
 }
-@media (max-width: 570px) {
+
+@media (max-width: 768px) {
+  .dashboard {
+    aside {
+      width: 30%;
+    }
+    main {
+      width: 70%;
+      padding: 0px 15px;
+
+      .dashboardBody {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    aside {
+      display: none;
+    }
+    main {
+      width: 100%;
+      padding: 0px 15px;
+    }
+  }
+
   .userName {
     display: none;
   }
@@ -57,17 +84,7 @@
     width: 34px;
   }
 }
-@media (max-width: 870px) {
-  .dashboardBody {
-    aside {
-      width: auto;
-    }
-    main {
-      width: 80%;
-      padding: 0px 15px;
-    }
-  }
-}
+
 /* .NewNotice .noticeHeader,
   .chartHeader {
     background-color: rgb(99, 223, 212);

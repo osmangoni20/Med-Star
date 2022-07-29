@@ -1,18 +1,19 @@
 import { getAuth } from "firebase/auth";
+import dynamic from 'next/dynamic';
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
-import loginImage from "../../assets/image/loginImage.svg";
 import companyLogo from '../../assets/image/medicine logo.jpg';
 import SignIn from '../../components/Authentication/SignIn/SignIn.tsx';
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
-import CustomModel from "../../components/common/Model/CustomModel";
-import useFirebase from "../../components/hooks/useFirebase";
 import style from "../../styles/Sass/pages/auth/login&signIn.module.scss";
+const CustomModel=dynamic(()=>import('../../components/common/Model/CustomModel'));
+const useFirebase=dynamic(()=>import("../../components/hooks/useFirebase"));
+const loginImage =dynamic(() => import ( "../../assets/image/loginImage.svg"));
 const Login = () => {
   const {
     register,
@@ -20,19 +21,29 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const [logInData, setLogInData] = useState({});
   const { SignInWithEmailPassword,EmailVerification, ResetPassword, error,user } = useFirebase();
   const [resetPassword, setResetPassword] = useState(false);
   const router = useRouter();
   const [model, setModel] = useState(false);
   const [modelData, setModelData] = useState({});
   const [loginFrom,setLoginFrom]=useState(true);
-  
   const auth = getAuth();
+  const [isAdmin,setIsAdmin]=useState(false);
   if (user.email) {
     // localStorage.getItem('')
     router.back();
   }
+  useEffect(()=>{
+    function fetchData(){
+      const res= await fetch(`http://localhost:5000/${user.email}`)
+      const data=res.json();
+      setIsAdmin(data);
+      localStorage.setItem('isAdmin',data);
+    }
+
+    fetchData()
+    .catch(console.log(error))
+  },[user])
   console.log(user, error);
 
   const HandleVerificationEmail=()=>{
@@ -91,8 +102,6 @@ const Login = () => {
       //  })
       // }
     }
-    
-    console.log(user);
     
   };
 
@@ -220,6 +229,8 @@ const Login = () => {
               src={loginImage}
               className={style.login_Image}
               alt="Login demo"
+              height={"100%"}
+              width={'100%'}
             />
           </div>
         </div>

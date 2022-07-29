@@ -39,28 +39,14 @@ export const DashboardFakeData: any = {
         search: true,
       },
     ],
-    tableHeader: ["Notice Title", "Description", "Date"],
-    tableData: [
+    tableHeader: [
       {
-        id: 1,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        actionType: "none",
+        name: "Notice Title",
+        data_register_name: "title",
       },
       {
-        id: 2,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        actionType: "none",
-      },
-      {
-        id: 3,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        actionType: "none",
+        name: "Date",
+        data_register_name: "date",
       },
     ],
 
@@ -71,7 +57,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Notice",
   },
 
-  new_donner: {
+  donner_info: {
     inputFieldData: [
       {
         name: "Your Name",
@@ -96,19 +82,13 @@ export const DashboardFakeData: any = {
           { name: "AB-", value: "ab-negative" },
         ],
       },
+
       {
-        name: "Patient Type",
-        registerName: "patient_type",
-        icon: "group",
-        placeholderName: "Patient Type",
-        inputType: "text",
-      },
-      {
-        name: "Hospital Name ",
-        registerName: "hospital_name",
-        icon: "name",
-        placeholderName: "Hospital Name",
-        inputType: "text",
+        name: "Your Weight",
+        registerName: "weight",
+        icon: "date",
+        placeholderName: "Your Weight",
+        inputType: "number",
       },
       {
         name: "Age",
@@ -132,7 +112,16 @@ export const DashboardFakeData: any = {
         inputType: "date",
       },
     ],
-    tableHeader: ["Last Donate", "Patient Type", "Hospital"],
+    tableHeader: [
+      {
+        name: "Name",
+        data_register_name: "name",
+      },
+      {
+        name: "Last Donate",
+        data_register_name: "last_donation",
+      },
+    ],
     tableData: [
       {
         id: 1,
@@ -161,8 +150,14 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "History",
     menuOptionHeader: { name: "Patient History ", icon: "patient" },
   },
-  doctorHistory: {
-    tableHeader: ["Doctor Name", "Date", "Disease", "Update"],
+  patientHistory: {
+    tableHeader: [
+      { name: "Patient Name", data_register_name: "doctor_name" },
+      { name: "Date", data_register_name: "date" },
+      { name: "Disease", data_register_name: "Disease" },
+      { name: "Update", data_register_name: "update" },
+      { name: "Action", data_register_name: "delete" },
+    ],
     tableData: [
       {
         id: 1,
@@ -193,60 +188,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "History",
     menuOptionHeader: { name: "Patient History ", icon: "patient" },
   },
-  my_profile: {
-    inputFieldData: [
-      {
-        name: "First Name",
-        registerName: "first_name",
-        icon: "name",
-        placeholderName: "Your First Name",
-        inputType: "text",
-      },
-      {
-        name: "Last Name",
-        registerName: "last_name",
-        icon: "name",
-        placeholderName: "Your Last Name",
-        inputType: "text",
-      },
-      {
-        name: "Age",
-        icon: "group",
-        registerName: "age",
-        placeholderName: "Your Age",
-        inputType: "number",
-      },
-      {
-        name: "Your Image",
-        registerName: "img",
-        icon: "image",
-        placeholderName: "Your Image",
-        inputType: "file",
-      },
-
-      {
-        name: "Your Email",
-        registerName: "email",
-        placeholderName: "Email",
-        icon: "email",
-        inputType: "email",
-      },
-
-      {
-        name: "Mobile Number",
-        registerName: "mobile_no",
-        icon: "mobile",
-        placeholderName: "Mobile Number",
-        inputType: "number",
-      },
-      {
-        name: "Your Address",
-        icon: "city",
-        registerName: "address",
-        placeholderName: "Your Address",
-        textAria: true,
-      },
-    ],
+  user_profile: {
     update: true,
     menuOptionHeader: {
       name: "My Profile",
@@ -254,42 +196,44 @@ export const DashboardFakeData: any = {
     },
     sidebarMenuHeader: "Profile Update",
   },
+  create_notice: {
+    menuOptionHeader: {
+      name: "Notice",
+      icon: "notice",
+    },
+    sidebarMenuHeader: "Create Notice",
+  },
+  user_order: {
+    sidebarMenuHeader: "My Order",
+    menuOptionHeader: { name: "Order List", icon: "order" },
+  },
 
-  my_order: {
-    tableHeader: ["Image", "Product Name", "Quantity", "price", "State"],
-    tableData: [
+  user_message: {
+    inputFieldData: [
       {
-        id: 1,
-        image: "",
-        product_name: "New Product 2",
-        date: "20-2-2022",
-
-        price: 200,
-        state: "Pending",
-        actionType: "none",
-      },
-      {
-        id: 2,
-        image: "",
-        product_name: "New Product 2",
-        date: "20-2-2022",
-
-        price: 200,
-        state: "Pending",
-        actionType: "none",
-      },
-      {
-        id: 3,
-        image: "",
-        product_name: "New Product 2",
-        date: "20-2-2022",
-
-        price: 200,
-        state: "Pending",
-        actionType: "none",
+        name: "Email",
+        registerName: "email",
+        placeholderName: "Email",
+        inputType: "email",
+        icon: "email",
+        search: true,
       },
     ],
+    tableHeader: [
+      {
+        name: "Name",
+        data_register_name: "name",
+      },
 
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Message",
+        data_register_name: "message",
+      },
+    ],
     sidebarMenuHeader: "My Order",
     menuOptionHeader: { name: "Order List", icon: "order" },
   },
@@ -306,13 +250,31 @@ export const DashboardFakeData: any = {
       },
     ],
     tableHeader: [
-      "Name",
-      "Product Name",
-      "Date",
-      "Delivery",
-      "price",
-      "Contact",
-      "Action",
+      {
+        name: "Name",
+        data_register_name: "name",
+      },
+      {
+        name: "Total Product",
+        data_register_name: "total_product",
+      },
+
+      {
+        name: "Delivery",
+        data_register_name: "payment_type",
+      },
+      {
+        name: "Total Price",
+        data_register_name: "price",
+      },
+      {
+        name: "Contact",
+        data_register_name: "contact",
+      },
+      {
+        name: "Action",
+        data_register_name: "action",
+      },
     ],
     tableData: [
       {
@@ -363,40 +325,29 @@ export const DashboardFakeData: any = {
       },
     ],
     tableHeader: [
-      "Profile",
-      "Name",
-      "Number",
-      "Designation",
-      "Email",
-      "Action",
-    ],
-    tableData: [
       {
-        id: 1,
-        img: "",
-        name: "Mohammad Osman Goni",
-        mobile: "0187584254",
-        designation: "General Consultant",
-        email: "doctor@gmail.com",
-        action: true,
+        name: "Image",
+        data_register_name: "img",
       },
       {
-        id: 2,
-        image: "",
-        name: "Mohammad Salah",
-        mobile: "0187584254",
-        designation: "General Consultant",
-        email: "doctor@gmail.com",
-        action: true,
+        name: "Name",
+        data_register_name: "name",
       },
       {
-        id: 3,
-        image: "",
-        name: "Mohammad Tahmid Goni",
-        mobile: "0187584264",
-        designation: "General Consultant",
-        email: "doctor@gmail.com",
-        action: true,
+        name: "Number",
+        data_register_name: "mobile_no",
+      },
+      {
+        name: "Designation",
+        data_register_name: "designation",
+      },
+      {
+        name: "Email",
+        data_register_name: "email",
+      },
+      {
+        name: "Action",
+        data_register_name: "delete",
       },
     ],
 
@@ -422,14 +373,14 @@ export const DashboardFakeData: any = {
       },
       {
         name: "Mobile No-1",
-        registerName: "mobile_no_1",
+        registerName: "contact1",
         placeholderName: "Mobile Number",
         icon: "mobile",
         inputType: "number",
       },
       {
         name: "Mobile No-2",
-        registerName: "mobile_no_2",
+        registerName: "contact2",
         placeholderName: "Second Mobile Number",
         icon: "mobile",
         inputType: "number",
@@ -472,33 +423,29 @@ export const DashboardFakeData: any = {
         search: true,
       },
     ],
-    tableHeader: ["Name", "Location", "Contact 1", "Contact 2", "Action"],
-    tableData: [
+    tableHeader: [
       {
-        id: 1,
-        name: "New Ambulance",
-        location: "500 Tk",
-        mobile_no_1: "+88015875425",
-        mobile_no_2: "+88015875425",
-        action: true,
+        name: "Name",
+        data_register_name: "name",
       },
       {
-        id: 2,
-        name: "New Ambulance",
-        location: "500 Tk",
-        mobile_no_1: "+88015875425",
-        mobile_no_2: "+88015875425",
-        action: true,
+        name: "Location",
+        data_register_name: "location_details",
       },
       {
-        id: 3,
-        name: "New Ambulance",
-        location: "500 Tk",
-        mobile_no_1: "+88015875425",
-        mobile_no_2: "+88015875425",
-        action: true,
+        name: "Contact 1",
+        data_register_name: "contact1",
+      },
+      {
+        name: "Contact 2",
+        data_register_name: "contact2",
+      },
+      {
+        name: "Action",
+        data_register_name: "delete",
       },
     ],
+
     sidebarMenuHeader: "Ambulance Service",
     menuOptionHeader: { name: "Ambulance List", icon: "people-outline" },
   },
@@ -558,31 +505,26 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Add Donner",
   },
   blood_donner: {
-    tableHeader: ["Name", "Age", "Blood Group", "Address", "Action"],
-    tableData: [
+    tableHeader: [
       {
-        id: 1,
-        name: "Mohammad Osman Goni",
-        age: "20",
-        group: "A+",
-        address: "B200-1",
-        action: true,
+        name: "Name",
+        data_register_name: "name",
       },
       {
-        id: 2,
-        name: "Mohammad Osman Goni",
-        age: "20",
-        group: "A+",
-        address: "B200-1",
-        action: true,
+        name: "Age",
+        data_register_name: "age",
       },
       {
-        id: 3,
-        name: "Taskin Ahamed",
-        age: "20",
-        group: "A+",
-        address: "B200-1",
-        action: true,
+        name: "Blood Group",
+        data_register_name: "bloodGroup",
+      },
+      {
+        name: "Address",
+        data_register_name: "address",
+      },
+      {
+        name: "Action",
+        data_register_name: "",
       },
     ],
     inputFieldData: [
@@ -723,28 +665,19 @@ export const DashboardFakeData: any = {
         search: true,
       },
     ],
-    tableHeader: ["Notice Title", "Description", "Submit Date", "Action"],
-    tableData: [
+    tableHeader: [
       {
-        id: 1,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        action: true,
+        name: "Title",
+        data_register_name: "noticeTitle",
       },
       {
-        id: 2,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        action: true,
+        name: "Date",
+        data_register_name: "date",
       },
+
       {
-        id: 3,
-        title: "Happy New Yer",
-        description: "Happy New Yer",
-        date: "20/2/2022",
-        action: true,
+        name: "Action",
+        data_register_name: "delete",
       },
     ],
 
@@ -757,11 +690,26 @@ export const DashboardFakeData: any = {
 
   success_delivery: {
     tableHeader: [
-      "Customer Id",
-      "Customer Name",
-      "Product Name",
-      "Date",
-      "Delivery",
+      {
+        name: "Customer Name",
+        data_register_name: "name",
+      },
+      {
+        name: "Product Name",
+        data_register_name: "bloodGroup",
+      },
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Delivery",
+        data_register_name: "delivery",
+      },
+      // {
+      //   name: "Action",
+      //   data_register_name: "",
+      // },
     ],
     inputFieldData: [
       {
@@ -865,7 +813,7 @@ export const DashboardFakeData: any = {
       },
       {
         name: "Mobile Number",
-        registerName: "mobile",
+        registerName: "mobile_no",
         icon: "mobile",
         placeholderName: "Mobile Number",
         inputType: "number",
@@ -878,7 +826,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Add New Doctor",
   },
 
-  add_new_product: {
+  add_product: {
     inputFieldData: [
       {
         name: "Category",
@@ -952,7 +900,28 @@ export const DashboardFakeData: any = {
         search: true,
       },
     ],
-    tableHeader: ["Image", "Name", "Category", "Price", "Action"],
+    tableHeader: [
+      {
+        name: "Image",
+        data_register_name: "img",
+      },
+      {
+        name: "Name",
+        data_register_name: "name",
+      },
+      {
+        name: "Category",
+        data_register_name: "category",
+      },
+      {
+        name: "Price",
+        data_register_name: "price",
+      },
+      {
+        name: "Action",
+        data_register_name: "delete",
+      },
+    ],
     tableData: [
       {
         id: 1,
@@ -982,18 +951,47 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Product",
     menuOptionHeader: { name: "Product List", icon: "product" },
   },
-  patient_manage: {
+  appointment: {
+    tableHeader: [
+      { name: "Patient Name", data_register_name: "patientName" },
+
+      {
+        name: "Mobile",
+        data_register_name: "patient_mobile_no",
+      },
+      {
+        name: "Doctor",
+        data_register_name: "doctor_name",
+      },
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+      {
+        name: "Action",
+        data_register_name: "select",
+      },
+    ],
+
+    menuOptionHeader: { name: "Patient Manage", icon: "patient" },
+    sidebarMenuHeader: "New appointment Add",
+  },
+  new_appointment: {
     inputFieldData: [
       {
         name: "Patient Name",
-        registerName: "name",
+        registerName: "patientName",
         placeholderName: "Patient Name",
         inputType: "text",
         icon: "name",
       },
       {
         name: "Patient Age",
-        registerName: "age",
+        registerName: "patient_age",
         placeholderName: "Patient Age",
         inputType: "number",
         icon: "date",
@@ -1001,14 +999,14 @@ export const DashboardFakeData: any = {
 
       {
         name: "Doctor Name",
-        registerName: "doctor_of_patient",
+        registerName: "doctor_name",
         placeholderName: "Doctor Name",
         inputType: "text",
         icon: "name",
       },
       {
         name: "Mobile Number",
-        registerName: "mobileNumber",
+        registerName: "patient_mobile_no",
         placeholderName: "Mobile Number",
         inputType: "number",
         icon: "mobile",
@@ -1021,52 +1019,19 @@ export const DashboardFakeData: any = {
         inputType: "email",
         icon: "email",
       },
-      ,
-      {
-        name: "Unique Id",
-        registerName: "id",
-        placeholderName: "Any Unique Id",
-        icon: "group",
-        inputType: "text",
-      },
+
       {
         name: "Patient Disease",
-        registerName: "disease",
+        registerName: "patientDisease",
         placeholderName: "Patient Disease",
         textAria: true,
         icon: "",
         inputType: "",
       },
     ],
-    tableHeader: ["Name", "Age", "Mobile", "Doctor", "Action"],
-    tableData: [
-      {
-        id: 1,
-        name: "Naymot Ullah",
-        age: 25,
-        mobile: "0152455487",
-        doctor: "dr. kader Hossain",
-        action: true,
-      },
-      {
-        id: 2,
-        name: "Kadir Khan",
-        age: 25,
-        mobile: "0152455487",
-        doctor: "dr. kader Hossain",
-        action: true,
-      },
-      {
-        id: 3,
-        name: "Khaled Billah",
-        age: 25,
-        mobile: "0152455487",
-        doctor: "dr. kader Hossain",
-        action: true,
-      },
-    ],
+
     menuOptionHeader: { name: "Patient Manage", icon: "patient" },
-    sidebarMenuHeader: "Patient Add And List View ",
+    sidebarMenuHeader: "New appointment Add",
   },
 
   admin: {
