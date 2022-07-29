@@ -7,7 +7,6 @@ import modelStyle from "../../../styles/Sass/common/model/dynamicModel.module.sc
 import style from "../../../styles/Sass/pages/Shipping.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
-import WithAuth from "../../hooks/withAuth";
 import CustomModel from "./CustomModel";
 import { ModelInputField } from "./ModelInputFieldInfo";
 
@@ -201,4 +200,4 @@ const AppointmentModel = ({
 };
 
 // export default ;
-export default WithAuth(AppointmentModel);
+export default AppointmentModel;

@@ -4,6 +4,7 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import AppointmentHeader from "../../components/Doctor/Appointments/AppointmentHeader/Appointmentheader";
 import BookingAppointment from "../../components/Doctor/Appointments/BookingAppointment/BookingAppointment";
+import WithAuth from "../../components/hooks/RouteProtection";
 
 const Appointment = ({ data }: { data: any }) => {
   const [doctorData, setDoctorData] = useState({});
@@ -39,4 +40,4 @@ export async function getServerSideProps(ctx: { params: { id: any } }) {
   // Pass data to the page via props
   return { props: { data } };
 }
-export default Appointment;
+export default WithAuth(Appointment);

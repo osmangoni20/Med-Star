@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AppointmentModel from "../../../common/Model/AppointmentModel";
 import SimpleButton from "../../../Custom/Button/SimpleButton";
-import withAuth from "../../../hooks/withAuth";
 const BookingAppointment = ({ date, data }: any) => {
   const [showModel, setModel] = useState<boolean>(false);
 
@@ -47,4 +46,4 @@ const BookingAppointment = ({ date, data }: any) => {
   );
 };
 
-export default withAuth(BookingAppointment);
+export default BookingAppointment;
