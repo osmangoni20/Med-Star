@@ -1,7 +1,6 @@
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
 
 const OrderView = ({
-  tableHeader,
   HandleRequestAction,
   tableData,
   HandleOrderModel,
@@ -11,9 +10,8 @@ const OrderView = ({
     <tr
       style={index === tableData.length - 1 ? { border: "none" } : {}}
       key={index}
-      onClick={() => HandleOrderModel(orderInfo)}
     >
-      <td>{orderInfo.name}</td>
+      <td onClick={() => HandleOrderModel(orderInfo)}>{orderInfo.name}</td>
       <td>{orderInfo.orderProduct.length}</td>
       <td>{orderInfo.paymentType}</td>
       <td>{orderInfo.cost}</td>

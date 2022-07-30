@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
-import companyLogo from '../../assets/image/medicine logo.jpg';
+import loginImage from "../../assets/image/loginImage.svg";
+import siteLogo from '../../assets/image/siteLogo.png';
 import SignIn from '../../components/Authentication/SignIn/SignIn.tsx';
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import useFirebase from "../../components/hooks/useFirebase";
 import style from "../../styles/Sass/pages/auth/login&signIn.module.scss";
 const CustomModel=dynamic(()=>import('../../components/common/Model/CustomModel'));
-const loginImage =dynamic(() => import ( "../../assets/image/loginImage.svg"));
 const Login = () => {
   const {
     register,
@@ -44,7 +44,7 @@ const Login = () => {
 
     fetchData()
     .catch(console.log(error))
-  },[user,isAdmin])
+  },[user])
   console.log(user, error);
 
   const HandleVerificationEmail=()=>{
@@ -127,7 +127,7 @@ const Login = () => {
             
           <span  className={style.logo}>
             <Image
-                src={companyLogo}
+                src={siteLogo}
                 alt="Med Star"
                 />
             
@@ -230,8 +230,6 @@ const Login = () => {
               src={loginImage}
               className={style.login_Image}
               alt="Login demo"
-              height={"100%"}
-              width={'100%'}
             />
           </div>
         </div>

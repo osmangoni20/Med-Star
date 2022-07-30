@@ -530,22 +530,29 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "First Image",
-        registerName: "image1",
+        registerName: "carouselImg1",
         placeholderName: "First Image",
         inputType: "file",
         icon: "image",
       },
       {
         name: "Second Image",
-        registerName: "image2",
+        registerName: "carouselImg2",
         placeholderName: "Second Image",
         inputType: "file",
         icon: "image",
       },
       {
         name: "Third Image",
-        registerName: "image3",
+        registerName: "carouselImg3",
         placeholderName: "Third Image",
+        inputType: "file",
+        icon: "image",
+      },
+      {
+        name: "Fourth Image",
+        registerName: "carouselImg4",
+        placeholderName: "Fourth Image",
         inputType: "file",
         icon: "image",
       },
@@ -561,21 +568,21 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Ad 1",
-        registerName: "ad1",
+        registerName: "adImage1",
         placeholderName: "Ad 1",
         inputType: "file",
         icon: "image",
       },
       {
         name: "Ad 2",
-        registerName: "ad3",
+        registerName: "adImage2",
         placeholderName: "Ad 2",
         inputType: "file",
         icon: "image",
       },
       {
         name: "Ad 3",
-        registerName: "ad3",
+        registerName: "adImage3",
         placeholderName: "Ad 3",
         inputType: "file",
         icon: "image",
@@ -1024,14 +1031,14 @@ export const DashboardFakeData: any = {
         placeholderName: "Admin Name",
         inputType: "text",
 
-        icon: "",
+        icon: "name",
       },
       {
         name: "Mobile Number",
         registerName: "mobileNumber",
         placeholderName: "Mobile Number",
         inputType: "number",
-        icon: "",
+        icon: "mobile",
       },
 
       {
@@ -1039,40 +1046,27 @@ export const DashboardFakeData: any = {
         registerName: "email",
         placeholderName: "Email",
         inputType: "email",
-        icon: "",
-      },
-      {
-        name: "Unique Id",
-        registerName: "id",
-        placeholderName: "Any Unique Id",
-        icon: "fa fa-user icon",
-        inputType: "text",
+        icon: "email",
       },
     ],
-    tableHeader: ["Name", "Mobile", "Email", "Action"],
-    tableData: [
+    tableHeader: [
+      { name: " Name", data_register_name: "name" },
+
       {
-        id: 1,
-        name: "Kader Sah",
-        mobile: "0152455487",
-        email: "kader@gmail.com",
-        action: true,
+        name: "Mobile",
+        data_register_name: "mobileNumber",
+      },
+
+      {
+        name: "Email",
+        data_register_name: "email",
       },
       {
-        id: 2,
-        name: "Nahel Khan",
-        mobile: "0152455487",
-        email: "nahel@gmail.com",
-        action: true,
-      },
-      {
-        id: 3,
-        name: "Tabrij Shamsi",
-        mobile: "019658487",
-        email: "tabrij@gmail.com",
-        action: true,
+        name: "Action",
+        data_register_name: "delete",
       },
     ],
+
     menuOptionHeader: {
       name: "Add Admin & Admin List",
       icon: "people-outline",

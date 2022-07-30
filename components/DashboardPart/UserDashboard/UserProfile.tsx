@@ -61,7 +61,7 @@ const UserProfile = () => {
   const [fieldValue, setFieldValue] = useState<any>({});
   const [model, setModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
-  const [uploadImage, setUploadImage] = useState("");
+  const [uploadImage, setUploadImage] = useState<any>();
   const [progress, setProgress] = useState(false);
   const { user }: any = useFirebase();
   const route = useRouter();
@@ -116,7 +116,7 @@ const UserProfile = () => {
     setProgress(!progress);
     console.log();
     const updateFieldValue = {
-      img: fieldValue.img || userData.img,
+      img: uploadImage || userData.img,
       email: userData.email || userData.email,
       last_name: fieldValue.last_name || userData.last_name,
       first_name: fieldValue.first_name || userData.first_name,

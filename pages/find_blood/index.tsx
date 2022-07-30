@@ -6,6 +6,7 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
 import style from "../../styles/Sass/pages/findBlood/findBlood.module.scss";
+import demoImag from "/assets/image/personlogo.jpg";
 interface Data {
   id: number;
   category: string;
@@ -21,15 +22,17 @@ interface Data {
 }
 const FindBlood = ({ data }: any) => {
   const [searchValue, setSearchValue] = useState<any>({});
+  const [donnerData, setDonnerData] = useState<any>(data);
   const HandleFieldValue = (e: any) => {
     setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
   };
+
   const HandleSearchDonner = () => {
     fetch(
       `https://med-star-bd.herokuapp.com/donner/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
     )
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => setDonnerData(data))
       .catch((error) => console.log(error));
   };
   return (
@@ -123,38 +126,40 @@ const FindBlood = ({ data }: any) => {
           </div>
           <hr />
           <div className="grid grid-cols-3 gap-4">
-            {data.map((member: any, index: number) => (
-              <div key={index}>
-                <div className={`${style.bloodMemberCart} card  shadow`}>
-                  <div className={`${style.memberCartBody} card-body `}>
-                    <div className={`${style.cartBodyText}`}>
-                      <figure>
-                        <Image
-                          src={member.img}
-                          height={100}
-                          width={100}
-                          alt={member.name}
-                        />
-                      </figure>
-                      <div>
-                        <h2 className="text-center">{member.name}</h2>
-                        <h6 className="text-center   text-bold">
-                          {member.bloodGroup}
-                        </h6>
-                        <div className="flex justify-center">
-                          <div>
-                            <p>
-                              {member.upazila} {member.district}{" "}
-                            </p>
-                            <p>{member.contact}</p>
+            {(donnerData ? donnerData : data).map(
+              (member: any, index: number) => (
+                <div key={index}>
+                  <div className={`${style.bloodMemberCart} card  shadow`}>
+                    <div className={`${style.memberCartBody} card-body `}>
+                      <div className={`${style.cartBodyText}`}>
+                        <figure>
+                          <Image
+                            src={member.img || demoImag}
+                            height={100}
+                            width={100}
+                            alt={member.name}
+                          />
+                        </figure>
+                        <div>
+                          <h2 className="text-center">{member.name}</h2>
+                          <h6 className="text-center   text-bold">
+                            {member.bloodGroup}
+                          </h6>
+                          <div className="flex justify-center">
+                            <div>
+                              <p>
+                                {member.upazila} {member.district}{" "}
+                              </p>
+                              <p>{member.contact}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </main>
       </div>

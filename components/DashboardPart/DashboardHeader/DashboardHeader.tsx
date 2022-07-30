@@ -22,7 +22,11 @@ const DashboardHeader = () => {
           <h2 className="text-2xl">Dashboard</h2>
         </div>
         <div className="pr-3" onClick={HandleLogout}>
-          <SimpleButton>Logout</SimpleButton>
+          <Link href={"/"}>
+            <a>
+              <SimpleButton>Logout</SimpleButton>
+            </a>
+          </Link>
         </div>
         {/* <div className="flex items-center userName">
            <h2 className="text-sm pr-2">

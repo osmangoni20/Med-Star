@@ -32,17 +32,18 @@ const Dashboard = () => {
   const route = useRouter();
   const [dashboardData, setDashboardData] = useState<any>({});
   const [isAdmin, setIsAdmin] = useState<Boolean>(false);
-  const [progress, setProgress] = useState<boolean>(true);
+  const [progress, setProgress] = useState<boolean>(false);
   const { menu, submenu } = useRouter().query;
 
   useEffect(() => {
     setIsAdmin(localStorage.getItem("isAdmin") === "true");
     console.log("use:", localStorage.getItem("isAdmin"));
+
     async function fetchData() {
       const res = await fetch(`https://med-star-bd.herokuapp.com/dashboard`);
       // convert data to json/
       const userData = await res.json();
-      setProgress(!progress);
+      setProgress(false);
       setDashboardData(userData);
     }
 
@@ -61,7 +62,7 @@ const Dashboard = () => {
         description="initial-scale=1.0, width=device-width"
       />
       <DashboardHeader></DashboardHeader>
-      {progress ? (
+      {!Object.keys(dashboardData).length ? (
         <ProgressModel />
       ) : (
         <div>

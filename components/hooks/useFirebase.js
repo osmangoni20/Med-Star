@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile
 } from "firebase/auth";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import FirebaseAuthentication from "../Authentication/firebase/firebase.initialize";
   
@@ -14,7 +15,7 @@ const useFirebase=()=>{
     const [newUser,setNewUser]=useState({});
     const [error,setError]=useState('');
     const auth = getAuth();
-
+    const route=useRouter();
     const SignUpWithEmailAndPassword = (userData) => {
         const email = userData.email;
         const password = userData.password;
@@ -39,6 +40,8 @@ const useFirebase=()=>{
             }).then(res=>res.json())
             .then(data=>{
               if(data.insertedId){
+                route.push('/login');
+                Logout();
                 alert("Your Account is successfully Created. Please Verified your Email")
               }
             });
@@ -53,15 +56,17 @@ const useFirebase=()=>{
       };
 
 
-      const UpdateUserData = (user) => {
+      const UpdateUserData = (userData) => {
         
+        console.log("updat: ",userData)
         updateProfile(auth.currentUser, {
-          phoneNumber: user.mobile_No,
-          displayName: user.firstName+' '+user.lastName,
+          phoneNumber: userData.mobile_No,
+          displayName: userData.firstName+' '+userData.lastName,
           photoURL: "",
         })
           .then((result) => {
-            console.log(result);
+
+            console.log(user);
             // alert("A confirmation link already sent to your email with details to activate your account. Please Check Your Email")
 
           })

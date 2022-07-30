@@ -28,6 +28,7 @@ import DashboardHeader from "../DashboardHeader/DashboardHeader";
 import MenuOptionsHeader from "../MenuOptionsHeader/MenuOptionsHeader";
 import Sidebar from "../Sidebar/Sidebar";
 // import "../Style/inputStyle.css";
+import axios from "axios";
 import { useRouter } from "next/router";
 import tableStyle from "../../../styles/Sass/Components/DashboardPart/tableStyle.module.scss";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
@@ -55,6 +56,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const dynamicRoute = submenu ? submenu : menu;
   const [fieldValue, setFieldValue] = useState<any>({});
   const [progress, setProgress] = useState<boolean>(false);
+  const [uploadImage, setUploadImage] = useState<any>();
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
@@ -108,6 +110,23 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   //   formState: { errors },
   // }: any = useForm();
 
+  // Image Upload
+
+  const HandleImageUpload = (e: any) => {
+    setProgress(true);
+    setFieldValue({ ...fieldValue, img: e.target.files[0] });
+    const ImagForm = new FormData();
+    ImagForm.set("key", "20eb4f4a88d3505364e15416b41a0df2");
+    ImagForm.append("image", e.target.files[0]);
+    axios.post("https://api.imgbb.com/1/upload", ImagForm).then((imageData) => {
+      console.log(imageData.data);
+      const data = { ...fieldValue, img: imageData.data.data.url };
+      setFieldValue(data);
+      setProgress(false);
+    });
+  };
+
+  // Field Vaue
   const HandleInputFieldValue = (e: any) => {
     console.log(e.target.value);
     if (!e.target.files) {
@@ -135,20 +154,6 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
     console.log(fieldValue);
   };
 
-  // const onSubmit = (submitData: any) => {
-  //   submitData.action = true;
-  //   // setTableData(() => [tableData, submitData]);
-  //   console.log(submitData);
-
-  //   AllData.inputFieldData[0].search
-  //     ? HandleSearch(submitData.date)
-  //     : HandlePost(submitData);
-
-  //   // console.log(tableData,AllData.tableData);
-  //   Object.keys(submitData).map((property) => setValue(`${property}`, null));
-  //   submitData = {};
-  // };
-  // Search data with api
   const HandleSearch = (searchValue: any) => {
     fetch(
       `https://med-star-bd.herokuapp.com/${dynamicRoute}?search=${searchValue}`
@@ -224,9 +229,35 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
 
   const HandleRequestAction = (
     e: ChangeEvent<HTMLSelectElement>,
-    data: { email: any }
+    data: { _id: string; email: string }
   ) => {
     console.log(e.target.value, data.email);
+
+    const status = e.target.value;
+    const email = data.email;
+    const id = data._id;
+    async function fetchData() {
+      const res = await fetch(
+        `http://localhost:5000/${dynamicRoute}/${email}/${id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ status }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      );
+      // convert data to json/
+      const data = await res.json();
+      console.log(data);
+      if (data.modifiedCount) {
+        setProgress(false);
+      }
+    }
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
   };
 
   const HandleDelete = (id: any) => {
@@ -438,7 +469,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                                     tableData[inputField.registerName]
                                   }
                                   required
-                                  onChange={(e) => HandleInputFieldValue(e)}
+                                  onChange={(e) => HandleImageUpload(e)}
                                 />
                               )}
                             </div>

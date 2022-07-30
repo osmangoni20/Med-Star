@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { AiTwotonePhone } from "react-icons/ai";
 import { BsCalendarDateFill, BsImages } from "react-icons/bs";
@@ -57,7 +58,7 @@ type passwordErrorType = {
 const SignIn = ({ setModel, setModelData }: any) => {
   const [signUpInputData, setSignUpInputData] = useState({});
   const { SignUpWithEmailAndPassword, error, newUser }: any = useFirebase();
-
+  const [progress, setProgress] = useState<boolean>(false);
   const [password, setPassword] = useState({
     firstPassword: "",
     confirmPassword: "",
@@ -71,20 +72,34 @@ const SignIn = ({ setModel, setModelData }: any) => {
     // confirmPassError: false,
   });
 
+  // Image Upload
+  const HandleImageUpload = (e: any) => {
+    setProgress(true);
+    setSignUpInputData({ ...signUpInputData, img: e.target.files[0] });
+    const ImagForm = new FormData();
+    ImagForm.set("key", "20eb4f4a88d3505364e15416b41a0df2");
+    ImagForm.append("image", e.target.files[0]);
+    axios.post("https://api.imgbb.com/1/upload", ImagForm).then((imageData) => {
+      console.log(imageData.data);
+      const data = { ...signUpInputData, img: imageData.data.data.url };
+      setSignUpInputData(data);
+      setProgress(false);
+    });
+  };
+
   // handle input filed data
   const HandleFieldValue = (e: any) => {
     const data = { ...signUpInputData, [e.target.name]: e.target.value };
     setSignUpInputData(data);
   };
-  const HandleInputFile = (e: any) => {
-    const data = { ...signUpInputData, [e.target.name]: e.target.files[0] };
-    setSignUpInputData(data);
-  };
+  // const HandleInputFile = (e: any) => {
+  //   const data = { ...signUpInputData, [e.target.name]: e.target.files[0] };
+  //   setSignUpInputData(data);
+  // };
   //   form submit handle
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     SignUpWithEmailAndPassword(signUpInputData);
-    console.log(newUser.email, "signu page", newUser);
     // setModelData({
     //   text1: "Your Account is successfully Created",
     //   text2: "Please Verified your Email",
@@ -179,13 +194,15 @@ const SignIn = ({ setModel, setModelData }: any) => {
                         type={field.inputFiledType}
                         placeholder={field.fieldHeader}
                         name={field.name}
-                        onChange={(e) => HandleInputFile(e)}
+                        required
+                        onChange={(e) => HandleImageUpload(e)}
                       />
                     ) : (
                       <input
                         type={field.inputFiledType}
                         placeholder={field.fieldHeader}
                         name={field.name}
+                        required
                         onBlur={(e) => HandleFieldValue(e)}
                       />
                     )}
