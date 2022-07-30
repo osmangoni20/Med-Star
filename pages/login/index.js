@@ -36,7 +36,7 @@ const Login = () => {
   }
   useEffect(()=>{
     const fetchData = async () => {
-      const res= await fetch(`http://localhost:5000/${user.email}`)
+      const res= await fetch(`https://med-star-bd.herokuapp.com/isAdmin//${user.email}`)
       const data=res.json();
       setIsAdmin(data);
       localStorage.setItem('isAdmin',data);

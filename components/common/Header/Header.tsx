@@ -38,7 +38,7 @@ const Header = () => {
           `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
         );
         const adminRes = await fetch(
-          `http://localhost:5000/isAdmin/${user.email}`
+          `https://med-star-bd.herokuapp.com/isAdmin/${user.email}`
         );
         // convert data to json
 

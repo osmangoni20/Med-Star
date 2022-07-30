@@ -238,7 +238,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
     const id = data._id;
     async function fetchData() {
       const res = await fetch(
-        `http://localhost:5000/${dynamicRoute}/${email}/${id}`,
+        `https://med-star-bd.herokuapp.com/${dynamicRoute}/${email}/${id}`,
         {
           method: "PATCH",
           body: JSON.stringify({ status }),
