@@ -108,7 +108,9 @@ const featuresList = [
 const Features = () => {
   return (
     <div className={style.features}>
-      <h2 className={`${style.title} text-center`}>Our Facilities</h2>
+      <div className={`${style.title} text-center`}>
+        <h2>Our Facilities</h2>
+      </div>
       <div className="grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-5">
         {featuresList.map((feature) => {
           return (
@@ -120,9 +122,10 @@ const Features = () => {
                 className={` flex items-center card-body pt-5 pb-2 pl-3 pr-1`}
               >
                 <div>
-                  <h3 className="text-center text-2xl font-bold">
+                  <h3 className="text-center  text-2xl font-bold">
                     {feature.type}
                   </h3>
+
                   {feature.featuresData.map((data) => (
                     <li className={`${style.service}`} key={data.id}>
                       {/* <p className={`${style.dot} mr-3`}></p> */}

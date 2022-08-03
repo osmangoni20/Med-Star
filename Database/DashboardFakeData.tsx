@@ -72,14 +72,14 @@ export const DashboardFakeData: any = {
         registerName: "blood_group",
         placeholderName: "Your Blood Group",
         selectOptions: [
-          { name: "A+", value: "a-positive" },
-          { name: "A-", value: "a-negative" },
-          { name: "B+", value: "b-positive" },
-          { name: "B-", value: "b-negative" },
-          { name: "O+", value: "o-positive" },
-          { name: "O-", value: "o-negative" },
-          { name: "AB+", value: "ab-positive" },
-          { name: "AB-", value: "ab-negative" },
+          { name: "A+", value: "a_positive" },
+          { name: "A-", value: "a_negative" },
+          { name: "B+", value: "b_positive" },
+          { name: "B-", value: "b_negative" },
+          { name: "O+", value: "o_positive" },
+          { name: "O-", value: "o_negative" },
+          { name: "AB+", value: "ab_positive" },
+          { name: "AB-", value: "ab_negative" },
         ],
       },
 
@@ -752,6 +752,20 @@ export const DashboardFakeData: any = {
         inputType: "text",
       },
       {
+        name: "Chamber Time",
+        icon: "date",
+        registerName: "chamberTime",
+        placeholderName: "Chamber Time",
+        inputType: "text",
+      },
+      {
+        name: "Doctor Fee",
+        icon: "money",
+        registerName: "fee",
+        placeholderName: "Doctor Fee",
+        inputType: "number",
+      },
+      {
         name: "Category",
         icon: "category",
         registerName: "category",
@@ -940,7 +954,120 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Product",
     menuOptionHeader: { name: "Product List", icon: "product" },
   },
+  userDoctorAppointment: {
+    tableHeader: [
+      { name: "Patient Name", data_register_name: "patientName" },
+
+      {
+        name: "Doctor",
+        data_register_name: "doctor_name",
+      },
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+    ],
+    menuOptionHeader: { name: "Doctor Appointment", icon: "patient" },
+    sidebarMenuHeader: "My appointment ",
+  },
+  prescription_order: {
+    tableHeader: [
+      { name: "Prescription", data_register_name: "prescription" },
+
+      {
+        name: "Stock In Medicine",
+        data_register_name: "stock_medicine",
+      },
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+    ],
+    menuOptionHeader: { name: "Prescription Order", icon: "patient" },
+    sidebarMenuHeader: "My Prescription Order ",
+  },
+  new_prescription: {
+    tableHeader: [
+      { name: "Customer Name", data_register_name: "customerName" },
+
+      {
+        name: "Number",
+        data_register_name: "mobile_no",
+      },
+
+      {
+        name: "Prescription",
+        data_register_name: "img",
+      },
+      {
+        name: "Stock Total Medicine",
+        data_register_name: "input",
+      },
+      {
+        name: "Action",
+        data_register_name: "delete",
+      },
+    ],
+    menuOptionHeader: { name: "Prescription", icon: "prescription" },
+    sidebarMenuHeader: "Prescription ",
+  },
+
+  user_video_appointment: {
+    inputFieldData: [
+      {
+        name: "Doctor Name",
+        registerName: "doctor_name",
+        placeholderName: "Doctor Name",
+        inputType: "select",
+        icon: "name",
+      },
+    ],
+    tableHeader: [
+      {
+        name: "Doctor",
+        data_register_name: "doctor_name",
+      },
+      {
+        name: "Fee",
+        data_register_name: "fee",
+      },
+
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+      {
+        name: "Send Meet Link And Time",
+        data_register_name: "input",
+      },
+    ],
+
+    menuOptionHeader: { name: "Patient Manage", icon: "patient" },
+    sidebarMenuHeader: "Doctor Video Call Appointment",
+  },
+
   appointment: {
+    inputFieldData: [
+      {
+        name: "Doctor Name",
+        registerName: "doctor_name",
+        placeholderName: "Doctor Name",
+        inputType: "select",
+        icon: "name",
+      },
+    ],
     tableHeader: [
       { name: "Patient Name", data_register_name: "patientName" },
 
@@ -951,6 +1078,14 @@ export const DashboardFakeData: any = {
       {
         name: "Doctor",
         data_register_name: "doctor_name",
+      },
+      {
+        name: "Fee",
+        data_register_name: "fee",
+      },
+      {
+        name: "Time",
+        data_register_name: "chamberTime",
       },
       {
         name: "Date",
@@ -967,7 +1102,7 @@ export const DashboardFakeData: any = {
     ],
 
     menuOptionHeader: { name: "Patient Manage", icon: "patient" },
-    sidebarMenuHeader: "New appointment Add",
+    sidebarMenuHeader: "Doctor Appointment",
   },
   new_appointment: {
     inputFieldData: [
@@ -990,9 +1125,16 @@ export const DashboardFakeData: any = {
         name: "Doctor Name",
         registerName: "doctor_name",
         placeholderName: "Doctor Name",
-        inputType: "text",
+        selectOptions: [
+          { name: "Dr. Aftabul Karrim", value: "Dr. Aftabul Karrim" },
+          { name: "Dr. Tark Karrim", value: "Dr. Tark Karrim" },
+          { name: "Dr. Tark Karrim", value: "Dr. Tark Karrim" },
+          { name: "Dr. Tark Karrim", value: "Dr. Tark Karrim" },
+          { name: "Dr. Tark Karrim", value: "Dr. Tark Karrim" },
+        ],
         icon: "name",
       },
+
       {
         name: "Mobile Number",
         registerName: "patient_mobile_no",
@@ -1022,7 +1164,35 @@ export const DashboardFakeData: any = {
     menuOptionHeader: { name: "Patient Manage", icon: "patient" },
     sidebarMenuHeader: "New appointment Add",
   },
+  newMedicalTest: {
+    tableHeader: [
+      { name: "Patient Name", data_register_name: "patientName" },
 
+      {
+        name: "Mobile",
+        data_register_name: "patient_mobile_no",
+      },
+      {
+        name: "Test Name",
+        data_register_name: "test_name",
+      },
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+      {
+        name: "Action",
+        data_register_name: "select",
+      },
+    ],
+
+    menuOptionHeader: { name: "Patient Manage", icon: "patient" },
+    sidebarMenuHeader: "New Medical Test",
+  },
   admin: {
     inputFieldData: [
       {

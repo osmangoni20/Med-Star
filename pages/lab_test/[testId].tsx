@@ -1,16 +1,43 @@
-import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import { MdAddIcCall } from "react-icons/md";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import CustomModel from "../../components/common/Model/CustomModel";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
+import useFirebase from "../../components/hooks/useFirebase";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation";
 import style from "../../styles/Sass/pages/Shipping.module.scss";
 const SingleTest = ({ data }: { data: any }) => {
   const [labTestInfo, setLabTestInfo] = useState<any>([]);
+  const [patient, setPatient] = useState<any>({});
+  const { user }: any = useFirebase();
+  const [model, setSuccessModel] = useState(false);
+  const [modelData, setModelData] = useState({});
+  const [progress, setProgress] = useState(false);
+  const route = useRouter();
+
+  useEffect(() => {
+    setLabTestInfo(data);
+    async function fetchData() {
+      const res = await fetch(
+        `https://med-star-bd.herokuapp.com/users/${user.email}`
+      );
+      // convert data to json/
+      const userData = await res.json();
+      setPatient(userData);
+    }
+    console.log(patient);
+    // call the function
+    fetchData()
+      // make sure to catch any error
+      .catch(console.error);
+  }, []);
+
   const HandleFieldValue = (e: any) => {
     const data = { ...labTestInfo, [e.target.name]: e.target.value };
     setLabTestInfo(data);
@@ -18,10 +45,48 @@ const SingleTest = ({ data }: { data: any }) => {
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     console.log(labTestInfo);
+    const appointmentConformData = {
+      testName: data[0].testName,
+      testType: data[0].testType,
+      email: labTestInfo.email || patient.email,
+      patientName:
+        labTestInfo.first_name || patient.first_name + " " + patient.last_name,
+      patient_mobile_no: labTestInfo.mobile_no || patient.mobile_no,
+      status: "pending",
+      totalPrice: data[0].price - (data[0].price * data[0].offer) / 100,
+    };
+    console.log(appointmentConformData);
+    setProgress(true);
+
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch("http://localhost:5000/newMedicalTest", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(appointmentConformData),
+      });
+      // convert data to json
+      const data = await res.json();
+      if (data.insertedId) {
+        setProgress(false);
+        setSuccessModel(true);
+        setModelData({
+          text1: "Your Appointment  Successfully Done",
+          text2: "Enjoy our service",
+          // image: user?.photoUrl,
+          successType: true,
+        });
+      }
+    };
+
+    // call the function
+    fetchData()
+      //   // make sure to catch any error
+      .catch(console.error);
   };
-  const HandleConfirmOrder = (e: any) => {
-    alert("Processing.....");
-  };
+
   return (
     <div>
       <Header />
@@ -32,6 +97,14 @@ const SingleTest = ({ data }: { data: any }) => {
       />
       <main>
         <div className={`${style.shippingPart} order-sm-1 order-1`}>
+          {model && (
+            <CustomModel
+              modelData={modelData}
+              showModel={model}
+              setModel={setSuccessModel}
+            ></CustomModel>
+          )}
+          {progress ? <ProgressModel /> : <></>}
           <div className={`${style.shippingHeder} mx-10`}>
             <h3>Your Information </h3>
             <p>Please Fill Out Your Information</p>
@@ -63,6 +136,7 @@ const SingleTest = ({ data }: { data: any }) => {
                             <input
                               type={data.inputFiledType}
                               placeholder={data.fieldHeader}
+                              defaultValue={patient[data.name]}
                               name={data.name}
                               onBlur={(e) => HandleFieldValue(e)}
                             />
@@ -80,18 +154,15 @@ const SingleTest = ({ data }: { data: any }) => {
                       onBlur={(e) => HandleFieldValue(e)}
                     />
                   </div>
+                  <div
+                    className={`${style.order_Button} mt-5 flex justify-center`}
+                  >
+                    <LargestButton>Confirm Your Test</LargestButton>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className={`${style.order_Button} mb-5 flex justify-center`}>
-          <Link href="/">
-            <a onClick={HandleConfirmOrder}>
-              <LargestButton>Confirm </LargestButton>
-            </a>
-          </Link>
         </div>
       </main>
       <Footer />
@@ -100,9 +171,7 @@ const SingleTest = ({ data }: { data: any }) => {
 };
 export async function getServerSideProps(ctx: { params: { testId: any } }) {
   // Fetch data from external API
-  const res = await fetch(
-    `http://localhost:3000/api/lab_test/${ctx.params.testId}`
-  );
+  const res = await fetch(`http://localhost:5000/labtest/${ctx.params.testId}`);
   const data = await res.json();
 
   // Pass data to the page via props

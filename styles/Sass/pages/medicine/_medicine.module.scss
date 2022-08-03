@@ -1,0 +1,34 @@
+@import "../../abstract//variable.module.scss";
+
+.medicine {
+  aside {
+    // width: 20%;
+    position: sticky;
+    // overflow: hidden;
+    top: 0;
+    background-color: $primary;
+    color: white;
+    border-top: 2px solid $light;
+  }
+  main {
+    padding: 10px 5px;
+  }
+}
+
+@media (max-width: 640px) {
+  .medicine {
+    aside {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      // overflow: hidden;
+      top: 0;
+      background-color: $primary;
+      color: white;
+      border-top: 2px solid $light;
+    }
+    main {
+      padding: 10px 5px;
+    }
+  }
+}

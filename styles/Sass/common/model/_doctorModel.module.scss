@@ -16,14 +16,17 @@
   position: relative;
   padding: 32px;
   width: 100%;
-  max-width: 807px;
+  max-width: 800px;
   min-height: 400px;
   background-color: white;
   border-radius: 5px;
-  img {
-    width: 180px !important;
-    height: 200px !important;
+  figure {
+    img {
+      width: 180px !important;
+      height: 200px !important;
+    }
   }
+
   .singleDoctor {
     img {
       width: 180px !important;

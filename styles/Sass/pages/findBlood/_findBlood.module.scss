@@ -17,7 +17,7 @@
     }
     .bloodMemberCart {
       max-height: 180px;
-      min-width: 328px !important;
+      min-width: 328px;
       overflow: hidden;
     }
     .cartBodyText {
@@ -99,6 +99,25 @@
         select::placeholder {
           font-weight: 500;
           color: #aaa;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .findBlood {
+    main {
+      .bloodMemberCart {
+        max-height: 180px;
+        min-width: 100%;
+        overflow: hidden;
+      }
+      form {
+        width: 100%;
+        display: block;
+        .form_input_field {
+          display: block;
         }
       }
     }

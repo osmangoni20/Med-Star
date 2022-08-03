@@ -5,6 +5,7 @@ import {
   ReactElement,
   ReactFragment,
   ReactPortal,
+  useState,
 } from "react";
 import { GrLocation } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
@@ -12,14 +13,24 @@ import { TiLocation } from "react-icons/ti";
 import ambulanceImage from "../../assets/image/ambulance-dir.png";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
+import Meta from "../../components/common/Meta";
+import MapModel from "../../components/common/Model/MapModel";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
 import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
 
 const AmbulanceService = ({ data }: any) => {
+  const [mapModel, setModel] = useState(false);
   return (
     <div>
+      <Meta
+        title="Ambulance Service MedStart"
+        name="viewport"
+        description="initial-scale=1.0, width=device-width"
+      />
       <Header />
       <div className={`${style.ambulance} my-10`}>
+        {mapModel && <MapModel showModel={mapModel} setModel={setModel} />}
+
         <div
           className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}
         >
@@ -114,7 +125,10 @@ const AmbulanceService = ({ data }: any) => {
                         </div>
                       </div>
                     </div>
-                    <div className="card-actions justify-center">
+                    <div
+                      onClick={() => setModel(!mapModel)}
+                      className="card-actions justify-center"
+                    >
                       {/* className={`${style.map_button}`} */}
                       <SimpleButton>Show on Map</SimpleButton>
                     </div>
@@ -132,7 +146,7 @@ const AmbulanceService = ({ data }: any) => {
 
 export async function getServerSideProps(ctx: { params: { doctorId: any } }) {
   // Fetch data from external API
-  const res = await fetch(`https://med-star-bd.herokuapp.com/ambulance/`);
+  const res = await fetch(`https://med-star-bd.herokuapp.com/ambulance`);
   const data = await res.json();
 
   // Pass data to the page via props

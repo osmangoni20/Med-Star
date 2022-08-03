@@ -5,7 +5,7 @@ import { MdBloodtype } from "react-icons/md";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
-import style from "../../styles/Sass/pages/findBlood/findBlood.module.scss";
+import style from "../../styles/Sass/pages/findBlood/_findBlood.module.scss";
 import demoImag from "/assets/image/personlogo.jpg";
 interface Data {
   id: number;
@@ -26,10 +26,17 @@ const FindBlood = ({ data }: any) => {
   const HandleFieldValue = (e: any) => {
     setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
   };
+  const capitalizeFirstLetter = (
+    [first, ...rest]: string,
+    locale = navigator.language
+  ) =>
+    first === undefined ? "" : first.toLocaleUpperCase(locale) + rest.join("");
 
   const HandleSearchDonner = () => {
     fetch(
-      `https://med-star-bd.herokuapp.com/donner/?group=${searchValue.blood_Group}&division=${searchValue.division}&district=${searchValue.district}&upazila=${searchValue.upazila}`
+      `http://localhost:5000/donner?group=${
+        searchValue.blood_Group
+      }&district=${capitalizeFirstLetter(`${searchValue.district}`)}`
     )
       .then((res) => res.json())
       .then((data) => setDonnerData(data))
@@ -63,32 +70,18 @@ const FindBlood = ({ data }: any) => {
                     name={"blood_Group"}
                     onBlur={(e) => HandleFieldValue(e)}
                   >
-                    <option value={"a-positive"}>A+</option>
-                    <option value={"a-negative"}>A-</option>
-                    <option value={"b-positive"}>B+</option>
-                    <option value={"b-negative"}>A+</option>
-                    <option value={"o-positive"}>O+</option>
-                    <option value={"o-negative"}>O+</option>
-                    <option value={"ab-positive"}>Ab+</option>
-                    <option value={"ab-negative"}>Ab+</option>
+                    <option value={"a_positive"}>A+</option>
+                    <option value={"a_negative"}>A-</option>
+                    <option value={"b_positive"}>B+</option>
+                    <option value={"b_negative"}>B-</option>
+                    <option value={"o_positive"}>O+</option>
+                    <option value={"o_negative"}>O-</option>
+                    <option value={"ab_positive"}>Ab+</option>
+                    <option value={"ab_negative"}>Ab-</option>
                   </select>
                 </div>
               </div>
 
-              {/* Division */}
-              <div>
-                <h5>Division</h5>
-                <div className={`${style.input_filed}`}>
-                  <FaCity className={`${style.input_icon}`} />
-
-                  <input
-                    type={"text"}
-                    placeholder={"Division"}
-                    name={"division"}
-                    onBlur={(e) => HandleFieldValue(e)}
-                  />
-                </div>
-              </div>
               {/* District */}
               <div>
                 <h5>District</h5>
@@ -103,20 +96,6 @@ const FindBlood = ({ data }: any) => {
                   />
                 </div>
               </div>
-              {/* Upazila */}
-              <div>
-                <h5>Upazila</h5>
-                <div className={`${style.input_filed}`}>
-                  <FaCity className={`${style.input_icon}`} />
-
-                  <input
-                    type={"text"}
-                    placeholder={"Upazila"}
-                    name={"upazila"}
-                    onBlur={(e) => HandleFieldValue(e)}
-                  />
-                </div>
-              </div>
             </div>
           </form>
           <div className="card-actions justify-center py-6">
@@ -125,7 +104,7 @@ const FindBlood = ({ data }: any) => {
             </span>
           </div>
           <hr />
-          <div className="grid grid-cols-3 gap-4">
+          <div className="md:grid md:grid-cols-3 gap-4">
             {(donnerData ? donnerData : data).map(
               (member: any, index: number) => (
                 <div key={index}>
@@ -169,7 +148,7 @@ const FindBlood = ({ data }: any) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://med-star-bd.herokuapp.com/donner`);
+  const res = await fetch(`http://localhost:5000/donner`);
   const data = await res.json();
 
   // Pass data to the page via props

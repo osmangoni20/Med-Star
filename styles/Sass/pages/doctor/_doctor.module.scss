@@ -1,0 +1,128 @@
+@import "../../abstract/variable.module.scss";
+
+.doctor {
+  aside {
+    position: sticky;
+    top: 0;
+    width: 20%;
+    padding: 4px;
+    border-right: 1px solid rgb(216, 216, 216);
+    p {
+      margin-top: 10px;
+      border-bottom: 1px solid gray;
+    }
+    h3 {
+    }
+    form {
+      .form_input_field {
+        max-width: 325px;
+        padding: 0.5rem;
+        overflow: hidden;
+        align-items: center;
+        h5 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+      .input_filed {
+        max-height: 400px;
+
+        width: 100%;
+        height: 52px;
+        // background-color: $gray;
+        background-color: #f0f0f0;
+        margin: 10px 0px;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0.4rem;
+
+        .inputFieldError {
+          width: 100%;
+          border: 1px solid #f74053;
+          background-color: burlywood;
+          color: #1c1c1d;
+          height: 30px;
+          border-radius: 5px;
+          text-align: center;
+        }
+        .input_icon {
+          margin: auto;
+          color: $gray;
+        }
+        input,
+        select {
+          border: none;
+          background: none;
+          outline: none;
+          line-height: 1;
+          font-weight: 500;
+          color: #333;
+          font-size: 0.98rem;
+          /* margin-top: 8px; */
+        }
+
+        input::placeholder,
+        select::placeholder {
+          font-weight: 500;
+          color: #aaa;
+        }
+      }
+    }
+  }
+  main {
+    // padding: 0px 35px;
+    margin: 0px auto;
+  }
+  .doctorCard {
+    max-height: 415px;
+    cursor: pointer;
+    figure {
+      background-color: $Lightgray;
+    }
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    figure {
+      max-height: 180px !important;
+    }
+  }
+  .doctorCardBody {
+    color: white;
+    background-color: $light;
+    padding: 15px !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .doctor {
+    aside {
+      display: block;
+      position: relative;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    main {
+      display: block;
+      width: 100%;
+
+      .doctorCard {
+        max-height: 420px;
+      }
+    }
+  }
+  .titlePart {
+    .title {
+      color: $light;
+      font-size: 25px;
+      font-weight: 700;
+      text-align: center;
+    }
+    p {
+      display: none;
+    }
+  }
+}

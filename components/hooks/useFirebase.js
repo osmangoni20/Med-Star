@@ -62,7 +62,7 @@ const useFirebase=()=>{
         updateProfile(auth.currentUser, {
           phoneNumber: userData.mobile_No,
           displayName: userData.firstName+' '+userData.lastName,
-          photoURL: "",
+          photoURL: userData.img,
         })
           .then((result) => {
 
@@ -87,7 +87,8 @@ const useFirebase=()=>{
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in 
-          localStorage.setItem("accessToken",userCredential.accessToken)
+          console.log(userCredential);
+          localStorage.setItem("accessToken",userCredential.user.accessToken)
           setNewUser({});
           console.log(userCredential)
           const user = userCredential.user;
@@ -99,6 +100,18 @@ const useFirebase=()=>{
               photo:user.photoURL,
               phone:user.phoneNumber
           })
+          if(user.email){
+            const fetchData = async () => {
+              const res= await fetch(`http://localhost:5000/isAdmin/${userCredential.user.email}`)
+              const data= await res.json();
+              // setIsAdmin(data);
+              console.log(data)
+              localStorage.setItem('isAdmin',data);
+            }
+        
+            fetchData()
+            .catch(console.log(error))
+          }
           // if(!user.emailVerified)
           // {
           //     alert("Your Email is not Verified . Please Email Verified.")
@@ -132,6 +145,8 @@ const useFirebase=()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
             localStorage.removeItem("accessToken")
+            localStorage.removeItem("CountCartProduct");
+            localStorage.removeItem("isAdmin");
             setUser({});
           }).catch((error) => {
             // An error happened.
@@ -159,6 +174,7 @@ const useFirebase=()=>{
         SignInWithEmailPassword,
          SignUpWithEmailAndPassword,
          EmailVerification,
+         UpdateUserData,
          user,
          error,
          ResetPassword,

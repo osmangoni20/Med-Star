@@ -3,9 +3,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import { Dispatch, SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import { actionCreators } from "../../../State";
+import { actionCreators, State } from "../../../State";
 import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
@@ -44,7 +44,8 @@ const ProductModel = ({
   const dispatch = useDispatch();
   const route = useRouter();
   const { user }: any = useFirebase();
-  const { countTotalCart } = bindActionCreators(actionCreators, dispatch);
+  const { IncrementOderCart } = bindActionCreators(actionCreators, dispatch);
+  const totalCardNumber = useSelector((state: State) => state.cart);
   const HandleIncrease = () => {
     setContValue((count) => count + 1);
   };
@@ -62,7 +63,7 @@ const ProductModel = ({
 
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("https://med-star-bd.herokuapp.com/my-cart", {
+      const res = await fetch("http://localhost:5000/my-cart", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -71,11 +72,16 @@ const ProductModel = ({
       });
       // convert data to json
       const data = await res.json();
+      console.log(data);
       if (data.insertedId) {
         setModel(false);
+        IncrementOderCart();
+
         if (typeof window !== "undefined") {
-          const totalOrderCart = localStorage.getItem("totalCart");
-          localStorage.setItem("totalCart", `${Number(totalOrderCart) + 1}`);
+          localStorage.setItem(
+            "CountCartProduct",
+            `${Number(totalCardNumber + 1)}`
+          );
         }
         // route.reload();
       }
@@ -90,7 +96,7 @@ const ProductModel = ({
     <div>
       {showModel && (
         <div className={`${style.popup_container}`}>
-          <div className={`${style.inner_popup}`}>
+          <div className={`${style.addProduct_inner_popup}`}>
             <label
               onClick={() => setModel(false)}
               className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -98,7 +104,7 @@ const ProductModel = ({
               ✕
             </label>
             <div className="flex justify-center">
-              <div className={`flex justify-between `}>
+              <div className={`md:flex md:justify-between gap-12`}>
                 <div>
                   <Image
                     src={data.img}
@@ -109,11 +115,16 @@ const ProductModel = ({
                   <div className={`${style.buttonCard} flex `}>
                     <div>
                       <p className="text-sm text-gray-400">
-                        MRP <span className="line-through">৳2750</span>{" "}
+                        MRP{" "}
+                        <span className="line-through">
+                          ৳ {data.price * countValue}
+                        </span>{" "}
                         <span className={style.offer}>8% off</span>
                       </p>
                       <p className={`${style.price}`}>
-                        TK {data.price * countValue}
+                        TK{" "}
+                        {data.price * countValue -
+                          (data.price * countValue * 8) / 100}
                       </p>
 
                       <button className={`${style.countButton}`}>

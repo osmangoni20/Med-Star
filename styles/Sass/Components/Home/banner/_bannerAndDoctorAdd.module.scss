@@ -1,33 +1,38 @@
 @import "../../../abstract//variable.module.scss";
 .bannerAndDoctorAdd {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 80%;
   // padding: 10px;
   border-bottom: 2px solid $Lightgray;
+  height: 430px;
+  .doctorAdd {
+    width: 100%;
+
+    img {
+      // height: 396px !important;
+
+      margin-bottom: 0px !important;
+      padding: 0px !important;
+    }
+  }
 }
 
 // .banner {
 // }
-.doctorAdd {
-  img {
-    height: 352px !important;
-    margin-bottom: 0px !important;
-    padding: 0px !important;
-  }
-}
 
 @media (max-width: 640px) {
   .bannerAndDoctorAdd {
     display: block;
-    // padding: 10px;
+    height: 100%;
     border-bottom: 2px solid $Lightgray;
-  }
-  .doctorAdd {
-    img {
-      height: 100px !important;
-      width: 640px !important;
-      margin-bottom: 0px !important;
-      padding: 0px !important;
+    .doctorAdd {
+      height: 200px;
+      img {
+        height: 200px !important;
+        width: 100% !important;
+        margin-bottom: 0px !important;
+        padding: 0px !important;
+      }
     }
   }
 }

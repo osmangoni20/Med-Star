@@ -4,7 +4,7 @@ import Categories from "../../components/common/Categories";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import Product from "../../components/common/Product";
-import style from "../../styles/Sass/pages/medicine/medicine.module.scss";
+import style from "../../styles/Sass/pages/medicine/_medicine.module.scss";
 
 interface Data {
   id: number;
@@ -19,20 +19,30 @@ interface Data {
     sideEffect: string;
   };
 }
+const capitalizeFirstLetter = (
+  [first, ...rest]: string,
+  locale = navigator.language
+) =>
+  first === undefined ? "" : first.toLocaleUpperCase(locale) + rest.join("");
 const Medicine = () => {
   const route = useRouter();
   const { search, category } = route.query;
 
   const [medicineProduct, setMedicineProduct] = useState<Data[]>([]);
+
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/medicine?searchName=${search}&searchCategory=${category}`
+        `http://localhost:5000/medicine?searchName=${capitalizeFirstLetter(
+          `${search}`
+        )}&searchCategory=${`${category}`}`
       );
       // convert data to json
       const data = await res.json();
-      setMedicineProduct(data);
+      if (data.length > 0) {
+        setMedicineProduct(data);
+      }
     };
 
     // call the function
@@ -45,9 +55,8 @@ const Medicine = () => {
   const categories = [
     { name: "Personal Care", key: "personal" },
     { name: "Baby & Mom", key: "bab" },
-    { name: "Personal Care", key: "personal" },
     { name: "Female Hygiene", key: "female" },
-    { name: "Nutrition and Drinks", key: "nutrition" },
+    { name: "Nutrition and Drinks", key: "Nutrition_and_drinks" },
   ];
   return (
     <div>
@@ -57,7 +66,7 @@ const Medicine = () => {
         description="initial-scale=1.0, width=device-width"
       />
       <Header />
-      <div className={`${style.medicine} flex`}>
+      <div className={`${style.medicine} md:flex`}>
         <aside className="h-screen">
           {/* <h3 className="text-center my-4 text-2xl font-bold ">
             Doctor Category
@@ -66,7 +75,7 @@ const Medicine = () => {
         </aside>
 
         <main className="mt-10">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="md:grid md:grid-cols-4 gap-4">
             {medicineProduct.map((product: any) => (
               <Product key={product.id} product={product} />
             ))}

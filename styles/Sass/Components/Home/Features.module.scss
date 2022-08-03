@@ -34,9 +34,65 @@
 }
 
 .title {
+  width: 100%;
   color: $light;
-  font-size: 35px;
-  font-weight: 700;
+  margin: 20px 0px;
+  h2 {
+    animation-name: example;
+    width: 250px;
+    font-size: 30px;
+    font-weight: 700;
+    border: 2px solid $light;
+    border-radius: 10px 5px 10px 5px;
+    position: relative;
+    animation: titleAnimation 5s linear infinite;
+    // animation-iteration-count: 2;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+  }
+}
+// {
+//   width: 100px;
+//   height: 100px;
+//   background-color: red;
+
+// }
+
+@keyframes titleAnimation {
+  0% {
+    background-color: $primary;
+    border-radius: 5px 10px 5px 10px;
+    color: white;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background-color: $light;
+    border-radius: 10px 5px 10px 5px;
+    color: white;
+    left: 25%;
+    top: 0px;
+  }
+  50% {
+    background-color: $primary;
+    color: white;
+    border-radius: 10px 15px 10px 15px;
+    left: 40%;
+    top: 0px;
+  }
+  75% {
+    background-color: $Lightgray;
+    color: black;
+    border-radius: 10px 5px 10px 5px;
+    left: 65%;
+    top: 0px;
+  }
+  100% {
+    background-color: $primary;
+    color: white;
+    left: 82%;
+    top: 0px;
+  }
 }
 
 @media (max-width: 640px) {

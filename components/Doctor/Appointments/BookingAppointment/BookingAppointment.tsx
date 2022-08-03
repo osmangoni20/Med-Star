@@ -1,9 +1,11 @@
 import { useState } from "react";
-import AppointmentModel from "../../../common/Model/AppointmentModel";
+import CustomModel from "../../../common/Model/CustomModel";
+import InputFieldModel from "../../../common/Model/InputFieldModel";
 import SimpleButton from "../../../Custom/Button/SimpleButton";
 const BookingAppointment = ({ date, data }: any) => {
   const [showModel, setModel] = useState<boolean>(false);
-
+  const [successModel, setSuccessModel] = useState(false);
+  const [modelData, setModelData] = useState({});
   const dd = date.toLocaleString("en-us", { weekday: "long" });
   const day = String(date.getDate()).padStart(2, "0");
   const mm = date.toLocaleString("default", { month: "long" });
@@ -22,10 +24,13 @@ const BookingAppointment = ({ date, data }: any) => {
   return (
     <div className="pb-5 mb-8">
       {showModel && (
-        <AppointmentModel
+        <InputFieldModel
+          type={"appointment"}
           setModel={setModel}
           showModel={showModel}
           data={data}
+          setSuccessModel={setSuccessModel}
+          setModelData={setModelData}
           date={appointmentDay}
         />
       )}
@@ -36,7 +41,13 @@ const BookingAppointment = ({ date, data }: any) => {
             {appointMentDate} ({appointmentDay})
           </h1>
           <h6>3.00pm - 6.00pm</h6>
-
+          {successModel && (
+            <CustomModel
+              modelData={modelData}
+              showModel={successModel}
+              setModel={setSuccessModel}
+            ></CustomModel>
+          )}
           <span onClick={openModal}>
             <SimpleButton>Booking Appointment</SimpleButton>
           </span>

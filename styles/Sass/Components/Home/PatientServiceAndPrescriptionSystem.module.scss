@@ -1,8 +1,9 @@
 @import "../../abstract//variable.module.scss";
 .patientService,
 .prescription {
-  padding: 20px;
+  padding: 40px 20px;
   margin: 20px 0px;
+  background-color: $Lightgray;
   img {
     height: 300px !important;
   }
@@ -30,7 +31,7 @@
 }
 .prescription {
   padding: 20px;
-  margin: 0px 0px;
+  margin: 40px 0px;
 
   h2 {
     color: $light;

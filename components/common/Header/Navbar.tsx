@@ -5,9 +5,9 @@ import style from "../../../styles/Sass/common/Header/_navbar.module.scss";
 
 const Navbar = () => {
   const Links = [
-    { name: "Baby & Mom", link: "/medicine?search=baby & mom" },
-    { name: "Personal Care", link: "/medicine?search=personal" },
-    { name: "Female Hygiene", link: "/medicine?search=female" },
+    { name: "Baby & Mom", link: "/medicine?category=baby & mom" },
+    { name: "Personal Care", link: "/medicine?category=personal" },
+    { name: "Drinks", link: "/medicine?category=Nutrition_and_drinks" },
   ];
   const medicalLinks = [
     { name: "Call To Doctor", link: "/doctor" },
@@ -40,7 +40,7 @@ const Navbar = () => {
                     key={link.name}
                     className="md:ml-8 text-base md:my-0 py-2"
                   >
-                    <Link href={link.link} passHref>
+                    <Link href={link.link}>
                       <a className="text-white  duration-500">{link.name}</a>
                     </Link>
                   </li>

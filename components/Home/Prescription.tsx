@@ -1,5 +1,8 @@
 import Image from "next/image";
+import { useState } from "react";
 import style from "../../styles/Sass/Components/Home/PatientServiceAndPrescriptionSystem.module.scss";
+import CustomModel from "../common/Model/CustomModel";
+import InputFieldModel from "../common/Model/InputFieldModel";
 import LargestButton from "../Custom/Button/LargestButton";
 import prescriptionImage from "/assets/image/doctor-writing-prescription.png";
 const prescriptionUploadRules = [
@@ -27,8 +30,28 @@ const prescriptionUploadRules = [
   },
 ];
 const Prescription = () => {
+  const [showModel, setModel] = useState<boolean>(false);
+  const [successModel, setSuccessModel] = useState(false);
+  const [modelData, setModelData] = useState({});
+
   return (
     <div>
+      <InputFieldModel
+        type={"prescription_upload"}
+        setSuccessModel={setSuccessModel}
+        setModelData={setModelData}
+        setModel={setModel}
+        showModel={showModel}
+      ></InputFieldModel>
+
+      {successModel && (
+        <CustomModel
+          modelData={modelData}
+          showModel={successModel}
+          setModel={setSuccessModel}
+        ></CustomModel>
+      )}
+
       <div
         className={`${style.prescription} md:flex items-center md:gap-9 md:justify-evenly`}
       >
@@ -49,7 +72,9 @@ const Prescription = () => {
           <div
             className={`my-6 md:ml-48 flex justify-center md:justify-start items-center`}
           >
-            <LargestButton>Upload Prescription</LargestButton>
+            <span onClick={() => setModel(true)}>
+              <LargestButton>Upload Prescription</LargestButton>
+            </span>
           </div>
         </div>
         <div className={`${style.prescriptionImage}`}>

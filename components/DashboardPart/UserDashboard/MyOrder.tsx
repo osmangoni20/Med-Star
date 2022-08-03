@@ -1,18 +1,44 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import style from "../../../styles/Sass/Components/DashboardPart/_menuBody.module.scss";
+import CustomModel from "../../common/Model/CustomModel";
 import ProgressModel from "../../common/Model/ProgressModel";
 
 const MyOrder = ({ order }: any) => {
   console.log(order);
   const [progress, setProgress] = useState(true);
+  const [customModel, setCustomModel] = useState<boolean>(false);
+  const [modelData, setModelData] = useState<any>({});
+  const route = useRouter();
   useEffect(() => {
-    if (order.length) {
+    if (order.length === 0) {
+      setTimeout(function () {
+        setProgress(false);
+        setCustomModel(!customModel);
+        setModelData({
+          text1: "Your Order Empty",
+          text2: "Please Order Now",
+          // image: user?.photoUrl,
+          wrongType: true,
+        });
+        setTimeout(function () {
+          route.push("/dashboard/user_profile");
+        }, 3000);
+      }, 5000);
+    } else if (order.length) {
       setProgress(false);
     }
   }, [progress]);
   return (
     <div className={`${style.mainInputField_container}`}>
+      {customModel && (
+        <CustomModel
+          modelData={modelData}
+          showModel={customModel}
+          setModel={setCustomModel}
+        ></CustomModel>
+      )}
       {progress ? (
         <ProgressModel />
       ) : (

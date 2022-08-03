@@ -57,6 +57,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const [fieldValue, setFieldValue] = useState<any>({});
   const [progress, setProgress] = useState<boolean>(false);
   const [uploadImage, setUploadImage] = useState<any>();
+  const route = useRouter();
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
@@ -86,6 +87,27 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       // convert data to json/
       const userData = await res.json();
       setTableData(userData);
+
+      if (!AllData.inputFieldData) {
+        if (userData.length === 0) {
+          setProgress(true);
+          setTimeout(function () {
+            setProgress(false);
+            setCustomModel(!customModel);
+            setModelData({
+              text1: "Your Order Empty",
+              text2: "Please Order Now",
+              // image: user?.photoUrl,
+              wrongType: true,
+            });
+            setTimeout(function () {
+              route.push("/dashboard/user_profile");
+            }, 3000);
+          }, 5000);
+        } else if (userData.length) {
+          setProgress(false);
+        }
+      }
     }
     // call the function
 

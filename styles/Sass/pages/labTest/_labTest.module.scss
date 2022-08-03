@@ -133,3 +133,29 @@
     padding-right: 20px;
   }
 }
+
+@media (max-width: 640px) {
+  .lab_test {
+    margin-top: 30px;
+    padding: 2px 5px;
+    // display: flex;
+    // justify-content: center;
+    width: 100%;
+
+    .lab_test_info {
+      width: 100%;
+      table {
+        padding: 5px 10px;
+        display: block;
+        overflow-x: scroll;
+        width: 320px;
+      }
+      form {
+        .form_input_field {
+          max-width: 100%;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+}

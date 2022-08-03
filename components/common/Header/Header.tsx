@@ -22,39 +22,36 @@ import defaultProfile from "/assets/image/default_profile.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
-  const [totalOrderCart, setCartLength] = useState<any>(0);
   const [isAdmin, setIsAdmin] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const totalCardNumber = useSelector((state: State) => state.cart);
-  console.log(user);
+
   const route = useRouter();
+
   useEffect(() => {
-    setIsAdmin(Boolean(localStorage.getItem("isAdmin") === "true"));
+    const fetchData = async () => {
+      // get the data from the api
+      const res = await fetch(
+        `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
+      );
 
-    {
-      const fetchData = async () => {
-        // get the data from the api
-        const res = await fetch(
-          `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
-        );
-        const adminRes = await fetch(
-          `https://med-star-bd.herokuapp.com/isAdmin/${user.email}`
-        );
-        // convert data to json
+      // convert data to json
 
-        const data = await res.json();
-        setCartLength(data.length);
-        // if (typeof window !== "undefined") {
-        //   localStorage.setItem("totalCart", data.length);
-        // }
-      };
+      const data = await res.json();
 
-      // call the function
+      console.log(data);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("CountCartProduct", data.length);
+      }
+    };
+
+    // call the function
+    if (user.email) {
       fetchData()
         // make sure to catch any error
         .catch(console.error);
     }
-  }, [totalCardNumber, user]);
+  }, [user]);
 
   const HandleSearch = () => {
     route.push(`/medicine?search=${searchValue}`);
@@ -99,7 +96,7 @@ const Header = () => {
               {/* <img className="branding" src={logo} alt=""></img> */}
               <Link href={"/"} passHref>
                 <a className={style.logo}>
-                  <Image src={logo} height={40} width={40} alt="Med Star" />
+                  <Image src={logo} height={80} width={80} alt="Med Star" />
                 </a>
               </Link>
             </div>
@@ -128,7 +125,7 @@ const Header = () => {
                   <li>
                     <BsFillCartPlusFill />
                     <span className={`${style.totalCartItem}`}>
-                      {totalOrderCart}
+                      {Number(totalCardNumber)}
                     </span>
                   </li>
                 </a>

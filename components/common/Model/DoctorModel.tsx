@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
-import style from "../../../styles/Sass/common/model/doctorModel.module.scss";
+import style from "../../../styles/Sass/common/model/_doctorModel.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 interface Data {
-  id: number;
+  _id: string;
   img: any;
   name: string;
   designation: string;
@@ -37,18 +37,20 @@ const DoctorModel = ({
                 <div className="flex justify-center">
                   <div className={`flex justify-between gap-12`}>
                     <div>
-                      <Image
-                        src={data.img}
-                        width={200}
-                        height={200}
-                        alt={data.name}
-                      />
+                      <figure>
+                        <Image
+                          src={data.img}
+                          width={200}
+                          height={200}
+                          alt={data.name}
+                        />
+                      </figure>
                       <div className={`${style.buttonCard} flex `}>
                         <div>
                           <h3>{data.name}</h3>
                           <div className="mt-5 flex justify-evenly items-center gap-5">
                             <Link
-                              href={`/doctorAppointment/${data.id}`}
+                              href={`/doctorAppointment/${data._id}`}
                               passHref
                             >
                               <a>

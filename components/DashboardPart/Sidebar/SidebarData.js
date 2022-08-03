@@ -13,9 +13,16 @@ export const userSidebarMenu=[
       icon: "order",
     },
     {
-      name: "Doctor History",
-      link: "/dashboard/doctorHistory",
-      icon: "history",
+      name: "Order With Prescription",
+      link: "/dashboard/prescription_order",
+      icon: "order",
+    },
+    { name: "Video Appointment",icon: "doctor",  link: "/dashboard/user_video_appointment"},
+
+    {
+      name: "Doctor Appointment",
+      link: "/dashboard/userDoctorAppointment",
+      icon: "doctor",
     },
     {
       name: "Blood Donate",
@@ -50,6 +57,9 @@ export const  adminSidebarMenu = [
     name: "Order Manage",
     icon: "order",
     subOptions: [
+      
+      { name: "New Prescription",countNumber:true, link: "/dashboard/order_manage/new_prescription" },
+      ,
       { name: "New Order",countNumber:true, link: "/dashboard/order_manage/new_order" },
       { name: "Success Delivery", link: "/dashboard/order_manage/success_delivery" },
     ],
@@ -58,9 +68,10 @@ export const  adminSidebarMenu = [
     name: "Patient Manage",
    
     subOptions:[
-      { name: "Appointment",  link: "/dashboard/appointment"},
-      { name: "Add Doctor Appointment",  link: "/dashboard/new_appointment"},
-      { name: "Patient History", link: "/dashboard/patient/patientHistory" },
+      { name: "Video Appointment",  link: "/dashboard/patient_manage/video_appointment"},
+      { name: "Chamber Appointment",  link: "/dashboard/patient_manage/appointment"},
+      { name: "New Medical Test",  link: "//dashboard/patient_manage/newMedicalTest"},
+      { name: "Patient History", link: "/dashboard/patient_manage/patientHistory" },
     ],
     icon: "patient",
   },

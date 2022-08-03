@@ -1,4 +1,4 @@
-export const ModelInputField = [
+export const AppointmentModelInputField = [
   {
     name: "first_name",
     fieldHeader: "First Name",
@@ -44,7 +44,7 @@ export const ModelInputField = [
     ],
   },
   {
-    name: "patient_age",
+    name: "age",
     fieldHeader: "Your Age",
     inputFiledType: "number",
     icon: "FaUserAlt",
@@ -54,5 +54,39 @@ export const ModelInputField = [
     fieldHeader: "Your Weight",
     inputFiledType: "number",
     icon: "FaUserAlt",
+  },
+];
+
+export const PrescriptionInputFieldData = [
+  {
+    name: "first_name",
+    fieldHeader: "First Name",
+    inputFiledType: "text",
+    icon: "FaUserAlt",
+  },
+  {
+    name: "last_name",
+    fieldHeader: "Last Name",
+    inputFiledType: "text",
+    icon: "FaUserAlt",
+  },
+  {
+    name: "img",
+    fieldHeader: "Prescription Image",
+    inputFiledType: "file",
+    icon: "image",
+  },
+  {
+    name: "email",
+    fieldHeader: "E-mail",
+    inputFiledType: "email",
+    icon: "AiOutlineMail",
+  },
+  ,
+  {
+    name: "mobile_no",
+    fieldHeader: "Mobile No",
+    inputFiledType: "text",
+    icon: "MdAddIcCall",
   },
 ];

@@ -18,6 +18,7 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    resetField,
     formState: { errors },
   } = useForm();
 
@@ -30,21 +31,16 @@ const Login = () => {
   const auth = getAuth();
   const [isAdmin,setIsAdmin]=useState(false);
 
-  if (user.email) {
-    // localStorage.getItem('')
-    router.back();
-  }
+  // if (user.email) {
+  //   // localStorage.getItem('')
+  //   router.back();
+  // }
   useEffect(()=>{
-    const fetchData = async () => {
-      const res= await fetch(`https://med-star-bd.herokuapp.com/isAdmin//${user.email}`)
-      const data=res.json();
-      setIsAdmin(data);
-      localStorage.setItem('isAdmin',data);
+    if (typeof window !== "undefined") {
+      setIsAdmin(Boolean(localStorage.getItem('isAdmin')))
     }
-
-    fetchData()
-    .catch(console.log(error))
-  },[user])
+   
+  },[])
   console.log(user, error);
 
   const HandleVerificationEmail=()=>{
@@ -77,6 +73,7 @@ const Login = () => {
 
   const onSubmit = (submitData) => {
     console.log(submitData);
+   
     //  setLogInData(submitData);
     const email = submitData.email;
     const password = submitData?.password;
@@ -85,7 +82,10 @@ const Login = () => {
     }
     else{
       SignInWithEmailPassword(email, password);
-      if(!error&&user.emailVerified){
+      // user.emailVerified
+      if(!error){
+        resetField('email'); 
+        resetField('password'); 
         setModel(true)
         setModelData({
           text1:"Start your account in application",
@@ -94,14 +94,14 @@ const Login = () => {
           welcomeType:true
         })
       }
-      // else if(!user.emailVerified){
-      //  setModel(true)
-      //  setModelData({
-      //    text1:"Your email is not verified",
-      //    text2:"Please check your email",
-      //    wrongType:true
-      //  })
-      // }
+      else{
+       setModel(true)
+       setModelData({
+         text1:`${error}`,
+         text2:"Please try again",
+         wrongType:true
+       })
+      }
     }
     
   };
@@ -182,7 +182,7 @@ const Login = () => {
             
              {user.email? !user.emailVerified&& <p className={style.emailVerification} onClick={HandleVerificationEmail}>Send Verification Email?</p>:""}
             </form>
-            <p className={style.error_txt}>{error}</p>
+            {/* <p className={style.error_txt}>{error}</p> */}
             <p className={style.forget_password} onClick={HandleResetPassword}>
             {resetPassword ? "Please Login": "Forget Password ?"}
             

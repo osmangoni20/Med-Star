@@ -1,17 +1,48 @@
+import { useEffect, useState } from "react";
+import { AiOutlineUser } from "react-icons/ai";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SingleDoctor from "../../components/common/SingleDoctor";
-import style from "../../styles/Sass/pages/doctor/doctor.module.scss";
+import SimpleButton from "../../components/Custom/Button/SimpleButton";
+import style from "../../styles/Sass/pages/doctor/_doctor.module.scss";
 
 type Data = {
-  id: number;
+  _id: string;
   img: any;
   name: string;
   designation: string;
   education: string;
   jobTitle: string;
 };
-const AllDoctor = ({ data }: { data: any }) => {
+const AllDoctor = ({ doctorData }: { doctorData: any }) => {
+  const [searchName, setSearchName] = useState("");
+  const [searchList, setSearchList] = useState([]);
+  const [uniqueDoctor, setUniqueData] = useState<any>([]);
+
+  const getUniqueDoctorData = (array: any[]) => {
+    let uniqueArray = [];
+
+    // Loop through array values
+    for (let i = 0; i < array.length; i++) {
+      if (uniqueArray.indexOf(array[i].name) === -1) {
+        uniqueArray.push(array[i].name);
+      }
+    }
+    return uniqueArray;
+  };
+
+  useEffect(() => {
+    setUniqueData(getUniqueDoctorData(doctorData));
+  }, []);
+  const HandleFieldValue = (e: any) => {
+    setSearchName(e.target.value);
+  };
+  const HandleSearchLabTest = () => {
+    fetch(`http://localhost:5000/doctor/?searchValue=${searchName}`)
+      .then((res) => res.json())
+      .then((data) => setSearchList(data))
+      .then((error) => console.log(error));
+  };
   return (
     <div>
       <Meta
@@ -20,8 +51,30 @@ const AllDoctor = ({ data }: { data: any }) => {
         description="initial-scale=1.0, width=device-width"
       />
       <Header />
-      <div className={`${style.doctor} flex gap-6`}>
-        <aside className="h-screen p-12 pt-0">
+      <div className={`${style.doctor} md:flex gap-6`}>
+        <aside className="h-screen  pt-0">
+          <div>
+            <form>
+              <div className={`${style.input_filed}`}>
+                <AiOutlineUser className={`${style.input_icon}`} />
+
+                <select
+                  placeholder={"Doctor Name "}
+                  name={"name"}
+                  onBlur={(e) => HandleFieldValue(e)}
+                >
+                  {uniqueDoctor.map((doctor: any, index: number) => (
+                    <option value={doctor}>{doctor}</option>
+                  ))}
+                </select>
+              </div>
+            </form>
+
+            <span onClick={HandleSearchLabTest}>
+              <SimpleButton>Search Doctor</SimpleButton>
+            </span>
+          </div>
+
           <h3 className="text-left mt-12  font-bold text-xl">Categories</h3>
           {/* <Categories data={data} /> */}
           <p>Hart Consultant</p>
@@ -30,10 +83,12 @@ const AllDoctor = ({ data }: { data: any }) => {
           <hr></hr>
         </aside>
         <main>
-          <div className="grid grid-cols-3 md:gap-20 my-10">
-            {data.map((doctor: Data) => (
-              <SingleDoctor key={doctor.id} doctor={doctor} />
-            ))}
+          <div className="md:grid md:grid-cols-3 md:gap-20 my-10">
+            {(searchList.length > 0 ? searchList : doctorData).map(
+              (doctor: Data) => (
+                <SingleDoctor key={doctor._id} doctor={doctor} />
+              )
+            )}
           </div>
         </main>
       </div>
@@ -43,9 +98,9 @@ const AllDoctor = ({ data }: { data: any }) => {
 export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`https://med-star-bd.herokuapp.com/doctor`);
-  const data = await res.json();
+  const doctorData = await res.json();
 
   // Pass data to the page via props
-  return { props: { data } };
+  return { props: { doctorData } };
 }
 export default AllDoctor;

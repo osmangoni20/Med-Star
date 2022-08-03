@@ -152,6 +152,7 @@ const Shipping = () => {
       const data = await res.json();
       if (data.insertedId) {
         setProgress(false);
+        localStorage.setItem("CountCartProduct", '0');
         setModel(true);
         setModelData({
           text1: "Your Order Successfully Done",

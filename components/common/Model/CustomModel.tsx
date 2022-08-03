@@ -14,16 +14,17 @@ const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
           <div className={style.inner_successOrErrorPopup}>
             <div className="flex justify-center">
               {modelData.wrongType && (
-                <div>
+                <div className="text-center">
                   <Image
                     className="text-center"
+                    height={60}
+                    width={60}
                     src={cancel}
-                    height={100}
-                    width={100}
                     alt=""
                   ></Image>
                   <h3>Sorry</h3>
-                  <p>{modelData.text1}</p>
+                  <p className={style.text}>{modelData.text1}</p>
+                  <p className={style.text}>{modelData.text2}</p>
                   <button
                     onClick={() => setModel(false)}
                     className={style.wrong_button}
@@ -58,10 +59,10 @@ const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
                 <div className="text-center">
                   <Image
                     className="text-center"
-                    src={modelData.image || userImage}
+                    src={user.img || userImage}
                     alt=""
                   ></Image>
-                  <h1>Welcome {user.firstName}</h1>
+                  <h1>Welcome {user.displayName}</h1>
                   <p className={style.text}>{modelData.text1}</p>
                   <p className={style.text}>{modelData.text2}</p>
                   <button

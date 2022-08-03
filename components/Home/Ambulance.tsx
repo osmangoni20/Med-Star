@@ -6,6 +6,7 @@ import { IoIosCall } from "react-icons/io";
 import { TiLocation } from "react-icons/ti";
 import ambulanceImage from "../../assets/image/ambulance-dir.png";
 import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
+import MapModel from "../common/Model/MapModel";
 import SimpleButton from "../Custom/Button/SimpleButton";
 interface ambulanceData {
   id: number;
@@ -19,8 +20,12 @@ interface ambulanceData {
 [];
 const Ambulance = () => {
   const [progress, setProgress] = useState(false);
-
+  const [mapModel, setModel] = useState(false);
   const [ambulance, setAmbulance] = useState<ambulanceData[]>([]);
+
+  const HandleMapButton = () => {
+    setModel(!mapModel);
+  };
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
@@ -42,6 +47,7 @@ const Ambulance = () => {
 
   return (
     <div className={`${style.ambulance}`}>
+      {mapModel && <MapModel showModel={mapModel} setModel={setModel} />}
       {/* {!ambulance.length && <ProgressModel />} */}
       <div
         className={`${style.titlePart} md:flex justify-between items-center my-6`}
@@ -99,7 +105,10 @@ const Ambulance = () => {
                     <p>{Amb.hotline}</p>
                   </span> */}
                 </div>
-                <div className="card-actions justify-center">
+                <div
+                  onClick={HandleMapButton}
+                  className="card-actions justify-center"
+                >
                   {/* className={`${style.map_button}`} */}
                   <SimpleButton>Show on Map</SimpleButton>
                 </div>

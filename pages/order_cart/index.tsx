@@ -42,18 +42,22 @@ const OrderCart = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/my-cart/" + user.email
+        `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
       );
       // convert data to json
       const data = await res.json();
       setCardProducts(data);
+      console.log(data.length, "order-cart");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("CountCartProduct", `${data.length}`);
+      }
     };
 
     // call the function
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, [deleteItem, updateQuantity, user.email]);
+  }, [deleteItem]);
 
   return (
     <div>

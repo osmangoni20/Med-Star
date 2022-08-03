@@ -6,14 +6,14 @@ import profileImage from "/assets/image/personlogo.jpg";
 const field = [
   {
     name: "First Name",
-    registerName: "first_name",
+    registerName: "firstName",
     icon: "name",
     placeholderName: "Your First Name",
     inputType: "text",
   },
   {
     name: "Last Name",
-    registerName: "last_name",
+    registerName: "lastName",
     icon: "name",
     placeholderName: "Your Last Name",
     inputType: "text",
@@ -63,12 +63,12 @@ const UserProfile = () => {
   const [modelData, setModelData] = useState<any>({});
   const [uploadImage, setUploadImage] = useState<any>();
   const [progress, setProgress] = useState(false);
-  const { user }: any = useFirebase();
+  const { user, UpdateUserData }: any = useFirebase();
   const route = useRouter();
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/user/${user.email}`
+        `https://med-star-bd.herokuapp.com/users/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -140,6 +140,7 @@ const UserProfile = () => {
       const data = await res.json();
       console.log(data);
       if (data.modifiedCount) {
+        UpdateUserData(updateFieldValue);
         setModel(true);
         setProgress(false);
         setModelData({
