@@ -32,8 +32,8 @@ interface Data {
 interface Customer {
   _id: string;
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
 }
 const Shipping = () => {
   const [orderProduct, setCardProducts] = useState<Data[]>([]);
@@ -117,10 +117,10 @@ const Shipping = () => {
       };
       setOrderInfoData(CustomerData);
     }
-    if (!customerData.first_name) {
+    if (!customerData.firstName) {
       const CustomerData = {
         ...customerData,
-        name: customer.first_name + " " + customer.last_name,
+        name: customer.firstName + " " + customer.lastName,
       };
 
       setOrderInfoData(CustomerData);
@@ -152,7 +152,7 @@ const Shipping = () => {
       const data = await res.json();
       if (data.insertedId) {
         setProgress(false);
-        localStorage.setItem("CountCartProduct", '0');
+        localStorage.setItem("CountCartProduct", "0");
         setModel(true);
         setModelData({
           text1: "Your Order Successfully Done",

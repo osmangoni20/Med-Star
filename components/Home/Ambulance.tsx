@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GrLocation } from "react-icons/gr";
 import { IoIosCall } from "react-icons/io";
@@ -50,12 +49,9 @@ const Ambulance = () => {
       {mapModel && <MapModel showModel={mapModel} setModel={setModel} />}
       {/* {!ambulance.length && <ProgressModel />} */}
       <div
-        className={`${style.titlePart} md:flex justify-between items-center my-6`}
+        className={`${style.titlePart} md:flex justify-center items-center my-6`}
       >
-        <h1 className={`${style.title}`}>Ambulance Service</h1>
-        <Link href={"/"}>
-          <p>View All</p>
-        </Link>
+        <h2>Ambulance Service</h2>
       </div>
       <div className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}>
         {ambulance.slice(0, 4).map((Amb) => {

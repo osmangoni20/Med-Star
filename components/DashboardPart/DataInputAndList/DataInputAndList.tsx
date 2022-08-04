@@ -88,10 +88,9 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       const userData = await res.json();
       setTableData(userData);
 
-      if (!AllData.inputFieldData) {
-        if (userData.length === 0) {
-          setProgress(true);
-          setTimeout(function () {
+      if (!AllData.inputFieldData && menu !== "user_order") {
+        setTimeout(function () {
+          if (userData.length === 0) {
             setProgress(false);
             setCustomModel(!customModel);
             setModelData({
@@ -103,8 +102,10 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
             setTimeout(function () {
               route.push("/dashboard/user_profile");
             }, 3000);
-          }, 5000);
-        } else if (userData.length) {
+          }
+        }, 5000);
+
+        if (userData.length) {
           setProgress(false);
         }
       }

@@ -976,7 +976,7 @@ export const DashboardFakeData: any = {
   },
   prescription_order: {
     tableHeader: [
-      { name: "Prescription", data_register_name: "prescription" },
+      { name: "Prescription", data_register_name: "img" },
 
       {
         name: "Stock In Medicine",
@@ -1000,7 +1000,7 @@ export const DashboardFakeData: any = {
 
       {
         name: "Number",
-        data_register_name: "mobile_no",
+        data_register_name: "patient_mobile_no",
       },
 
       {

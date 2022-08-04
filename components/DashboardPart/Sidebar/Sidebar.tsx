@@ -26,7 +26,7 @@ const Sidebar = () => {
             }}
             height={30}
             width={30}
-            src={activePerson}
+            src={user.photoURL || activePerson}
             alt="personLogo"
           />
 

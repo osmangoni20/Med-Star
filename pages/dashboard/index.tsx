@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ProgressModel from "../../components/common/Model/ProgressModel";
+import Spinner from "../../components/common/Spinner";
 import RecentMessage from "../../components/DashboardPart/Dashboard/RecentMessage/RecentMessage";
 import RecentOrder from "../../components/DashboardPart/Dashboard/RecentOrder/RecentOrder";
 import SalesAnalytics from "../../components/DashboardPart/Dashboard/SalesAnalytics/SalesAnalytics";
@@ -62,56 +62,57 @@ const Dashboard = () => {
         description="initial-scale=1.0, width=device-width"
       />
       <DashboardHeader></DashboardHeader>
-      {!Object.keys(dashboardData).length ? (
-        <ProgressModel />
-      ) : (
-        <div>
-          {isAdmin ? (
-            <div className="flex">
-              <aside className="h-screen">
-                <Sidebar></Sidebar>
-              </aside>
 
-              <main className="py-5">
-                {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
-                <div>
-                  <DashboardCard
-                    cardValue={{
-                      totalNewOrder: dashboardData?.newOrderList,
-                      totalOrder: dashboardData?.orderList?.length,
-                      totalSuccessOrder: dashboardData?.successOrderList,
-                      totalIncome: dashboardData?.totalIncome,
-                    }}
-                  ></DashboardCard>
-                </div>
-                <div className={style.rightBody}>
-                  {/* <CostChart /> */}
-                  <RecentMessage messageData={dashboardData?.messageList} />
-                </div>
-                <div className={style.dashboardBody}>
-                  <RecentOrder orderData={dashboardData?.orderList} />
-
-                  <SalesAnalytics
-                    analytics={{
-                      offline: dashboardData?.offlineSalesList,
-                      online: dashboardData?.onlineSalesList,
-                      pendingOrder: dashboardData?.newOrderList,
-                    }}
-                  />
-                </div>
-              </main>
-            </div>
+      {isAdmin ? (
+        <div className="flex">
+          <aside className="h-screen">
+            <Sidebar></Sidebar>
+          </aside>
+          {!Object.keys(dashboardData).length ? (
+            <Spinner setLoading={true} />
           ) : (
-            <div className="flex">
-              <aside className="h-screen">
-                <Sidebar></Sidebar>
-              </aside>
+            <main className="py-5">
+              {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
+              <div>
+                <DashboardCard
+                  cardValue={{
+                    totalNewOrder: dashboardData?.newOrderList,
+                    totalOrder: dashboardData?.orderList?.length,
+                    totalSuccessOrder: dashboardData?.successOrderList,
+                    totalIncome: dashboardData?.totalIncome,
+                  }}
+                ></DashboardCard>
+              </div>
+              <div className={style.rightBody}>
+                {/* <CostChart /> */}
+                <RecentMessage messageData={dashboardData?.messageList} />
+              </div>
+              <div className={style.dashboardBody}>
+                <RecentOrder orderData={dashboardData?.orderList} />
 
-              <main className="py-5">
-                <UserProfile />
-              </main>
-            </div>
+                <SalesAnalytics
+                  analytics={{
+                    offline: dashboardData?.offlineSalesList,
+                    online: dashboardData?.onlineSalesList,
+                    pendingOrder: dashboardData?.newOrderList,
+                  }}
+                />
+              </div>
+            </main>
           )}
+        </div>
+      ) : (
+        <div className="flex">
+          <aside className="h-screen">
+            <Sidebar></Sidebar>
+          </aside>
+          {!Object.keys(dashboardData).length ? (
+            <Spinner setLoading={true} />
+          ) : (
+            <main className="py-5">
+              <UserProfile />
+            </main>
+          )}{" "}
         </div>
       )}
     </div>

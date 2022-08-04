@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../../../State";
 import style from "../../../styles/Sass/Components/OrderCart/CartProduct.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 // setDeleteItem, settotalprize,deleteItem,
+
 const CardProduct = ({
   productDetails,
   deleteItem,
@@ -11,7 +15,11 @@ const CardProduct = ({
   totalPrice,
 }: any) => {
   const [total, setTotal] = useState(totalPrice);
+  const totalCardNumber = useSelector((state: State) => state.cart);
   const { name, img, price, _id, quantity, capacity } = productDetails;
+  const dispatch = useDispatch();
+
+  const { DecrementOderCart } = bindActionCreators(actionCreators, dispatch);
   const [productCount, setProductCount] = useState({
     quantity: quantity,
     productId: 0,
@@ -27,12 +35,18 @@ const CardProduct = ({
         .then((data) => {
           if (data.deletedCount) {
             setDeleteItem(!deleteItem);
-            const CurrentCountValue = localStorage.getItem("totalCart");
-            if (Number(CurrentCountValue) > 0) {
-              localStorage.setItem(
-                "totalCart",
-                `${Number(CurrentCountValue) - 1}`
-              );
+            const CurrentCountValue = Number(
+              localStorage.getItem("CountCartProduct")
+            );
+            // DecrementOderCart();
+            if (CurrentCountValue > 1) {
+              DecrementOderCart();
+              if (typeof window !== "undefined") {
+                localStorage.setItem(
+                  "CountCartProduct",
+                  `${Number(totalCardNumber + 1)}`
+                );
+              }
             }
             console.log("Remove Item");
           }

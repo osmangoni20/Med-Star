@@ -1,12 +1,12 @@
 export const AppointmentModelInputField = [
   {
-    name: "first_name",
+    name: "firstName",
     fieldHeader: "First Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
   },
   {
-    name: "last_name",
+    name: "lastName",
     fieldHeader: "Last Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
@@ -59,13 +59,13 @@ export const AppointmentModelInputField = [
 
 export const PrescriptionInputFieldData = [
   {
-    name: "first_name",
+    name: "firstName",
     fieldHeader: "First Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
   },
   {
-    name: "last_name",
+    name: "lastName",
     fieldHeader: "Last Name",
     inputFiledType: "text",
     icon: "FaUserAlt",
@@ -88,5 +88,11 @@ export const PrescriptionInputFieldData = [
     fieldHeader: "Mobile No",
     inputFiledType: "text",
     icon: "MdAddIcCall",
+  },
+  {
+    name: "date",
+    fieldHeader: "Date",
+    inputFiledType: "Date",
+    icon: "date",
   },
 ];

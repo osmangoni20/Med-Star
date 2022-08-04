@@ -1,5 +1,10 @@
 @import "../../abstract/variable.module.scss";
 .headerComponent {
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  display: block;
+
   .topHeader {
     background-color: $light;
     color: rgb(255, 255, 255);
@@ -43,6 +48,10 @@
         margin-top: 4px;
       }
       .profileLogo {
+        height: 45px;
+        width: 45px;
+        margin: 5px 0px;
+        border: 2px solid $primary;
         margin-left: 30px;
         border-radius: 50%;
         cursor: pointer;

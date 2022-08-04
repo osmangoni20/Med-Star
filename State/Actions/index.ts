@@ -1,6 +1,12 @@
 import { ActionType } from "../ActionType";
 
-interface totalCart {
-  type: ActionType.TOTAL_CART;
+interface increaseCart {
+  type: ActionType.INCREMENT_CART;
 }
-export type Action = totalCart;
+interface decreesCart {
+  type: ActionType.DECREMENT_CART;
+}
+interface reseatCart {
+  type: ActionType.RESEAT_CART;
+}
+export type Action = increaseCart | decreesCart | reseatCart;

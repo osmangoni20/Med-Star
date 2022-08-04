@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
-import { BsImages } from "react-icons/bs";
+import { BsFillCalendar2DateFill, BsImages } from "react-icons/bs";
 import { FaDisease, FaUserAlt } from "react-icons/fa";
 import { MdAddIcCall } from "react-icons/md";
 import modelStyle from "../../../styles/Sass/common/model/_doctorModel.module.scss";
@@ -64,6 +64,7 @@ const InputFieldModel = ({
   };
 
   useEffect(() => {
+    console.log("prescription modle");
     setDate(date);
     async function fetchData() {
       const res = await fetch(
@@ -91,11 +92,11 @@ const InputFieldModel = ({
       email: fieldValue.email || patient.email,
       age: fieldValue.age || patient.age,
       patientName:
-        fieldValue.first_name || patient.first_name + " " + patient.last_name,
+        fieldValue.firstName || patient.firstName + " " + patient.lastName,
       patient_mobile_no: fieldValue.mobile_no || patient.mobile_no,
       doctor_name: fieldValue.name,
-      time: data.chamberTime,
-      fee: data.fee,
+      time: data?.chamberTime,
+      fee: data?.fee,
       date: date,
       status: "pending",
     };
@@ -104,9 +105,11 @@ const InputFieldModel = ({
       email: fieldValue.email || patient.email,
       age: fieldValue.age || patient.age,
       customerName:
-        fieldValue.first_name || patient.first_name + " " + patient.last_name,
-      mobile_no: fieldValue.first_name || patient.mobile_no,
+        fieldValue.firstName || patient.firstName + " " + patient.lastName,
+      mobile_no: fieldValue.mobile_no || patient.mobile_no,
       img: fieldValue.img,
+      date: fieldValue.date || new Date(),
+      status: "pending",
     };
     // Fetch Appointment Data
     const fetchAppointmentData = async () => {
@@ -141,13 +144,16 @@ const InputFieldModel = ({
     // Fetch Prescription Data
     const fetchPrescriptionData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:5000/new_prescription", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(PrescriptionConfirmData),
-      });
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/new_prescription",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(PrescriptionConfirmData),
+        }
+      );
       // convert data to json
       const data = await res.json();
       if (data.insertedId) {
@@ -214,10 +220,13 @@ const InputFieldModel = ({
                         {data.icon === "FaDisease" && (
                           <FaDisease className={`${style.input_icon}`} />
                         )}
+                        {data.icon === "date" && (
+                          <BsFillCalendar2DateFill
+                            className={`${style.input_icon}`}
+                          />
+                        )}
 
-                        {(data.inputFiledType === "text" ||
-                          data.inputFiledType === "number" ||
-                          data.inputFiledType === "email") && (
+                        {data.inputFiledType !== "file" && (
                           <input
                             type={data.inputFiledType}
                             placeholder={data.fieldHeader}
@@ -231,6 +240,7 @@ const InputFieldModel = ({
                             type={data.inputFiledType}
                             placeholder={data.fieldHeader}
                             name={data.name}
+                            required
                             defaultValue={patient[data.name]}
                             onChange={(e) => HandleImageUpload(e)}
                           />

@@ -16,7 +16,7 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import MapModel from "../../components/common/Model/MapModel";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
-import style from "../../styles/Sass/Components/Home/Ambulance.module.scss";
+import style from "../../styles/Sass/pages/ambulance/_ambulance.module.scss";
 
 const AmbulanceService = ({ data }: any) => {
   const [mapModel, setModel] = useState(false);

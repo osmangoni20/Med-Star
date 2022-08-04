@@ -36,13 +36,15 @@ const Prescription = () => {
 
   return (
     <div>
-      <InputFieldModel
-        type={"prescription_upload"}
-        setSuccessModel={setSuccessModel}
-        setModelData={setModelData}
-        setModel={setModel}
-        showModel={showModel}
-      ></InputFieldModel>
+      {showModel && (
+        <InputFieldModel
+          type={"prescription_upload"}
+          setModel={setModel}
+          showModel={showModel}
+          setSuccessModel={setSuccessModel}
+          setModelData={setModelData}
+        />
+      )}
 
       {successModel && (
         <CustomModel

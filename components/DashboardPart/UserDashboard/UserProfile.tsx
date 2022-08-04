@@ -118,8 +118,8 @@ const UserProfile = () => {
     const updateFieldValue = {
       img: uploadImage || userData.img,
       email: userData.email || userData.email,
-      last_name: fieldValue.last_name || userData.last_name,
-      first_name: fieldValue.first_name || userData.first_name,
+      lastName: fieldValue.lastName || userData.lastName,
+      firstName: fieldValue.firstName || userData.firstName,
       mobile_no: fieldValue.mobile_no || userData.mobile_no,
       age: fieldValue.age || userData.age,
       address: fieldValue.address || userData.address,
@@ -148,11 +148,12 @@ const UserProfile = () => {
           text2: "Enjoy our service",
           successType: true,
         });
+        console.log(user);
       }
     }
     // call the function
     fetchData()
-      //   //   // make sure to catch any error
+      //   //   //   // make sure to catch any error
       .catch(console.error);
   };
   return (
@@ -177,7 +178,7 @@ const UserProfile = () => {
                 <span className={profileStyle.personal_avatar}>
                   {uploadImage !== "processing" && (
                     <Image
-                      src={uploadImage || profileImage}
+                      src={uploadImage || user?.photoURL || profileImage}
                       alt="avatar"
                       height={150}
                       width={150}

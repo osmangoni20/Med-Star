@@ -1,5 +1,16 @@
 @import "../../abstract/variable.module.scss";
 .medicine {
   padding: 20px;
-  margin: 50px auto;
+  margin: 35px auto;
+  .title {
+    h2 {
+      font-size: 30px;
+      font-weight: 700;
+      border: 2px solid #4c9dc3;
+      border-radius: 15px 7px 15px 7px;
+      position: relative;
+      padding: 5px;
+      border-bottom: 3px solid #0571a5;
+    }
+  }
 }

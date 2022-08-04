@@ -1,3 +1,5 @@
 export enum ActionType {
-  TOTAL_CART = "totalCart",
+  INCREMENT_CART = "increaseCart",
+  DECREMENT_CART = "decreesCart",
+  RESEAT_CART = "reseatCart",
 }

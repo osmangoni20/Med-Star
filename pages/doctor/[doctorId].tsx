@@ -10,7 +10,10 @@ const SingleDoctor = ({ data }: { data: any }) => {
   return (
     <div>
       <Header />
-      <div className={`${style.singleDoctor} p-5 my-5`}>
+      <div
+        style={{ marginTop: "172px" }}
+        className={`${style.singleDoctor} p-5 my-5`}
+      >
         <div className="flex justify-center">
           <div className={`flex justify-between gap-12`}>
             <div>

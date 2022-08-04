@@ -6,8 +6,14 @@ const CountValue =
 
 const Reducer = (state: number = Number(CountValue), action: Action) => {
   switch (action.type) {
-    case ActionType.TOTAL_CART: {
+    case ActionType.INCREMENT_CART: {
       return state + 1;
+    }
+    case ActionType.DECREMENT_CART: {
+      return state - 1;
+    }
+    case ActionType.RESEAT_CART: {
+      return 0;
     }
     default:
       return state;

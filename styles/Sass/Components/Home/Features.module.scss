@@ -37,18 +37,17 @@
   width: 100%;
   color: $light;
   margin: 20px 0px;
+  display: flex;
+  justify-content: center;
   h2 {
-    animation-name: example;
     width: 250px;
     font-size: 30px;
     font-weight: 700;
     border: 2px solid $light;
     border-radius: 10px 5px 10px 5px;
     position: relative;
-    animation: titleAnimation 5s linear infinite;
-    // animation-iteration-count: 2;
-    animation-direction: alternate;
-    animation-fill-mode: forwards;
+    border-bottom: 3px solid $primary;
+    padding: 5px;
   }
 }
 // {
@@ -68,13 +67,13 @@
   }
   25% {
     background-color: $light;
-    border-radius: 10px 5px 10px 5px;
+    border-radius: 20px 10px 20px 10px;
     color: white;
     left: 25%;
     top: 0px;
   }
   50% {
-    background-color: $primary;
+    background-color: $gray;
     color: white;
     border-radius: 10px 15px 10px 15px;
     left: 40%;
@@ -83,7 +82,7 @@
   75% {
     background-color: $Lightgray;
     color: black;
-    border-radius: 10px 5px 10px 5px;
+    border-radius: 15px 10px 10px 15px;
     left: 65%;
     top: 0px;
   }
@@ -98,5 +97,13 @@
 @media (max-width: 640px) {
   .features {
     padding: 0px;
+    .title {
+      width: 100%;
+      color: $light;
+      margin: 20px 0px;
+      h2 {
+        animation-name: none;
+      }
+    }
   }
 }

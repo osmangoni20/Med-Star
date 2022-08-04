@@ -34,7 +34,7 @@ const Medicine = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        `http://localhost:5000/medicine?searchName=${capitalizeFirstLetter(
+        `https://med-star-bd.herokuapp.com/medicine?searchName=${capitalizeFirstLetter(
           `${search}`
         )}&searchCategory=${`${category}`}`
       );

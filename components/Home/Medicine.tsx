@@ -33,7 +33,9 @@ const Medicine = () => {
 
   return (
     <div className={`${style.medicine}`}>
-      <h2 className="text-center">Medicine Corner</h2>
+      <div className={`${style.title} flex justify-center`}>
+        <h2 className="text-center">Medicine Corner</h2>
+      </div>
 
       <div className="mt-10">
         <div className="grid grid-cols-5 gap-4">

@@ -83,7 +83,7 @@ const Login = () => {
     else{
       SignInWithEmailPassword(email, password);
       // user.emailVerified
-      if(!error){
+      if(!error&&user.email){
         resetField('email'); 
         resetField('password'); 
         setModel(true)
@@ -219,6 +219,7 @@ const Login = () => {
               </p>
                 </span>
               }
+              
               <button
                 onClick={HandleClickRegistration}
                 className="btn transparent"

@@ -38,7 +38,7 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
     setSearchName(e.target.value);
   };
   const HandleSearchLabTest = () => {
-    fetch(`http://localhost:5000/doctor/?searchValue=${searchName}`)
+    fetch(`https://med-star-bd.herokuapp.com/doctor/?searchValue=${searchName}`)
       .then((res) => res.json())
       .then((data) => setSearchList(data))
       .then((error) => console.log(error));

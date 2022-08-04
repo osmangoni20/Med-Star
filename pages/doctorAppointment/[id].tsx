@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
-import AppointmentHeader from "../../components/Doctor/Appointments/AppointmentHeader/Appointmentheader";
+import AppointmentDate from "../../components/Doctor/Appointments/AppointmentHeader/AppointmentDate";
 import BookingAppointment from "../../components/Doctor/Appointments/BookingAppointment/BookingAppointment";
 
 const Appointment = ({ data }: { data: any }) => {
   const [doctorData, setDoctorData] = useState({});
-  const [SelectedDate, setSelectedDate] = useState(new Date());
-  const HandleOnChange = (date: any) => {
-    setSelectedDate(date);
-  };
+  const [selectedDate, setSelected] = useState<Date>(new Date());
   useEffect(() => {
     if (!data.camberTime) {
       setDoctorData({ ...doctorData, patientTime: "3.00pm - 8.00pm" });
     }
   }, []);
+  console.log(selectedDate?.toLocaleString("en-us", { weekday: "long" }));
+  console.log(selectedDate?.toLocaleString("default", { month: "long" }));
+  console.log(selectedDate?.getFullYear());
+
+  console.log(selectedDate?.getFullYear());
+  console.log(selectedDate?.getMonth());
+  console.log(String(selectedDate?.getDate()).padStart(2, "0"));
   return (
     <div>
       <Meta
@@ -24,8 +28,11 @@ const Appointment = ({ data }: { data: any }) => {
         description="initial-scale=1.0, width=device-width"
       />
       <Header />
-      <AppointmentHeader HandleOnChange={HandleOnChange}></AppointmentHeader>
-      <BookingAppointment date={SelectedDate} data={data}></BookingAppointment>
+      <AppointmentDate
+        selected={selectedDate}
+        setSelected={setSelected}
+      ></AppointmentDate>
+      <BookingAppointment date={selectedDate} data={data}></BookingAppointment>
       <Footer />
     </div>
   );

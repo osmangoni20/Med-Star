@@ -22,7 +22,7 @@ import defaultProfile from "/assets/image/default_profile.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const totalCardNumber = useSelector((state: State) => state.cart);
 
@@ -39,19 +39,19 @@ const Header = () => {
 
       const data = await res.json();
 
-      console.log(data);
+      console.log(data, user.email);
       if (typeof window !== "undefined") {
         localStorage.setItem("CountCartProduct", data.length);
       }
     };
 
     // call the function
-    if (user.email) {
+
+    user.email &&
       fetchData()
         // make sure to catch any error
         .catch(console.error);
-    }
-  }, [user]);
+  }, []);
 
   const HandleSearch = () => {
     route.push(`/medicine?search=${searchValue}`);
@@ -135,16 +135,18 @@ const Header = () => {
               </li> */}
               <span className="md:block lg:block ">
                 {user.email ? (
-                  <span className={style.profileLogo}>
-                    <Link href={"/dashboard"} passHref>
-                      <Image
-                        src={user.photoURL || defaultProfile}
-                        alt={""}
-                        height={35}
-                        width={35}
-                      />
+                  <div className={style.profileLogo}>
+                    <Link href={"/dashboard"}>
+                      <a>
+                        <Image
+                          src={user?.photoURL || defaultProfile}
+                          alt={""}
+                          height={40}
+                          width={40}
+                        />
+                      </a>
                     </Link>
-                  </span>
+                  </div>
                 ) : (
                   <Link href={"/login"} passHref>
                     <a className={style.loginButton}>

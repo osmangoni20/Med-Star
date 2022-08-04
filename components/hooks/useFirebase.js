@@ -60,7 +60,7 @@ const useFirebase=()=>{
         
         console.log("updat: ",userData)
         updateProfile(auth.currentUser, {
-          phoneNumber: userData.mobile_No,
+          phoneNumber: userData.mobile_no,
           displayName: userData.firstName+' '+userData.lastName,
           photoURL: userData.img,
         })
@@ -102,7 +102,7 @@ const useFirebase=()=>{
           })
           if(user.email){
             const fetchData = async () => {
-              const res= await fetch(`http://localhost:5000/isAdmin/${userCredential.user.email}`)
+              const res= await fetch(`https://med-star-bd.herokuapp.com/isAdmin/${userCredential.user.email}`)
               const data= await res.json();
               // setIsAdmin(data);
               console.log(data)
@@ -145,7 +145,7 @@ const useFirebase=()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
             localStorage.removeItem("accessToken")
-            localStorage.removeItem("CountCartProduct");
+            localStorage.setItem("CountCartProduct",0);
             localStorage.removeItem("isAdmin");
             setUser({});
           }).catch((error) => {

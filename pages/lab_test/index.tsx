@@ -30,7 +30,9 @@ const LabTest = ({ labTestData }: any) => {
     setUniqueData(getUniqueData(labTestData));
   }, []);
   const HandleSearchLabTest = () => {
-    fetch(`http://localhost:5000/labTest/?searchValue=${searchName}`)
+    fetch(
+      `https://med-star-bd.herokuapp.com/labTest/?searchValue=${searchName}`
+    )
       .then((res) => res.json())
       .then((data) => setSearchList(data))
       .then((error) => console.log(error));

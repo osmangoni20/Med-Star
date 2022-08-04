@@ -47,7 +47,7 @@ const CostInformation = ({
           <hr></hr>
           <div className="flex justify-between">
             <p>Vat/Tax</p>
-            <p>{Vat} Tk</p>
+            <p>{Number(Vat.toFixed(2))} Tk</p>
           </div>
           <hr></hr>
           <div className="flex justify-between">

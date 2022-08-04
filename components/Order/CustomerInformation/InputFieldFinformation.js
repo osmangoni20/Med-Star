@@ -1,12 +1,12 @@
 export const InputFiledInformation=[
     {
-        name:"first_name",
+        name:"firstName",
         fieldHeader:"First Name",
         inputFiledType:"text",
         icon:"FaUserAlt"
     },
     {
-        name:"last_name",
+        name:"lastName",
         fieldHeader:"Last Name",
         inputFiledType:"text",
         icon:"FaUserAlt"

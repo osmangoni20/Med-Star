@@ -50,7 +50,7 @@ const SingleTest = ({ data }: { data: any }) => {
       testType: data[0].testType,
       email: labTestInfo.email || patient.email,
       patientName:
-        labTestInfo.first_name || patient.first_name + " " + patient.last_name,
+        labTestInfo.firstName || patient.firstName + " " + patient.lastName,
       patient_mobile_no: labTestInfo.mobile_no || patient.mobile_no,
       status: "pending",
       totalPrice: data[0].price - (data[0].price * data[0].offer) / 100,
@@ -60,13 +60,16 @@ const SingleTest = ({ data }: { data: any }) => {
 
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("http://localhost:5000/newMedicalTest", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(appointmentConformData),
-      });
+      const res = await fetch(
+        "https://med-star-bd.herokuapp.com/newMedicalTest",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(appointmentConformData),
+        }
+      );
       // convert data to json
       const data = await res.json();
       if (data.insertedId) {
@@ -171,7 +174,9 @@ const SingleTest = ({ data }: { data: any }) => {
 };
 export async function getServerSideProps(ctx: { params: { testId: any } }) {
   // Fetch data from external API
-  const res = await fetch(`http://localhost:5000/labtest/${ctx.params.testId}`);
+  const res = await fetch(
+    `https://med-star-bd.herokuapp.com/labtest/${ctx.params.testId}`
+  );
   const data = await res.json();
 
   // Pass data to the page via props

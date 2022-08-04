@@ -33,7 +33,7 @@ const OrderCart = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
-          setUpdateQuantity(true);
+          setUpdateQuantity(!updateQuantity);
         }
       });
   };
@@ -54,10 +54,11 @@ const OrderCart = () => {
     };
 
     // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
-  }, [deleteItem]);
+    user.email &&
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+  }, [deleteItem, updateQuantity, user]);
 
   return (
     <div>
@@ -68,7 +69,7 @@ const OrderCart = () => {
       />
       <Header />
       <div className={`${style.OrderCart}`}>
-        {cardProducts.length > 0 && (
+        {cardProducts.length > 0 ? (
           <div className=" md:flex md:justify-between gap-6">
             <div
               className={`${style.costInformation} md:hidden sm:hidden block `}
@@ -114,6 +115,10 @@ const OrderCart = () => {
                 ></CostInformation>
               </div>
             </aside>
+          </div>
+        ) : (
+          <div>
+            <h2 className="text-center">Order Cart Empty</h2>
           </div>
         )}
       </div>

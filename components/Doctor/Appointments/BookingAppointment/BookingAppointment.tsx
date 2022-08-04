@@ -6,14 +6,17 @@ const BookingAppointment = ({ date, data }: any) => {
   const [showModel, setModel] = useState<boolean>(false);
   const [successModel, setSuccessModel] = useState(false);
   const [modelData, setModelData] = useState({});
-  const dd = date.toLocaleString("en-us", { weekday: "long" });
-  const day = String(date.getDate()).padStart(2, "0");
-  const mm = date.toLocaleString("default", { month: "long" });
-  const month = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-  const yyyy = date.getFullYear();
+
+  const dd = date?.toLocaleString("en-us", { weekday: "long" });
+  const mm = date?.toLocaleString("default", { month: "long" });
+
+  const day = String(date?.getDate()).padStart(2, "0");
+  const month = String(date?.getMonth()).padStart(2, "0"); //January is 0!
+  const yyyy = date?.getFullYear();
 
   const appointMentDate = dd + "-" + mm + "-" + yyyy;
   const appointmentDay = day + "-" + month + "-" + yyyy;
+  console.log(date);
   function openModal() {
     setModel(true);
   }
@@ -31,7 +34,7 @@ const BookingAppointment = ({ date, data }: any) => {
           data={data}
           setSuccessModel={setSuccessModel}
           setModelData={setModelData}
-          date={appointmentDay}
+          date={date}
         />
       )}
       <div className="flex justify-center items-center">
