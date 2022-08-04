@@ -64,7 +64,9 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
                   onBlur={(e) => HandleFieldValue(e)}
                 >
                   {uniqueDoctor.map((doctor: any, index: number) => (
-                    <option value={doctor}>{doctor}</option>
+                    <option key={index} value={doctor}>
+                      {doctor}
+                    </option>
                   ))}
                 </select>
               </div>
