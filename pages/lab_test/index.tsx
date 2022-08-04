@@ -65,7 +65,7 @@ const LabTest = ({ labTestData }: any) => {
                     name={"name"}
                     onBlur={(e) => HandleFieldValue(e)}
                   >
-                    {uniqueCategory.map((test: any, index: number) => (
+                    {uniqueCategory.map((test: any, index: any) => (
                       <option key={index} value={test}>
                         {test}
                       </option>
