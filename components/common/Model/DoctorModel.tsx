@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import style from "../../../styles/Sass/common/model/_doctorModel.module.scss";
+import LargestButton from "../../Custom/Button/LargestButton";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 interface Data {
   _id: string;
@@ -58,7 +59,7 @@ const DoctorModel = ({
                               </a>
                             </Link>
 
-                            <SimpleButton>Video Call</SimpleButton>
+                            <LargestButton>Video Call</LargestButton>
                           </div>
                         </div>
                       </div>
