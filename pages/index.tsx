@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div>
       <Meta
-        title="Home MedStart"
+        title="MedStart"
         name="viewport"
         description="initial-scale=1.0, width=device-width"
       />
