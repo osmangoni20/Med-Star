@@ -11,6 +11,7 @@ import siteLogo from '../../assets/image/siteLogo.png';
 import SignIn from '../../components/Authentication/SignIn/SignIn.tsx';
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import useFirebase from "../../components/hooks/useFirebase";
 import style from "../../styles/Sass/pages/auth/login&signIn.module.scss";
 const CustomModel=dynamic(()=>import('../../components/common/Model/CustomModel'));
@@ -30,7 +31,7 @@ const Login = () => {
   const [loginFrom,setLoginFrom]=useState(true);
   const auth = getAuth();
   const [isAdmin,setIsAdmin]=useState(false);
-
+  const [progress,setProgress]=useState(false);
   // if (user.email) {
   //   // localStorage.getItem('')
   //   router.back();
@@ -83,18 +84,22 @@ const Login = () => {
     else{
       SignInWithEmailPassword(email, password);
       // user.emailVerified
-      if(!error&&user.email){
+      if(!error){
+       setProgress(true);
+       setTimeout(()=>{
         resetField('email'); 
         resetField('password'); 
         setModel(true)
+        setProgress(false)
         setModelData({
-          text1:"Start your account in application",
+          text1:"Start your account in Website",
           text2:"Enjoy our service",
           image:user?.photoUrl,
           welcomeType:true
         })
+       },3000)
       }
-      else{
+      else if(error){
        setModel(true)
        setModelData({
          text1:`${error}`,
@@ -202,7 +207,11 @@ const Login = () => {
                 setModel={setModel}
               ></CustomModel>
             )}
-
+            {
+              progress&&(
+                <ProgressModel/>
+              )
+            }
             <div className={style.content}>
               {
                 loginFrom?<span>

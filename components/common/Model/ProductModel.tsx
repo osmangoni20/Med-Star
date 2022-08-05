@@ -1,8 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../../State";
@@ -61,16 +60,22 @@ const ProductModel = ({
       setContValue(1);
     }
   };
-  useEffect(() => {
-    fetch("https://med-star-bd.herokuapp.com/my-cart")
-      .then((res) => res.json())
-      .then((data) => setTotalCartProduct(data.length));
-  }, [addToCart]);
+  // id: totalCartProduct + 1,
+  // useEffect(() => {
+  //   fetch("https://med-star-bd.herokuapp.com/my-cart")
+  //     .then((res) => res.json())
+  //     .then((data) => setTotalCartProduct(data.length));
+  // }, [addToCart]);
+  // setAddToCart(!addToCart);
+  console.log(data);
   const HandleAddtoCart = () => {
-    setAddToCart(!addToCart);
     const product = {
-      ...data,
-      id: totalCartProduct + 1,
+      capacity: data.capacity,
+      category: data.category,
+      img: data.img,
+      name: data.name,
+      price: data.price,
+      productType: data.productType,
       quantity: countValue,
       email: user.email,
     };
@@ -201,38 +206,6 @@ const ProductModel = ({
       )}
     </div>
   );
-};
-
-export const getStaticProps: GetStaticProps<
-  StarWarsProductProps,
-  Params
-> = async (context) => {
-  const { productId } = context.params!;
-  console.log(productId);
-  const res = await fetch(
-    `http://localhost:3000/api/medicine_product/${productId}`
-  );
-  const product = (await res.json()) as Data;
-  return {
-    props: {
-      product,
-    },
-  };
-};
-export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/medicine_product");
-  const productData = await res.json();
-
-  const ids = productData.map((pd: any) => {
-    return pd.id;
-  });
-  const paths = ids.map((id: number) => ({
-    params: { productId: id.toString() },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
 };
 
 export default ProductModel;
