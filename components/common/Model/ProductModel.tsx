@@ -2,13 +2,14 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actionCreators, State } from "../../../State";
 import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
+import CustomModel from "./CustomModel";
 interface Data {
   id: number;
   category: string;
@@ -37,8 +38,8 @@ const ProductModel = ({
   showModel,
 }: {
   data: Data;
-  showModel: boolean;
-  setModel: Dispatch<SetStateAction<boolean>>;
+  showModel: any;
+  setModel: any;
 }) => {
   const [countValue, setContValue] = useState(1);
   const dispatch = useDispatch();
@@ -46,6 +47,10 @@ const ProductModel = ({
   const { user }: any = useFirebase();
   const { IncrementOderCart } = bindActionCreators(actionCreators, dispatch);
   const totalCardNumber = useSelector((state: State) => state.cart);
+  const [addToCart, setAddToCart] = useState(false);
+  const [errorModel, setErrorModel] = useState(false);
+  const [modelData, setModelData] = useState({});
+  const [totalCartProduct, setTotalCartProduct] = useState<any>();
   const HandleIncrease = () => {
     setContValue((count) => count + 1);
   };
@@ -56,9 +61,19 @@ const ProductModel = ({
       setContValue(1);
     }
   };
-
+  useEffect(() => {
+    fetch("https://med-star-bd.herokuapp.com/my-cart")
+      .then((res) => res.json())
+      .then((data) => setTotalCartProduct(data.length));
+  }, [addToCart]);
   const HandleAddtoCart = () => {
-    const product = { ...data, quantity: countValue, email: user.email };
+    setAddToCart(!addToCart);
+    const product = {
+      ...data,
+      id: totalCartProduct + 1,
+      quantity: countValue,
+      email: user.email,
+    };
     console.log("product", product);
 
     const fetchData = async () => {
@@ -88,15 +103,35 @@ const ProductModel = ({
     };
 
     // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
+    if (user.email) {
+      fetchData()
+        // make sure to catch any error
+        .catch(console.error);
+    } else {
+      setErrorModel(!errorModel);
+      setModelData({
+        text1: "Not Found User",
+        text2: "Please Login Account or Create New Account",
+        wrongType: true,
+      });
+
+      setTimeout(() => {
+        setModel(false);
+      }, 4000);
+    }
   };
   return (
     <div>
       {showModel && (
         <div className={`${style.popup_container}`}>
           <div className={`${style.addProduct_inner_popup}`}>
+            {errorModel && (
+              <CustomModel
+                modelData={modelData}
+                showModel={errorModel}
+                setModel={setErrorModel}
+              ></CustomModel>
+            )}
             <label
               onClick={() => setModel(false)}
               className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -117,7 +152,7 @@ const ProductModel = ({
                       <p className="text-sm text-gray-400">
                         MRP{" "}
                         <span className="line-through">
-                          ৳ {data.price * countValue}
+                          Tk {data.price * countValue}
                         </span>{" "}
                         <span className={style.offer}>8% off</span>
                       </p>

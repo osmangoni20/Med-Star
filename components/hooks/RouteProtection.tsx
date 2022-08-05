@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import { useEffect, useState } from "react";
 
-export default function WithAuth(Component: any) {
+export default function WithAuth(Component: any | JSX.Element) {
   const router = useRouter();
   const [isLogin, setLogin] = useState<any>(false);
 
