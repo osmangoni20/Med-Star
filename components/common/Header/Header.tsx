@@ -10,9 +10,10 @@ import {
   AiOutlineSearch,
 } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
 import logo from "../../../assets/image/medicine logo.jpg";
-import { State } from "../../../State";
+import { actionCreators, State } from "../../../State";
 import style from "../../../styles/Sass/common/Header/_header.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
@@ -25,6 +26,8 @@ const Header = () => {
   // const [isAdmin, setIsAdmin] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const totalCardNumber = useSelector((state: State) => state.cart);
+  const dispatch = useDispatch();
+  const { ResetOrderCart } = bindActionCreators(actionCreators, dispatch);
 
   const route = useRouter();
 
@@ -42,6 +45,7 @@ const Header = () => {
       console.log(data, user.email);
       if (typeof window !== "undefined") {
         localStorage.setItem("CountCartProduct", data.length);
+        ResetOrderCart();
       }
     };
 
@@ -51,7 +55,7 @@ const Header = () => {
       fetchData()
         // make sure to catch any error
         .catch(console.error);
-  }, []);
+  }, [user]);
 
   const HandleSearch = () => {
     route.push(`/medicine?search=${searchValue}`);

@@ -125,6 +125,13 @@ const Login = () => {
       />
       <Header/>
       <div className={`${style.login_container}`}>
+      {model && (
+              <CustomModel
+                modelData={modelData}
+                showModel={model}
+                setModel={setModel}
+              ></CustomModel>
+            )}
         <div className={`${style.forms_login_container}`}>
           
              
@@ -200,13 +207,7 @@ const Login = () => {
         </div>
         <div className={style.panels_container}>
           <div className={`${style.left_panel} ${style.panel}`}>
-            {model && (
-              <CustomModel
-                modelData={modelData}
-                showModel={model}
-                setModel={setModel}
-              ></CustomModel>
-            )}
+           
             {
               progress&&(
                 <ProgressModel/>

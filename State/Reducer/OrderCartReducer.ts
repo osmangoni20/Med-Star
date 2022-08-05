@@ -13,7 +13,7 @@ const Reducer = (state: number = Number(CountValue), action: Action) => {
       return state - 1;
     }
     case ActionType.RESEAT_CART: {
-      return 0;
+      return Number(localStorage.getItem("CountCartProduct"));
     }
     default:
       return state;

@@ -3,23 +3,28 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import CustomModel from "../../components/common/Model/CustomModel";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
 import style from "../../styles/Sass/Components/OrderCart/_order_cart.module.scss";
 const OrderCart = () => {
-  const [cardProducts, setCardProducts] = useState([]);
+  const [cartProducts, setCardProducts] = useState([]);
   const [deleteItem, setDeleteItem] = useState(false);
   const [updateQuantity, setUpdateQuantity] = useState(false);
+  const [progress, setProgress] = useState(false);
+  const [customModel, setCustomModel] = useState<boolean>(false);
+  const [modelData, setModelData] = useState<any>({});
   const route = useRouter();
   const { user }: any = useFirebase();
-  let TotalPrize = cardProducts.reduce(
+  let TotalPrize = cartProducts.reduce(
     (accumulator: any, currentValue: any) =>
       accumulator + currentValue.price * currentValue.quantity,
     0
   );
   console.log(TotalPrize);
-  console.log(cardProducts);
+  console.log(cartProducts);
 
   //Handle Total Prize
   const HandleUpdateQuantity = (quantity: number, id: string) => {
@@ -39,6 +44,24 @@ const OrderCart = () => {
   };
 
   useEffect(() => {
+    setProgress(true);
+    if (cartProducts.length === 0) {
+      setTimeout(function () {
+        setProgress(false);
+        setCustomModel(!customModel);
+        setModelData({
+          text1: "Empty",
+          text2: "Something Wrong",
+          // image: user?.photoUrl,
+          wrongType: true,
+        });
+        setTimeout(function () {
+          route.push("/");
+        }, 3000);
+      }, 5000);
+    } else if (cartProducts.length) {
+      setProgress(false);
+    }
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
@@ -69,7 +92,15 @@ const OrderCart = () => {
       />
       <Header />
       <div className={`${style.OrderCart}`}>
-        {cardProducts.length > 0 ? (
+        {progress && <ProgressModel />}
+        {customModel && (
+          <CustomModel
+            modelData={modelData}
+            showModel={customModel}
+            setModel={setCustomModel}
+          ></CustomModel>
+        )}
+        {cartProducts.length > 0 ? (
           <div className=" md:flex md:justify-between gap-6">
             <div
               className={`${style.costInformation} md:hidden sm:hidden block `}
@@ -84,14 +115,14 @@ const OrderCart = () => {
               {/*  Order Cart  */}
               <div id="OrderCartProducts" style={{ display: "block" }}>
                 <div className={`${style.card_header}`}>
-                  <h3>Order: {cardProducts.length} Items</h3>
+                  <h3>Order: {cartProducts.length} Items</h3>
                   <h3>
                     Total: <span id="prize">{TotalPrize}</span> TK
                   </h3>
                 </div>
                 <div className={`${style.card_Product}`}>
                   <div className="row">
-                    {cardProducts?.map((pd, index) => (
+                    {cartProducts?.map((pd, index) => (
                       <CardProduct
                         key={index}
                         totalPrice={TotalPrize}
