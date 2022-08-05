@@ -38,7 +38,7 @@ const Medicine = () => {
       </div>
 
       <div className="mt-10">
-        <div className="grid grid-cols-5 gap-4">
+        <div className="md:grid md:grid-cols-5 gap-4">
           {medicineProduct.map((product) => (
             <Product key={product.id} product={product} />
           ))}

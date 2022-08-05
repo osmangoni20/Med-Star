@@ -53,7 +53,9 @@ const Ambulance = () => {
       >
         <h2>Ambulance Service</h2>
       </div>
-      <div className={` grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}>
+      <div
+        className={` md:grid sm:grid-cols-2 grid-cols-1 md:grid-cols-4 gap-6`}
+      >
         {ambulance.slice(0, 4).map((Amb) => {
           return (
             <div
