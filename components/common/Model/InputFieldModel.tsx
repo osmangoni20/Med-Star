@@ -2,7 +2,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
-import { BsFillCalendar2DateFill, BsImages } from "react-icons/bs";
+import {
+  BsFillCalendar2DateFill,
+  BsGenderTrans,
+  BsImages,
+} from "react-icons/bs";
 import { FaDisease, FaUserAlt } from "react-icons/fa";
 import { MdAddIcCall } from "react-icons/md";
 import modelStyle from "../../../styles/Sass/common/model/_doctorModel.module.scss";
@@ -220,21 +224,26 @@ const InputFieldModel = ({
                         {data.icon === "FaDisease" && (
                           <FaDisease className={`${style.input_icon}`} />
                         )}
+                        {data.icon === "gender" && (
+                          <BsGenderTrans className={`${style.input_icon}`} />
+                        )}
+
                         {data.icon === "date" && (
                           <BsFillCalendar2DateFill
                             className={`${style.input_icon}`}
                           />
                         )}
 
-                        {data.inputFiledType !== "file" && (
-                          <input
-                            type={data.inputFiledType}
-                            placeholder={data.fieldHeader}
-                            name={data.name}
-                            defaultValue={patient[data.name]}
-                            onBlur={(e) => HandleFieldValue(e)}
-                          />
-                        )}
+                        {data.inputFiledType !== "file" &&
+                          data.inputFiledType !== "select" && (
+                            <input
+                              type={data.inputFiledType}
+                              placeholder={data.fieldHeader}
+                              name={data.name}
+                              defaultValue={patient[data.name]}
+                              onBlur={(e) => HandleFieldValue(e)}
+                            />
+                          )}
                         {data.inputFiledType === "file" && (
                           <input
                             type={data.inputFiledType}

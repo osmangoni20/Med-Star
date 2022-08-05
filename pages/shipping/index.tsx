@@ -8,6 +8,7 @@ import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import CustomModel from "../../components/common/Model/CustomModel";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import LargestButton from "../../components/Custom/Button/LargestButton";
 import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
@@ -65,15 +66,24 @@ const Shipping = () => {
     ShippingCost = 40;
   }
   const TotalCost = SubTotal + ShippingCost + Vat;
-
+  console.log(TotalCost, SubTotal, orderProduct);
   useEffect(() => {
+    if (orderProduct.length) {
+      setProgress(false);
+    } else if (orderProduct.length === 0) {
+      setProgress(true);
+      setTimeout(function () {
+        setProgress(false);
+      }, 4000);
+    }
+
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
         "https://med-star-bd.herokuapp.com/my-cart/" + user.email
       );
       const userRes = await fetch(
-        "https://med-star-bd.herokuapp.com/user/ehostelbd@gmail.com"
+        `https://med-star-bd.herokuapp.com/users/${user.email}`
       );
       // convert data to json/
       const data = await res.json();
@@ -82,12 +92,12 @@ const Shipping = () => {
 
       setCustomer(userData);
     };
-    console.log(customer);
+
     // call the function
     fetchData()
       // make sure to catch any error
       .catch(console.error);
-  }, [customer]);
+  }, [user]);
   console.log(customer);
   const HandlePaymentType = (e: any) => {
     console.log(e.target.value);
@@ -109,36 +119,18 @@ const Shipping = () => {
 
   const HandleConfirmOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
-    if (!customerData.email) {
-      const CustomerData = {
-        ...customerData,
-        email: customer.email,
-      };
-      setOrderInfoData(CustomerData);
-    }
-    if (!customerData.firstName) {
-      const CustomerData = {
-        ...customerData,
-        name: customer.firstName + " " + customer.lastName,
-      };
-
-      setOrderInfoData(CustomerData);
-    }
-    if (!customerData.mobile_no) {
-      const CustomerData = {
-        ...customerData,
-        mobile_no: customer.mobile_no,
-      };
-      setOrderInfoData(CustomerData);
-    }
     const confirmOrderData = {
       orderProduct,
-      ...customerData,
+      email: customerData.email || customer.email,
+      name:
+        customerData.firstName || customer.firstName + " " + customer.lastName,
+      mobile_no: customerData.mobile_no || customer.mobile_no,
       status: "Pending",
       cost: TotalCost,
+      date: new Date(),
+      address: customerData.address || customer.address,
+      paymentType: customerData.paymentType,
     };
-
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch("https://med-star-bd.herokuapp.com/new_order", {
@@ -201,25 +193,7 @@ const Shipping = () => {
             setModel={setModel}
           ></CustomModel>
         )}
-        {progress && (
-          <div>
-            <progress
-              className="progress progress-success w-56"
-              value="0"
-              max="100"
-            ></progress>
-            <progress
-              className="progress progress-success w-56"
-              value="70"
-              max="100"
-            ></progress>
-            <progress
-              className="progress progress-success w-56"
-              value="100"
-              max="100"
-            ></progress>
-          </div>
-        )}
+        {progress && <ProgressModel />}
         <div className=" md:flex md:justify-between gap-6">
           <aside className="h-screen md:hidden sm:hidden">
             <div className={`${style.costInformationPart} order-sm-2 order-1`}>

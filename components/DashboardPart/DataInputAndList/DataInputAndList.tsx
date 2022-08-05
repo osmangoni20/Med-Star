@@ -88,6 +88,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       const userData = await res.json();
       setTableData(userData);
 
+      console.log(userData);
       if (
         (!AllData.inputFieldData || AllData.inputFieldData[0].search) &&
         menu !== "user_order"
@@ -97,22 +98,10 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
           setProgress(false);
         } else if (userData.length === 0) {
           setProgress(true);
-        }
-        setTimeout(function () {
-          if (userData.length === 0) {
+          setTimeout(() => {
             setProgress(false);
-            setCustomModel(!customModel);
-            setModelData({
-              text1: "Your Order Empty",
-              text2: "Please Order Now",
-              // image: user?.photoUrl,
-              wrongType: true,
-            });
-            setTimeout(function () {
-              route.push("/dashboard/user_profile");
-            }, 3000);
-          }
-        }, 6000);
+          }, 4000);
+        }
       }
     }
     // call the function
@@ -224,12 +213,15 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const HandlePost = (submittableData: any) => {
     setProgress(!progress);
     console.log(submittableData);
+    const confirmSubmitData = isAdmin
+      ? submittableData
+      : { ...submittableData, email: user.email };
     async function fetchData() {
       const res = await fetch(
         `https://med-star-bd.herokuapp.com/${dynamicRoute}`,
         {
           method: "POST",
-          body: JSON.stringify(submittableData),
+          body: JSON.stringify(confirmSubmitData),
           headers: {
             "Content-type": "application/json; charset=UTF-8",
           },
@@ -577,6 +569,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                       <th key={index}>{data.name}</th>
                     ))}
                   </thead>
+
                   {/* <br/> */}
                   <tbody>
                     {submenu === "new_order" && (

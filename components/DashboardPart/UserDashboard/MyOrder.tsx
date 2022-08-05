@@ -12,25 +12,16 @@ const MyOrder = ({ order }: any) => {
   const [modelData, setModelData] = useState<any>({});
   const route = useRouter();
   useEffect(() => {
-    setProgress(true);
-    if (order.length === 0) {
-      setTimeout(function () {
-        setProgress(false);
-        setCustomModel(!customModel);
-        setModelData({
-          text1: "Empty",
-          text2: "Please Order or Appointment Now",
-          // image: user?.photoUrl,
-          wrongType: true,
-        });
-        setTimeout(function () {
-          route.push("/dashboard/user_profile");
-        }, 3000);
-      }, 5000);
-    } else if (order.length) {
+    if (order.length) {
       setProgress(false);
+    } else if (order.length === 0) {
+      setProgress(true);
+
+      setTimeout(() => {
+        setProgress(false);
+      }, 3000);
     }
-  }, []);
+  }, [order]);
   return (
     <div className={`${style.mainInputField_container}`}>
       {customModel && (
@@ -40,8 +31,9 @@ const MyOrder = ({ order }: any) => {
           setModel={setCustomModel}
         ></CustomModel>
       )}
-      {progress ? (
-        <ProgressModel />
+      {progress && <ProgressModel />}
+      {order.length <= 0 ? (
+        <h2 className="text-center">{!progress && "Order Not found"}</h2>
       ) : (
         <div>
           {order?.map((orderData: any, index: any) => (

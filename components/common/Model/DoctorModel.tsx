@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import style from "../../../styles/Sass/common/model/_doctorModel.module.scss";
-import LargestButton from "../../Custom/Button/LargestButton";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 interface Data {
   _id: string;
@@ -35,41 +34,36 @@ const DoctorModel = ({
             </label>
             <div className="flex justify-center">
               <div className={`${style.singleDoctor} p-5 my-5`}>
-                <div className="flex justify-center">
+                <div className="">
                   <div className={`flex justify-between gap-12`}>
-                    <div>
-                      <figure>
-                        <Image
-                          src={data.img}
-                          width={200}
-                          height={200}
-                          alt={data.name}
-                        />
-                      </figure>
-                      <div className={`${style.buttonCard} flex `}>
-                        <div>
-                          <h3>{data.name}</h3>
-                          <div className="mt-5 flex justify-evenly items-center gap-5">
-                            <Link
-                              href={`/doctorAppointment/${data._id}`}
-                              passHref
-                            >
-                              <a>
-                                <SimpleButton>Chamber</SimpleButton>
-                              </a>
-                            </Link>
-
-                            <LargestButton>Video Call</LargestButton>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
+                    <figure>
+                      <Image
+                        src={data.img}
+                        width={200}
+                        height={200}
+                        alt={data.name}
+                      />
+                    </figure>
                     <div className={`${style.productDetails}`}>
                       <h3 className="text-xl pb-3 text-bold">{data.name}</h3>
                       <p className="text-sm py-4">{data.designation}</p>
                       <p className="text-sm py-4">{data.education}</p>
                       <p className="text-sm py-4">{data.jobTitle}</p>
+                    </div>
+                  </div>
+
+                  <div className={`${style.buttonCard} flex `}>
+                    <div>
+                      <h3>{data.name}</h3>
+                      <div className="mt-5 flex justify-evenly items-center gap-5">
+                        <Link href={`/doctorAppointment/${data._id}`} passHref>
+                          <a>
+                            <SimpleButton>Chamber</SimpleButton>
+                          </a>
+                        </Link>
+
+                        <SimpleButton>Video Call</SimpleButton>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -36,7 +36,7 @@ export const AppointmentModelInputField = [
     name: "gender",
     fieldHeader: "Gender",
     inputFiledType: "select",
-    icon: "MdAddIcCall",
+    icon: "gender",
     options: [
       { name: "Male", value: "male" },
       { name: "Female", value: "female" },

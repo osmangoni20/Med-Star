@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/common/Footer";
 import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
+import ProgressModel from "../../components/common/Model/ProgressModel";
 import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
@@ -11,6 +12,7 @@ const OrderCart = () => {
   const [cardProducts, setCardProducts] = useState([]);
   const [deleteItem, setDeleteItem] = useState(false);
   const [updateQuantity, setUpdateQuantity] = useState(false);
+  const [progress, setProgress] = useState(false);
   const route = useRouter();
   const { user }: any = useFirebase();
   let TotalPrize = cardProducts.reduce(
@@ -39,6 +41,15 @@ const OrderCart = () => {
   };
 
   useEffect(() => {
+    if (cardProducts.length) {
+      setProgress(false);
+    } else if (cardProducts.length === 0) {
+      setProgress(true);
+      setTimeout(function () {
+        setProgress(false);
+      }, 3500);
+    }
+
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
@@ -69,6 +80,7 @@ const OrderCart = () => {
       />
       <Header />
       <div className={`${style.OrderCart}`}>
+        {progress && <ProgressModel />}
         {cardProducts.length > 0 ? (
           <div className=" md:flex md:justify-between gap-6">
             <div
@@ -118,7 +130,7 @@ const OrderCart = () => {
           </div>
         ) : (
           <div>
-            <h2 className="text-center">Order Cart Empty</h2>
+            <h2 className="text-center">{!progress && "Order Cart Empty"} </h2>
           </div>
         )}
       </div>

@@ -12,7 +12,7 @@ import {
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
-import logo from "../../../assets/image/medicine logo.jpg";
+import logo from "../../../assets/image/medstar.png";
 import { actionCreators, State } from "../../../State";
 import style from "../../../styles/Sass/common/Header/_header.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
