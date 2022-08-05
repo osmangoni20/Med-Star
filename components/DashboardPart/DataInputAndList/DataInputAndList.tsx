@@ -88,7 +88,16 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       const userData = await res.json();
       setTableData(userData);
 
-      if (!AllData.inputFieldData && menu !== "user_order") {
+      if (
+        (!AllData.inputFieldData || AllData.inputFieldData[0].search) &&
+        menu !== "user_order"
+      ) {
+        console.log(userData.length);
+        if (userData.length) {
+          setProgress(false);
+        } else if (userData.length === 0) {
+          setProgress(true);
+        }
         setTimeout(function () {
           if (userData.length === 0) {
             setProgress(false);
@@ -103,11 +112,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
               route.push("/dashboard/user_profile");
             }, 3000);
           }
-        }, 5000);
-
-        if (userData.length) {
-          setProgress(false);
-        }
+        }, 6000);
       }
     }
     // call the function

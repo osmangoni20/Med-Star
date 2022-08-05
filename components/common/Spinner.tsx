@@ -11,7 +11,7 @@ const Spinner = ({ loading, setLoading }: any) => {
   let [color, setColor] = useState("#0571a5");
 
   return (
-    <div className="flex justify-center items-center">
+    <div style={{ width: "100%" }} className="flex justify-center items-center">
       <div className="sweet-loading">
         {/* <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
       <input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" /> */}

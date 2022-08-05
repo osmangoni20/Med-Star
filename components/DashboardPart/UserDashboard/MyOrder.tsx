@@ -7,18 +7,19 @@ import ProgressModel from "../../common/Model/ProgressModel";
 
 const MyOrder = ({ order }: any) => {
   console.log(order);
-  const [progress, setProgress] = useState(true);
+  const [progress, setProgress] = useState(false);
   const [customModel, setCustomModel] = useState<boolean>(false);
   const [modelData, setModelData] = useState<any>({});
   const route = useRouter();
   useEffect(() => {
+    setProgress(true);
     if (order.length === 0) {
       setTimeout(function () {
         setProgress(false);
         setCustomModel(!customModel);
         setModelData({
-          text1: "Your Order Empty",
-          text2: "Please Order Now",
+          text1: "Empty",
+          text2: "Please Order or Appointment Now",
           // image: user?.photoUrl,
           wrongType: true,
         });
@@ -29,7 +30,7 @@ const MyOrder = ({ order }: any) => {
     } else if (order.length) {
       setProgress(false);
     }
-  }, [progress]);
+  }, []);
   return (
     <div className={`${style.mainInputField_container}`}>
       {customModel && (

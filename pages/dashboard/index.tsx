@@ -69,9 +69,11 @@ const Dashboard = () => {
             <Sidebar></Sidebar>
           </aside>
           {!Object.keys(dashboardData).length ? (
-            <div className="flex justify-center items-center">
-              <Spinner setLoading={true} />
-            </div>
+            <main>
+              <div className="flex justify-center items-center">
+                <Spinner setLoading={true} />
+              </div>
+            </main>
           ) : (
             <main className="py-5">
               {/* {Object.keys(dashboardData).length === 0 && <ProgressModel />} */}
@@ -109,9 +111,11 @@ const Dashboard = () => {
             <Sidebar></Sidebar>
           </aside>
           {!Object.keys(dashboardData).length ? (
-            <div className="flex justify-center items-center">
-              <Spinner setLoading={true} />
-            </div>
+            <main className="py-5">
+              <div className="flex justify-center items-center">
+                <Spinner setLoading={true} />
+              </div>
+            </main>
           ) : (
             <main className="py-5">
               <UserProfile />

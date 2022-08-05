@@ -1028,6 +1028,7 @@ export const DashboardFakeData: any = {
         placeholderName: "Doctor Name",
         inputType: "select",
         icon: "name",
+        search: true,
       },
     ],
     tableHeader: [
