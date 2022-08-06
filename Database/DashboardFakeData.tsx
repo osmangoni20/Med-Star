@@ -56,6 +56,36 @@ export const DashboardFakeData: any = {
     },
     sidebarMenuHeader: "Notice",
   },
+  donner_list: {
+    tableHeader: [
+      {
+        name: "Image",
+        data_register_name: "img",
+      },
+      {
+        name: "Donner Name",
+        data_register_name: "name",
+      },
+
+      {
+        name: "Blood Group",
+        data_register_name: "bloodGroup",
+      },
+      {
+        name: "Number",
+        data_register_name: "contact",
+      },
+      {
+        name: "Last Donation",
+        data_register_name: "last_donation",
+      },
+    ],
+    menuOptionHeader: {
+      name: "Donner List",
+      icon: "notice",
+    },
+    sidebarMenuHeader: "Donner",
+  },
 
   donner_info: {
     inputFieldData: [

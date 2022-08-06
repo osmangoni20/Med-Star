@@ -85,8 +85,8 @@ export const  adminSidebarMenu = [
       { name: "Doctor List", icon:"doctor", link: "/dashboard/Doctor's Manage/doctor" },
       { name: "Add Ambulance",icon: "ambulance", link: "/dashboard/Ambulance Service/add_ambulance" },
       { name: "Ambulance List",icon: "ambulance", link: "/dashboard/Ambulance Service/ambulance" },
-      { name: "Add New Donner",icon: "blood", link: "/dashboard/Blood Donner/add_new_donner" },
-      { name: "Donner List ", icon: "blood", link: "/dashboard/Blood Donner/blood_donner" },
+      { name: "Add New Donner",icon: "blood", link: "/dashboard/Blood Donner/donner_info" },
+      { name: "Donner List ", icon: "blood", link: "/dashboard/Blood Donner/donner_list" },
     ],
   },
   
