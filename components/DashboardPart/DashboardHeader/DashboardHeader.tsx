@@ -6,7 +6,7 @@ import { actionCreators } from "../../../State";
 import style from "../../../styles/Sass/Components/DashboardPart/_dashboardHeader.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
-import logo from "/assets/image/medicine logo.jpg";
+import logo from "/assets/image/medstar.png";
 const DashboardHeader = () => {
   const { user, Logout }: any = useFirebase();
   const dispatch = useDispatch();
