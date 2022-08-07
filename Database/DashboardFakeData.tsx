@@ -403,7 +403,7 @@ export const DashboardFakeData: any = {
       {
         name: "Ambulance Name",
         registerName: "ambulanceName",
-        placeholderName: "Student Name",
+        placeholderName: "Ambulance Name",
         icon: "name",
         inputType: "text",
       },
@@ -1061,7 +1061,7 @@ export const DashboardFakeData: any = {
 
       {
         name: "Number",
-        data_register_name: "patient_mobile_no",
+        data_register_name: "mobile_no",
       },
 
       {
@@ -1236,7 +1236,7 @@ export const DashboardFakeData: any = {
       },
       {
         name: "Test Name",
-        data_register_name: "test_name",
+        data_register_name: "testName",
       },
       {
         name: "Date",

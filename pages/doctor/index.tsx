@@ -24,8 +24,8 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
 
     // Loop through array values
     for (let i = 0; i < array.length; i++) {
-      if (uniqueArray.indexOf(array[i].name) === -1) {
-        uniqueArray.push(array[i].name);
+      if (uniqueArray.indexOf(array[i].category) === -1) {
+        uniqueArray.push(array[i].category);
       }
     }
     return uniqueArray;

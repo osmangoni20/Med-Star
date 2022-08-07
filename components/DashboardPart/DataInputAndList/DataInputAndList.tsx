@@ -272,6 +272,18 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
       console.log(data);
       if (data.modifiedCount) {
         setProgress(false);
+        if (status === "delivered") {
+          fetch("https://med-star-bd.herokuapp.com/${dynamicRoute}", {
+            method: "PATCH",
+            body: JSON.stringify({ status }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log(error));
+        }
       }
     }
     // call the function

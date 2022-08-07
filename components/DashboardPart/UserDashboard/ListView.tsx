@@ -25,9 +25,14 @@ const AdminView = ({
             headerData.data_register_name === "select" ||
             headerData.data_register_name === "delete"
           ) ? (
-            headerData.data_register_name === "img" ? (
+            headerData?.data_register_name === "img" ? (
               <td>
-                <Image src={data["img"]} height={40} width={40} alt={""} />
+                <Image
+                  src={data[headerData.data_register_name]}
+                  height={50}
+                  width={50}
+                  alt={""}
+                />
               </td>
             ) : (
               <td onClick={() => HandleModel(data)}>

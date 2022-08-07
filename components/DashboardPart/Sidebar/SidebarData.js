@@ -71,7 +71,6 @@ export const  adminSidebarMenu = [
       { name: "Video Appointment",  link: "/dashboard/patient_manage/video_appointment"},
       { name: "Chamber Appointment",  link: "/dashboard/patient_manage/appointment"},
       { name: "New Medical Test",  link: "//dashboard/patient_manage/newMedicalTest"},
-      { name: "Patient History", link: "/dashboard/patient_manage/patientHistory" },
     ],
     icon: "patient",
   },

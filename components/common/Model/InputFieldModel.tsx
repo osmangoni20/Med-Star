@@ -90,7 +90,7 @@ const InputFieldModel = ({
   const HandleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    console.log(fieldValue);
+    console.log(fieldValue, data);
     setFieldValue(fieldValue);
     const appointmentConformData = {
       email: fieldValue.email || patient.email,
@@ -98,8 +98,8 @@ const InputFieldModel = ({
       patientName:
         fieldValue.firstName || patient.firstName + " " + patient.lastName,
       patient_mobile_no: fieldValue.mobile_no || patient.mobile_no,
-      doctor_name: fieldValue.name,
-      time: data?.chamberTime,
+      doctor_name: data.name,
+      chamberTime: data?.chamberTime,
       fee: data?.fee,
       date: date,
       status: "pending",
@@ -128,7 +128,7 @@ const InputFieldModel = ({
           body: JSON.stringify(appointmentConformData),
         }
       );
-      // convert data to json
+      // // convert data to json
       const data = await res.json();
       if (data.insertedId) {
         setSuccessModel(true);
@@ -158,7 +158,7 @@ const InputFieldModel = ({
           body: JSON.stringify(PrescriptionConfirmData),
         }
       );
-      // convert data to json
+      // // convert data to json
       const data = await res.json();
       if (data.insertedId) {
         setSuccessModel(true);
@@ -176,10 +176,8 @@ const InputFieldModel = ({
     };
     // call the function
     if (type === "appointment") {
-      console.log("appoin");
       fetchAppointmentData();
     } else if (type === "prescription_upload") {
-      console.log("prescrip");
       fetchPrescriptionData();
     }
 
