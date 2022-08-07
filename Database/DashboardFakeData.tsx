@@ -402,7 +402,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Ambulance Name",
-        registerName: "ambulanceName",
+        registerName: "name",
         placeholderName: "Ambulance Name",
         icon: "name",
         inputType: "text",
