@@ -408,6 +408,13 @@ export const DashboardFakeData: any = {
         inputType: "text",
       },
       {
+        name: "Ambulance Image",
+        registerName: "img",
+        icon: "image",
+        placeholderName: "Ambulance Image",
+        inputType: "file",
+      },
+      {
         name: "Location Name",
         registerName: "location_name",
         placeholderName: "Location Name",
