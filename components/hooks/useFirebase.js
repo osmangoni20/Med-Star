@@ -24,6 +24,7 @@ const useFirebase=()=>{
         createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
             // Signed in
+            Logout();
             setError("")
             setNewUser(userData);
             UpdateUserData(userData);
@@ -31,7 +32,7 @@ const useFirebase=()=>{
             console.log(userCredential)
             setUser({name:userCredential.user.displayName
             ,email:userCredential.user.email})
-            Logout();
+            
             fetch("https://med-star-bd.herokuapp.com/user", {
               method: "POST",
               headers: {
@@ -41,9 +42,9 @@ const useFirebase=()=>{
             }).then(res=>res.json())
             .then(data=>{
               if(data.insertedId){
-                
-                route.push('/login');
                 alert("Your Account is successfully Created. Please Verified your Email")
+                route.push('/login');
+                Logout();
               }
             });
           })
@@ -90,7 +91,7 @@ const useFirebase=()=>{
           // Signed in 
           setError("")
           localStorage.setItem("accessToken",userCredential.user.accessToken)
-          setNewUser({});
+       
           console.log(userCredential)
           const user = userCredential.user;
           setUser({...user,
@@ -124,6 +125,7 @@ const useFirebase=()=>{
           const errorCode = error.code;
           const errorMessage = error.message;
           setError(error.message);
+          setUser({});
           console.log(errorCode,errorMessage)
         });
       }

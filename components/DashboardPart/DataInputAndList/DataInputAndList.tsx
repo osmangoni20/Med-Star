@@ -581,7 +581,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
               <div className="mx-5 mt-5">
                 <table className={`${tableStyle.table}`}>
                 {
-                  tableData>0?  <thead>
+                  Object.keys(tableData).length>0?  <thead>
                   {AllData?.tableHeader?.map((data: any, index: any) => (
                     <th key={index}>{data.name}</th>
                   ))}

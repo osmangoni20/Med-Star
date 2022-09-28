@@ -1304,7 +1304,7 @@ export const DashboardFakeData: any = {
     inputFieldData: [
       {
         name: "Admin Name",
-        registerName: "adminName",
+        registerName: "name",
         placeholderName: "Admin Name",
         inputType: "text",
 

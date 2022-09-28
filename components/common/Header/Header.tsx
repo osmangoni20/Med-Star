@@ -129,7 +129,7 @@ const Header = () => {
                   <li>
                     <BsFillCartPlusFill />
                     <span className={`${style.totalCartItem}`}>
-                      {Number(totalCardNumber)}
+                      {user.email?Number(totalCardNumber):0}
                     </span>
                   </li>
                 </a>

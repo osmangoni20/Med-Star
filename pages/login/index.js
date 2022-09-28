@@ -84,7 +84,7 @@ const Login = () => {
     else{
       SignInWithEmailPassword(email, password);
       // user.emailVerified
-      if(!error){
+      if(user.email){
        setProgress(true);
        setTimeout(()=>{
         resetField('email'); 
