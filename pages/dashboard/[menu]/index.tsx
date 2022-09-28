@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Meta from "../../../components/common/Meta";
 import DataInputAndList from "../../../components/DashboardPart/DataInputAndList/DataInputAndList";
+import useFirebase from "../../../components/hooks/useFirebase";
 import { DashboardFakeData } from "../../../Database/DashboardFakeData";
 
 const DashboardMenu = () => {
@@ -9,6 +10,7 @@ const DashboardMenu = () => {
   console.log(menu);
   const AllData = DashboardFakeData[menu as string];
   const modelView = false;
+  const { user }: any = useFirebase();
   // submenu === ("request_new_admission" || "student_list") ? true : false;
   return (
     <div>
@@ -21,6 +23,7 @@ const DashboardMenu = () => {
         <DataInputAndList
           modelView={modelView}
           AllData={AllData}
+          user={user}
         ></DataInputAndList>
       )}
     </div>

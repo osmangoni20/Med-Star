@@ -43,7 +43,11 @@ import ListView from "../UserDashboard/ListView";
 import MyOrder from "../UserDashboard/MyOrder";
 import UserProfile from "../UserDashboard/UserProfile";
 // import DashboardInfoModel from "../../common/Model/DashboardInfoModel";
-const DataInputAndList = ({ AllData, modelView }: any) => {
+interface Iprops {
+  AllData:any, modelView:any ,user?:any
+}
+
+const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
   // tableHeader,tableData,inputType
   // console.log(AllData);
   const [isAdmin, setIsAdmin] = useState<any>(false);
@@ -61,7 +65,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   const inputField = document.getElementById(
     "input"
   ) as HTMLInputElement | null;
-  const { user }: any = useFirebase();
+  
   const submitValue =
     AllData.inputFieldData && AllData.inputFieldData[0].search
       ? "Search"
@@ -69,7 +73,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
   useEffect(() => {
     setIsAdmin(() => Boolean(localStorage.getItem("isAdmin") === "true"));
     const admin = Boolean(localStorage.getItem("isAdmin") === "true");
-
+    console.log(user,"data ingoupt")
     async function fetchData() {
       const res = await fetch(
         `https://med-star-bd.herokuapp.com/${dynamicRoute}`
@@ -576,11 +580,16 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
 
               <div className="mx-5 mt-5">
                 <table className={`${tableStyle.table}`}>
-                  <thead>
-                    {AllData?.tableHeader?.map((data: any, index: any) => (
-                      <th key={index}>{data.name}</th>
-                    ))}
-                  </thead>
+                {
+                  tableData>0?  <thead>
+                  {AllData?.tableHeader?.map((data: any, index: any) => (
+                    <th key={index}>{data.name}</th>
+                  ))}
+                </thead>:
+                <thead>
+                  <th>It is Empty Now!</th>
+                </thead>
+                }
 
                   {/* <br/> */}
                   <tbody>
@@ -593,7 +602,7 @@ const DataInputAndList = ({ AllData, modelView }: any) => {
                       />
                     )}
 
-                    {/* // )} */}
+                  
                     {submenu !== "new_order" && (
                       <ListView
                         tableData={tableData}

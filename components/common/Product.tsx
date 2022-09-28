@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import style from "../../styles/Sass/common/_product.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
+import useFirebase from "../hooks/useFirebase";
 import ProductModel from "./Model/ProductModel";
 interface Data {
   id: number;
@@ -17,7 +18,7 @@ interface Data {
 }
 const Product = ({ product }: { product: Data }) => {
   const [showModel, setModel] = useState<boolean>(false);
-
+  const { user }: any = useFirebase();
   return (
     <div>
       {showModel && (
@@ -25,6 +26,7 @@ const Product = ({ product }: { product: Data }) => {
           setModel={setModel}
           showModel={showModel}
           data={product}
+          user={user}
         />
       )}
       <div className={`${style.productCart} card  w-84  shadow`}>

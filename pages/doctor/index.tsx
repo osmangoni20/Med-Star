@@ -4,6 +4,7 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SingleDoctor from "../../components/common/SingleDoctor";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
+import useFirebase from "../../components/hooks/useFirebase";
 import style from "../../styles/Sass/pages/doctor/_doctor.module.scss";
 
 type Data = {
@@ -18,7 +19,7 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
   const [searchName, setSearchName] = useState("");
   const [searchList, setSearchList] = useState([]);
   const [uniqueDoctor, setUniqueData] = useState<any>([]);
-
+  const { user }: any = useFirebase();
   const getUniqueDoctorData = (array: any[]) => {
     let uniqueArray = [];
 
@@ -88,7 +89,7 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
           <div className="md:grid md:grid-cols-3 md:gap-20 my-10">
             {(searchList.length > 0 ? searchList : doctorData).map(
               (doctor: Data) => (
-                <SingleDoctor key={doctor._id} doctor={doctor} />
+                <SingleDoctor key={doctor._id} user={user} doctor={doctor} />
               )
             )}
           </div>

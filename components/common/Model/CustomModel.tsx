@@ -57,11 +57,12 @@ const CustomModel = ({ showModel, error, setModel, modelData }: any) => {
 
               {modelData.welcomeType && (
                 <div className="text-center">
-                  <Image
-                    className="text-center"
-                    src={user.img || userImage}
-                    alt=""
-                  ></Image>
+                   <Image
+                          src={user?.photoURL || userImage}
+                          alt={""}
+                          height={40}
+                          width={40}
+                        />
                   <h1>Welcome {user.displayName}</h1>
                   <p className={style.text}>{modelData.text1}</p>
                   <p className={style.text}>{modelData.text2}</p>

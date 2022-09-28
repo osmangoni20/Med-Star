@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import style from "../../styles/Sass/Components/Home/doctorCarousel.module.scss";
 import SimpleButton from "../Custom/Button/SimpleButton";
+import useFirebase from "../hooks/useFirebase";
 
 interface doctorData {
   _id: any;
@@ -20,6 +21,7 @@ interface doctorData {
 [];
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
+ 
 
   return (
     <div
@@ -48,7 +50,7 @@ function SamplePrevArrow(props: any) {
 }
 const Doctor = () => {
   const [doctor, setDoctor] = useState<doctorData[]>([]);
-
+  const { user }: any = useFirebase();
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
@@ -57,7 +59,6 @@ const Doctor = () => {
       const data = await res.json();
       setDoctor(data);
     };
-
     // call the function
     fetchData()
       // make sure to catch any error
@@ -137,7 +138,7 @@ const Doctor = () => {
                   <p>{doctor.education}</p>
                   <p>{doctor.jobTitle}</p>
                   <div className="card-actions justify-center">
-                    <Link href={`/doctor/${doctor._id}`} passHref>
+                    <Link href={ user.email?`/doctor/${doctor._id}`:'/login'} passHref>
                       <a>
                         <SimpleButton>Appointment</SimpleButton>
                       </a>

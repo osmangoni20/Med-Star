@@ -1127,6 +1127,44 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Doctor Video Call Appointment",
   },
 
+  video_appointment: {
+    inputFieldData: [
+      {
+        name: "Doctor Name",
+        registerName: "doctor_name",
+        placeholderName: "Doctor Name",
+        inputType: "select",
+        icon: "name",
+        search: true,
+      },
+    ],
+    tableHeader: [
+      {
+        name: "Doctor",
+        data_register_name: "doctor_name",
+      },
+      {
+        name: "Fee",
+        data_register_name: "fee",
+      },
+
+      {
+        name: "Date",
+        data_register_name: "date",
+      },
+      {
+        name: "Status",
+        data_register_name: "status",
+      },
+      {
+        name: "Send Meet Link And Time",
+        data_register_name: "input",
+      },
+    ],
+
+    menuOptionHeader: { name: "Patient Manage", icon: "patient" },
+    sidebarMenuHeader: "Doctor Video Call Appointment",
+  },
   appointment: {
     inputFieldData: [
       {

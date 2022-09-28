@@ -35,15 +35,17 @@ const ProductModel = ({
   data,
   setModel,
   showModel,
+  user
 }: {
   data: Data;
   showModel: any;
   setModel: any;
+  user:any
 }) => {
   const [countValue, setContValue] = useState(1);
   const dispatch = useDispatch();
   const route = useRouter();
-  const { user }: any = useFirebase();
+  
   const { IncrementOderCart } = bindActionCreators(actionCreators, dispatch);
   const totalCardNumber = useSelector((state: State) => state.cart);
   const [addToCart, setAddToCart] = useState(false);
@@ -60,13 +62,7 @@ const ProductModel = ({
       setContValue(1);
     }
   };
-  // id: totalCartProduct + 1,
-  // useEffect(() => {
-  //   fetch("https://med-star-bd.herokuapp.com/my-cart")
-  //     .then((res) => res.json())
-  //     .then((data) => setTotalCartProduct(data.length));
-  // }, [addToCart]);
-  // setAddToCart(!addToCart);
+
   console.log(data);
   const HandleAddtoCart = () => {
     const product = {

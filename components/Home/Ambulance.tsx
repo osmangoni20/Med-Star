@@ -10,6 +10,7 @@ import SimpleButton from "../Custom/Button/SimpleButton";
 interface ambulanceData {
   id: number;
   name: string;
+  img:any;
   location_name: string;
   location_details: string;
   contact1: string;
@@ -43,7 +44,7 @@ const Ambulance = () => {
       // make sure to catch any error
       .catch(console.error);
   }, [ambulance.length]);
-
+  console.log(ambulance);
   return (
     <div className={`${style.ambulance}`}>
       {mapModel && <MapModel showModel={mapModel} setModel={setModel} />}
@@ -66,7 +67,7 @@ const Ambulance = () => {
                 <Image
                   height={180}
                   width={320}
-                  src={ambulanceImage}
+                  src={Amb?.img||ambulanceImage}
                   alt="Shoes"
                 />
               </figure>

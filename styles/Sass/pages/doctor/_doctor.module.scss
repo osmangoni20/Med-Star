@@ -76,7 +76,7 @@
     margin: 0px auto;
   }
   .doctorCard {
-    max-height: 415px;
+    min-height: 415px;
     cursor: pointer;
     figure {
       background-color: $Lightgray;
