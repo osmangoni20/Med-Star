@@ -61,7 +61,7 @@ const CreateNotice = () => {
     })
     
     async function fetchData() {
-      const res = await fetch(`https://med-star-bd.herokuapp.com/create_notice`, {
+      const res = await fetch(`https://medstar-backend.onrender.com/create_notice`, {
         method: "POST",
         body: JSON.stringify(fieldValue),
         headers: {

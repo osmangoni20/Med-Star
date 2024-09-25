@@ -28,7 +28,7 @@
     "html-parser": "^0.11.0",
     "html-react-parser": "^3.0.1",
     "htmlparser2": "^8.0.1",
-    "next": "^12.2.2",
+    "next": "^12.3.4",
     "react": "^18.1.0",
     "react-calendar": "^3.7.0",
     "react-chartjs-2": "^4.3.1",

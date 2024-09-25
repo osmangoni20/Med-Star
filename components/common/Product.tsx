@@ -10,7 +10,8 @@ interface Data {
   name: string;
   img: string;
   price: number;
-
+  brand:string;
+  description:string;
   productType: string;
   capacity: string;
   used: string;
@@ -33,17 +34,18 @@ const Product = ({ product }: { product: Data }) => {
         <figure>
           <Image
             src={product.img}
-            width={200}
-            height={150}
+            width={250}
+            height={200}
             alt={product.name}
           />
         </figure>
         <div className={`${style.productCartBody} card-body `}>
           <div className={`${style.cartBodyText}`}>
-            <h2 className="text-center">{product.name.slice(0, 25)}</h2>
-            <h6>{product.productType}</h6>
+            <p className="text-center">{product.name.slice(0, 25)}</p>
+            <p>{product.productType}</p>
+            <p>{product.brand}</p>
             <h6>{product.capacity}</h6>
-            <p className={`${style.price}`}> Tk {product.price} .00</p>
+            <p className={`text-medium font-semibold`}> Tk {product.price}</p>
           </div>
 
           <div className="card-actions justify-center">

@@ -17,7 +17,7 @@ const SingleModel = ({
 }) => {
   const [labTestData, setLabTestData] = useState<Data[]>([]);
   useEffect(() => {
-    fetch("http://localhost:3000/api/lab_test")
+    fetch("https://medstar-backend.onrender.com/api/lab_test")
       .then((res) => res.json())
       .then((data) => setLabTestData(data))
       .then((error) => console.log(error));

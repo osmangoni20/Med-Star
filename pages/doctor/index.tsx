@@ -39,7 +39,7 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
     setSearchName(e.target.value);
   };
   const HandleSearchLabTest = () => {
-    fetch(`https://med-star-bd.herokuapp.com/doctor/?searchValue=${searchName}`)
+    fetch(`https://medstar-backend.onrender.com/doctor/?searchValue=${searchName}`)
       .then((res) => res.json())
       .then((data) => setSearchList(data))
       .then((error) => console.log(error));
@@ -100,7 +100,7 @@ const AllDoctor = ({ doctorData }: { doctorData: any }) => {
 };
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://med-star-bd.herokuapp.com/doctor`);
+  const res = await fetch(`https://medstar-backend.onrender.com/doctor`);
   const doctorData = await res.json();
 
   // Pass data to the page via props

@@ -80,10 +80,10 @@ const Shipping = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/my-cart/" + user.email
+        "https://medstar-backend.onrender.com/my-cart/" + user.email
       );
       const userRes = await fetch(
-        `https://med-star-bd.herokuapp.com/users/${user.email}`
+        `https://medstar-backend.onrender.com/users/${user.email}`
       );
       // convert data to json/
       const data = await res.json();
@@ -133,7 +133,7 @@ const Shipping = () => {
     };
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("https://med-star-bd.herokuapp.com/new_order", {
+      const res = await fetch("https://medstar-backend.onrender.com/new_order", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -154,7 +154,7 @@ const Shipping = () => {
         });
 
         fetch(
-          `https://med-star-bd.herokuapp.com/my-cart/delete/${customer.email}`,
+          `https://medstar-backend.onrender.com/my-cart/delete/${customer.email}`,
           {
             method: "DELETE",
           }

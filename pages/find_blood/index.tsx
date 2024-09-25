@@ -9,16 +9,12 @@ import style from "../../styles/Sass/pages/findBlood/_findBlood.module.scss";
 import demoImag from "/assets/image/personlogo.jpg";
 interface Data {
   id: number;
-  category: string;
-  name: string;
+  blood_Group: string;
+  district: string; 
   img: string;
-  price: number;
-  description: {
-    productType: string;
-    capacity: string;
-    used: string;
-    sideEffect: string;
-  };
+ name: string; 
+ contact: string;
+
 }
 const FindBlood = ({ data }: any) => {
   const [searchValue, setSearchValue] = useState<any>({});
@@ -34,7 +30,7 @@ const FindBlood = ({ data }: any) => {
 
   const HandleSearchDonner = () => {
     fetch(
-      `https://med-star-bd.herokuapp.com/donner?group=${
+      `https://medstar-backend.onrender.com/donner?group=${
         searchValue.blood_Group
       }&district=${capitalizeFirstLetter(`${searchValue.district}`)}`
     )
@@ -127,7 +123,7 @@ const FindBlood = ({ data }: any) => {
                           <div className="flex justify-center">
                             <div>
                               <p>
-                                {member.upazila} {member.district}{" "}
+                                 {member.district}{" "}
                               </p>
                               <p>{member.contact}</p>
                             </div>
@@ -148,7 +144,7 @@ const FindBlood = ({ data }: any) => {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://med-star-bd.herokuapp.com/donner`);
+  const res = await fetch(`https://medstar-backend.onrender.com/donner`);
   const data = await res.json();
 
   // Pass data to the page via props

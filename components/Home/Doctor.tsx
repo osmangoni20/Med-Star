@@ -54,7 +54,7 @@ const Doctor = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("https://med-star-bd.herokuapp.com/doctor");
+      const res = await fetch("https://medstar-backend.onrender.com/doctor");
       // convert data to json
       const data = await res.json();
       setDoctor(data);
@@ -122,13 +122,13 @@ const Doctor = () => {
             return (
               <div
                 key={index}
-                className={`${style.doctorCard} card w-84  shadow`}
+                className={`${style.doctorCard} card w-84 h-[350px] shadow`}
               >
-                <figure>
+                <figure className="h-[200px]">
                   <Image
                     src={doctor.img}
                     alt={doctor.name}
-                    height={150}
+                    height={200}
                     width={200}
                   />
                 </figure>

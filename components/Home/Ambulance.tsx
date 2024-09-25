@@ -29,7 +29,7 @@ const Ambulance = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("https://med-star-bd.herokuapp.com/ambulance");
+      const res = await fetch("https://medstar-backend.onrender.com/ambulance");
       // convert data to json
       const data = await res.json();
       setAmbulance(data);

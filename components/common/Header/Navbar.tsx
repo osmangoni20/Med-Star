@@ -5,9 +5,9 @@ import style from "../../../styles/Sass/common/Header/_navbar.module.scss";
 
 const Navbar = () => {
   const Links = [
-    { name: "Baby & Mom", link: "/medicine?category=baby & mom" },
+    { name: "Baby & Mom", link: "/medicine?category=baby_mom" },
     { name: "Personal Care", link: "/medicine?category=personal" },
-    { name: "Drinks", link: "/medicine?category=Nutrition_and_drinks" },
+    { name: "Drinks", link: "/medicine?category=nutrition_and_drinks" },
   ];
   const medicalLinks = [
     { name: "Call To Doctor", link: "/doctor" },

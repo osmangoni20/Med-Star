@@ -40,7 +40,7 @@ const Dashboard = () => {
     console.log("use:", localStorage.getItem("isAdmin"));
 
     async function fetchData() {
-      const res = await fetch(`https://med-star-bd.herokuapp.com/dashboard`);
+      const res = await fetch(`https://medstar-backend.onrender.com/dashboard`);
       // convert data to json/
       const userData = await res.json();
       setProgress(false);
@@ -110,17 +110,11 @@ const Dashboard = () => {
           <aside className="h-screen">
             <Sidebar></Sidebar>
           </aside>
-          {!Object.keys(dashboardData).length ? (
-            <main className="py-5">
-              <div className="flex justify-center items-center">
-                <Spinner setLoading={true} />
-              </div>
-            </main>
-          ) : (
-            <main className="py-5">
-              <UserProfile />
-            </main>
-          )}{" "}
+          {
+           <main className="py-5">
+           <UserProfile />
+         </main>
+          }
         </div>
       )}
     </div>

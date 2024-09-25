@@ -76,7 +76,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
     console.log(user,"data ingoupt")
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}`
+        `https://medstar-backend.onrender.com/${dynamicRoute}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -86,7 +86,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
     // User Dashboard Data
     async function fetchUserDashboardData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}/${user.email}`
+        `https://medstar-backend.onrender.com/${dynamicRoute}/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -177,7 +177,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
 
   const HandleSearch = (searchValue: any) => {
     fetch(
-      `https://med-star-bd.herokuapp.com/${dynamicRoute}?search=${searchValue}`
+      `https://medstar-backend.onrender.com/${dynamicRoute}?search=${searchValue}`
     )
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -187,7 +187,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
   const HandleUpdate = (submitValue: any) => {
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}/osmangoni0827@gmail.com`,
+        `https://medstar-backend.onrender.com/${dynamicRoute}/osmangoni0827@gmail.com`,
         {
           method: "PATCH",
           headers: { "content-type": "application/json" },
@@ -222,7 +222,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
       : { ...submittableData, email: user.email };
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}`,
+        `https://medstar-backend.onrender.com/${dynamicRoute}`,
         {
           method: "POST",
           body: JSON.stringify(confirmSubmitData),
@@ -262,7 +262,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
     const id = data._id;
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}/${email}/${id}`,
+        `https://medstar-backend.onrender.com/${dynamicRoute}/${email}/${id}`,
         {
           method: "PATCH",
           body: JSON.stringify({ status }),
@@ -277,7 +277,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
       if (data.modifiedCount) {
         setProgress(false);
         if (status === "delivered") {
-          fetch("https://med-star-bd.herokuapp.com/${dynamicRoute}", {
+          fetch("https://medstar-backend.onrender.com/${dynamicRoute}", {
             method: "PATCH",
             body: JSON.stringify({ status }),
             headers: {
@@ -301,7 +301,7 @@ const DataInputAndList = ({AllData,modelView,user}:Iprops) => {
 
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/${dynamicRoute}/${id}`,
+        `https://medstar-backend.onrender.com/${dynamicRoute}/${id}`,
         {
           method: "DELETE",
         }

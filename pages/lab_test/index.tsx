@@ -6,6 +6,8 @@ import Header from "../../components/common/Header/Header";
 import Meta from "../../components/common/Meta";
 import SimpleButton from "../../components/Custom/Button/SimpleButton";
 import style from "../../styles/Sass/pages/labTest/_labTest.module.scss";
+
+
 const LabTest = ({ labTestData }: any) => {
   const [searchName, setSearchName] = useState("");
   const [searchList, setSearchList] = useState([]);
@@ -28,10 +30,10 @@ const LabTest = ({ labTestData }: any) => {
   useEffect(() => {
     console.log(getUniqueData(labTestData));
     setUniqueData(getUniqueData(labTestData));
-  }, []);
+  }, [labTestData]);
   const HandleSearchLabTest = () => {
     fetch(
-      `https://med-star-bd.herokuapp.com/labTest/?searchValue=${searchName}`
+      `https://medstar-backend.onrender.com/labTest/?searchValue=${searchName}`
     )
       .then((res) => res.json())
       .then((data) => setSearchList(data))
@@ -110,7 +112,7 @@ const LabTest = ({ labTestData }: any) => {
                           Tk. {item.price * (item.offer / 100)}{" "}
                           <span className="line-through">
                             {" "}
-                            TK. {item.price}
+                             {item.price}
                           </span>{" "}
                         </p>
                       )}
@@ -131,7 +133,7 @@ const LabTest = ({ labTestData }: any) => {
 export async function getServerSideProps() {
   // Fetch data from external API
 
-  const res = await fetch(`https://med-star-bd.herokuapp.com/labTest`);
+  const res = await fetch(`https://medstar-backend.onrender.com/labTest`);
   const data = await res.json();
   console.log(data);
   // Pass data to the page via props

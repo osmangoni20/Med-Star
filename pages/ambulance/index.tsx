@@ -146,7 +146,7 @@ const AmbulanceService = ({ data }: any) => {
 
 export async function getServerSideProps(ctx: { params: { doctorId: any } }) {
   // Fetch data from external API
-  const res = await fetch(`https://med-star-bd.herokuapp.com/ambulance`);
+  const res = await fetch(`https://medstar-backend.onrender.com/ambulance`);
   const data = await res.json();
 
   // Pass data to the page via props

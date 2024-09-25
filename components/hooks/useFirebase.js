@@ -33,7 +33,7 @@ const useFirebase=()=>{
             setUser({name:userCredential.user.displayName
             ,email:userCredential.user.email})
             
-            fetch("https://med-star-bd.herokuapp.com/user", {
+            fetch("https://medstar-backend.onrender.com/user", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -104,7 +104,7 @@ const useFirebase=()=>{
           })
           if(user.email){
             const fetchData = async () => {
-              const res= await fetch(`https://med-star-bd.herokuapp.com/isAdmin/${userCredential.user.email}`)
+              const res= await fetch(`https://medstar-backend.onrender.com/isAdmin/${userCredential.user.email}`)
               const data= await res.json();
               // setIsAdmin(data);
               console.log(data)

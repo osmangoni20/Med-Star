@@ -53,7 +53,7 @@ export async function getServerSideProps(ctx: { params: { doctorId: any } }) {
   // Fetch data from external API
 
   const res = await fetch(
-    `https://med-star-bd.herokuapp.com/doctor/${ctx.params.doctorId}`
+    `https://medstar-backend.onrender.com/doctor/${ctx.params.doctorId}`
   );
   const data = await res.json();
 

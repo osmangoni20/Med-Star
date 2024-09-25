@@ -8,7 +8,8 @@ interface Data {
   name: string;
   img: string;
   price: number;
-
+  brand:string;
+  description:string;
   productType: string;
   capacity: string;
   used: string;
@@ -19,7 +20,7 @@ const Medicine = () => {
   useEffect(() => {
     const fetchData = async () => {
       // get the data from the api
-      const res = await fetch("https://med-star-bd.herokuapp.com/medicine");
+      const res = await fetch("https://medstar-backend.onrender.com/medicine");
       // convert data to json
       const data = await res.json();
       setMedicineProduct(data);

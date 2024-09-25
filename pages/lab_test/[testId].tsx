@@ -25,7 +25,7 @@ const SingleTest = ({ data }: { data: any }) => {
     setLabTestInfo(data);
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/users/${user.email}`
+        `https://medstar-backend.onrender.com/users/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -61,7 +61,7 @@ const SingleTest = ({ data }: { data: any }) => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/newMedicalTest",
+        "https://medstar-backend.onrender.com/newMedicalTest",
         {
           method: "POST",
           headers: {
@@ -175,7 +175,7 @@ const SingleTest = ({ data }: { data: any }) => {
 export async function getServerSideProps(ctx: { params: { testId: any } }) {
   // Fetch data from external API
   const res = await fetch(
-    `https://med-star-bd.herokuapp.com/labtest/${ctx.params.testId}`
+    `https://medstar-backend.onrender.com/labtest/${ctx.params.testId}`
   );
   const data = await res.json();
 

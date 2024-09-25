@@ -35,7 +35,7 @@ const Header = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
+        `https://medstar-backend.onrender.com/my-cart/${user.email}`
       );
 
       // convert data to json

@@ -12,12 +12,11 @@ interface Data {
   name: string;
   img: string;
   price: number;
-  description: {
     productType: string;
     capacity: string;
     used: string;
     sideEffect: string;
-  };
+
 }
 const capitalizeFirstLetter = (
   [first, ...rest]: string,
@@ -34,7 +33,7 @@ const Medicine = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/medicine?searchName=${capitalizeFirstLetter(
+        `https://medstar-backend.onrender.com/medicine?searchName=${capitalizeFirstLetter(
           `${search}`
         )}&searchCategory=${`${category}`}`
       );
@@ -55,7 +54,7 @@ const Medicine = () => {
   const categories = [
     { name: "Personal Care", key: "personal" },
     { name: "Baby & Mom", key: "bab" },
-    { name: "Female Hygiene", key: "female" },
+    { name: "Female Hygiene", key: "female_hygiene" },
     { name: "Nutrition and Drinks", key: "Nutrition_and_drinks" },
   ];
   return (
@@ -91,7 +90,7 @@ const Medicine = () => {
 //   // const { search } = ;
 
 //   console.log(ctx);
-//   const res = await fetch(`https://med-star-bd.herokuapp.com/medicine`);
+//   const res = await fetch(`https://medstar-backend.onrender.com/medicine`);
 //   const data = await res.json();
 
 //   // Pass data to the page via props

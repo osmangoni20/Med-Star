@@ -27,7 +27,7 @@ const OrderCart = () => {
   const HandleUpdateQuantity = (quantity: number, id: string) => {
     console.log(quantity);
     //
-    fetch("https://med-star-bd.herokuapp.com/my-cart/updateQuantity/" + id, {
+    fetch("https://medstar-backend.onrender.com/my-cart/updateQuantity/" + id, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ quantity, id }),
@@ -53,7 +53,7 @@ const OrderCart = () => {
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/my-cart/${user.email}`
+        `https://medstar-backend.onrender.com/my-cart/${user.email}`
       );
       // convert data to json
       const data = await res.json();
@@ -142,7 +142,7 @@ const OrderCart = () => {
 
 // export async function getServerSideProps() {
 //   // Fetch data from external API
-//   const res = await fetch(`http://localhost:3000/api/cart_product_list/`);
+//   const res = await fetch(`https://medstar-backend.onrender.com/api/cart_product_list/`);
 //   const data = await res.json();
 
 //   // Pass data to the page via props

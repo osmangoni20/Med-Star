@@ -72,7 +72,7 @@ const InputFieldModel = ({
     setDate(date);
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/users/${user.email}`
+        `https://medstar-backend.onrender.com/users/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -119,7 +119,7 @@ const InputFieldModel = ({
     const fetchAppointmentData = async () => {
       // get the data from the api
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/new_appointment",
+        "https://medstar-backend.onrender.com/new_appointment",
         {
           method: "POST",
           headers: {
@@ -149,7 +149,7 @@ const InputFieldModel = ({
     const fetchPrescriptionData = async () => {
       // get the data from the api
       const res = await fetch(
-        "https://med-star-bd.herokuapp.com/new_prescription",
+        "https://medstar-backend.onrender.com/new_prescription",
         {
           method: "POST",
           headers: {

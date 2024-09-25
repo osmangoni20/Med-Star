@@ -68,7 +68,7 @@ const UserProfile = () => {
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/users/${user.email}`
+        `https://medstar-backend.onrender.com/users/${user.email}`
       );
       // convert data to json/
       const userData = await res.json();
@@ -127,7 +127,7 @@ const UserProfile = () => {
     console.log(updateFieldValue);
     async function fetchData() {
       const res = await fetch(
-        `https://med-star-bd.herokuapp.com/user_profile/${user.email}`,
+        `https://medstar-backend.onrender.com/user_profile/${user.email}`,
         {
           method: "PATCH",
           body: JSON.stringify(updateFieldValue),
