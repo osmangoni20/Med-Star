@@ -87,7 +87,7 @@ export const DashboardFakeData: any = {
     sidebarMenuHeader: "Donner",
   },
 
-  donner_info: {
+  donner_info: { 
     inputFieldData: [
       {
         name: "Your Name",

@@ -4,7 +4,7 @@ export const cartProductList=[
     {
         "id":0,
         "quantity":2,
-        "category":"personal_care",
+        "category":"personal_care", 
         "name":"Sunscreen Lotion",
         "img":"https://cdn1.arogga.com/eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJtZWRpY2luZVwvMjdcLzI3NjYyLUJpb3ZlcmEtQm9keS1Mb3Rpb24tZ2l2aS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjEwMDAsImhlaWdodCI6MTAwMCwiZml0Ijoib3V0c2lkZSJ9LCJvdmVybGF5V2l0aCI6eyJidWNrZXQiOiJhcm9nZ2EiLCJrZXkiOiJtaXNjXC93bS5wbmciLCJhbHBoYSI6OTB9fX0=",
         "price":755.00,

@@ -5,7 +5,7 @@ export const bloodGroup=[
         category:"A+"
     },
     {
-        id:2,
+        id:2, 
         category:"A-"
     },
     {

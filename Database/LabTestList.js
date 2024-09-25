@@ -5,7 +5,7 @@ export const labTestList=[
     testName:"(CA) CYFRA 21-1; LUNG CANCER MARKER",
     offer:0,
     price:2500,
-    testType:"CYTOGENETICS"
+    testType:"CYTOGENETICS" 
     },
     {id:2,
         testName:"1 Hr 75gm Glucose",
