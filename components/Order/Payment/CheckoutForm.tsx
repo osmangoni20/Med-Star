@@ -4,12 +4,13 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import toast from "react-hot-toast";
-import { useNavigate } from 'react-router-dom';
 import { orderPostApi } from './orderApi';
 import useAuth from '../../hooks/useAuth';
 import { paymentInfoUpdate } from '../../../redux/feature/OrderSlice';
 import { clearCart } from '../../../redux/feature/CartSlice';
 import ProgressModel from '../../common/Model/ProgressModel';
+import { useRouter } from 'next/router';
+import { TMedicine } from '../../../Type/type';
 
 const CheckoutForm = () => {
 
@@ -17,14 +18,26 @@ const CheckoutForm = () => {
     const elements = useElements();
     const {shippingInfo,email,order_product,price,status}=useAppSelector(state=>state.orderR)
     const dispatch=useAppDispatch()
-    const navigate=useNavigate()
+    const route=useRouter()
     const [isLoading, setLoading]=useState(false)
     const[isModel,setModel]=useState(false);
     const [cardError, setError]= useState<string | undefined>()
     const [clientSecret, setClientSecret] =useState('')
     const {total}=useAppSelector(state=>state.cartR)
     const [transactionID, setTransactionID]=useState('')
-    const{user}:any=useAuth()
+    
+    const url="https://medstar-backend.onrender.com/new_order"
+
+
+  const orderPostApi= async(submitData: { shippingInfo: object; email: string; date: string; price: number; status: string; order_product: TMedicine[]; paymentInfo: { payment_method: any; transactionId: any; }; })=>{
+    return await fetch(url,{
+          method:"POST",
+          headers:{
+              "Content-type":"application/json"
+          },
+          body:JSON.stringify(submitData)
+      })
+  }
   
      useEffect(() => {
 console.log(shippingInfo)
@@ -100,7 +113,7 @@ console.log(shippingInfo)
             
             toast.success("You Order Success")
             dispatch(clearCart())
-            navigate('/')
+            route.push('/')
         }).catch(error=>console.log(error))
 
       }
@@ -113,16 +126,16 @@ console.log(shippingInfo)
 const handleSubmit= async(e:any)=>{
     e.preventDefault()
     setLoading(true)
-    setModel(true)
+    isConfirmFromModel()
     // payment code working after conformation model submit
 
 }
     return (
        <div className="h-screen w-[50%] flex justify-center items-center m-auto">
-         <div className='w-full text-center'>
+         <div className='w-full text-center space-y-4'>
            
-            <h2 className='text-7xl text-center py-1 font-sans font-semibold'>Payment</h2>
-            <p className='text-xl font-medium'>Submit Your Cart</p>
+            <h2 className='text-7xl text-center py-4 font-sans font-semibold'>Payment</h2>
+            <p className='text-xl font-medium py-4'>Submit Your Cart</p>
             <form  onSubmit={handleSubmit} className='my-12 payment-form'>
         <CardElement
           options={{
@@ -143,7 +156,7 @@ const handleSubmit= async(e:any)=>{
        
         <div className= {`${transactionID && "hidden"} flex justify-center mt-6`}>
        {
-        !isLoading&& <button type="submit" disabled={!stripe||!clientSecret} className={` ${(!stripe||!clientSecret)?"disabled": "text-white cursor-pointer py-2 btn_secondary"}`}>
+        !isLoading&& <button type="submit" disabled={!stripe||!clientSecret} className={` ${(!stripe||!clientSecret)?"disabled": "text-white p-2 cursor-pointer py-2 rounded-md bg-[#4C9DC3]"}`}>
         Confirm Order
 </button>
        }
