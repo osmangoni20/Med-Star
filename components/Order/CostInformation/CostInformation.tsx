@@ -1,6 +1,7 @@
 import Link from "next/link";
 import style from "../../../styles/Sass/Components/Order/CostInformation.module.scss";
 import LargestButton from "../../Custom/Button/LargestButton";
+import { useAppSelector } from "../../../redux/hooks";
 
 const CostInformation = ({
   totalPrice,
@@ -9,22 +10,7 @@ const CostInformation = ({
   totalPrice: number;
   showButton: boolean;
 }) => {
-  const SubTotal = totalPrice;
-  let ShippingCost;
-  let Vat;
-  if (SubTotal > 2000) {
-    Vat = SubTotal * 0.1;
-  } else if (SubTotal > 1000) {
-    Vat = SubTotal * 0.2;
-  } else {
-    Vat = 0;
-  }
-  if (SubTotal > 10000) {
-    ShippingCost = 0;
-  } else {
-    ShippingCost = 40;
-  }
-  const TotalCost = SubTotal + ShippingCost + Vat;
+ const {subTotal, total, shippingCost,tax,totalSelectedItem}=useAppSelector(state=>state.cartR)
   // console.log(totalprize,TotalCost,Vat,SubTotal);
   return (
     <div className={`${style.Cost_Info}  sticky-top`}>
@@ -36,28 +22,28 @@ const CostInformation = ({
         <div className={`${style.cost_infoData}`}>
           <div className="flex justify-between">
             <p>Sub Total</p>
-            <p>{SubTotal} Tk</p>
+            <p>{Number(subTotal).toFixed(2)} Tk</p>
           </div>
           <hr></hr>
           <div className="flex justify-between">
             <p>Shipping Cost</p>
-            <p>{ShippingCost} Tk</p>
+            <p>{shippingCost} Tk</p>
           </div>
 
           <hr></hr>
           <div className="flex justify-between">
             <p>Vat/Tax</p>
-            <p>{Number(Vat.toFixed(2))} Tk</p>
+            <p>{Number(tax).toFixed(2)} Tk</p>
           </div>
           <hr></hr>
           <div className="flex justify-between">
             <p>Total Cost</p>
-            <p>{TotalCost} Tk</p>
+            <p>{Number(total).toFixed(2)} Tk</p>
           </div>
           <hr></hr>
           <div className="flex justify-between">
             <h5>Payable Taka</h5>
-            <h5>{TotalCost} Tk</h5>
+            <h5>{Number(total).toFixed(2)} Tk</h5>
           </div>
         </div>
         {showButton && (

@@ -6,18 +6,7 @@ import Meta from "../../components/common/Meta";
 import Product from "../../components/common/Product";
 import style from "../../styles/Sass/pages/medicine/_medicine.module.scss";
 
-interface Data {
-  id: number;
-  category: string;
-  name: string;
-  img: string;
-  price: number;
-    productType: string;
-    capacity: string;
-    used: string;
-    sideEffect: string;
 
-}
 const capitalizeFirstLetter = (
   [first, ...rest]: string,
   locale = navigator.language

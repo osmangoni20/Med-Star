@@ -14,25 +14,25 @@ const PaymentMethodInfo = [
         paymentTypeLink: "/strip-visaCard",
         paymentType: "stripe"
     },
-    {
-        id: 3,
-        image: "https://i.ibb.co/gg2NNRL/nogod-removebg-preview.png",
-        paymentTypeLink: "#bikas",
-        paymentType: "bkash"
-        // https://i.ibb.co/Mg1bFGp/bkash-train-ticket-796x445-removebg-preview-removebg-preview.png
-    },
-    {
-        id: 4,
-        image: "https://i.ibb.co/gg2NNRL/nogod-removebg-preview.png",
-        paymentTypeLink: "#nogod",
-        paymentType: "nogod"
-    },
-    {
-        id: 5,
-        image: "https://i.ibb.co/GQxKRcy/roket-removebg-preview-removebg-preview-removebg-preview.png",
-        paymentTypeLink: "#roket",
-        paymentType: 'roket'
-    }
+    // {
+    //     id: 3,
+    //     image: "https://i.ibb.co/gg2NNRL/nogod-removebg-preview.png",
+    //     paymentTypeLink: "#bikas",
+    //     paymentType: "bkash"
+    //     // https://i.ibb.co/Mg1bFGp/bkash-train-ticket-796x445-removebg-preview-removebg-preview.png
+    // },
+    // {
+    //     id: 4,
+    //     image: "https://i.ibb.co/gg2NNRL/nogod-removebg-preview.png",
+    //     paymentTypeLink: "#nogod",
+    //     paymentType: "nogod"
+    // },
+    // {
+    //     id: 5,
+    //     image: "https://i.ibb.co/GQxKRcy/roket-removebg-preview-removebg-preview-removebg-preview.png",
+    //     paymentTypeLink: "#roket",
+    //     paymentType: 'roket'
+    // }
 ]
 const PaymentMethod = ({ OrderInfoData, setOrderInfoData }) => {
     console.log(OrderInfoData);

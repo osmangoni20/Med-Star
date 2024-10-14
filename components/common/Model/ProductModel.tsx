@@ -9,8 +9,11 @@ import style from "../../../styles/Sass/common/model/dynamicModel.module.scss";
 import SimpleButton from "../../Custom/Button/SimpleButton";
 import useFirebase from "../../hooks/useFirebase";
 import CustomModel from "./CustomModel";
+import { useAppDispatch } from "../../../redux/hooks";
+import { addToCart, deleteProduct, updateProduct } from "../../../redux/feature/CartSlice";
 interface Data {
   id: number;
+  _id:string,
   category: string;
   name: string;
   img: string;
@@ -43,29 +46,29 @@ const ProductModel = ({
   user:any
 }) => {
   const [countValue, setContValue] = useState(1);
-  const dispatch = useDispatch();
   const route = useRouter();
   
-  const { IncrementOderCart } = bindActionCreators(actionCreators, dispatch);
   const totalCardNumber = useSelector((state: State) => state.cart);
-  const [addToCart, setAddToCart] = useState(false);
   const [errorModel, setErrorModel] = useState(false);
   const [modelData, setModelData] = useState({});
   const [totalCartProduct, setTotalCartProduct] = useState<any>();
-  const HandleIncrease = () => {
+  const dispatch=useAppDispatch()
+  const HandleIncrease = (id:any) => {
+    // dispatch(updateProduct({id,type:"increment"}))
     setContValue((count) => count + 1);
   };
-  const HandleDecrease = () => {
+  const HandleDecrease = (id:any) => {
     if (countValue > 1) {
+      // dispatch(updateProduct({id,type:"decrement"}))
+
       setContValue((count) => count - 1);
-    } else {
-      setContValue(1);
     }
   };
 
   console.log(data);
   const HandleAddtoCart = () => {
     const product = {
+      _id:data?._id,
       capacity: data.capacity,
       category: data.category,
       img: data.img,
@@ -73,53 +76,53 @@ const ProductModel = ({
       price: data.price,
       productType: data.productType,
       quantity: countValue,
-      email: user.email,
     };
     console.log("product", product);
+    dispatch(addToCart(product))
+    setModel(false)
+    // const fetchData = async () => {
+    //   // get the data from the api
+    //   const res = await fetch("https://medstar-backend.onrender.com/my-cart", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //     },
+    //     body: JSON.stringify(product),
+    //   });
+    //   // convert data to json
+    //   const data = await res.json();
+    //   console.log(data);
+    //   if (data.insertedId) {
+    //     setModel(false);
+    //     IncrementOderCart();
 
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch("https://medstar-backend.onrender.com/my-cart", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(product),
-      });
-      // convert data to json
-      const data = await res.json();
-      console.log(data);
-      if (data.insertedId) {
-        setModel(false);
-        IncrementOderCart();
-
-        if (typeof window !== "undefined") {
-          localStorage.setItem(
-            "CountCartProduct",
-            `${Number(totalCardNumber + 1)}`
-          );
-        }
-        // route.reload();
-      }
-    };
+    //     if (typeof window !== "undefined") {
+    //       localStorage.setItem(
+    //         "CountCartProduct",
+    //         `${Number(totalCardNumber + 1)}`
+    //       );
+    //     }
+    //     // route.reload();
+    //   }
+    // };
 
     // call the function
-    if (user.email) {
-      fetchData()
-        // make sure to catch any error
-        .catch(console.error);
-    } else {
-      setErrorModel(!errorModel);
-      setModelData({
-        text1: "Not Found User",
-        text2: "Please Login Account or Create New Account",
-        wrongType: true,
-      });
+    // if (user.email) {
+    //   fetchData()
+    //     // make sure to catch any error
+    //     .catch(console.error);
+    // } else {
+    //   setErrorModel(!errorModel);
+    //   setModelData({
+    //     text1: "Not Found User",
+    //     text2: "Please Login Account or Create New Account",
+    //     wrongType: true,
+    //   });
 
-      setTimeout(() => {
-        setModel(false);
-      }, 4000);
-    }
+    //   setTimeout(() => {
+    //     setModel(false);
+    //   }, 4000);
+    // }
   };
   return (
     <div>
@@ -153,27 +156,27 @@ const ProductModel = ({
                       <p className="text-sm text-gray-400">
                         MRP{" "}
                         <span className="line-through">
-                          Tk {data.price * countValue}
+                          Tk {Number(data.price * countValue).toFixed(2)}
                         </span>{" "}
                         <span className={style.offer}>8% off</span>
                       </p>
                       <p className={`${style.price}`}>
                         TK{" "}
-                        {data.price * countValue -
-                          (data.price * countValue * 8) / 100}
+                        {Number(data.price * countValue -
+                          (data.price * countValue * 8) / 100).toFixed(2)}
                       </p>
 
                       <button className={`${style.countButton}`}>
                         <p
                           className={`${style.increaseAndDecrease}`}
-                          onClick={HandleDecrease}
+                          onClick={()=>HandleDecrease(data?._id)}
                         >
                           -
                         </p>
                         <p className={`${style.countValue}`}>{countValue}</p>
                         <p
                           className={`${style.increaseAndDecrease}`}
-                          onClick={HandleIncrease}
+                          onClick={()=>HandleIncrease(data?._id)}
                         >
                           +
                         </p>

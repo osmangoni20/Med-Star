@@ -20,42 +20,15 @@ import useFirebase from "../../hooks/useFirebase";
 import Navbar from "./Navbar";
 import NavbarModel from "./NavbarModel";
 import defaultProfile from "/assets/image/default_profile.png";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 const Header = () => {
   const [open, setOpen] = useState(false);
   const { user }: any = useFirebase();
   // const [isAdmin, setIsAdmin] = useState(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const totalCardNumber = useSelector((state: State) => state.cart);
-  const dispatch = useDispatch();
-  const { ResetOrderCart } = bindActionCreators(actionCreators, dispatch);
-
+const {products}=useAppSelector(state=>state.cartR)
   const route = useRouter();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch(
-        `https://medstar-backend.onrender.com/my-cart/${user.email}`
-      );
-
-      // convert data to json
-
-      const data = await res.json();
-
-      console.log(data, user.email);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("CountCartProduct", data.length);
-        ResetOrderCart();
-      }
-    };
-
-    // call the function
-
-    user.email &&
-      fetchData()
-        // make sure to catch any error
-        .catch(console.error);
-  }, [user]);
 
   const HandleSearch = () => {
     route.push(`/medicine?search=${searchValue}`);
@@ -129,7 +102,7 @@ const Header = () => {
                   <li>
                     <BsFillCartPlusFill />
                     <span className={`${style.totalCartItem}`}>
-                      {user.email?Number(totalCardNumber):0}
+                      {Number(products?.length)}
                     </span>
                   </li>
                 </a>

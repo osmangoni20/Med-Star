@@ -8,6 +8,7 @@ import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import CardProduct from "../../components/OrderCarts/CardProduct/CardProduct";
 import style from "../../styles/Sass/Components/OrderCart/_order_cart.module.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 const OrderCart = () => {
   const [cardProducts, setCardProducts] = useState([]);
   const [deleteItem, setDeleteItem] = useState(false);
@@ -15,61 +16,16 @@ const OrderCart = () => {
   const [progress, setProgress] = useState(false);
   const route = useRouter();
   const { user }: any = useFirebase();
-  let TotalPrize = cardProducts.reduce(
-    (accumulator: any, currentValue: any) =>
-      accumulator + currentValue.price * currentValue.quantity,
-    0
-  );
-  console.log(TotalPrize);
-  console.log(cardProducts);
 
+  const {products,total,subTotal,totalSelectedItem}=useAppSelector(state=>state.cartR)
   //Handle Total Prize
   const HandleUpdateQuantity = (quantity: number, id: string) => {
     console.log(quantity);
     //
-    fetch("https://medstar-backend.onrender.com/my-cart/updateQuantity/" + id, {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ quantity, id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          setUpdateQuantity(!updateQuantity);
-        }
-      });
+ 
   };
 
-  useEffect(() => {
-    if (cardProducts.length) {
-      setProgress(false);
-    } else if (cardProducts.length === 0) {
-      setProgress(true);
-      setTimeout(function () {
-        setProgress(false);
-      }, 3500);
-    }
-
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch(
-        `https://medstar-backend.onrender.com/my-cart/${user.email}`
-      );
-      // convert data to json
-      const data = await res.json();
-      setCardProducts(data);
-      console.log(data.length, "order-cart");
-      if (typeof window !== "undefined") {
-        localStorage.setItem("CountCartProduct", `${data.length}`);
-      }
-    };
-
-    // call the function
-    user.email &&
-      fetchData()
-        // make sure to catch any error
-        .catch(console.error);
-  }, [deleteItem, updateQuantity, user]);
+ 
 
   return (
     <div>
@@ -81,14 +37,14 @@ const OrderCart = () => {
       <Header />
       <div className={`${style.OrderCart}`}>
         {progress && <ProgressModel />}
-        {cardProducts.length > 0 ? (
+        {products.length > 0 ? (
           <div className=" md:flex md:justify-between gap-6">
             <div
               className={`${style.costInformation} md:hidden sm:hidden block `}
             >
               <CostInformation
                 showButton={true}
-                totalPrice={TotalPrize}
+                totalPrice={total}
               ></CostInformation>
             </div>
 
@@ -96,17 +52,17 @@ const OrderCart = () => {
               {/*  Order Cart  */}
               <div id="OrderCartProducts" style={{ display: "block" }}>
                 <div className={`${style.card_header}`}>
-                  <h3>Order: {cardProducts.length} Items</h3>
+                  <h3>Order: {totalSelectedItem} Items</h3>
                   <h3>
-                    Total: <span id="prize">{TotalPrize}</span> TK
+                    Total: <span id="prize">{Number(subTotal).toFixed(2)}</span> TK
                   </h3>
                 </div>
                 <div className={`${style.card_Product}`}>
                   <div className="row">
-                    {cardProducts?.map((pd, index) => (
+                    {products?.map((pd, index) => (
                       <CardProduct
                         key={index}
-                        totalPrice={TotalPrize}
+                        totalPrice={total}
                         HandleUpdateQuantity={HandleUpdateQuantity}
                         deleteItem={deleteItem}
                         setDeleteItem={setDeleteItem}
@@ -123,7 +79,7 @@ const OrderCart = () => {
               >
                 <CostInformation
                   showButton={true}
-                  totalPrice={TotalPrize}
+                  totalPrice={total}
                 ></CostInformation>
               </div>
             </aside>

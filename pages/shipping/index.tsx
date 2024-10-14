@@ -1,6 +1,7 @@
+'use client'
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, useEffect, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import { MdAddIcCall } from "react-icons/md";
@@ -13,8 +14,12 @@ import LargestButton from "../../components/Custom/Button/LargestButton";
 import useFirebase from "../../components/hooks/useFirebase";
 import CostInformation from "../../components/Order/CostInformation/CostInformation";
 import { InputFiledInformation } from "../../components/Order/CustomerInformation/InputFieldFinformation.js";
-import { PaymentMethodInfo } from "../../components/Order/CustomerInformation/PaymentMethodInfo.js";
+import { PaymentMethodInfo } from "../../components/Order/Payment/PaymentMethodInfo.ts";
 import style from "../../styles/Sass/pages/Shipping.module.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { TOrder } from "../../Type/type";
+import { add_new_order } from "../../redux/feature/OrderSlice";
+import { clearCart } from "../../redux/feature/CartSlice";
 
 interface Data {
   id: number;
@@ -30,7 +35,7 @@ interface Data {
   };
 }
 
-interface Customer {
+type TShippingAddress= {
   _id: string;
   email: string;
   firstName: string;
@@ -38,75 +43,21 @@ interface Customer {
 }
 const Shipping = () => {
   const [orderProduct, setCardProducts] = useState<Data[]>([]);
-  const [customerData, setOrderInfoData] = useState<any>([]);
-  const [paymentType, setPaymentType] = useState("");
+  const [customerData, setOrderInfoData] = useState<TShippingAddress|any>(null);
+  const [paymentType, setPaymentType] = useState<any>(null);
   const [model, setModel] = useState(false);
   const [modelData, setModelData] = useState({});
   const { user }: any = useFirebase();
   const [customer, setCustomer] = useState<any>({});
   const route = useRouter();
   const [progress, setProgress] = useState(false);
-  let SubTotal = orderProduct.reduce(
-    (accumulator: any, currentValue: any) =>
-      accumulator + currentValue.price * currentValue.quantity,
-    0
-  );
-  let ShippingCost;
-  let Vat;
-  if (SubTotal > 2000) {
-    Vat = SubTotal * 0.1;
-  } else if (SubTotal > 1000) {
-    Vat = SubTotal * 0.2;
-  } else {
-    Vat = 0;
-  }
-  if (SubTotal > 10000) {
-    ShippingCost = 0;
-  } else {
-    ShippingCost = 40;
-  }
-  const TotalCost = SubTotal + ShippingCost + Vat;
-  console.log(TotalCost, SubTotal, orderProduct);
-  useEffect(() => {
-    if (orderProduct.length) {
-      setProgress(false);
-    } else if (orderProduct.length === 0) {
-      setProgress(true);
-      setTimeout(function () {
-        setProgress(false);
-      }, 4000);
-    }
-
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch(
-        "https://medstar-backend.onrender.com/my-cart/" + user.email
-      );
-      const userRes = await fetch(
-        `https://medstar-backend.onrender.com/users/${user.email}`
-      );
-      // convert data to json/
-      const data = await res.json();
-      const userData = await userRes.json();
-      setCardProducts(data);
-
-      setCustomer(userData);
-    };
-
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
-  }, [user]);
-  console.log(customer);
+  const router=useRouter()
+const {total,subTotal,products}=useAppSelector(state=>state.cartR)
+const dispatch=useAppDispatch()
   const HandlePaymentType = (e: any) => {
     console.log(e.target.value);
     // setPaymentType(e.target.value);
-    const PaymentInfoAndStatus = {
-      ...customerData,
-      paymentType: e.target.value,
-    };
-    setOrderInfoData(PaymentInfoAndStatus);
+   setPaymentType(e.target.value)
   };
   const HandleFieldValue = (e: any) => {
     const data = { ...customerData, [e.target.name]: e.target.value };
@@ -119,18 +70,19 @@ const Shipping = () => {
 
   const HandleConfirmOrder = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const confirmOrderData = {
-      orderProduct,
-      email: customerData.email || customer.email,
-      name:
-        customerData.firstName || customer.firstName + " " + customer.lastName,
-      mobile_no: customerData.mobile_no || customer.mobile_no,
-      status: "Pending",
-      cost: TotalCost,
-      date: new Date(),
-      address: customerData.address || customer.address,
-      paymentType: customerData.paymentType,
-    };
+    const newOrder:TOrder={
+      date:new Date().toLocaleDateString(),
+      email:user?.email||'',
+      order_product:products,
+      status:"pending",
+      shippingInfo:customerData,
+      price:total,
+      paymentInfo:{
+          payment_method:paymentType,
+          transactionId:''
+      }
+  }
+  dispatch((add_new_order(newOrder)))
     const fetchData = async () => {
       // get the data from the api
       const res = await fetch("https://medstar-backend.onrender.com/new_order", {
@@ -138,13 +90,15 @@ const Shipping = () => {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(confirmOrderData),
+        body: JSON.stringify(newOrder),
       });
       // convert data to json
       const data = await res.json();
       if (data.insertedId) {
+        console.log(data)
         setProgress(false);
-        localStorage.setItem("CountCartProduct", "0");
+       dispatch(clearCart())
+       router.push('/dashboard')
         setModel(true);
         setModelData({
           text1: "Your Order Successfully Done",
@@ -153,19 +107,6 @@ const Shipping = () => {
           successType: true,
         });
 
-        fetch(
-          `https://medstar-backend.onrender.com/my-cart/delete/${customer.email}`,
-          {
-            method: "DELETE",
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount) {
-              console.log("Remove Item");
-              route.push("/");
-            }
-          });
       } else {
         setProgress(true);
       }
@@ -176,6 +117,7 @@ const Shipping = () => {
       // make sure to catch any error
       .catch(console.error);
   };
+
   return (
     <div>
       <Meta
@@ -199,7 +141,7 @@ const Shipping = () => {
             <div className={`${style.costInformationPart} order-sm-2 order-1`}>
               <CostInformation
                 showButton={false}
-                totalPrice={SubTotal}
+                totalPrice={subTotal}
               ></CostInformation>
             </div>
           </aside>
@@ -282,7 +224,7 @@ const Shipping = () => {
                     {
                       // <PaymentType HandlePaymentType={HandlePaymentType} paymenttypeInfo={method}></PaymentType>
 
-                      PaymentMethodInfo.map((method) => (
+                      PaymentMethodInfo.map((method:any) => (
                         <div key={method.id} className={`${style.paymentType}`}>
                           <div
                             className={`${style.singleType} flex justify-center items-center`}
@@ -290,11 +232,11 @@ const Shipping = () => {
                             <input
                               onChange={HandlePaymentType}
                               type="radio"
-                              disabled={
-                                method.paymentType === "caseOnDelivery"
-                                  ? false
-                                  : true
-                              }
+                              // disabled={
+                              //   method.paymentType === "caseOnDelivery"
+                              //     ? false
+                              //     : true
+                              // }
                               name="payment_type"
                               id={method.paymentType}
                               value={method.paymentType}
@@ -309,12 +251,30 @@ const Shipping = () => {
                   </div>
                 </form>
 
-                <div className={`${style.order_Button}`}>
-                  <Link href="/">
-                    <a onClick={HandleConfirmOrder}>
-                      <LargestButton>Confirm Order</LargestButton>
-                    </a>
+                <div  className={` ${style.order_Button}`}>
+
+                {
+                  (paymentType||customerData)?<span>
+                     {
+                  <span onClick={HandleConfirmOrder}>
+                  {paymentType!=='stripe'&&<LargestButton  >Confirm Order</LargestButton>
+                  }
+                  </span>
+                }
+                  {paymentType=='stripe'&& 
+                  <Link href={"/order_payment"}>
+                    <p>
+                    <LargestButton >Payment</LargestButton>
+                    </p>
                   </Link>
+                  }
+                  </span>:
+                   <p className="text-red-700 text-sm">Fill up Address and Payment Information</p>
+
+                }
+                 
+                
+                 
                 </div>
               </div>
             </div>
@@ -324,7 +284,7 @@ const Shipping = () => {
             <div className={`${style.costInformationPart} order-sm-2 order-1`}>
               <CostInformation
                 showButton={false}
-                totalPrice={SubTotal}
+                totalPrice={subTotal}
               ></CostInformation>
             </div>
           </aside>

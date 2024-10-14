@@ -6,6 +6,7 @@ import useFirebase from "../hooks/useFirebase";
 import ProductModel from "./Model/ProductModel";
 interface Data {
   id: number;
+  _id:string;
   category: string;
   name: string;
   img: string;
