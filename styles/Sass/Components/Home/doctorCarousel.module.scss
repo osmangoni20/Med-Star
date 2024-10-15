@@ -1,6 +1,6 @@
 @import "../../abstract//variable.module.scss";
 .carousel {
-  background-color: $Lightgray;
+  // background-color: $Lightgray;
   padding: 50px 0px;
   margin-top: 45px;
   .titlePart {
@@ -22,7 +22,6 @@
     margin: 10px auto;
 
     .doctorCard {
-      min-height: 460px;
       cursor: pointer;
       border: 2px solid $light;
      
@@ -31,15 +30,11 @@
         font-weight: 600;
         color: white;
       }
-      img {
-        max-height: 180px !important;
-      }
+    
     }
     .doctorCardBody {
-      height: 256px;
       color: white;
-      background-color: $light;
-      padding: 15px !important;
+      background-color: #4C9DC3;
       text-align: center;
     }
   }

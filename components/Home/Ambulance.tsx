@@ -87,14 +87,14 @@ const Ambulance = () => {
                     <div className={`${style.icon}`}>
                       <TiLocation />
                     </div>
-                    <p className="">{Amb.location_details}</p>
+                    <p className="">{Amb.location_details.slice(0,30)}</p>
                   </div>
 
                   <div className="flex gap-2 py-1 items-center">
                     <div className={`${style.icon}`}>
                       <IoIosCall />
                     </div>
-                    <div className="flex gap-1">
+                    <div className="">
                       <p>{Amb.contact1}</p>
                       <p>{Amb.contact2}</p>
                     </div>

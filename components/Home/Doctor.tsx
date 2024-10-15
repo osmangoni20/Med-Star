@@ -122,7 +122,7 @@ const Doctor = () => {
             return (
               <div
                 key={index}
-                className={`${style.doctorCard} card w-84 h-[350px] shadow`}
+                className={`${style.doctorCard} card lg:w-84 md:w-84  shadow rounded-md`}
               >
                 <figure className="h-[200px]">
                   <Image

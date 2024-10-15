@@ -20,6 +20,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TOrder } from "../../Type/type";
 import { add_new_order } from "../../redux/feature/OrderSlice";
 import { clearCart } from "../../redux/feature/CartSlice";
+import { FormProps, useForm } from "react-hook-form";
 
 interface Data {
   id: number;
@@ -52,8 +53,12 @@ const Shipping = () => {
   const route = useRouter();
   const [progress, setProgress] = useState(false);
   const router=useRouter()
+  const {register, handleSubmit}=useForm()
+const [isPayment, setIsPayment]=useState(false)
 const {total,subTotal,products}=useAppSelector(state=>state.cartR)
 const dispatch=useAppDispatch()
+
+
   const HandlePaymentType = (e: any) => {
     console.log(e.target.value);
     // setPaymentType(e.target.value);
@@ -68,14 +73,14 @@ const dispatch=useAppDispatch()
     console.log(customerData);
   };
 
-  const HandleConfirmOrder = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const onSubmit= async(data:any)=>{
+  
     const newOrder:TOrder={
       date:new Date().toLocaleDateString(),
       email:user?.email||'',
       order_product:products,
       status:"pending",
-      shippingInfo:customerData,
+      shippingInfo:data,
       price:total,
       paymentInfo:{
           payment_method:paymentType,
@@ -83,41 +88,63 @@ const dispatch=useAppDispatch()
       }
   }
   dispatch((add_new_order(newOrder)))
-    const fetchData = async () => {
-      // get the data from the api
-      const res = await fetch("https://medstar-backend.onrender.com/new_order", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(newOrder),
+  const fetchData = async () => {
+    // get the data from the api
+    const res = await fetch("https://medstar-backend.onrender.com/new_order", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newOrder),
+    });
+    // convert data to json
+    const data = await res.json();
+    if (data.insertedId) {
+      console.log(data)
+      setProgress(false);
+     dispatch(clearCart())
+     router.push('/dashboard')
+      setModel(true);
+      setModelData({
+        text1: "Your Order Successfully Done",
+        text2: "Enjoy our service",
+        // image: user?.photoUrl,
+        successType: true,
       });
-      // convert data to json
-      const data = await res.json();
-      if (data.insertedId) {
-        console.log(data)
-        setProgress(false);
-       dispatch(clearCart())
-       router.push('/dashboard')
-        setModel(true);
-        setModelData({
-          text1: "Your Order Successfully Done",
-          text2: "Enjoy our service",
-          // image: user?.photoUrl,
-          successType: true,
-        });
 
-      } else {
-        setProgress(true);
-      }
-    };
+    } else {
+      setProgress(true);
+    }
+  };
+  if(paymentType!=='cash_in_delivery'){
+    setIsPayment(true)
+  }
+  else{
+    fetchData()
+    // make sure to catch any error
+    .catch(console.error);
+  }
+  
 
     // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error);
+   
   };
+  // const onSubmit= async(data:any)=>{
 
+  //   const newOrder:TOrder={
+  //       date:new Date().toLocaleDateString(),
+  //       email:user?.email||'',
+  //       order_product:products,
+  //       status:"pending",
+  //       shippingInfo:data,
+  //       price:total,
+  //       paymentInfo:{
+  //           payment_method:paymentType,
+  //           transactionId:''
+  //       }
+  //   }
+  //   console.log(newOrder)
+  // }
   return (
     <div>
       <Meta
@@ -156,7 +183,7 @@ const dispatch=useAppDispatch()
                 {/* Submit Address Information  */}
                 <div className={`${style.customerInfo_container}`}>
                   <div className="form_container">
-                    <form>
+                    <form  onSubmit={handleSubmit(onSubmit)}>
                       <div className={`${style.form_input_field}`}>
                         {InputFiledInformation.map(
                           (data: any, index: number) => (
@@ -182,13 +209,12 @@ const dispatch=useAppDispatch()
                                 {(data.inputFiledType === "text" ||
                                   data.inputFiledType === "number" ||
                                   data.inputFiledType === "email") && (
-                                  <input
-                                    type={data.inputFiledType}
-                                    placeholder={data.fieldHeader}
-                                    name={data.name}
-                                    defaultValue={customer[data.name]}
-                                    onBlur={(e) => HandleFieldValue(e)}
-                                  />
+                                    <div className="w-full  text-xl font-medium">
+                
+                    <input  className="bg-[#E8F0FE] text-gray-500" type={data.inputFiledType}  
+                     defaultValue={customer[data?.name]} placeholder={data.fieldHeader}  id={data?.name} {...register(data?.name , { required: true })}/>
+                </div>
+                                  
                                 )}
                               </div>
                             </div>
@@ -198,19 +224,13 @@ const dispatch=useAppDispatch()
                       <div className={`${style.TextAria}`}>
                         <h5>Your Address</h5>
                         <textarea
-                          name={"address"}
                           cols={50}
                           rows={7}
-                          onBlur={(e) => HandleFieldValue(e)}
+                          required
+                          {...register("address",  { required: true })}
                         />
                       </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Payment Method Part */}
+                      {/* Payment Method Part */}
             <div>
               <div className={`${style.shippingHeder}`}>
                 <h3>Payment Method</h3>
@@ -256,16 +276,16 @@ const dispatch=useAppDispatch()
                 {
                   (paymentType||customerData)?<span>
                      {
-                  <span onClick={HandleConfirmOrder}>
-                  {paymentType!=='stripe'&&<LargestButton  >Confirm Order</LargestButton>
+                  <span >
+                  {!isPayment&&<button className="cursor:pointer" type="submit"><LargestButton  >Confirm Order</LargestButton></button>
                   }
                   </span>
                 }
-                  {paymentType=='stripe'&& 
+                  {(paymentType=='stripe'&&isPayment)&& 
                   <Link href={"/order_payment"}>
-                    <p>
+                    <button className="cursor:pointer" type="submit">
                     <LargestButton >Payment</LargestButton>
-                    </p>
+                    </button>
                   </Link>
                   }
                   </span>:
@@ -278,6 +298,13 @@ const dispatch=useAppDispatch()
                 </div>
               </div>
             </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
           </main>
 
           <aside className="h-screen">
