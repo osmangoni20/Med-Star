@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Footer from "../../components/common/Footer";
-import Header from "../../components/common/Header/Header";
-import Meta from "../../components/common/Meta";
-import AppointmentDate from "../../components/Doctor/Appointments/AppointmentHeader/AppointmentDate";
-import BookingAppointment from "../../components/Doctor/Appointments/BookingAppointment/BookingAppointment";
+import Footer from "../../../components/common/Footer";
+import Header from "../../../components/common/Header/Header";
+import Meta from "../../../components/common/Meta";
+import AppointmentDate from "../../../components/Doctor/Appointments/AppointmentHeader/AppointmentDate";
+import BookingAppointment from "../../../components/Doctor/Appointments/BookingAppointment/BookingAppointment";
 
 const Appointment = ({ data }: { data: any }) => {
   const [doctorData, setDoctorData] = useState({});
@@ -12,7 +12,7 @@ const Appointment = ({ data }: { data: any }) => {
     if (!data.camberTime) {
       setDoctorData({ ...doctorData, patientTime: "3.00pm - 8.00pm" });
     }
-  }, []);
+  }, [data.camberTime, doctorData]);
   console.log(selectedDate?.toLocaleString("en-us", { weekday: "long" }));
   console.log(selectedDate?.toLocaleString("default", { month: "long" }));
   console.log(selectedDate?.getFullYear());
@@ -32,7 +32,7 @@ const Appointment = ({ data }: { data: any }) => {
         selected={selectedDate}
         setSelected={setSelected}
       ></AppointmentDate>
-      <BookingAppointment date={selectedDate} data={data}></BookingAppointment>
+      <BookingAppointment date={selectedDate} type="chamber" data={data}></BookingAppointment>
       <Footer />
     </div>
   );

@@ -143,7 +143,7 @@ const ProductModel = ({
               ✕
             </label>
             <div className="flex justify-center">
-              <div className={`md:flex md:justify-between gap-12`}>
+              <div className={`md:flex md:justify-between w-full`}>
                 <div>
                   <Image
                     src={data.img}

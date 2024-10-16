@@ -12,7 +12,7 @@ const AppointmentDate = ({selected,setSelected}) => {
     return (
         <main style={{marginTop:"172px"}} className='flex justify-around items-center'>
             <div className=" offset-md-1">
-                <h1 className='text-xl text-center py-5' style={{ color: '#3A4156' }}>Pick Your Appointment Date</h1>
+                <h1 className='text-xl font-bold text-center py-5 text-[#4C9DC3]' >Pick Your Appointment Date</h1>
                 {/* <Calendar
                     onChange={HandleOnChange}
                     value={new Date()}

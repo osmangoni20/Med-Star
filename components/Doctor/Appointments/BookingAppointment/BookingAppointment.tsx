@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomModel from "../../../common/Model/CustomModel";
 import InputFieldModel from "../../../common/Model/InputFieldModel";
 import SimpleButton from "../../../Custom/Button/SimpleButton";
-const BookingAppointment = ({ date, data }: any) => {
+const BookingAppointment = ({ date, data,type }: any) => {
   const [showModel, setModel] = useState<boolean>(false);
   const [successModel, setSuccessModel] = useState(false);
   const [modelData, setModelData] = useState({});

@@ -68,7 +68,6 @@ const InputFieldModel = ({
   };
 
   useEffect(() => {
-    console.log("prescription modle");
     setDate(date);
     async function fetchData() {
       const res = await fetch(
@@ -187,7 +186,7 @@ const InputFieldModel = ({
   return (
     <div>
       {showModel && (
-        <div className={`${modelStyle.popup_container}`}>
+        <div className={`${modelStyle.popup_container} bg-white`}>
           {progress ? <ProgressModel /> : <></>}
 
           <div className={`${modelStyle.inner_popup}`}>
